@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
 *
 {
   margin: 0px auto;
@@ -5,13 +7,13 @@
 
 body
 {
-
+  font-family: 'Merriweather', serif;
 }
 
 .nav_bar
 {
   background-color: white;
-  height: 60px;
+  height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,10 +33,49 @@ body
 
 .searchbox
 {
-  width: 100%;
+  width: 94%;
   border: 1px solid black;
   border-radius: 7px;
   padding: 2px 5px;
+}
+
+.search_result
+{
+  width: 92.5%;
+  margin-left: 6px;
+  position: relative;
+  display: none; /*  This will be off. Major thing  */
+}
+
+.search_items_space
+{
+  width: 100%;
+  background-color: white;
+  position: absolute;
+  z-index: 2;
+  background-color: #e6e6e6;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  text-align: left;
+  padding: 5px;
+}
+
+.search_items
+{
+  width: 100%;
+  min-height: 30px;
+}
+
+.item_name
+{
+  padding: 0px 2px;
+  border-bottom: 2px solid black;
+  font-size: 14px;
+}
+
+.item_name:hover
+{
+  cursor: pointer;
 }
 
 .cart
@@ -46,4 +87,31 @@ body
 {
   font-size: 17px;
   margin-left: 5px;
+}
+
+/* Menu */
+.menu
+{
+  width: 100%;
+  height: 50px;
+  background: #ff5050;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  display: flex;
+}
+
+.menu_item
+{
+  text-align: center;
+}
+
+.menu .item_category
+{
+  border-right: 1px solid black;
+  float: left;
+  padding: 0px 25px;
+  cursor: pointer;
 }

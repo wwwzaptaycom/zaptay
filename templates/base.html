@@ -33,7 +33,22 @@
           </div>
 
           <div class="col-md-4">
-            <span><input type="search" name="search_item" class="searchbox" placeholder="Search Items" /></span>
+            <span>
+              <input type="search" name="search_item" class="searchbox" placeholder="Search Items" />
+              <i class="fa fa-search" aria-hidden="true"></i>
+              <div class="search_result">
+                <div class="search_items_space">
+                  <div class="search_items">
+                    <div class="item_name">
+                      <span>Samsung Galary</span>
+                    </div>
+                    <div class="item_name">
+                      <span>Nokia 3300</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </span>
           </div>
 
           <div class="col-md-2">
@@ -46,7 +61,38 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid">
+
+    <!-- Menu -->
+    <div class="menu">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- <div class="col-md-1"><span>Men</span></div>
+          <div class="col-md-1"><span>Women</span></div>
+          <div class="col-md-1"><span>Baby&kids</span></div> -->
+          <!-- <div><div class="item_category">Electronics</div></div> -->
+          <!-- <div class="col-md-1"><span>Mobile</span></div>
+          <div class="col-md-2"><span>Home appliance</span></div>
+          <div class="col-md-2"><span>Office appliance</span></div>
+          <div class="col-md-2"><span>Indian haat</span></div> -->
+          <div class="col-md-12">
+            <div class="menu_item">
+              <span class="item_category">Men</span>
+              <span class="item_category">WoMen</span>
+              <span class="item_category">Baby&kids</span>
+              <span class="item_category">Electronics</span>
+              <span class="item_category">Mobile</span>
+              <span class="item_category">Home appliance</span>
+              <span class="item_category">Office appliance</span>
+              <span class="item_category">Indian haat</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Menu -->
+
+    <!-- <div class="container-fluid"> -->
+    <div>
       {% block content %}
 
       {% endblock %}
