@@ -1,8 +1,19 @@
 .banner
 {
   width: 100%;
+  height: 252px;
+  margin-bottom: 5px;
   /* height: 450px; */
-  /* background-color: red; */
+  background-color: red;
+  /* overflow: hidden; */
+  float: left;
+}
+
+.banner_category_div
+{
+  width: 20%;
+  height: 252px;
+  float: left;
 }
 
 .banner_category
@@ -61,31 +72,65 @@
 }
 
 /* Banner section */
+.banner_image_div
+{
+    width: 60%;
+    float: left;
+}
+
 .banner_image
 {
   width: 100%;
-  height: 100%;
+  height: 252px;
   background-color: #984d4d;
+}
+
+.banner_image > img
+{
+  width: 100%;
+  height: 100%;
 }
 
 
 /* Right side INDIAN HAAT */
+.banner_indian_haat_div
+{
+  width: 20%;
+  height: 252px;
+  float: left;
+}
+
 .indian_haat
 {
   width: 100%;
   height: 100%;
   background: gray;
+  float: left;
+}
+
+.indian_haat > img
+{
+  width: 100%;
+  height: 100%;
 }
 
 /* OUR FACILITY */
 .our_facility
 {
   width: 100%;
-  height: 80px;
+  height: auto;
   /* background-color: #c2c5c5; */
-  /* border-top: 2px solid #777272; */
-  /* border-bottom: 2px solid #777272; */
-  margin-top: 20px;
+  border-top: 2px solid #777272;
+  border-bottom: 2px solid #777272;
+  /* margin-top: 20px; */
+  padding: 20px 0px;
+  float: left;
+}
+
+.our_facility a
+{
+  color: inherit;
+  text-decoration: none;
 }
 
 .facility_tab
@@ -113,8 +158,105 @@
   margin: 0px 10px;
 }
 
+.logo > i
+{
+  font-size: 20px;
+}
+
 .text
 {
   float: left;
   text-align: left;
+  margin: 2px;
 }
+
+/* Weekly Deals & offer */
+.weekly_deal
+{
+  width: 100%;
+  min-height: 250px;
+  background-color: #eae9e9;
+  padding: 20px 0px;
+  float: left;
+}
+
+.w_d_o_span
+{
+  padding-right: 10px;
+  font-size: 15px;
+  padding-bottom: 10px;
+}
+
+.w_d_o_time
+{
+  font-size: 15px;
+}
+
+.weekly_deal .small_banner
+{
+  width: 100%;
+  height: 350px;
+  background-color: red;
+}
+
+.small_banner img
+{
+  width: 100%;
+}
+
+.w_d_offer_slider
+{
+  width: 100%;
+  height: 350px;
+  /* background-color: red; */
+}
+
+.offer_div
+{
+  width: 100%;
+  height: 350px;
+  /* background-color: red; */
+}
+
+.offer_div img
+{
+  width: 100%;
+  height: 250px;
+}
+
+.offer_div .product_details
+{
+  padding: 0px 5px;
+}
+
+.w_d_offer_slider .product_name
+{
+  font-size: 15px;
+}
+
+.offer_div .product_details .rating .point
+{
+  background-color: red;
+}
+
+.product_details
+{
+  font-size: 15px;
+}
+
+.product_details .price
+{
+  font-size: 15px;
+}
+
+.product_details .price .offer
+{
+  padding: 0px 10px 0px 0px;
+}
+
+.product_details .price .original
+{
+  text-decoration: line-through;
+  padding-right: 10px;
+}
+/* /Weekly Deals & offer */

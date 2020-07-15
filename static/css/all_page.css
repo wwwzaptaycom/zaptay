@@ -2,7 +2,7 @@
 
 *
 {
-  margin: 0px auto;
+  /* margin: 0px auto; */
 }
 
 body
@@ -80,13 +80,47 @@ body
 
 .cart
 {
+  /* cursor: pointer; */
+}
+
+.cart:hover > .dropdown-menu
+{
+  display: block;
+}
+
+.cart > i
+{
   font-size: 20px;
+  cursor: pointer;
 }
 
 .cart_number
 {
   font-size: 17px;
   margin-left: 5px;
+}
+
+.dropdown-menu
+{
+  left: auto;
+  right: 0px;
+  top: 20px;
+}
+
+.cart-drop-down
+{
+
+}
+
+.cart_item_image
+{
+  width: 60px;
+  border-radius: 4px;
+}
+
+.dropdown-item
+{
+  border-bottom: 1px solid #6d6464;
 }
 
 /* Menu */
@@ -105,13 +139,166 @@ body
 
 .menu_item
 {
-  text-align: center;
+  align-items: center;
+  display: flex;
 }
 
 .menu .item_category
 {
-  border-right: 1px solid black;
+  /* border-right: 1px solid black; */
   float: left;
-  padding: 0px 25px;
+  /* padding: 0px 25px; */
+  padding: 0px;
+  cursor: pointer;
+  margin: 0px auto;
+}
+
+/* Modal */
+.my_modal_div
+{
+  width: 100%;
+  min-height: 100vh;
+  background-color: #0a0a0a5e;
+  position: absolute;
+  top: 0;
+  z-index: 999;
+  /* justify-content: center; */
+  align-items: center;
+  display: flex;
+}
+
+.modal_message
+{
+  display: none;
+}
+
+.my_modal
+{
+  width: 50%;
+  min-height: 250px;
+  background-color: white;
+  border-radius: 10px;
+  /* padding: 10px 20px; */
+  /* position: relative; */
+}
+
+.close
+{
+  opacity: 1;
+  /* position: absolute;
+  right: 0; */
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+.modal_heading
+{
+  width: 100%;
+  min-height: 58px;
+  /* background-color: red; */
+  padding: 14px 11px;
+  border-bottom: 2px solid black;
+}
+
+.modal_body
+{
+  width: 100%;
+  padding: 14px 11px;
+  text-align: justify;
+}
+/* /Modal */
+
+/* Login Modal */
+.my_login_modal_div
+{
+  display: none;
+}
+
+.my_login_modal_div > .my_modal
+{
+  width: 30%;
+}
+
+.my_login_modal_div .error_message
+{
+  color: red;
+  font-size: 14px;
+}
+
+.my_login_modal_div .input
+{
+  width: 100%;
+  margin: 8px 0px;
+  border-radius: 6px;
+  border: 1px solid #4e4b4b;
+  padding: 2px 6px;
+}
+
+.forget_pwd
+{
+  font-size: 12px;
+  float: right;
+  color: #040303;
+}
+
+.my_login_modal_div button
+{
+  margin: 10px 0px;
+  border-radius: 5px;
+  background-color: #ff242d;
+  color: white;
+  font-weight: 600;
   cursor: pointer;
 }
+/* /Login Modal */
+
+/* Register Modal */
+.my_reg_modal_div
+{
+  display: none;
+}
+
+.my_reg_modal_div > .my_modal
+{
+  width: 30%;
+}
+
+.my_reg_modal_div .error_message
+{
+  color: red;
+  font-size: 14px;
+}
+
+.my_reg_modal_div .input
+{
+  width: 100%;
+  margin: 8px 0px;
+  border-radius: 6px;
+  border: 1px solid #4e4b4b;
+  padding: 2px 6px;
+}
+
+.my_reg_modal_div .name
+{
+  width: 49%;
+  float: left;
+  margin-right: 1px;
+}
+
+.forget_pwd
+{
+  font-size: 12px;
+  float: right;
+  color: #040303;
+}
+
+.my_reg_modal_div button
+{
+  margin: 10px 0px;
+  border-radius: 5px;
+  background-color: #ff242d;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+/* /Register Modal */

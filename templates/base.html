@@ -32,7 +32,7 @@
             <span><a href="">Zaptay.com</a></span>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-6">
             <span>
               <input type="search" name="search_item" class="searchbox" placeholder="Search Items" />
               <i class="fa fa-search" aria-hidden="true"></i>
@@ -56,7 +56,24 @@
           </div>
 
           <div class="col-md-1">
-            <span><i class="fa fa-shopping-cart cart" aria-hidden="true"></i><sup class="cart_number">0</sup</span>
+            <span class="cart">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i><sup class="cart_number">0</sup>
+              <!-- <div class="dropdown-menu dropdown-menu-right cart-dropdown-menu">
+                <h5 class="dropdown-header">Cart Items</h5>
+                <a class="dropdown-item" href="#">
+                  <span><img src="{% static '/site_image/banner1.jpg' %}" alt="" class="cart_item_image"></span>
+                  <span>Product Name</span>
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><img src="{% static '/site_image/banner1.jpg' %}" alt="" class="cart_item_image"></span>
+                  <span>Product Name</span>
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><img src="{% static '/site_image/banner1.jpg' %}" alt="" class="cart_item_image"></span>
+                  <span>Product Name</span>
+                </a>
+              </div> -->
+            </span>
           </div>
         </div>
       </div>
@@ -92,12 +109,89 @@
     <!-- /Menu -->
 
     <!-- <div class="container-fluid"> -->
-    <div>
+    <!-- <div> -->
       {% block content %}
 
       {% endblock %}
 
+    <!-- </div> -->
+
+    <!-- Modal -->
+    <div class="my_modal_div modal_message">
+      <div class="my_modal">
+        <div class="close">
+          <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+        </div>
+        <div class="modal_heading">
+          <span>Test header</span>
+        </div>
+        <div class="modal_body">
+          <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+          </span>
+        </div>
+      </div>
     </div>
+    <!-- /Modal -->
+
+    <!-- Login Modal -->
+    <div class="my_modal_div my_login_modal_div">
+      <div class="my_modal">
+        <div class="close">
+          <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+        </div>
+        <div class="modal_heading">
+          <span><i class="fa fa-sign-in" aria-hidden="true"></i></span>
+          <span>Login</span>
+        </div>
+        <div class="modal_body">
+          <form method="POST">
+            <div class="error_message">
+              <span><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+              <span>Error Message</span>
+            </div>
+            <input type="email" name="email_id" class="input" placeholder="Email Id" />
+            <input type="password" name="password" class="input" placeholder="Password" />
+            <div class="forget_pwd">Forget password?</div>
+            <button><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- /Login Modal -->
+
+    <!-- Register Modal -->
+    <div class="my_modal_div my_reg_modal_div">
+      <div class="my_modal">
+        <div class="close">
+          <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+        </div>
+        <div class="modal_heading">
+          <span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+          <span>Register</span>
+        </div>
+        <div class="modal_body">
+          <form method="POST">
+            <div class="error_message">
+              <span><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+              <span>Error Message</span>
+            </div>
+            <input type="text" name="f_name" class="input name" placeholder="First name" />
+            <input type="text" name="l_name" class="input name" placeholder="Last name" />
+            <div>
+              <label>Gender</label>
+              <input type="radio" /> Male
+              <input type="radio" /> Fe male
+            </div>
+            <input type="email" name="email" class="input" placeholder="Email Id" />
+            <input type="password" name="pwd" class="input" placeholder="Password" />
+            <input type="password" name="c_pwd" class="input" placeholder="Confirm password" />
+            <button><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- /Register Modal -->
 
     <!-- Bootstrap4 -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

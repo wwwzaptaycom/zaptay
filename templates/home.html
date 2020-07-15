@@ -9,7 +9,8 @@
 
 {% block content %}
   <div class="banner">
-    <div class="container-fluid">
+    <!-- <div class="container-fluid">
+    <div>
       <div class="row">
         <div class="col-md-2">
           <div class="banner_category">
@@ -35,74 +36,158 @@
         </div>
       </div>
     </div>
+  </div> -->
+  <div class="banner_category_div">
+    <div class="banner_category">
+      <ul>
+        <a href=""><li>Men</li></a>
+        <a href=""><li>Women</li></a>
+        <a href=""><li>Baby & kids</li></a>
+        <a href=""><li>Mobile</li></a>
+        <a href=""><li>Electronics</li></a>
+        <a href=""><li>Office appliance</li></a>
+      </ul>
+    </div>
   </div>
+  <div class="banner_image_div">
+    <div class="banner_image">
+      <!-- <span>Banner section <br /> Image size: 790px X 252px</span> -->
+      <img src="{% static '/site_image/banner1.jpg' %}" alt="">
+    </div>
+  </div>
+  <div class="banner_indian_haat_div">
+    <div class="indian_haat">
+      <!-- <span>INDIAN HAAT section <br /> Image size: 263px X 252px</span> -->
+      <img src="{% static '/site_image/banner1.jpg' %}" alt="">
+    </div>
+  </div>
+</div>
 
   <!-- Our facility -->
   <div class="our_facility">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-2">
-          <div class="facility_tab">
-            <div class="logo">
-              <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+          <a href="javascript:void(0);">
+            <div class="facility_tab">
+              <div class="logo">
+                <i class="fa fa-gift" aria-hidden="true"></i>
+              </div>
+              <div class="text">
+                <span>Product Authentication Policy</span>
+              </div>
             </div>
-            <div class="text">
-              <span>Product Authentication Policy</span>
-            </div>
-          </div>
+          </a>
         </div>
         <div class="col-md-2">
-          <div class="facility_tab">
-            <div class="logo">
-              <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+          <a href="javascript:void(0);">
+            <div class="facility_tab">
+              <div class="logo">
+                <i class="fa fa-money" aria-hidden="true"></i>
+              </div>
+              <div class="text">
+                <span>COD Policy</span>
+              </div>
             </div>
-            <div class="text">
-              <span>COD Policy</span>
-            </div>
-          </div>
+          </a>
         </div>
         <div class="col-md-2">
-          <div class="facility_tab">
-            <div class="logo">
-              <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+          <a href="javascript:void(0);">
+            <div class="facility_tab">
+              <div class="logo">
+                <i class="fa fa-truck" aria-hidden="true"></i>
+              </div>
+              <div class="text">
+                <span>Free Shipping Policy</span>
+              </div>
             </div>
-            <div class="text">
-              <span>Free Shipping Policy</span>
-            </div>
-          </div>
+          </a>
         </div>
         <div class="col-md-2">
-          <div class="facility_tab">
-            <div class="logo">
-              <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+          <a href="javascript:void(0);">
+            <div class="facility_tab">
+              <div class="logo">
+                <i class="fa fa-reply" aria-hidden="true"></i>
+              </div>
+              <div class="text">
+                <span>10 Days Return Policy</span>
+              </div>
             </div>
-            <div class="text">
-              <span>10 Days Retuen Policy</span>
-            </div>
-          </div>
+          </a>
         </div>
         <div class="col-md-2">
-          <div class="facility_tab">
-            <div class="logo">
-              <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+          <a href="javascript:void(0);">
+            <div class="facility_tab">
+              <div class="logo">
+                <i class="fa fa-users" aria-hidden="true"></i>
+              </div>
+              <div class="text">
+                <span>Membership Policy</span>
+              </div>
             </div>
-            <div class="text">
-              <span>Membership Policy</span>
-            </div>
-          </div>
+          </a>
         </div>
         <div class="col-md-2">
-          <div class="facility_tab">
-            <div class="logo">
-              <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+          <a href="javascript:void(0);">
+            <div class="facility_tab">
+              <div class="logo">
+                <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+              </div>
+              <div class="text">
+                <span>Safe payment</span>
+              </div>
             </div>
-            <div class="text">
-              <span>Safe payment</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Weekly Details & offer -->
+  <div class="weekly_deal">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <span class="w_d_o_span">Weekly Details & Offers</span>
+          <span class="w_d_o_time">03:40 Left</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="small_banner">
+            <img src="{% static '/site_image/banner1.jpg' %}" alt="">
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="w_d_offer_slider">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="offer_div">
+                  <img src="{% static '/site_image/banner1.jpg' %}" alt="">
+                  <div class="product_details">
+                    <div class="product_name">Product name</div>
+                    <div class="rating">
+                      <span class="point">3.5</span>
+                    </div>
+                    <div class="price">
+                      <span class="offer">RS. 350</span>
+                      <span class="original">450</span>
+                      <span class="discount">4% Dic.</span>
+                    </div>
+                    <div>
+                      <span>Views 3K</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <!-- /Weekly Details & offer -->
+
+
 
 {% endblock %}
