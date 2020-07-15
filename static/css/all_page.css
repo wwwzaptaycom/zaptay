@@ -140,6 +140,7 @@ body
 .menu_item
 {
   align-items: center;
+  justify-content: center;
   display: flex;
 }
 
@@ -147,10 +148,9 @@ body
 {
   /* border-right: 1px solid black; */
   float: left;
-  /* padding: 0px 25px; */
-  padding: 0px;
+  padding: 0px 8px;
   cursor: pointer;
-  margin: 0px auto;
+  /* margin: 0px auto; */
 }
 
 /* Modal */

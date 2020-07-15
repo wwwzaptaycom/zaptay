@@ -1,7 +1,7 @@
 .banner
 {
   width: 100%;
-  height: 252px;
+  height: 360px;
   margin-bottom: 5px;
   /* height: 450px; */
   background-color: red;
@@ -11,7 +11,7 @@
 
 .banner_category_div
 {
-  width: 20%;
+  width: 14%;
   height: 252px;
   float: left;
 }
@@ -42,10 +42,11 @@
 
 .banner_category > ul > a > li
 {
-  padding: 8px 20px;
+  padding: 17px 2px;
   border-bottom: 2px solid black;
   /* transition: border 1s ease; */
   position: relative;
+  text-align: center;
 }
 
 .banner_category > ul > a > li::after
@@ -74,14 +75,14 @@
 /* Banner section */
 .banner_image_div
 {
-    width: 60%;
+    width: 72%;
     float: left;
 }
 
 .banner_image
 {
   width: 100%;
-  height: 252px;
+  height: 360px;
   background-color: #984d4d;
 }
 
@@ -95,8 +96,8 @@
 /* Right side INDIAN HAAT */
 .banner_indian_haat_div
 {
-  width: 20%;
-  height: 252px;
+  width: 14%;
+  height: 360px;
   float: left;
 }
 
@@ -248,19 +249,19 @@
 
 .product_details .price
 {
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .product_details .price .offer
 {
-  padding: 0px 5px 0px 0px;
+  /* padding: 0px 5px 0px 0px; */
   font-weight: 700;
 }
 
 .product_details .price .original
 {
   text-decoration: line-through;
-  padding-right: 10px;
+  /* padding-right: 10px; */
 }
 
 .product_details .price .discount
@@ -278,3 +279,46 @@
   padding: 15px;
 }
 /* /Weekly Deals & offer */
+
+/* Featured Category */
+.featured_category
+{
+  width: 100%;
+  min-height: 350px;
+  /* background-color: red; */
+  padding: 20px 0px;
+  float: left;
+}
+
+.fashion
+{
+  width: 100%;
+  height: 320px;
+  /* background-color: cyan; */
+  border: 2px solid #928e8e;
+}
+
+.fashion .header
+{
+  width: 100%;
+  text-align: center;
+  background-color: #c79e09;
+  padding: 5px 0px;
+}
+
+.fashion .body
+{
+  height: 280px;
+  padding: 5px;
+  /* background-color: yellow; */
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.fashion .body img
+{
+  width: 100%;
+  margin: 2px;
+  border: 2px solid #3a3737;
+}
+/* /Featured Category */
