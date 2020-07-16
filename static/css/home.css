@@ -353,7 +353,7 @@
 .fashion .body
 {
   height: 370px;
-  padding: 0px 17px;
+  padding: 7px 17px;
   background-color: #b1b1ab;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -445,7 +445,8 @@
   width: 100%;
   min-height: 350px;
   background-color: #f5f4f4;
-  padding: 5px 8px;
+  /* padding: 5px 8px; */
+  padding: 5px 0px;
   cursor: pointer;
   transition: 3s;
 }
@@ -461,11 +462,15 @@
 {
   width: 100%;
   position: relative;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 
 .robot_elect .product_div .product_img img
 {
-  width: 100%;
+  width: 70%;
+  height: 210px;
   border: 1px solid black;
 }
 .robot_elect .product_div .product_img span
@@ -482,6 +487,12 @@
 .robot_elect .product_div .product_name
 {
   width: 100%;
+  padding: 0px 6px;
+}
+
+.robot_elect .product_div .price
+{
+  padding: 0px 6px;
 }
 
 .robot_elect .product_div .price .orignal_price
@@ -497,6 +508,11 @@
   padding: 10px 0px;
 }
 
+.robot_elect .product_div .offer
+{
+  padding: 5px 6px;
+}
+
 .robot_elect .product_div .offer .off
 {
   border: 1px solid #0fa049;
@@ -510,7 +526,7 @@
 .product_banner
 {
   width: 100%;
-  min-height: 350px;
+  min-height: 280px;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -551,7 +567,8 @@
 
 .product_banner2 .banner_div img
 {
-  width: 100%;
+  width: 102%;
+  height: 300px;
   border: 2px solid #0095ff;
 }
 /* /Product Banner 2 */
