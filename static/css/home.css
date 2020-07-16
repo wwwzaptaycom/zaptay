@@ -416,3 +416,172 @@
 }
 
 /* /Featured Category */
+
+/* Robotic & Electronics */
+.robot_elect
+{
+  width: 100%;
+  min-height: 350px;
+  //background-color: red;
+  padding: 10px 0px;
+  border: 1px solid black;
+  float: left;
+}
+
+.robot_elect .title
+{
+  font-size: 30px;
+  padding-right: 5px;
+}
+
+.robot_elect a
+{
+  color: #2f96af;
+  text-decoration: none;
+}
+
+.robot_elect .product_div
+{
+  width: 100%;
+  min-height: 350px;
+  background-color: #f5f4f4;
+  padding: 5px 8px;
+  cursor: pointer;
+  transition: 3s;
+}
+
+.robot_elect .product_div:hover
+{
+  transform: scale(1.03);
+  box-shadow: 0px 0px 20px 0px #544c4c;
+  transition: 1s;
+}
+
+.robot_elect .product_div .product_img
+{
+  width: 100%;
+  position: relative;
+}
+
+.robot_elect .product_div .product_img img
+{
+  width: 100%;
+  border: 1px solid black;
+}
+.robot_elect .product_div .product_img span
+{
+  position: absolute;
+  // z-index: 3;
+  left: -5px;
+  top: -12px;
+  background-color: #4aa14f;
+  padding: 1px 7px;
+  color: white;
+}
+
+.robot_elect .product_div .product_name
+{
+  width: 100%;
+}
+
+.robot_elect .product_div .price .orignal_price
+{
+  text-decoration: line-through;
+  margin-left: 12px;
+}
+
+.robot_elect .product_div .offer
+{
+  width: 100%;
+  height: auto;
+  padding: 10px 0px;
+}
+
+.robot_elect .product_div .offer .off
+{
+  border: 1px solid #0fa049;
+  color: #0fa049;
+  padding: 3px 8px;
+  font-weight: 700;
+}
+/* /Robotic & Electronics */
+
+/* Product Banner */
+.product_banner
+{
+  width: 100%;
+  min-height: 350px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  float: left;
+}
+
+.product_banner .banner_div
+{
+  width: 100%;
+}
+
+.product_banner .banner_div img
+{
+  width: 100%;
+}
+/* /Product Banner */
+
+/* Men Jackets */
+
+/* /Men Jackets */
+
+/* Product Banner 2 */
+.product_banner2
+{
+  width: 100%;
+  min-height: 350px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 15px 0px;
+  float: left;
+}
+
+.product_banner2 .banner_div
+{
+  width: 100%;
+}
+
+.product_banner2 .banner_div img
+{
+  width: 100%;
+  border: 2px solid #0095ff;
+}
+/* /Product Banner 2 */
+
+/* Men Jackets2 */
+
+/* /Men Jackets2 */
+
+/* Pet Product */
+.pet_product
+{
+  width: 100%;
+  min-height: 250px;
+  padding: 50px 0px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  float: left;
+}
+
+.pet_product img
+{
+  width: 100%;
+}
+/* /Pet Product */
+
+/* Mobile & Tablets */
+
+/* /Mobile & Tablets */
+
+/* Baby Product Banner */
+
+/* /Baby Product Banner */
