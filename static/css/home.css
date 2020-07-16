@@ -240,14 +240,15 @@
 
 .offer_div .focus_discount
 {
-  background: #f1f70a;
+  // background: #f1f70a;
+  background-color: red;
   top: -14px;
   right: -10px;
   position: absolute;
   border-radius: 84px;
   padding: 3px 11px;
   box-shadow: 0px 0px 12px 0px #bf0707;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   animation: offer_blink 3s infinite;
 }
 
@@ -270,8 +271,8 @@
 .offer_div .focus_discount .focus_discount_text
 {
   width: 25px;
-  color: red;
-  font-weight: 600;
+  color: white;
+  font-weight: 700;
   font-size: 14px;
 }
 
@@ -295,12 +296,14 @@
 {
   /* padding: 0px 5px 0px 0px; */
   font-weight: 700;
+  font-size: 18px;
 }
 
 .product_details .price .original
 {
   text-decoration: line-through;
   /* padding-right: 10px; */
+  font-size: 18px;
 }
 
 .product_details .price .discount
@@ -308,13 +311,15 @@
   font-size: 14px;
 }
 
-.product_details .price .view
+.product_details .view
 {
   padding: 0px 0px 0px 5px;
   font-size: 14px;
+  text-align: right;
 }
 
-.item{
+.item
+{
   padding: 15px;
 }
 /* /Weekly Deals & offer */
@@ -349,7 +354,7 @@
 {
   height: 370px;
   padding: 0px 17px;
-  /* background-color: yellow; */
+  background-color: #b1b1ab;
   overflow-y: scroll;
   overflow-x: hidden;
 
@@ -368,11 +373,46 @@
   width: 100%;
   height: 200px;
   margin: 2px;
-  border: 2px solid #3a3737;
+  /* border: 2px solid #3a3737; */
+  position: relative;
+  transition: 2s;
+  cursor: pointer;
+}
+
+.fashion .body img:hover
+{
+  transform: scale(1.05);
+  /* box-shadow: 0px 0px 12px red; */
+  z-index: 2;
+  position: absolute;
+  transition: 1s;
 }
 
 .feature_cat_pading_man
 {
   padding: 0px 1px;
+  position: relative;
 }
+
+.product_category
+{
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  z-index: 3;
+  background: #403f3fdb;
+  color: white;
+  font-weight: 600;
+  opacity: 0;
+  padding: 6px 0px;
+  transition: 2s;
+}
+
+.feature_cat_pading_man:hover .product_category
+{
+  opacity: 1;
+  transition: 1s;
+}
+
 /* /Featured Category */
