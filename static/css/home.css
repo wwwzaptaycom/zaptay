@@ -224,6 +224,7 @@
   width: 100%;
   height: 350px;
   /* background-color: red; */
+  position: relative;
 }
 
 .offer_div img
@@ -235,6 +236,43 @@
 .offer_div .product_details
 {
   padding: 0px 5px;
+}
+
+.offer_div .focus_discount
+{
+  background: #f1f70a;
+  top: -14px;
+  right: -10px;
+  position: absolute;
+  border-radius: 84px;
+  padding: 3px 11px;
+  box-shadow: 0px 0px 12px 0px #bf0707;
+  border: 1px solid black;
+  animation: offer_blink 3s infinite;
+}
+
+@keyframes offer_blink
+{
+  0%
+  {
+    box-shadow: 0px 0px 0px 0px #bf0707;
+  }
+  50%
+  {
+    box-shadow: 0px 0px 12px 2px #bf0707;
+  }
+  100%
+  {
+    box-shadow: 0px 0px 0px 0px #bf0707;
+  }
+}
+
+.offer_div .focus_discount .focus_discount_text
+{
+  width: 25px;
+  color: red;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .w_d_offer_slider .product_name
@@ -294,7 +332,7 @@
 .fashion
 {
   width: 100%;
-  height: 320px;
+  min-height: 320px;
   /* background-color: cyan; */
   border: 2px solid #928e8e;
 }
@@ -309,18 +347,32 @@
 
 .fashion .body
 {
-  height: 280px;
-  padding: 5px;
+  height: 370px;
+  padding: 0px 17px;
   /* background-color: yellow; */
   overflow-y: scroll;
   overflow-x: hidden;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.fashion .body::-webkit-scrollbar
+{
+    width: 0px;
+    background: transparent; /* Chrome/Safari/Webkit */
 }
 
 .fashion .body img
 {
   width: 100%;
-  height: 135px;
+  height: 200px;
   margin: 2px;
   border: 2px solid #3a3737;
+}
+
+.feature_cat_pading_man
+{
+  padding: 0px 1px;
 }
 /* /Featured Category */
