@@ -526,7 +526,7 @@
 .product_banner
 {
   width: 100%;
-  min-height: 280px;
+  min-height: 218px;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -582,7 +582,7 @@
 {
   width: 100%;
   min-height: 250px;
-  padding: 50px 0px;
+  padding: 7px 0px;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -602,3 +602,39 @@
 /* Baby Product Banner */
 
 /* /Baby Product Banner */
+
+/* addCart and widh list */
+.add_cart_div
+{
+  height: auto;
+  border: 2px solid black;
+}
+
+.add_cart_div .cart_wish_list
+{
+  width: 100%;
+  height: 40px;
+  padding: 5px 0px;
+}
+
+.add_cart_div .cart_wish_list .wishlist
+{
+  width: 45%;
+  height: 27px;
+  background: #ffef0f;
+  align-items: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin: 0px 5px;
+  border-radius: 6px;
+  color: red;
+  cursor: pointer;
+  float: left;
+}
+
+.add_cart_div .cart_wish_list .cart
+{
+  color: black;
+}
+/* /addCart and widh list */
