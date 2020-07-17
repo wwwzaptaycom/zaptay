@@ -4,105 +4,104 @@
 <!DOCTYPE html>
 
 {% block add_css %}
-  <link rel="stylesheet" href="{% static 'css/category.css' %}">
+<link rel="stylesheet" href="{% static 'css/category.css' %}">
 {% endblock %}
 
 {% block content %}
 <!-- Banner -->
-  <div class="banner">
-    <div class="row">
-      <div class="col-md-1 col_pad_off">
-        <img class="left_image" src="{% static 'site_image/1507732030.formal-shoes.png' %}" alt="">
-      </div>
-      <div class="col-md-10 col_pad_off">
-        <img class="middle_image" src="{% static 'site_image/1507732030.formal-shoes.png' %}" alt="">
-      </div>
-      <div class="col-md-1 col_pad_off">
-        <img class="right_image" src="{% static 'site_image/1507732030.formal-shoes.png' %}" alt="">
-      </div>
+<div class="banner">
+  <div class="row">
+    <div class="col-md-1 col_pad_off">
+      <img class="left_image" src="{% static 'site_image/1507732030.formal-shoes.png' %}" alt="">
+    </div>
+    <div class="col-md-10 col_pad_off">
+      <img class="middle_image" src="{% static 'site_image/1507732030.formal-shoes.png' %}" alt="">
+    </div>
+    <div class="col-md-1 col_pad_off">
+      <img class="right_image" src="{% static 'site_image/1507732030.formal-shoes.png' %}" alt="">
     </div>
   </div>
+</div>
 <!-- /Banner -->
 
 <!-- Category type -->
-  <div class="category_type_list">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-2">
-          <div class="card">
-            <div class="card_image">
-              <img src="{% static 'site_image/male.jpg' %}" alt="">
-            </div>
-            <div class="card_name">
-              <span>Product Name</span>
-            </div>
+<div class="category_type_list">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="card">
+          <div class="card_image">
+            <img src="{% static 'site_image/male.jpg' %}" alt="">
+          </div>
+          <div class="card_name">
+            <span>Product Name</span>
           </div>
         </div>
-        <div class="col-md-2">
-          <div class="card">
-            <div class="card_image">
-              <img src="{% static 'site_image/male.jpg' %}" alt="">
-            </div>
-            <div class="card_name">
-              <span>Product Name</span>
-            </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card">
+          <div class="card_image">
+            <img src="{% static 'site_image/male.jpg' %}" alt="">
+          </div>
+          <div class="card_name">
+            <span>Product Name</span>
           </div>
         </div>
-        <div class="col-md-2">
-          <div class="card">
-            <div class="card_image">
-              <img src="{% static 'site_image/male.jpg' %}" alt="">
-            </div>
-            <div class="card_name">
-              <span>Product Name</span>
-            </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card">
+          <div class="card_image">
+            <img src="{% static 'site_image/male.jpg' %}" alt="">
+          </div>
+          <div class="card_name">
+            <span>Product Name</span>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 <!-- /Category type -->
 
 <!-- Category head -->
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="category_header">
-          <div class="row">
-            <div class="col-md-3">
-              <div class="category_name">
-                <span>Woman category</span>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="category_header">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="category_name">
+              <span>Woman category</span>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="bread_crumbs">
+              <span>
+                <a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>
+              </span>
+              <span>/</span>
+              <span>
+                <a href="#">Men category</a>
+              </span>
+              <span>/</span>
+              <span>Panjabi</span>
+              <span class="now_showing">Showing 1 - 40 Products of 150 Products</span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="sorting">
+              <div class="sort_by">
+                <span><i class="fa fa-sort" aria-hidden="true"></i>&nbsp;Sort By</span>
               </div>
             </div>
-            <div class="col-md-5">
-              <div class="bread_crumbs">
-                <span>
-                  <a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>
-                </span>
-                <span>/</span>
-                <span>
-                  <a href="#">Men category</a>
-                </span>
-                <span>/</span>
-                <span>Panjabi</span>
-                <span class="now_showing">Showing 1 - 40 Products of 150 Products</span>
+            <div class="sorting">
+              <div class="view">
+                <span><i class="fa fa-eye" aria-hidden="true"></i> &nbsp; View</span>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="sorting">
-                <div class="sort_by">
-                  <span><i class="fa fa-sort" aria-hidden="true"></i>&nbsp;Sort By</span>
-                </div>
-              </div>
-              <div class="sorting">
-                <div class="view">
-                  <span><i class="fa fa-eye" aria-hidden="true"></i> &nbsp; View</span>
-                </div>
-              </div>
-              <div class="sorting">
-                <div class="stock">
-                  <span><i class="fa fa-th" aria-hidden="true"></i>&nbsp;Stock view</span>
-                </div>
+            <div class="sorting">
+              <div class="stock">
+                <span><i class="fa fa-th" aria-hidden="true"></i>&nbsp;Stock view</span>
               </div>
             </div>
           </div>
@@ -110,30 +109,487 @@
       </div>
     </div>
   </div>
+</div>
 <!-- /Category head -->
 
 <!-- Product filter and category -->
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-3">
-        <div class="filter_div">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="brand_name">
-                <div class="title">Breands name</div>
-                <div class="search">
-                  <input type="text" name="" value="">
-                  <div class="search_result">
-                    asd
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="filter_div">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="brand_name">
+              <div class="title">Breands name</div>
+              <div class="search">
+                <input type="text" name="" value="">
+                <div class="search_result">
+                  <div>
+                    <label><input type="checkbox" name="" value=""> Saree(451)</label>
                   </div>
+                  <div>
+                    <label><input type="checkbox" name="" value=""> Saree(451)</label>
+                  </div>
+                </div>
+                <div class="caegory_choosen">5 total sub category choosen</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="brand_name">
+              <div class="title">Colors</div>
+              <div class="search">
+                <input type="text" name="" value="">
+                <div class="search_result">
+                  <div>
+                    <label><input type="checkbox" name="" value=""> Red</label>
+                  </div>
+                  <div>
+                    <label><input type="checkbox" name="" value=""> Green</label>
+                  </div>
+                </div>
+                <div class="caegory_choosen">5 total sub category choosen</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="brand_name">
+              <div class="title">Size</div>
+              <div class="search">
+                <input type="text" name="" value="">
+                <div class="search_result">
+                  <div>
+                    <label><input type="checkbox" name="" value=""> S - Small</label>
+                  </div>
+                  <div>
+                    <label><input type="checkbox" name="" value=""> M - Medium</label>
+                  </div>
+                </div>
+                <div class="caegory_choosen">5 total sub category choosen</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="brand_name">
+              <div class="title">Price</div>
+              <div class="search">
+                <input type="number" name="" value="">
+                <input type="number" name="" value="">
+                <!-- Price range slider -->
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="brand_name">
+              <div class="row">
+                <div class="col-md-6">
+                  <button type="button" name="button" class="apply_btn"><i class="fa fa-check" aria-hidden="true"></i> Apply</button>
+                </div>
+                <div class="col-md-6">
+                  <button type="button" name="button" class="apply_btn"><i class="fa fa-times" aria-hidden="true"></i> Clear</button>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
+      </div>
+
+      <!-- Ads -->
+      <div class="banner_ads">
+        <img src="{% static 'site_image/male.jpg' %}" alt="">
+      </div>
+      <!-- /Ads -->
+    </div>
+
+
+    <div class="col-md-9">
+      <div class="products">
+
+        <!-- Product design start -->
+        <div class="product_lists">
+          <div class="product_image">
+            <img src="{% static 'site_image/male.jpg' %}" alt="">
+          </div>
+          <div class="product_details">
+            <div>Product name</div>
+            <div class="price">
+              <span class="sale_price"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+              <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+            </div>
+            <div class="offer">
+              <span class="percent">35% off</span>
+              <span class="save">Save 758</span>
+            </div>
+            <div class="cart_wishlist">
+              <button type="button" name="button"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+              <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+        <!-- Product design end -->
+
+        <!-- Product design start -->
+        <div class="product_lists">
+          <div class="product_image">
+            <img src="{% static 'site_image/male.jpg' %}" alt="">
+          </div>
+          <div class="product_details">
+            <div>Product name</div>
+            <div class="price">
+              <span class="sale_price"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+              <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+            </div>
+            <div class="offer">
+              <span class="percent">35% off</span>
+              <span class="save">Save 758</span>
+            </div>
+            <div class="cart_wishlist">
+              <button type="button" name="button"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+              <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+        <!-- Product design end -->
+        <!-- Product design start -->
+        <div class="product_lists">
+          <div class="product_image">
+            <img src="{% static 'site_image/male.jpg' %}" alt="">
+          </div>
+          <div class="product_details">
+            <div>Product name</div>
+            <div class="price">
+              <span class="sale_price"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+              <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+            </div>
+            <div class="offer">
+              <span class="percent">35% off</span>
+              <span class="save">Save 758</span>
+            </div>
+            <div class="cart_wishlist">
+              <button type="button" name="button"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+              <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+        <!-- Product design end -->
+        <!-- Product design start -->
+        <div class="product_lists">
+          <div class="product_image">
+            <img src="{% static 'site_image/male.jpg' %}" alt="">
+          </div>
+          <div class="product_details">
+            <div>Product name</div>
+            <div class="price">
+              <span class="sale_price"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+              <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+            </div>
+            <div class="offer">
+              <span class="percent">35% off</span>
+              <span class="save">Save 758</span>
+            </div>
+            <div class="cart_wishlist">
+              <button type="button" name="button"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+              <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+        <!-- Product design end -->
+        <!-- Product design start -->
+        <div class="product_lists">
+          <div class="product_image">
+            <img src="{% static 'site_image/male.jpg' %}" alt="">
+          </div>
+          <div class="product_details">
+            <div>Product name</div>
+            <div class="price">
+              <span class="sale_price"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+              <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+            </div>
+            <div class="offer">
+              <span class="percent">35% off</span>
+              <span class="save">Save 758</span>
+            </div>
+            <div class="cart_wishlist">
+              <button type="button" name="button"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+              <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+        <!-- Product design end -->
+        <!-- Product design start -->
+        <div class="product_lists">
+          <div class="product_image">
+            <img src="{% static 'site_image/male.jpg' %}" alt="">
+          </div>
+          <div class="product_details">
+            <div>Product name</div>
+            <div class="price">
+              <span class="sale_price"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+              <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+            </div>
+            <div class="offer">
+              <span class="percent">35% off</span>
+              <span class="save">Save 758</span>
+            </div>
+            <div class="cart_wishlist">
+              <button type="button" name="button"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+              <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+        <!-- Product design end -->
+        <!-- Product design start -->
+        <div class="product_lists">
+          <div class="product_image">
+            <img src="{% static 'site_image/male.jpg' %}" alt="">
+          </div>
+          <div class="product_details">
+            <div>Product name</div>
+            <div class="price">
+              <span class="sale_price"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+              <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+            </div>
+            <div class="offer">
+              <span class="percent">35% off</span>
+              <span class="save">Save 758</span>
+            </div>
+            <div class="cart_wishlist">
+              <button type="button" name="button"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+              <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+        <!-- Product design end -->
+        <!-- Product design start -->
+        <div class="product_lists">
+          <div class="product_image">
+            <img src="{% static 'site_image/male.jpg' %}" alt="">
+          </div>
+          <div class="product_details">
+            <div>Product name</div>
+            <div class="price">
+              <span class="sale_price"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+              <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+            </div>
+            <div class="offer">
+              <span class="percent">35% off</span>
+              <span class="save">Save 758</span>
+            </div>
+            <div class="cart_wishlist">
+              <button type="button" name="button"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+              <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+        <!-- Product design end -->
+
+        <div class="see_more_btn">
+          <button type="button" name="button">See more</button>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+<!-- /Product filter and category -->
+
+<!-- Related Product -->
+  <div class="related_product">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="title">
+            <span>Related Product</span>
+          </div>
+        </div>
+      <div class="col-md-12">
+        <!-- Product design start -->
+        <div class="product_lists">
+          <div class="product_image">
+            <img src="{% static 'site_image/male.jpg' %}" alt="">
+          </div>
+          <div class="product_details">
+            <div>Product name</div>
+            <div class="price">
+              <span class="sale_price"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+              <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+            </div>
+            <div class="offer">
+              <span class="percent">35% off</span>
+              <span class="save">Save 758</span>
+            </div>
+            <div class="cart_wishlist">
+              <button type="button" name="button"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+              <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+        <!-- Product design end -->
+
+        <!-- Product design start -->
+        <div class="product_lists">
+          <div class="product_image">
+            <img src="{% static 'site_image/male.jpg' %}" alt="">
+          </div>
+          <div class="product_details">
+            <div>Product name</div>
+            <div class="price">
+              <span class="sale_price"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+              <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+            </div>
+            <div class="offer">
+              <span class="percent">35% off</span>
+              <span class="save">Save 758</span>
+            </div>
+            <div class="cart_wishlist">
+              <button type="button" name="button"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+              <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+        <!-- Product design end -->
+
+        <!-- Product design start -->
+        <div class="product_lists">
+          <div class="product_image">
+            <img src="{% static 'site_image/male.jpg' %}" alt="">
+          </div>
+          <div class="product_details">
+            <div>Product name</div>
+            <div class="price">
+              <span class="sale_price"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+              <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+            </div>
+            <div class="offer">
+              <span class="percent">35% off</span>
+              <span class="save">Save 758</span>
+            </div>
+            <div class="cart_wishlist">
+              <button type="button" name="button"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+              <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+        <!-- Product design end -->
+
+
+      </div>
       </div>
     </div>
   </div>
-<!-- /Product filter and category -->
+<!-- Related Product -->
+
+<!-- Recent view Product -->
+  <div class="resent_product">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="title">
+            <span>Recent View Product</span>
+          </div>
+        </div>
+      <div class="col-md-12">
+        <!-- Product design start -->
+        <div class="product_lists">
+          <div class="product_image">
+            <img src="{% static 'site_image/male.jpg' %}" alt="">
+          </div>
+          <div class="product_details">
+            <div>Product name</div>
+            <div class="price">
+              <span class="sale_price"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+              <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+            </div>
+            <div class="offer">
+              <span class="percent">35% off</span>
+              <span class="save">Save 758</span>
+            </div>
+            <div class="cart_wishlist">
+              <button type="button" name="button"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+              <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+        <!-- Product design end -->
+
+        <!-- Product design start -->
+        <div class="product_lists">
+          <div class="product_image">
+            <img src="{% static 'site_image/male.jpg' %}" alt="">
+          </div>
+          <div class="product_details">
+            <div>Product name</div>
+            <div class="price">
+              <span class="sale_price"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+              <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+            </div>
+            <div class="offer">
+              <span class="percent">35% off</span>
+              <span class="save">Save 758</span>
+            </div>
+            <div class="cart_wishlist">
+              <button type="button" name="button"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+              <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+        <!-- Product design end -->
+
+        <!-- Product design start -->
+        <div class="product_lists">
+          <div class="product_image">
+            <img src="{% static 'site_image/male.jpg' %}" alt="">
+          </div>
+          <div class="product_details">
+            <div>Product name</div>
+            <div class="price">
+              <span class="sale_price"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+              <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+            </div>
+            <div class="offer">
+              <span class="percent">35% off</span>
+              <span class="save">Save 758</span>
+            </div>
+            <div class="cart_wishlist">
+              <button type="button" name="button"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+              <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+        <!-- Product design end -->
+
+
+      </div>
+      </div>
+    </div>
+  </div>
+<!-- Recent view Product -->
+
+
+
+
+
+
+<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+<!------ Include the above in your HEAD tag ---------->
+
+<!-- <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"  media="screen">
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<div data-role="rangeslider">
+        <input type="range" name="price-min" id="price-min" value="200" min="0" max="1000">
+        <input type="range" name="price-max" id="price-max" value="800" min="0" max="1000">
+      </div> -->
+
+
 
 {% endblock %}
