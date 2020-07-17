@@ -93,4 +93,67 @@
   text-transform: uppercase;
   font-weight: 600;
 }
+
+.bread_crumbs
+{
+  padding: 6px 0px;
+  font-size: 14px;
+}
+
+.now_showing
+{
+  margin-left: 25px;
+  position: relative;
+}
+
+.now_showing::before
+{
+  content: "";
+  padding: 5px;
+  border-radius: 50px;
+  background-color: #ffcb37;
+  position: absolute;
+  top: 4px;
+  left: -16px;
+}
+
+.sorting
+{
+  padding: 6px 6px;
+  float: right;
+}
+
+.sorting .stock, .sorting .view, .sorting .sort_by
+{
+  background-color: #ffcb37;
+  padding: 0px 14px;
+  border-radius: 6px;
+}
 /* /Category Header */
+
+/* Product filter and category */
+.filter_div
+{
+  width: 100%;
+  min-height: 50px;
+  border: 2px solid #199dfb;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.filter_div .brand_name
+{
+  width: 100%;
+  height: auto;
+}
+
+.filter_div .brand_name .title
+{
+  font-size: 14px;
+}
+
+.filter_div .brand_name .title::before
+{
+
+}
+/* /Product filter and category */
