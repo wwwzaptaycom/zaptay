@@ -302,3 +302,152 @@ body
   cursor: pointer;
 }
 /* /Register Modal */
+
+
+/* Footer */
+footer
+{
+  width: 100%;
+  min-height: 250px;
+  background-color: #272727;
+  color: white;
+  /* padding: 50px 10px; */
+  padding: 50px 10px 10px 10px;
+  /* position: relative; */
+  float: left;
+}
+
+.footer_logo
+{
+  padding: 8px 0px;
+}
+
+.footer_logo span
+{
+  font-size: 40px;
+}
+
+.footer_address span
+{
+  font-size: 16px;
+}
+
+.social_links
+{
+  padding: 22px 0px;
+}
+
+.social_links .title
+{
+  font-style: italic;
+  padding-bottom: 10px;
+}
+
+.social_links .links a
+{
+  color: white;
+  text-decoration: none;
+  /* background: #464646;
+  padding: 11px 14px;
+  border-radius: 30px;
+  width: 50px;
+  height: 72px;
+  margin: 5px; */
+}
+
+.social_links .links a .logos
+{
+  background: #656363;
+  height: 42px;
+  width: 41px;
+  float: left;
+  /* padding: 8px; */
+  margin: 0px 3px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border-radius: 35px
+}
+
+.social_links .links .facebook
+{
+
+}
+
+.policies, .customer, .b2b
+{
+  padding: 14px 0px;
+}
+
+.policies .title, .customer .title, .b2b .title, .newsletter .title, .subscribe .title
+{
+  color: #ffca01;
+}
+
+.policies .all_polices, .customer .all_polices, .b2b .all_polices
+{
+  padding: 14px 0px;
+}
+
+.policies .all_polices ul, .customer .all_polices ul, .b2b .all_polices ul
+{
+  list-style: none;
+  padding: 0px;
+}
+
+.newsletter, .subscribe
+{
+  padding: 45px 0px;
+}
+
+.newsletter .descp
+{
+  padding: 12px 0px;
+  font-size: 14px;
+}
+
+.subscribe .get_email
+{
+  padding: 12px 0px;
+}
+
+.subscribe .get_email input
+{
+  width: 87%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.subscribe .get_email input:focus
+{
+  outline: 0px;
+  box-shadow: none;
+}
+
+.subscribe .get_email .input-group-addon
+{
+  padding: 7px 13px;
+  background-color: white;
+  color: black;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.subscribe .get_email .input-group-addon i
+{
+  transform: rotate(45deg);
+}
+
+footer .copy_write
+{
+  width: 100%;
+  text-align: center;
+  border-top: 2px solid #565454;
+  padding: 10px 0px;
+}
+
+footer .copy_write span
+{
+  font-size: 13px;
+}
+/* /Footer */
