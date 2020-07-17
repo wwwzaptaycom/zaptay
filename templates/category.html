@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+
+{% block add_css %}
+  <link rel="stylesheet" href="{% static 'css/category.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Banner -->
+  <div class="banner">
+    <div class="row">
+      <div class="col-md-1 col_pad_off">
+        <img class="left_image" src="{% static 'site_image/1507732030.formal-shoes.png' %}" alt="">
+      </div>
+      <div class="col-md-10 col_pad_off">
+        <img class="middle_image" src="{% static 'site_image/1507732030.formal-shoes.png' %}" alt="">
+      </div>
+      <div class="col-md-1 col_pad_off">
+        <img class="right_image" src="{% static 'site_image/1507732030.formal-shoes.png' %}" alt="">
+      </div>
+    </div>
+  </div>
+<!-- /Banner -->
+
+<!-- Category type -->
+  <div class="category_type_list">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="card">
+            <div class="card_image">
+              <img src="{% static 'site_image/male.jpg' %}" alt="">
+            </div>
+            <div class="card_name">
+              <span>Product Name</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card">
+            <div class="card_image">
+              <img src="{% static 'site_image/male.jpg' %}" alt="">
+            </div>
+            <div class="card_name">
+              <span>Product Name</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card">
+            <div class="card_image">
+              <img src="{% static 'site_image/male.jpg' %}" alt="">
+            </div>
+            <div class="card_name">
+              <span>Product Name</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- /Category type -->
+
+<!-- Category head -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="category_header">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="category_name">
+                <span>Woman category</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- /Category head -->
+
+{% endblock %}
