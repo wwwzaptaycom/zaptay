@@ -37,7 +37,7 @@
 /* Product Image & Small Product Desc  */
 .product_image
 {
-
+  margin-bottom: 20px;
 }
 
 .product_image .small_image_div
@@ -208,4 +208,135 @@
   overflow: hidden;
   font-size: 13px;
 }
+
+.product_sort_details .product_overview .overview span
+{
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product_sort_details .available_opt
+{
+  padding-top: 20px;
+}
+
+.product_sort_details .available_opt .title
+{
+  text-transform: uppercase;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.product_sort_details .available_opt .options .choose_option
+{
+  padding-top: 15px;
+  width: 40%;
+  float: left;
+}
+
+.product_sort_details .available_opt .options .choose_option select
+{
+  border-radius: 5px;
+}
+
+.product_sort_details .available_opt .options .upload
+{
+  padding-top: 15px;
+  width: 60%;
+  float: left;
+}
+
+.product_sort_details .available_opt .leav_msg
+{
+  width: 100%;
+}
+
+.product_sort_details .available_opt .leav_msg textarea
+{
+  width: 100%;
+  max-height: 150px;
+}
+
+.product_sort_details .available_opt .send_message
+{
+  width: 100%;
+}
+
+.product_sort_details .available_opt .send_message button
+{
+  padding: 5px 16px;
+  border-radius: 6px;
+  background-color: #5bbeec;
+}
+
+.product_sort_details .product_cart
+{
+  width: 100%;
+  margin-top: 20px;
+}
+
+.product_sort_details .product_cart .incre_decre
+{
+  width: 50%;
+  /* background: red; */
+}
+
+.product_sort_details .product_cart .incre_decre input[type="number"]
+{
+  width: 60px;
+  text-align: center;
+  border: 1px solid black;
+  padding: 2px 0px;
+}
+
+.product_sort_details .product_cart .incre_decre input[type="number"]:focus
+{
+  outline: none;
+}
+
+.product_sort_details .product_cart .incre_decre label
+{
+  padding: 2px 12px;
+  background: #e2dfdf;
+  margin: -5px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.product_sort_details .product_cart .incre_decre .decr
+{
+  border-right: none;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.product_sort_details .product_cart .incre_decre .incr
+{
+  border-left: none;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.product_sort_details .product_cart .cart_bttn
+{
+  margin: 0px 51px;
+  background-color: #f73939;
+  padding: 6px 7px;
+  border-radius: 7px;
+  color: white;
+  font-weight: 900;
+}
+
+.product_sort_details .product_cart .wish_bttn
+{
+  padding: 6px 15px;
+  margin: 0px 5px;
+  background: #efeded;
+  border-radius: 5px;
+}
+
+
 /* /Product Image & Small Product Desc  */
