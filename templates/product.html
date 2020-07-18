@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+
+{% block add_css %}
+<link rel="stylesheet" href="{% static 'css/product.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+
+      <!-- Bread Crumbs -->
+      <div class="bread_crumbs_div">
+        <div class="bread_crumbs">
+          <span>
+            <a href="#"><i class="fa fa-home" aria-hidden="true"></i></a>
+          </span>
+          <span>/</span>
+          <span>
+            <a href="#">Men category</a>
+          </span>
+          <span>/</span>
+          <span>
+            <a href="#">Panjabi</a>
+          </span>
+          <span>/</span>
+          <span>Panjabi</span>
+          <!-- <span class="now_showing">Showing 1 - 40 Products of 150 Products</span> -->
+        </div>
+      </div>
+      <!-- /Bread Crumbs -->
+
+      <!-- Product Image & Small Product Desc -->
+      <div class="product_image">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-1 padding_off">
+              <div class="small_image_div">
+                <img src="{% static 'site_image/female.jpg' %}" alt="">
+                <img src="{% static 'site_image/male.jpg' %}" alt="">
+              </div>
+            </div>
+
+            <div class="col-md-4 padding_off">
+              <div class="big_image_div">
+                <img src="{% static 'site_image/male.jpg' %}" alt="">
+              </div>
+            </div>
+
+            <div class="col-md-7">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="product_video">
+                    <video width="320" height="240" controls>
+                      <source src="movie.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="product_sort_details">
+                    <div class="title">Product name</div>
+                    <div class="rating">
+                      <span class="star">Star</span>
+                      <span class="point">4.7</span>
+                      <span class="total_review">(7 reviews)</span>
+                      <span class="have_question">Have any questions?</span>
+                    </div>
+                    <div class="price">
+                      <span class="sall"><i class="fa fa-inr" aria-hidden="true"></i> 350</span>
+                      <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 350</span>
+                      <span class="percent">-5%</span>
+                    </div>
+
+                    <div class="product_model">
+                      <span>Product model: Men's Cotton Jeans</span>
+                    </div>
+
+                    <div class="sold">
+                      <span class="by">Sold By: Zaptay</span>
+                      <span class="original">100% original image</span>
+                    </div>
+
+                    <div class="stock">
+                      <span class="title">Stock</span>
+                      <span class="result"><i class="fa fa-check" aria-hidden="true"></i> In stock</span>
+                    </div>
+
+                    <div class="size">
+                      <span class="title">Size</span>
+                      <span class="size_cate">
+                        <span class="active">S</span>
+                        <span>M</span>
+                        <span>L</span>
+                        <span>XL</span>
+                        <span>XXL</span>
+                      </span>
+                    </div>
+
+                    <div class="product_overview">
+                      <div class="title">Product Over View</div>
+                      <div class="overview">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- /Product Image & Small Product Desc -->
+
+    </div>
+  </div>
+</div>
+{% endblock %}
