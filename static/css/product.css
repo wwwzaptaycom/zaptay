@@ -403,6 +403,7 @@
   background-color: #a3a7a7;
   border-radius: 50px;
   margin-right: 12px;
+  cursor: pointer;
 }
 
 .desc_rev .title .active
@@ -410,7 +411,6 @@
   background-color: white;
   color: black;
   box-shadow: 0px 0px 10px #020202;
-  cursor: pointer;
 }
 
 .show_desc_rev_div
