@@ -190,6 +190,58 @@
   text-align: center;
 }
 
+/* Shop by exclusive categories */
+.exclusive
+{
+  width: 100%;
+  min-height: 50px;
+  background-color: #eae9e9;
+  padding-top: 10px;
+  float: left;
+}
+
+.exclusive .title
+{
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.exclusive .exclusive_categorys
+{
+  width: 100%;
+  min-height: 50px;
+  border: 2px solid #c3bfbf;
+  border-left: none;
+  border-right: none;
+  padding: 5px 15px;
+float: left;
+}
+
+.exclusive .exclusive_categorys .optimize_padding
+{
+  padding: 0px 4px;
+}
+
+.exclusive .exclusive_categorys .image
+{
+  width: 100%;
+}
+
+.exclusive .exclusive_categorys .image img
+{
+  width: 100%;
+  height: 140px;
+}
+
+.exclusive .exclusive_categorys .category_name
+{
+  width: 100%;
+  font-weight: 600;
+  font-size: 16px;
+}
+/* /Shop by exclusive categories */
+
 /* Weekly Deals & offer */
 .weekly_deal
 {
@@ -359,8 +411,9 @@
   width: 100%;
   min-height: 320px;
   /* background-color: cyan; */
-  border: 2px solid #928e8e;
-  box-shadow: 5px 5px 5px #bdbbbb;
+  /* border: 2px solid #928e8e;
+  box-shadow: 5px 5px 5px #bdbbbb; */
+  padding: 0px 5px;
 }
 
 .fashion .header
@@ -435,6 +488,22 @@
   opacity: 1;
   transition: 1s;
 }
+
+/* Featured Category slider customize */
+.slick-prev,
+.slick-next
+{
+  border: 0px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.slick-prev:focus,
+.slick-next:focus
+{
+  outline: none;
+}
+/* /Featured Category slider customize */
 
 /* /Featured Category */
 

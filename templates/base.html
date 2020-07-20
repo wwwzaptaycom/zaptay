@@ -53,14 +53,15 @@
           </div>
 
           <div class="col-md-2">
-            <span><i class="fa fa-user" aria-hidden="true"></i>&nbsp;<a href="">Login</a> / <a href="">Registration</a></span>
+            <span><i class="fa fa-user" aria-hidden="true"></i>&nbsp;<a href="javascript:void(0);" class="login">Login</a> / <a href="javascript:void(0);" class="register">Registration</a></span>
           </div>
 
           <div class="col-md-1">
             <span class="cart">
-              <i class="fa fa-shopping-cart" aria-hidden="true"></i><sup class="cart_number">0</sup>
-              <!-- <div class="dropdown-menu dropdown-menu-right cart-dropdown-menu">
-                <h5 class="dropdown-header">Cart Items</h5>
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="cart_number">0</span>
+              <!-- Drop down for cart Items -->
+              <div class="dropdown-menu dropdown-menu-right cart-dropdown-menu">
+                <h5 class="dropdown-header">Cart Items <small>(0)</small></h5>
                 <a class="dropdown-item" href="#">
                   <span><img src="{% static '/site_image/banner1.jpg' %}" alt="" class="cart_item_image"></span>
                   <span>Product Name</span>
@@ -70,10 +71,26 @@
                   <span>Product Name</span>
                 </a>
                 <a class="dropdown-item" href="#">
+                  <span>Show more</span>
+                </a>
+
+                <!-- Wish Listt Items -->
+                <h5 class="dropdown-header">Wish List Items <small>(0)</small></h5>
+                <a class="dropdown-item" href="#">
                   <span><img src="{% static '/site_image/banner1.jpg' %}" alt="" class="cart_item_image"></span>
                   <span>Product Name</span>
                 </a>
-              </div> -->
+                <a class="dropdown-item" href="#">
+                  <span><img src="{% static '/site_image/banner1.jpg' %}" alt="" class="cart_item_image"></span>
+                  <span>Product Name</span>
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span>Show more</span>
+                </a>
+                <!-- /Wish Listt Items -->
+
+              </div>
+              <!-- /Drop down for cart Items -->
             </span>
           </div>
         </div>
@@ -147,7 +164,7 @@
     <!-- Login Modal -->
     <div class="my_modal_div my_login_modal_div">
       <div class="my_modal">
-        <div class="close">
+        <div class="close login_close">
           <i class="fa fa-times-circle-o" aria-hidden="true"></i>
         </div>
         <div class="modal_heading">
@@ -165,6 +182,14 @@
             <div class="forget_pwd">Forget password?</div>
             <button><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Login</button>
           </form>
+          <div class="social_login">
+            <div class="social_icons">
+              <span class="fb"><i class="fa fa-facebook" aria-hidden="true"></i></span>
+              <span class="twee"><i class="fa fa-twitter" aria-hidden="true"></i></span>
+              <span class="insta"><i class="fa fa-instagram" aria-hidden="true"></i></span>
+              <span class="goog"><i class="fa fa-google" aria-hidden="true"></i></i></span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -173,7 +198,7 @@
     <!-- Register Modal -->
     <div class="my_modal_div my_reg_modal_div">
       <div class="my_modal">
-        <div class="close">
+        <div class="close reg_close">
           <i class="fa fa-times-circle-o" aria-hidden="true"></i>
         </div>
         <div class="modal_heading">
@@ -191,7 +216,7 @@
             <div>
               <label>Gender</label>
               <input type="radio" /> Male
-              <input type="radio" /> Fe male
+              <input type="radio" /> Female
             </div>
             <input type="email" name="email" class="input" placeholder="Email Id" />
             <input type="password" name="pwd" class="input" placeholder="Password" />
@@ -324,6 +349,13 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- Custom Scripts -->
+    <script src="{% static 'js/login_register_popup.js'%}"></script>
+    <!-- /Custom Scripts -->
+
+    {% block add_js %}
+    {% endblock %}
 
   </body>
 </html>

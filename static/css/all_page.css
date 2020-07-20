@@ -60,6 +60,12 @@ body
   border-bottom-right-radius: 0px;
 }
 
+.searchbox:focus
+{
+  /* border: 1px solid black; */
+  outline: none;
+}
+
 .search_icon
 {
   border: 1px solid black;
@@ -70,6 +76,7 @@ body
   border-left: none;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
+  background: #f9f8f8;
 }
 
 .search_result
@@ -200,8 +207,8 @@ body
   background-color: #0a0a0a5e;
   position: absolute;
   top: 0;
-  z-index: 999;
-  /* justify-content: center; */
+  z-index: 2;
+  justify-content: center;
   align-items: center;
   display: flex;
 }
@@ -256,6 +263,20 @@ body
 .my_login_modal_div > .my_modal
 {
   width: 30%;
+  /* margin-top: -500px; */
+  animation: modal_form_show 1.2s;
+}
+
+@keyframes modal_form_show
+{
+  from
+  {
+    margin-top: -500px;
+  }
+  to
+  {
+    margin-top: 0px;
+  }
 }
 
 .my_login_modal_div .error_message
@@ -289,6 +310,55 @@ body
   font-weight: 600;
   cursor: pointer;
 }
+
+.my_login_modal_div .social_login
+{
+  width: 100%;
+  min-height: 50px;
+  justify-content: center;
+  align-items: center;
+  border-top: 2px solid #cac0c0;
+  padding-top: 10px;
+  display: flex;
+}
+
+.my_login_modal_div .social_login .social_icons
+{
+  width: auto;
+  height: auto;
+}
+
+.my_login_modal_div .social_login .social_icons span
+{
+  padding: 11px 15px;
+  background: red;
+  border-radius: 64px;
+  cursor: pointer;
+  color: white;
+}
+
+.my_login_modal_div .social_login .social_icons .fb
+{
+  background-color: #0a70cc;
+}
+
+.my_login_modal_div .social_login .social_icons .twee
+{
+  padding: 11px 12px;
+  background-color: #138fff;
+}
+
+.my_login_modal_div .social_login .social_icons .insta
+{
+  padding: 11px 13px;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+}
+
+.my_login_modal_div .social_login .social_icons .goog
+{
+  padding: 11px 13px;
+  background-color: #D44638;
+}
 /* /Login Modal */
 
 /* Register Modal */
@@ -300,6 +370,7 @@ body
 .my_reg_modal_div > .my_modal
 {
   width: 30%;
+  animation: modal_form_show 1.2s;
 }
 
 .my_reg_modal_div .error_message
