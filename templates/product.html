@@ -41,10 +41,15 @@
               <div class="small_image_div">
                 <img src="{% static 'site_image/female.jpg' %}" alt="">
                 <img src="{% static 'site_image/male.jpg' %}" alt="">
+                <div class="video">
+                  <img src="{% static 'site_image/male.jpg' %}" alt="">
+                  <!-- <img src="{% static 'site_image/play-button.svg' %}" class="play" alt=""> -->
+                  <span class="play"><i class="fa fa-play-circle" aria-hidden="true"></i></span>
+                </div>
               </div>
             </div>
 
-            <div class="col-md-4 padding_off">
+            <div class="col-md-4">
               <div class="big_image_div">
                 <img src="{% static 'site_image/male.jpg' %}" alt="">
               </div>
@@ -52,23 +57,26 @@
 
             <div class="col-md-7">
               <div class="row">
-                <div class="col-md-12">
+                <!-- <div class="col-md-12">
                   <div class="product_video">
                     <video width="320" height="240" controls>
                       <source src="movie.mp4" type="video/mp4">
                       Your browser does not support the video tag.
                     </video>
                   </div>
-                </div>
+                </div> -->
 
                 <div class="col-md-12">
                   <div class="product_sort_details">
                     <div class="title">Product name</div>
                     <div class="rating">
-                      <span class="star">Star</span>
-                      <span class="point">4.7</span>
+                      <span class="star">
+                        <img src="{% static 'site_image/star.svg' %}" alt="">
+                      </span>
                       <span class="total_review">(7 reviews)</span>
-                      <span class="have_question">Have any questions?</span>
+                      <span class="have_question">
+                        <a href="#have_question">Have any questions?</a>
+                      </span>
                     </div>
                     <div class="price">
                       <span class="sall"><i class="fa fa-inr" aria-hidden="true"></i> 350</span>
@@ -82,7 +90,9 @@
 
                     <div class="sold">
                       <span class="by">Sold By: Zaptay</span>
-                      <span class="original">100% original image</span>
+                      <span class="original">
+                        <img src="{% static 'site_image/brand.png' %}" alt="">
+                      </span>
                     </div>
 
                     <div class="stock">
@@ -114,7 +124,8 @@
                         <div class="choose_option">
                           <select class="" name="">
                             <option value="">--Select Option--</option>
-                            <option value="">Logo</option>
+                            <option value="">Yes. Your Logo + 100</option>
+                            <option value="">No</option>
                           </select>
                         </div>
                         <div class="upload">
@@ -127,6 +138,19 @@
                       <div class="send_message">
                         <button type="button" name="button">Submit</button>
                       </div>
+                    </div>
+
+                    <div class="pincode_get">
+                      <div>
+                        <span>
+                          <input type="number" name="" value="" placeholder="Enter your Pincode">
+                          <input type="submit" name="search" value="Search">
+                        </span>
+                      </div>
+                      <div>
+                        <span>Expected Delivary: 2Days</span>
+                      </div>
+
                     </div>
 
                     <div class="product_cart">
@@ -149,6 +173,17 @@
               <!-- share item -->
               <div class="share_product">
                 <div class="row">
+                  <div class="col-md-12">
+                    <label for="" class="cod_product">
+                      <input type="checkbox" name="" value=""> Cash on delivary
+                    </label>
+                    <label for="" class="cod_product">
+                      <input type="checkbox" name="" value=""> 10days return
+                    </label>
+                    <label for="" class="cod_product">
+                      <input type="checkbox" name="" value=""> Free delivary
+                    </label>
+                  </div>
                   <div class="col-md-12">
                     <span class="title">Share the the product</span>
                     <span class="social_icon">
@@ -185,35 +220,37 @@
         <div class="row">
           <div class="col-md-6">
             <div class="title">
-              <span class="active">Description</span>
-              <span>Reviews</span>
+              <span class="active">Have a Question?</span>
             </div>
           </div>
           <div class="col-md-6">
-
+            <div class="title">
+              <span class="active">Description</span>
+              <!-- <span>Reviews</span> -->
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="show_desc_rev_div">
+      <div id="have_question" class="show_desc_rev_div">
         <div class="row">
-          <div class="col-md-6">
-            <div class="show_desc_rev"></div>
-          </div>
           <div class="col-md-6">
             <div class="have_question_div">
               <div class="title">
-                <span>Have a Question?</span>
+                <span>Enter your Question?</span>
               </div>
               <div class="fields">
-                <input type="text" name="" value="">
-                <textarea name="name" rows="8"></textarea>
+                <input type="text" name="" value="" placeholder="Enter your email">
+                <textarea name="name" rows="8" placeholder="Enter your question"></textarea>
                 <div class="captcha">
                   <span>Captcha will be here</span>
                 </div>
                 <button>Submit</button>
               </div>
             </div>
+          </div>
+          <div class="col-md-6">
+            <div class="show_desc_rev"></div>
           </div>
         </div>
       </div>
@@ -307,12 +344,195 @@
       <!-- Related Product -->
 
       <!-- Pet Product -->
-      <div class="pet_product">
+      <!-- <div class="pet_product">
         <img src="{% static '/site_image/unnamed.png' %}" alt="">
-      </div>
+      </div> -->
       <!-- /Pet Product -->
+
+      <!-- Treading Product -->
+        <div class="related_product">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="title">
+                  <span>Treanding Product</span>
+                </div>
+              </div>
+            <div class="col-md-12">
+              <!-- Product design start -->
+              <div class="product_lists">
+                <div class="product_image">
+                  <img src="{% static 'site_image/male.jpg' %}" alt="">
+                </div>
+                <div class="product_details">
+                  <div>Product name</div>
+                  <div class="price">
+                    <span class="sale_price"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+                    <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+                  </div>
+                  <div class="offer">
+                    <span class="percent">35% off</span>
+                    <span class="save">Save 758</span>
+                  </div>
+                  <div class="cart_wishlist">
+                    <button type="button" name="button"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                    <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                  </div>
+                </div>
+              </div>
+              <!-- Product design end -->
+
+              <!-- Product design start -->
+              <div class="product_lists">
+                <div class="product_image">
+                  <img src="{% static 'site_image/male.jpg' %}" alt="">
+                </div>
+                <div class="product_details">
+                  <div>Product name</div>
+                  <div class="price">
+                    <span class="sale_price"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+                    <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+                  </div>
+                  <div class="offer">
+                    <span class="percent">35% off</span>
+                    <span class="save">Save 758</span>
+                  </div>
+                  <div class="cart_wishlist">
+                    <button type="button" name="button"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                    <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                  </div>
+                </div>
+              </div>
+              <!-- Product design end -->
+
+              <!-- Product design start -->
+              <div class="product_lists">
+                <div class="product_image">
+                  <img src="{% static 'site_image/male.jpg' %}" alt="">
+                </div>
+                <div class="product_details">
+                  <div>Product name</div>
+                  <div class="price">
+                    <span class="sale_price"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+                    <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
+                  </div>
+                  <div class="offer">
+                    <span class="percent">35% off</span>
+                    <span class="save">Save 758</span>
+                  </div>
+                  <div class="cart_wishlist">
+                    <button type="button" name="button"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                    <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                  </div>
+                </div>
+              </div>
+              <!-- Product design end -->
+
+
+            </div>
+            </div>
+          </div>
+        </div>
+      <!-- Treading Product -->
 
     </div>
   </div>
 </div>
+
+
+<!-- Customer Reviews -->
+<div class="customer_review">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 left">
+        <div class="title">
+          <span>Customer reviews</span>
+        </div>
+        <div class="rating">
+          <span class="star">
+            <img src="{% static 'site_image/star.svg' %}" alt="">
+          </span>
+          <span class="rate_number">4.1 out of 5</span>
+          <span class="total_cust_rate">
+            <p>500 customer rate</p>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="customer_rev_image">
+          <div class="title">
+            <span>Customer Image</span>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <div class="customer_image">
+                <img src="{% static 'site_image/female.jpg' %}" alt="">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="customer_image">
+                <img src="{% static 'site_image/female.jpg' %}" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="see_more">
+            <span>See more image</span>
+          </div>
+        </div>
+
+        <!-- Written review -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="name_profile">
+              <span class="profile_img">
+                <img src="{% static 'site_image/user.svg' %}" alt="">
+                <span class="name">Profile name</span>
+              </span>
+            </div>
+            <div class="rating_start">
+              <span class="star">
+                <img src="{% static 'site_image/star.svg' %}" alt="">
+              </span>
+              <span class="star">
+                <img src="{% static 'site_image/star.svg' %}" alt="">
+              </span>
+              <span class="star">
+                <img src="{% static 'site_image/star.svg' %}" alt="">
+              </span>
+            </div>
+            <div class="rating_title">
+              <span>All good</span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="rate_details">
+              <div>
+                <span>Review in india on 24 July 2020</span>
+              </div>
+              <div>
+                <span>Color: Red/White</span>
+                <span>Size: Small</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="review_writen">
+              <span>Test review past here</span>
+            </div>
+
+            <div class="own_review_image">
+              <span>
+                <img src="{% static 'site_image/female.jpg' %}" alt="">
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- /Written review -->
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Customer Reviews -->
 {% endblock %}
