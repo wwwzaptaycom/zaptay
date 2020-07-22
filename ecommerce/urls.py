@@ -22,5 +22,7 @@ from category import urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.HomeView.as_view(), name="homepage"),
-    path('category', include('category.urls'))
+    path('category/', include('category.urls')),
+
+    path('site-admin/', include('admin_login.urls')),
 ]
