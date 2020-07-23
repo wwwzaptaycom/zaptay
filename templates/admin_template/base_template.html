@@ -19,6 +19,9 @@
   <!-- Custom styles for this template-->
   <link href="{% static 'admin_static/css/sb-admin-2.min.css' %}" rel="stylesheet">
 
+  {% block custom_css %}
+  {% endblock %}
+
 </head>
 
 <body id="page-top">
@@ -34,18 +37,99 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Zaptay Admin<!--<sup>2</sup>--></div>
       </a>
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+      <li class="nav-item {% if page_name != "" and  page_name == 'dashboard' %} active {% endif %}">
+        <a class="nav-link" href="{% url 'admin_login:admin_dashboardpage' %}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
+
+      <!-- Productsection -->
+      <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+        Product
+      </div>
+      <li class="nav-item {% if page_name != "" and  page_name == 'main_category' %} active {% endif %}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#main_category_collapse" aria-expanded="true" aria-controls="main_category_collapse">
+          <i class="fas fa-list"></i>
+          <span>Main Category</span>
+        </a>
+        <div id="main_category_collapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Choose Options:</h6>
+            <a class="collapse-item" href="buttons.html">Add Main Category</a>
+            <a class="collapse-item" href="{% url 'admin_login:admin_show_main_categorypage' %}">Show All main Category</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#sub_category_collapse" aria-expanded="true" aria-controls="sub_category_collapse">
+          <i class="fas fa-stream"></i>
+          <span>Sub category</span>
+        </a>
+        <div id="sub_category_collapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Choose Options:</h6>
+            <a class="collapse-item" href="buttons.html">Add New Sub Category</a>
+            <a class="collapse-item" href="cards.html">Show All Sub Category</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#item_collapse" aria-expanded="true" aria-controls="item_collapse">
+          <i class="fas fa-luggage-cart"></i>
+          <span>Item</span>
+        </a>
+        <div id="item_collapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Choose Options:</h6>
+            <a class="collapse-item" href="buttons.html">Add New Item</a>
+            <a class="collapse-item" href="cards.html">Show All Items</a>
+          </div>
+        </div>
+      </li>
+      <!-- /Productsection -->
+
+      <!-- Website Settings -->
+      <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+        Website Settings
+      </div>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#basic_setings_collapse" aria-expanded="true" aria-controls="basic_setings_collapse">
+          <i class="fas fa-cogs"></i>
+          <span>Basic Settings</span>
+        </a>
+        <div id="basic_setings_collapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Choose Options:</h6>
+            <a class="collapse-item" href="buttons.html"></a>
+            <a class="collapse-item" href="cards.html">Show All Basic Settings</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#advatice_collapse" aria-expanded="true" aria-controls="advatice_collapse">
+          <i class="fas fa-ad"></i>
+          <span>Advatice</span>
+        </a>
+        <div id="advatice_collapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Choose Options:</h6>
+            <a class="collapse-item" href="cards.html">Show All Advatice</a>
+          </div>
+        </div>
+      </li>
+      <!-- Website Settings -->
 
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -299,7 +383,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ admin_name|upper|slice:':7' }}...</span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -332,7 +416,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
           {% block page_body %}
-{% endblock %}
+          {% endblock %}
 
           <!-- Footer -->
           <footer class="sticky-footer bg-white">
@@ -368,7 +452,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a class="btn btn-primary" href="login.html">Logout</a>
+              <a class="btn btn-primary" href="{% url 'admin_login:admin_logoutpage' %}">Logout</a>
             </div>
           </div>
         </div>
@@ -384,12 +468,8 @@
       <!-- Custom scripts for all pages-->
       <script src="{% static 'admin_static/js/sb-admin-2.min.js' %}"></script>
 
-      <!-- Page level plugins -->
-      <script src="{% static 'admin_static/vendor/chart.js/Chart.min.js' %}"></script>
-
-      <!-- Page level custom scripts -->
-      <script src="{% static 'admin_static/js/demo/chart-area-demo.js' %}"></script>
-      <script src="{% static 'admin_static/js/demo/chart-pie-demo.js' %}"></script>
+      {% block custom_js %}
+      {% endblock %}
 
     </body>
 

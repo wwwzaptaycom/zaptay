@@ -1,5 +1,6 @@
 {% extends 'admin_template/base_template.html' %}
 
+{% load static %}
 {% block page_body %}
 
 
@@ -304,4 +305,14 @@
 </div>
 <!-- End of Main Content -->
 
+{% endblock %}
+
+
+{% block custom_js %}
+  <!-- Page level plugins -->
+  <script src="{% static 'admin_static/vendor/chart.js/Chart.min.js' %}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{% static 'admin_static/js/demo/chart-area-demo.js' %}"></script>
+  <script src="{% static 'admin_static/js/demo/chart-pie-demo.js' %}"></script>
 {% endblock %}

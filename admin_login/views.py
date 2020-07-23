@@ -1,10 +1,12 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import View, TemplateView, FormView
 
 from .login_form import LoginForm
 
 from admin_login.models import zaptayAdmin
+
+from django.contrib.auth import logout
 
 # Create your views here.
 
@@ -23,6 +25,10 @@ class ShowadminLoginView(FormView):
                 # data = zaptayAdmin.objects.all()
                 # data = zaptayAdmin.objects.all().filter(password='1234')
                 data = zaptayAdmin.objects.all().get(email_id=email_id, password=pwd)
+
+                # Set Session
+                request.session['admin_email_id'] = data.email_id
+                request.session.set_expiry(0)
                 return self.form_valid(form)
             except Exception as e:
                 print (e)
@@ -37,3 +43,69 @@ class ShowadminLoginView(FormView):
 
 class ShowadminDashboardView(TemplateView):
     template_name = 'admin_template/dashboard.html'
+
+    '''
+    def get(self, request, *args, **kwargs):
+        if self.request.session['admin_email_id']:
+            context = dict()
+            context = {"page_name": "dashboard"}
+            return render(request, self.template_name, context)
+        else:
+            return HttpResponseRedirect('/site-admin/login')
+    '''
+    '''
+    def view(request, *args, **kwargs):
+        # return self.dispatch(request, *args, **kwargs)
+    '''
+
+    def dispatch(self, request, *args, **kwargs):
+        # if self.request.session['admin_email_id']:
+        #     return super(ShowadminDashboardView, self).dispatch(request, *args, **kwargs)
+        # else:
+        #     return redirect('/site-admin/login')
+        try:
+            resp = request.session['admin_email_id']
+            return super(ShowadminDashboardView, self).dispatch(request, *args, **kwargs)
+        except Exception as e:
+            print(e)
+            return redirect('/site-admin/login')
+
+    def get_context_data(self, **kwargs):
+        # print (self.request.session['admin_email_id'])
+        # context = super().get_context_data(**kwargs)
+        get_name = zaptayAdmin.objects.all().get(email_id=self.request.session['admin_email_id'])
+        context = dict()
+        context = {"page_name": "dashboard", "admin_name": get_name.admin_f_name+" "+get_name.admin_f_name}
+        return context
+
+
+class ShowAllMainCategory(TemplateView):
+    template_name = 'admin_template/show_all_main_category.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            resp = request.session['admin_email_id']
+            return super(ShowAllMainCategory, self).dispatch(request, *args, **kwargs)
+        except Exception as e:
+            print(e)
+            return redirect('/site-admin/login')
+
+    def get_context_data(self, **kwargs):
+        context = dict()
+        get_name = zaptayAdmin.objects.all().get(email_id=self.request.session['admin_email_id'])
+        context = {"page_name": "main_category", "admin_name": get_name.admin_f_name+" "+get_name.admin_f_name}
+        return context
+
+
+class ShowadminLogoutView(TemplateView):
+    template_name = 'admin_template/login.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            logout(request)
+            del(request.session['admin_email_id'])
+            # return super(ShowadminLogoutView, self).dispatch(request, *args, **kwargs)
+            return redirect('/site-admin/login')
+        except Exception as e:
+            print(e)
+            return redirect('/site-admin/login')
