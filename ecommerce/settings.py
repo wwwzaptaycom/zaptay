@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'home',
     'category',
     'admin_login',
+    'attribute',
 ]
 
 MIDDLEWARE = [

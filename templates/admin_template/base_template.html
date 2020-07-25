@@ -55,7 +55,7 @@
       <div class="sidebar-heading">
         Product
       </div>
-      <li class="nav-item {% if page_name != "" and  page_name == 'main_category' %} active {% endif %}">
+      <!-- <li class="nav-item {% if page_name != "" and  page_name == 'main_category' %} active {% endif %}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#main_category_collapse" aria-expanded="true" aria-controls="main_category_collapse">
           <i class="fas fa-list"></i>
           <span>Main Category</span>
@@ -63,13 +63,13 @@
         <div id="main_category_collapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Choose Options:</h6>
-            <a class="collapse-item" href="{% url 'admin_login:category:admin_add_category' %}">Add Main Category</a>
-            <a class="collapse-item" href="{% url 'admin_login:category:admin_show_main_categorypage' %}">Show All main Category</a>
+            {% comment %}<a class="collapse-item" href="{% url 'admin_login:category:admin_add_category' %}">Add Main Category</a>{% endcomment %}
+            {% comment %}<a class="collapse-item" href="{% url 'admin_login:category:admin_show_main_categorypage' %}">Show All main Category</a>{% endcomment %}
           </div>
         </div>
-      </li>
+      </li> -->
 
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#sub_category_collapse" aria-expanded="true" aria-controls="sub_category_collapse">
           <i class="fas fa-stream"></i>
           <span>Sub category</span>
@@ -77,13 +77,24 @@
         <div id="sub_category_collapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Choose Options:</h6>
-            <a class="collapse-item" href="{% url 'admin_login:category:admin_add_sub_category' %}">Add New Sub Category</a>
-            <a class="collapse-item" href="cards.html">Show All Sub Category</a>
+            {% comment %}<a class="collapse-item" href="{% url 'admin_login:category:admin_add_sub_category' %}">Add New Sub Category</a>{% endcomment %}
+            {% comment %}<a class="collapse-item" href="cards.html">Show All Sub Category</a>{% endcomment %}
           </div>
         </div>
+      </li> -->
+      <li class="nav-item {% if page_name != "" and  page_name == 'attribute' %} active {% endif %}">
+        <a class="nav-link" href="{% url 'admin_login:attribute:attribute' %}">
+          <i class="fas fa-fw fa-file-signature"></i>
+          <span>Attribute</span></a>
       </li>
 
       <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fas fa-fw fa-shopping-bag"></i>
+          <span>Product</span></a>
+      </li>
+
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#item_collapse" aria-expanded="true" aria-controls="item_collapse">
           <i class="fas fa-luggage-cart"></i>
           <span>Item</span>
@@ -95,11 +106,11 @@
             <a class="collapse-item" href="cards.html">Show All Items</a>
           </div>
         </div>
-      </li>
+      </li> -->
       <!-- /Productsection -->
 
       <!-- Website Settings -->
-      <hr class="sidebar-divider">
+      <!-- <hr class="sidebar-divider">
       <div class="sidebar-heading">
         Website Settings
       </div>
@@ -128,90 +139,7 @@
             <a class="collapse-item" href="cards.html">Show All Advatice</a>
           </div>
         </div>
-      </li>
-      <!-- Website Settings -->
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Components</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
-
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
-      </li>
+      </li> -->
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

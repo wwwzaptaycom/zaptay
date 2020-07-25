@@ -24,5 +24,5 @@ class AddSubCategoryForm(forms.Form):
 
     CATEGORY_CHOOSE = get_main_category()
 
-    category_list = forms.CharField(label='What is your favorite fruit?', widget=forms.Select(choices=CATEGORY_CHOOSE))
+    category_list = forms.CharField(label='What is your favorite fruit?', widget=forms.Select(choices=CATEGORY_CHOOSE, attrs={'class': 'my_select_box'}))
     sub_category_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control form-control-user', 'id': 'exampleInputEmail', 'aria-describedby':"emailHelp", 'placeholder':"Example: Saree, Kurta"}), error_messages={'required': 'Category name required'})
