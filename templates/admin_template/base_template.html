@@ -10,7 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Dashboard</title>
+  <title>Zaptay - {% block title %}{% endblock %}</title>
 
   <!-- Custom fonts for this template-->
   <link href="{% static 'admin_static/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -63,8 +63,8 @@
         <div id="main_category_collapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Choose Options:</h6>
-            <a class="collapse-item" href="buttons.html">Add Main Category</a>
-            <a class="collapse-item" href="{% url 'admin_login:admin_show_main_categorypage' %}">Show All main Category</a>
+            <a class="collapse-item" href="{% url 'admin_login:category:admin_add_category' %}">Add Main Category</a>
+            <a class="collapse-item" href="{% url 'admin_login:category:admin_show_main_categorypage' %}">Show All main Category</a>
           </div>
         </div>
       </li>
@@ -77,7 +77,7 @@
         <div id="sub_category_collapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Choose Options:</h6>
-            <a class="collapse-item" href="buttons.html">Add New Sub Category</a>
+            <a class="collapse-item" href="{% url 'admin_login:category:admin_add_sub_category' %}">Add New Sub Category</a>
             <a class="collapse-item" href="cards.html">Show All Sub Category</a>
           </div>
         </div>

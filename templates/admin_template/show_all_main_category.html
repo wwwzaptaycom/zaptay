@@ -1,6 +1,7 @@
 {% extends 'admin_template/base_template.html' %}
-
 {% load static %}
+
+{% block title %}Main category{% endblock %}
 
 {% block custom_css %}
 <link href="{% static 'admin_static/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
@@ -40,7 +41,26 @@
           </tr>
         </tfoot>
         <tbody>
-          <tr>
+          {% if main_category %}
+            {% for category in main_category %}
+              {{i.category_id}}
+              <tr>
+                <td>{{category.category_id}}</td>
+                <td>{{category.main_category_name}}</td>
+                <td>{{category.added_by}}</td>
+                <td>
+                  {% if category.is_active %}
+                    <a href="#" title="Active" class="btn btn-success btn-circle btn-sm"><i class="fas fa-check"></i></a>
+                  {% else %}
+                    <a href="#" title="Inactive" class="btn btn-warning btn-circle btn-sm"><i class="fas fa-exclamation-triangle"></i></a>
+                  {% endif %}
+                  </td>
+                <td>2011/04/25</td>
+                <td>$320,800</td>
+              </tr>
+            {%endfor%}
+          {%endif%}
+          <!-- <tr>
             <td>Tiger Nixon</td>
             <td>System Architect</td>
             <td>Edinburgh</td>
@@ -135,7 +155,7 @@
             <td>22</td>
             <td>2013/03/03</td>
             <td>$342,000</td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>

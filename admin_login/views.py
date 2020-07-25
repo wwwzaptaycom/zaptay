@@ -88,7 +88,8 @@ class ShowAllMainCategory(TemplateView):
             return super(ShowAllMainCategory, self).dispatch(request, *args, **kwargs)
         except Exception as e:
             print(e)
-            return redirect('/site-admin/login')
+            # return redirect('/site-admin/login')
+            return redirect('admin_login:admin_loginpage')
 
     def get_context_data(self, **kwargs):
         context = dict()
@@ -105,7 +106,9 @@ class ShowadminLogoutView(TemplateView):
             logout(request)
             del(request.session['admin_email_id'])
             # return super(ShowadminLogoutView, self).dispatch(request, *args, **kwargs)
-            return redirect('/site-admin/login')
+            # return redirect('/site-admin/login')
+            return redirect('admin_login:admin_loginpage')
         except Exception as e:
             print(e)
-            return redirect('/site-admin/login')
+            # return redirect('/site-admin/login')
+            return redirect('admin_login:admin_loginpage')
