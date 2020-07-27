@@ -188,6 +188,54 @@
 
   </div>
 
+  <div class="col-lg-4">
+
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Color</h6>
+      </div>
+      <div class="card-body">
+        <form method="POST">
+          <div class="row">
+            <div class="col-lg-12">
+              {% if messages %}
+                {% for message in messages %}
+                  {% if message.extra_tags == "colour" %}
+                    <span class="{{ message.tags }}">{{ message }}</span>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            </div>
+            <div class="col-lg-6">
+              {{ color_form.color_add_form }}
+            </div>
+            {% csrf_token %}
+            <div class="col-lg-6">
+              <button type="submit" class="btn btn-success btn-user btn-block name="button">Add</button>
+            </div>
+          </div>
+        </form>
+        <br />
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card mb-4 py-3 border-left-primary">
+              <div class="card-body">
+                <ol>
+                  {% if color_list %}
+                    {%for i in color_list %}
+                      <li>{{i.color_name}}</li>
+                    {% endfor %}
+                  {% endif %}
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
 </div>
 
 {% endblock %}

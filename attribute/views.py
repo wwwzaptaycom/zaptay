@@ -6,10 +6,10 @@ from django.views.generic import View, TemplateView, FormView
 
 from admin_login.models import zaptayAdmin
 
-from .attribute_forms import CategoryForm, SubcategoryForm, TertiaryCategoryForm
+from .attribute_forms import CategoryForm, SubcategoryForm, TertiaryCategoryForm, ColorForm
 
 from category.models import MainCategory
-from attribute.models import SubCategory, TertiaryCategory
+from attribute.models import SubCategory, TertiaryCategory, Colour
 
 # Create your views here.
 
@@ -19,6 +19,7 @@ class AttributeList(FormView):
     category_form_class = CategoryForm
     sub_category_form_class = SubcategoryForm
     teri_category_class = TertiaryCategoryForm
+    color_class = ColorForm
 
     def dispatch(self, request, *args, **kwargs):
         try:
@@ -35,16 +36,19 @@ class AttributeList(FormView):
         category_list = MainCategory.objects.all()
         sub_category_list = SubCategory.objects.all()
         ter_caregory_list = TertiaryCategory.objects.all()
+        color_list = Colour.objects.all()
         context = {
             "page_name": "attribute",
             "admin_name": get_name.admin_f_name+" "+get_name.admin_f_name,
             "category_list": category_list,
             "sub_category_list": sub_category_list,
-            "ter_category_list": ter_caregory_list}
+            "ter_category_list": ter_caregory_list,
+            "color_list": color_list}
 
         context['category_form'] = self.category_form_class
         context['sub_category_form'] = self.sub_category_form_class
         context['tertia_form'] = self.teri_category_class
+        context['color_form'] = self.color_class
         return context
 
     def post(self, request, *args, **kwargs):
@@ -92,6 +96,21 @@ class AttributeList(FormView):
                 messages.success(request, "Tertiary catagory added", extra_tags='terriary_category')
             else:
                 messages.error(request, "All fields mentetory", extra_tags='terriary_category')
+
+        if 'color_add_form' in request.POST:
+            color_from = ColorForm(request.POST)
+
+            if color_from.is_valid():
+                color_name = request.POST['color_add_form']
+
+                admin_id = zaptayAdmin.objects.all().get(email_id=request.session.get('admin_email_id'))
+
+                insert_que = Colour(color_name=color_name, added_by=admin_id)
+                insert_que.save()
+                messages.success(request, "Color added", extra_tags='colour')
+            else:
+                messages.error(request, "All fields mentetory", extra_tags='colour')
+
         return render(request, self.template_name, self.get_context_data())
 
     def form_invalid(self, form):

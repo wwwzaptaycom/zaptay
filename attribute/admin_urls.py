@@ -4,5 +4,5 @@ from attribute import views
 app_name = "attribute"
 
 urlpatterns = [
-    path('login/', views.AttributeList.as_view(), name="attribute"),
+    path('', views.AttributeList.as_view(), name="attribute"),
 ]
