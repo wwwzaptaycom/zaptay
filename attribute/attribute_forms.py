@@ -46,3 +46,9 @@ class TertiaryCategoryForm(forms.Form):
 
 class ColorForm(forms.Form):
     color_add_form = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control form-control-user', 'aria-describedby':"emailHelp", 'placeholder':"Colour name"}), error_messages={'required': 'Color name required'})
+
+class SizeForm(forms.Form):
+    size_add_form = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control form-control-user', 'aria-describedby':"emailHelp", 'placeholder':"Size"}), error_messages={'required': 'Color name required'})
+
+class SourceForm(forms.Form):
+    source_add_form = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control form-control-user', 'aria-describedby':"emailHelp", 'placeholder':"Source"}), error_messages={'required': 'Color name required'})

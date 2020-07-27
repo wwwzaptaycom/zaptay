@@ -52,3 +52,31 @@ class Colour(models.Model):
 
     def __str__(self):
         return self.color_name
+
+class Size(models.Model):
+    size_id = models.AutoField(primary_key=True)
+    size_name = models.CharField(max_length=100)
+    is_active = models.BooleanField(default=1)
+    added_by = models.ForeignKey(zaptayAdmin, on_delete=models.CASCADE)
+    modify_date = models.DateTimeField(default=now)
+    create_date = models.DateTimeField(default=now)
+
+    class Meta:
+        db_table = "size"
+
+    def __str__(self):
+        return self.size_name
+
+class Source(models.Model):
+    source_id = models.AutoField(primary_key=True)
+    source_name = models.CharField(max_length=100)
+    is_active = models.BooleanField(default=1)
+    added_by = models.ForeignKey(zaptayAdmin, on_delete=models.CASCADE)
+    modify_date = models.DateTimeField(default=now)
+    create_date = models.DateTimeField(default=now)
+
+    class Meta:
+        db_table = "source"
+
+    def __str__(self):
+        return self.size_name

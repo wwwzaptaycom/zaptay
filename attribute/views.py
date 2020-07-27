@@ -6,10 +6,10 @@ from django.views.generic import View, TemplateView, FormView
 
 from admin_login.models import zaptayAdmin
 
-from .attribute_forms import CategoryForm, SubcategoryForm, TertiaryCategoryForm, ColorForm
+from .attribute_forms import CategoryForm, SubcategoryForm, TertiaryCategoryForm, ColorForm, SizeForm, SourceForm
 
 from category.models import MainCategory
-from attribute.models import SubCategory, TertiaryCategory, Colour
+from attribute.models import SubCategory, TertiaryCategory, Colour, Size, Source
 
 # Create your views here.
 
@@ -20,6 +20,8 @@ class AttributeList(FormView):
     sub_category_form_class = SubcategoryForm
     teri_category_class = TertiaryCategoryForm
     color_class = ColorForm
+    size_class = SizeForm
+    source_class = SourceForm
 
     def dispatch(self, request, *args, **kwargs):
         try:
@@ -37,18 +39,24 @@ class AttributeList(FormView):
         sub_category_list = SubCategory.objects.all()
         ter_caregory_list = TertiaryCategory.objects.all()
         color_list = Colour.objects.all()
+        size_list = Size.objects.all()
+        source_list = Source.objects.all()
         context = {
             "page_name": "attribute",
             "admin_name": get_name.admin_f_name+" "+get_name.admin_f_name,
             "category_list": category_list,
             "sub_category_list": sub_category_list,
             "ter_category_list": ter_caregory_list,
-            "color_list": color_list}
+            "color_list": color_list,
+            "size_list": size_list,
+            "source_list": source_list}
 
         context['category_form'] = self.category_form_class
         context['sub_category_form'] = self.sub_category_form_class
         context['tertia_form'] = self.teri_category_class
         context['color_form'] = self.color_class
+        context['size_form'] = self.size_class
+        context['source_form'] = self.source_class
         return context
 
     def post(self, request, *args, **kwargs):
@@ -110,6 +118,34 @@ class AttributeList(FormView):
                 messages.success(request, "Color added", extra_tags='colour')
             else:
                 messages.error(request, "All fields mentetory", extra_tags='colour')
+
+        if 'size_add_form' in request.POST:
+            size_from = SizeForm(request.POST)
+
+            if size_from.is_valid():
+                size = request.POST['size_add_form']
+
+                admin_id = zaptayAdmin.objects.all().get(email_id=request.session.get('admin_email_id'))
+
+                insert_que = Size(size_name=size, added_by=admin_id)
+                insert_que.save()
+                messages.success(request, "Size added", extra_tags='size')
+            else:
+                messages.error(request, "All fields mentetory", extra_tags='size')
+
+        if 'source_add_form' in request.POST:
+            size_from = SourceForm(request.POST)
+
+            if size_from.is_valid():
+                source = request.POST['source_add_form']
+
+                admin_id = zaptayAdmin.objects.all().get(email_id=request.session.get('admin_email_id'))
+
+                insert_que = Source(source_name=source, added_by=admin_id)
+                insert_que.save()
+                messages.success(request, "Size added", extra_tags='source')
+            else:
+                messages.error(request, "All fields mentetory", extra_tags='source')
 
         return render(request, self.template_name, self.get_context_data())
 
