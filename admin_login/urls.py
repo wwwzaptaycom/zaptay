@@ -9,6 +9,7 @@ urlpatterns = [
     path('logout/', views.ShowadminLogoutView.as_view(), name="admin_logoutpage"),
     path('dashboard/', views.ShowadminDashboardView.as_view(), name="admin_dashboardpage"),
     path('attribute/', include('attribute.admin_urls')),
+    path('product/', include('product.admin_urls')),
 
 
 
