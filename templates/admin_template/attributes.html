@@ -18,6 +18,21 @@
       color: green;
       font-weight: 600;
     }
+
+    .custom-card-body
+    {
+      height: 260px;
+      overflow-y: scroll;
+    }
+
+    .custom-card-body::-webkit-scrollbar {
+      display: none;
+    }
+
+    .delete_assets
+    {
+      color: red;
+    }
   </style>
 {% endblock %}
 
@@ -61,17 +76,22 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="card mb-4 py-3 border-left-primary">
-              <div class="card-body">
+              <div class="card-body custom-card-body custom_category_body">
                 <ol>
                   {% if category_list %}
                     {%for i in category_list %}
-                      <li>{{i.main_category_name}}</li>
+                      <li>{{i.main_category_name}} &nbsp;&nbsp; <a href="" class="delete_assets" onclick="return delete_attributes('category', '{{ i.main_category_name }}', {{ i.category_id }});"><i class="fas fa-times"></i></a></li>
                     {% endfor %}
                   {% endif %}
                 </ol>
               </div>
             </div>
           </div>
+          <!-- <div class="col-lg-12">
+            <div class="show_more">
+              <a href="javascript:void(0);" onclick="return show_more('category');">Show More</a>
+            </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -119,11 +139,11 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="card mb-4 py-3 border-left-primary">
-              <div class="card-body">
+              <div class="card-body custom-card-body">
                 <ol>
                   {% if sub_category_list %}
                     {%for i in sub_category_list %}
-                      <li>{{i.sub_category_name}}</li>
+                      <li>{{i.sub_category_name}} &nbsp;&nbsp; <a href="" class="delete_assets" onclick="return delete_attributes('sub_category', '{{ i.sub_category_name }}', {{ i.sub_category_id }});"><i class="fas fa-times"></i></a></li>
                     {% endfor %}
                   {% endif %}
                 </ol>
@@ -171,11 +191,11 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="card mb-4 py-3 border-left-primary">
-              <div class="card-body">
+              <div class="card-body custom-card-body">
                 <ol>
                   {% if ter_category_list %}
                     {%for i in ter_category_list %}
-                      <li>{{i.ter_category_name}}</li>
+                      <li>{{i.ter_category_name}} &nbsp;&nbsp; <a href="" class="delete_assets" onclick="return delete_attributes('tertiary_category', '{{ i.ter_category_name }}', {{ i.ter_category_id }});"><i class="fas fa-times"></i></a></li>
                     {% endfor %}
                   {% endif %}
                 </ol>
@@ -219,11 +239,11 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="card mb-4 py-3 border-left-primary">
-              <div class="card-body">
+              <div class="card-body custom-card-body">
                 <ol>
                   {% if color_list %}
                     {%for i in color_list %}
-                      <li>{{i.color_name}}</li>
+                      <li>{{i.color_name}} &nbsp;&nbsp; <a href="" class="delete_assets" onclick="return delete_attributes('color', '{{ i.color_name }}', {{ i.color_id }});"><i class="fas fa-times"></i></a></li>
                     {% endfor %}
                   {% endif %}
                 </ol>
@@ -267,11 +287,11 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="card mb-4 py-3 border-left-primary">
-              <div class="card-body">
+              <div class="card-body custom-card-body">
                 <ol>
                   {% if size_list %}
                     {%for i in size_list %}
-                      <li>{{i.size_name}}</li>
+                      <li>{{i.size_name}} &nbsp;&nbsp; <a href="" class="delete_assets" onclick="return delete_attributes('size', '{{ i.size_name }}', {{ i.size_id }});"><i class="fas fa-times"></i></a></li>
                     {% endfor %}
                   {% endif %}
                 </ol>
@@ -315,11 +335,11 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="card mb-4 py-3 border-left-primary">
-              <div class="card-body">
+              <div class="card-body custom-card-body">
                 <ol>
                   {% if source_list %}
                     {%for i in source_list %}
-                      <li>{{i.source_name}}</li>
+                      <li>{{i.source_name}} &nbsp;&nbsp; <a href="" class="delete_assets" onclick="return delete_attributes('source', '{{ i.source_name }}', {{ i.source_id }});"><i class="fas fa-times"></i></a></li>
                     {% endfor %}
                   {% endif %}
                 </ol>
@@ -337,4 +357,6 @@
 {% endblock %}
 
 
-{% block custom_js %}{% endblock %}
+{% block custom_js %}
+  <script type="text/javascript" src="{% static 'admin_static/js/custom_js/attribute.js' %}"></script>
+{% endblock %}

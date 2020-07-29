@@ -154,3 +154,74 @@ class AttributeList(FormView):
         context['error'] = form
         print (context)
         return self.render_to_response(context)
+
+
+# Modify data runtime
+
+from django.http import JsonResponse
+def SendCategoryData(request):
+
+    category_dict = dict()
+    category_arr = list()
+
+    category_list = MainCategory.objects.all()
+    for i in category_list:
+        category_arr.append([i.category_id , i.main_category_name])
+        # print (i.category_id, i.main_category_name)
+    category_dict['data'] = category_arr
+    # print (category_dict)
+
+    responseData = {
+        'id': 4,
+        'name': 'Test Response',
+        'roles' : ['Admin','User']
+    }
+    return JsonResponse(category_dict)
+
+def SendSubCategoryData(request):
+
+    category_dict = dict()
+    category_arr = list()
+
+    category_list = SubCategory.objects.all()
+    for i in category_list:
+        category_arr.append([i.sub_category_id , i.sub_category_name])
+    category_dict['data'] = category_arr
+
+    return JsonResponse(category_dict)
+
+def DeleteAttrinutsData(request):
+    attribute_id = request.POST['attribute_id']
+    attribut_attribute_type = request.POST['attribute_type']
+
+    # print (attribute_id, attribut_attribute_type)
+
+    if attribut_attribute_type == 'category':
+        get_data = MainCategory.objects.get(pk=attribute_id)
+        get_data.delete()
+
+    if attribut_attribute_type == 'sub_category':
+        get_data = SubCategory.objects.get(pk=attribute_id)
+        get_data.delete()
+
+    if attribut_attribute_type == 'tertiary_category':
+        get_data = TertiaryCategory.objects.get(pk=attribute_id)
+        get_data.delete()
+
+    if attribut_attribute_type == 'color':
+        get_data = Colour.objects.get(pk=attribute_id)
+        get_data.delete()
+
+    if attribut_attribute_type == 'size':
+        get_data = Size.objects.get(pk=attribute_id)
+        get_data.delete()
+
+    if attribut_attribute_type == 'source':
+        get_data = Source.objects.get(pk=attribute_id)
+        get_data.delete()
+
+    resp = {
+        "response": 'success'
+    }
+
+    return JsonResponse(resp)

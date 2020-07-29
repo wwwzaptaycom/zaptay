@@ -79,4 +79,4 @@ class Source(models.Model):
         db_table = "source"
 
     def __str__(self):
-        return self.size_name
+        return self.source_name
