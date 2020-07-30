@@ -21,84 +21,98 @@
         <h6 class="m-0 font-weight-bold text-primary">Product Add</h6>
       </div>
       <div class="card-body">
-        <form>
+        <form method="POST" enctype="multipart/form-data">
+          {% if form.errors %}
+            {{ form.errors }}
+          {% endif %}
           <div class="form-group">
             <label for="inputAddress">Product Title</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="Title of the product">
+            <!-- <input type="text" class="form-control" id="inputAddress" placeholder="Title of the product"> -->
+            {{ form.product_title }}
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-4">
-              <label for="inputEmail4">MRP Price</label>
-              <input type="number" class="form-control" id="inputEmail4" placeholder="Main Price">
+              <label for="mrp">MRP Price</label>
+              <!-- <input type="number" class="form-control" id="mrp" placeholder="Main Price"> -->
+              {{ form.mrp_price }}
             </div>
             <div class="form-group col-md-4">
-              <label for="inputPassword4">Selling Price</label>
-              <input type="number" class="form-control" id="inputPassword4" placeholder="Offer Price">
+              <label for="sell">Selling Price</label>
+              <!-- <input type="number" class="form-control" id="sell" placeholder="Offer Price"> -->
+              {{ form.sell_price }}
             </div>
             <div class="form-group col-md-4">
-              <label for="inputEmail4">Extra Discount</label>
-              <input type="number" class="form-control" id="inputEmail4" placeholder="Extra Offer Price">
+              <label for="extra_disc">Extra Discount</label>
+              <!-- <input type="number" class="form-control" id="extra_disc" placeholder="Extra Offer Price"> -->
+              {{ form.extra_discount }}
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-4">
-              <label for="inputState">Category</label>
-              <select id="inputState" class="form-control">
+              <label for="category">Category</label>
+              <!-- <select id="category" class="form-control">
                 <option selected>Category</option>
                 <option>...</option>
-              </select>
+              </select> -->
+              {{ form.category }}
             </div>
             <div class="form-group col-md-4">
-              <label for="inputState">Sub Category</label>
-              <select id="inputState" class="form-control">
+              <label for="sub_category">Sub Category</label>
+              <!-- <select id="sub_category" class="form-control">
                 <option selected>Sub category</option>
                 <option>...</option>
-              </select>
+              </select> -->
+              {{ form.sub_cateegory }}
             </div>
             <div class="form-group col-md-4">
-              <label for="inputState">Tertiary Category</label>
-              <select id="inputState" class="form-control">
+              <label for="ter_category">Tertiary Category</label>
+              <!-- <select id="ter_category" class="form-control">
                 <option selected>Tertiary category</option>
                 <option>...</option>
-              </select>
+              </select> -->
+              {{ form.tertiary }}
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="exampleFormControlTextarea1">Description</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="9" placeholder="Product description"></textarea>
+              <label for="descrip">Description</label>
+              <!-- <textarea class="form-control" id="descrip" rows="9" placeholder="Product description"></textarea> -->
+              {{ form.description }}
             </div>
             <div class="form-group col-md-6">
               <div class="form-row">
                 <div class="form-group col-md-12">
-                  <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Color</label>
-                  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                  <label class="my-1 mr-2" for="color">Color</label>
+                  <!-- <select class="custom-select my-1 mr-sm-2" id="color">
                     <option selected>Choose...</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
-                  </select>
+                  </select> -->
+                  {{ form.color }}
                 </div>
                 <div class="form-group col-md-12">
-                  <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Size</label>
-                  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                  <label class="my-1 mr-2" for="size">Size</label>
+                  <!-- <select class="custom-select my-1 mr-sm-2" id="size">
                     <option selected>Choose...</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
-                  </select>
+                  </select> -->
+                  {{ form.size }}
                 </div>
                 <div class="form-group col-md-12">
-                  <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Made In</label>
-                  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                  <label class="my-1 mr-2" for="made_in">Made In</label>
+                  <!-- <select class="custom-select my-1 mr-sm-2" id="made_in">
                     <option selected>Choose...</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
-                  </select>
+                  </select> -->
+                  {{ form.made_in }}
                 </div>
               </div>
             </div>
@@ -107,32 +121,37 @@
           <div class="form-row">
             <div class="form-group col-md-2">
               <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                <label class="custom-control-label" for="customCheck1">Weekly Dreals</label>
+                <!-- <input type="checkbox" class="custom-control-input" id="weely_dreals"> -->
+                {{ form.weekly_dreals }}
+                <label class="custom-control-label" for="weely_dreals">Weekly Dreals</label>
               </div>
             </div>
             <div class="form-group col-md-2">
               <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="customCheck2">
-                <label class="custom-control-label" for="customCheck2">Top Offer</label>
+                <!-- <input type="checkbox" class="custom-control-input" id="top_offer"> -->
+                {{ form.top_offer }}
+                <label class="custom-control-label" for="top_offer">Top Offer</label>
               </div>
             </div>
             <div class="form-group col-md-2">
               <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="customCheck3">
-                <label class="custom-control-label" for="customCheck3">Free shiping</label>
+                <!-- <input type="checkbox" class="custom-control-input" id="free_shiping"> -->
+                {{ form.free_shiping }}
+                <label class="custom-control-label" for="free_shiping">Free shiping</label>
               </div>
             </div>
             <div class="form-group col-md-2">
               <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="customCheck3">
-                <label class="custom-control-label" for="customCheck3">Return</label>
+                <!-- <input type="checkbox" class="custom-control-input" id="return"> -->
+                {{ form.return_product }}
+                <label class="custom-control-label" for="return">Return</label>
               </div>
             </div>
             <div class="form-group col-md-2">
               <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="customCheck3">
-                <label class="custom-control-label" for="customCheck3">Cash On Delivary</label>
+                <!-- <input type="checkbox" class="custom-control-input" id="cod"> -->
+                {{ form.cod }}
+                <label class="custom-control-label" for="cod">Cash On Delivary</label>
               </div>
             </div>
           </div>
@@ -146,7 +165,7 @@
             </div>
             <div class="form-group col-md-2">
               <div class="card" style="width: 10rem;">
-                <img class="card-img-top" src="https://via.placeholder.com/50x50.png?text=Product IMG." alt="Card image cap" style="width: 100%; height: 110px;">
+                <img class="card-img-top" src="https://via.placeholder.com/50x50.png?text=P. IMG" alt="Card image cap" style="width: 100%; height: 270px;">
                 <div class="card-body">
                   <div class="card-text">
                     <div class="custom-control custom-checkbox">
@@ -164,7 +183,7 @@
             </div>
             <div class="form-group col-md-2">
               <div class="card" style="width: 10rem;">
-                <img class="card-img-top" src="https://via.placeholder.com/50x50.png?text=Product IMG." alt="Card image cap" style="width: 100%; height: 110px;">
+                <img class="card-img-top" src="https://via.placeholder.com/50x50.png?text=P. IMG" alt="Card image cap" style="width: 100%; height: 270px;">
                 <div class="card-body">
                   <div class="card-text">
                     <div class="custom-control custom-checkbox">
@@ -182,7 +201,7 @@
             </div>
             <div class="form-group col-md-2">
               <div class="card" style="width: 10rem;">
-                <img class="card-img-top" src="https://via.placeholder.com/50x50.png?text=Product IMG." alt="Card image cap" style="width: 100%; height: 110px;">
+                <img class="card-img-top" src="https://via.placeholder.com/50x50.png?text=P. IMG" alt="Card image cap" style="width: 100%; height: 270px;">
                 <div class="card-body">
                   <div class="card-text">
                     <div class="custom-control custom-checkbox">
@@ -200,7 +219,7 @@
             </div>
             <div class="form-group col-md-2">
               <div class="card" style="width: 10rem;">
-                <img class="card-img-top" src="https://via.placeholder.com/50x50.png?text=Product IMG." alt="Card image cap" style="width: 100%; height: 110px;">
+                <img class="card-img-top" src="https://via.placeholder.com/50x50.png?text=P. IMG" alt="Card image cap" style="width: 100%; height: 270px;">
                 <div class="card-body">
                   <div class="card-text">
                     <div class="custom-control custom-checkbox">
@@ -220,17 +239,18 @@
 
           <div class="form-row align-items-center">
             <div class="col-md-12">
-              <label class="sr-only" for="inlineFormInputGroup">Username</label>
+              <label class="sr-only" for="youtube">Username</label>
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <div class="input-group-text"><i class="fab fa-youtube"></i></div>
                 </div>
-                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Youtube link">
+                <!-- <input type="text" class="form-control" id="youtube" placeholder="Youtube link"> -->
+                {{ form.youtube }}
               </div>
             </div>
           </div>
-
-          <button type="button" class="btn btn-success">Submit</button>
+          {% csrf_token %}
+          <button type="submit" class="btn btn-success">Submit</button>
 
         </form>
       </div>
@@ -242,4 +262,10 @@
 {% endblock %}
 
 {% block custom_js %}
+
+<!-- http://www.nicedit.com/demos.php -->
+  <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+  <script type="text/javascript">
+      bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+    </script>
 {% endblock %}

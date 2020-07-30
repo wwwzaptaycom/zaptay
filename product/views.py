@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import View, TemplateView, FormView, ListView
 
+from .product_form import ProductForm
+
 # Admin part
 from admin_login.models import zaptayAdmin
 
@@ -30,8 +32,10 @@ class ShowProductList(TemplateView):
         context = {"page_name": "product_list", "admin_name": get_name.admin_f_name+" "+get_name.admin_l_name}
         return context
 
-class ShowProductForm(TemplateView):
+class ShowProductForm(FormView):
+    form_class = ProductForm
     template_name = 'admin_template/product_form.html'
+    success_url = '/site-admin/product/product-form'
 
     def dispatch(self, request, *args, **kwargs):
         try:
@@ -45,5 +49,12 @@ class ShowProductForm(TemplateView):
     def get_context_data(self, **kwargs):
         context = dict()
         get_name = zaptayAdmin.objects.all().get(email_id=self.request.session['admin_email_id'])
-        context = {"page_name": "product_list", "admin_name": get_name.admin_f_name+" "+get_name.admin_l_name}
+        context = {"page_name": "add_product", "admin_name": get_name.admin_f_name+" "+get_name.admin_l_name, 'form': self.form_class}
         return context
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if 'weekly_dreals' in request.POST:
+            print(request.POST['weekly_dreals'])
+        context = {"db_error": "Authentication failure",'form':form}
+        return self.render_to_response(context)

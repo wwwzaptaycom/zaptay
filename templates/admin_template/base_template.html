@@ -83,10 +83,16 @@
         </div>
       </li> -->
 
+      <li class="nav-item {% if page_name != "" and page_name == 'add_product' %} active {% endif %}">
+        <a class="nav-link" href="{% url 'admin_login:product:product_form' %}">
+          <i class="fas fa-fw fa-truck"></i>
+          <span>Add Product</span></a>
+      </li>
+
       <li class="nav-item {% if page_name != "" and page_name == 'product_list' %} active {% endif %}">
         <a class="nav-link" href="{% url 'admin_login:product:product_list' %}">
           <i class="fas fa-fw fa-shopping-bag"></i>
-          <span>Product</span></a>
+          <span>All Product List</span></a>
       </li>
 
       <li class="nav-item {% if page_name != "" and  page_name == 'attribute' %} active {% endif %}">
