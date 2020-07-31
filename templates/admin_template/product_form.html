@@ -159,13 +159,16 @@
           <div class="form-row">
             <div class="form-group col-md-4">
               <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFileLangHTML">
-                <label class="custom-file-label" for="customFileLangHTML" data-browse="Browse">Upload Product Image</label>
+                <!-- <input type="file" class="custom-file-input" id="product_img" multiple="multiple"> -->
+                {{ form.product_image }}
+                <label class="custom-file-label" for="product_img" data-browse="Browse">Upload Product Image</label>
               </div>
             </div>
-            <div class="form-group col-md-2">
+          </div>
+          <div class="form-row" id="show_upload_image">
+            <!-- <div class="form-group col-md-2">
               <div class="card" style="width: 10rem;">
-                <img class="card-img-top" src="https://via.placeholder.com/50x50.png?text=P. IMG" alt="Card image cap" style="width: 100%; height: 270px;">
+                <img class="card-img-top" src="https://via.placeholder.com/50x50.png?text=P. IMG" alt="Card image cap" style="width: 100%; height: 180px;">
                 <div class="card-body">
                   <div class="card-text">
                     <div class="custom-control custom-checkbox">
@@ -174,67 +177,12 @@
                     </div>
                     <br />
                     <div class="form-group">
-                      <!-- <label for="inputEmail4">MRP Price</label> -->
                       <input type="number" class="form-control" id="inputEmail4" placeholder="Serial no.">
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="form-group col-md-2">
-              <div class="card" style="width: 10rem;">
-                <img class="card-img-top" src="https://via.placeholder.com/50x50.png?text=P. IMG" alt="Card image cap" style="width: 100%; height: 270px;">
-                <div class="card-body">
-                  <div class="card-text">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck4">
-                      <label class="custom-control-label" for="customCheck4">Home Image</label>
-                    </div>
-                    <br />
-                    <div class="form-group">
-                      <!-- <label for="inputEmail4">MRP Price</label> -->
-                      <input type="number" class="form-control" id="inputEmail4" placeholder="Serial no.">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="form-group col-md-2">
-              <div class="card" style="width: 10rem;">
-                <img class="card-img-top" src="https://via.placeholder.com/50x50.png?text=P. IMG" alt="Card image cap" style="width: 100%; height: 270px;">
-                <div class="card-body">
-                  <div class="card-text">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck4">
-                      <label class="custom-control-label" for="customCheck4">Home Image</label>
-                    </div>
-                    <br />
-                    <div class="form-group">
-                      <!-- <label for="inputEmail4">MRP Price</label> -->
-                      <input type="number" class="form-control" id="inputEmail4" placeholder="Serial no.">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="form-group col-md-2">
-              <div class="card" style="width: 10rem;">
-                <img class="card-img-top" src="https://via.placeholder.com/50x50.png?text=P. IMG" alt="Card image cap" style="width: 100%; height: 270px;">
-                <div class="card-body">
-                  <div class="card-text">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck4">
-                      <label class="custom-control-label" for="customCheck4">Home Image</label>
-                    </div>
-                    <br />
-                    <div class="form-group">
-                      <!-- <label for="inputEmail4">MRP Price</label> -->
-                      <input type="number" class="form-control" id="inputEmail4" placeholder="Serial no.">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            </div> -->
           </div>
 
           <div class="form-row align-items-center">
@@ -250,7 +198,7 @@
             </div>
           </div>
           {% csrf_token %}
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" class="btn btn-success btn-lg" style="width: 180px">Submit</button>
 
         </form>
       </div>
@@ -268,4 +216,6 @@
   <script type="text/javascript">
       bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
     </script>
+
+    <script src="{% static 'admin_static/js/custom_js/product.js' %}"></script>
 {% endblock %}

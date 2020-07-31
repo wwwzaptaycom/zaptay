@@ -225,3 +225,54 @@ def DeleteAttrinutsData(request):
     }
 
     return JsonResponse(resp)
+
+
+def SendSortSubCategory(request):
+    try:
+        category_id = request.GET['category_id']
+
+        category_dict = dict()
+        category_arr = list()
+
+        category_list = SubCategory.objects.all().filter(category_id=category_id)
+        for i in category_list:
+            category_arr.append([i.sub_category_id , i.sub_category_name])
+        category_dict['data'] = category_arr
+
+        return JsonResponse(category_dict)
+
+    except Exception as e:
+        print ("*********************************************************************************************************************************")
+        print ("Error in ajax", e)
+        print ("*********************************************************************************************************************************")
+
+        resp = {
+            "response": 'Failed'
+        }
+
+        return JsonResponse(resp)
+
+def TertiarySubCategory(request):
+    try:
+        sub_category_id = request.GET['sub_category_id']
+
+        category_dict = dict()
+        category_arr = list()
+
+        category_list = TertiaryCategory.objects.all().filter(sub_category_id=sub_category_id)
+        for i in category_list:
+            category_arr.append([i.ter_category_id , i.ter_category_name])
+        category_dict['data'] = category_arr
+
+        return JsonResponse(category_dict)
+
+    except Exception as e:
+        print ("*********************************************************************************************************************************")
+        print ("Error in ajax", e)
+        print ("*********************************************************************************************************************************")
+
+        resp = {
+            "response": 'Failed'
+        }
+
+        return JsonResponse(resp)

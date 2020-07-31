@@ -48,5 +48,7 @@ class ProductForm(forms.Form):
     top_offer = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class': 'custom-control-input', 'id': 'top_offer'}))
     free_shiping = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class': 'custom-control-input', 'id': 'free_shiping'}))
     return_product = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class': 'custom-control-input', 'id': 'return'}))
-    cod = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class': 'custom-control-input', 'id': 'return'}))
+    cod = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class': 'custom-control-input', 'id': 'cod'}))
     youtube = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'youtube', 'placeholder':'Youtube link'}))
+
+    product_image = forms.ImageField(required=False, widget=forms.FileInput(attrs={'class': 'custom-file-input', 'id': 'product_img', 'multiple': 'multiple'}))
