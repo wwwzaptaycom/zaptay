@@ -276,3 +276,72 @@ def TertiarySubCategory(request):
         }
 
         return JsonResponse(resp)
+
+def GetAllColors(request):
+    try:
+        category_dict = dict()
+        category_arr = list()
+
+        category_list = Colour.objects.all()
+        for i in category_list:
+            category_arr.append([i.color_id , i.color_name])
+        category_dict['data'] = category_arr
+
+        return JsonResponse(category_dict)
+
+    except Exception as e:
+        print ("*********************************************************************************************************************************")
+        print ("Error in ajax", e)
+        print ("*********************************************************************************************************************************")
+
+        resp = {
+            "response": 'Failed'
+        }
+
+        return JsonResponse(resp)
+
+def GetAllSize(request):
+    try:
+        category_dict = dict()
+        category_arr = list()
+
+        category_list = Size.objects.all()
+        for i in category_list:
+            category_arr.append([i.size_id , i.size_name])
+        category_dict['data'] = category_arr
+
+        return JsonResponse(category_dict)
+
+    except Exception as e:
+        print ("*********************************************************************************************************************************")
+        print ("Error in ajax", e)
+        print ("*********************************************************************************************************************************")
+
+        resp = {
+            "response": 'Failed'
+        }
+
+        return JsonResponse(resp)
+
+def GetAllMadeIn(request):
+    try:
+        category_dict = dict()
+        category_arr = list()
+
+        category_list = Source.objects.all()
+        for i in category_list:
+            category_arr.append([i.source_id , i.source_name])
+        category_dict['data'] = category_arr
+
+        return JsonResponse(category_dict)
+
+    except Exception as e:
+        print ("*********************************************************************************************************************************")
+        print ("Error in ajax", e)
+        print ("*********************************************************************************************************************************")
+
+        resp = {
+            "response": 'Failed'
+        }
+
+        return JsonResponse(resp)

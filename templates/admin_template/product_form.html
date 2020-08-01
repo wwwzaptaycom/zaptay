@@ -3,7 +3,30 @@
 
 {% block title %}Products{% endblock %}
 
-{% block custom_css %}{% endblock %}
+{% block custom_css %}
+  <style>
+    .errorlist
+    {
+      color: red;
+      margin-bottom: 0px;
+    }
+
+    .mentetory
+    {
+      position: relative;
+    }
+
+    .mentetory::after
+    {
+      content: '*';
+      position: absolute;
+      right: -11px;
+      font-weight: 800;
+      color: red;
+      top: 0px;
+    }
+  </style>
+{% endblock %}
 
 {% block page_body %}
 
@@ -23,35 +46,43 @@
       <div class="card-body">
         <form method="POST" enctype="multipart/form-data">
           {% if form.errors %}
-            {{ form.errors }}
+            {% for i in form %}
+              <span>{{ i.errors }}</span>
+            {% endfor %}
+            <br />
           {% endif %}
           <div class="form-group">
-            <label for="inputAddress">Product Title</label>
+            <label for="inputAddress" class="mentetory">Product Title</label>
             <!-- <input type="text" class="form-control" id="inputAddress" placeholder="Title of the product"> -->
             {{ form.product_title }}
           </div>
 
           <div class="form-row">
-            <div class="form-group col-md-4">
-              <label for="mrp">MRP Price</label>
+            <div class="form-group col-md-3">
+              <label for="mrp" class="mentetory">Main Price</label>
               <!-- <input type="number" class="form-control" id="mrp" placeholder="Main Price"> -->
-              {{ form.mrp_price }}
+              {{ form.main_price }}
             </div>
-            <div class="form-group col-md-4">
-              <label for="sell">Selling Price</label>
+            <div class="form-group col-md-3">
+              <label for="sell" class="mentetory">Offer Price</label>
               <!-- <input type="number" class="form-control" id="sell" placeholder="Offer Price"> -->
-              {{ form.sell_price }}
+              {{ form.offer_price }}
             </div>
-            <div class="form-group col-md-4">
-              <label for="extra_disc">Extra Discount</label>
+            <div class="form-group col-md-3">
+              <label for="extra_disc" class="mentetory">Extra Price</label>
               <!-- <input type="number" class="form-control" id="extra_disc" placeholder="Extra Offer Price"> -->
-              {{ form.extra_discount }}
+              {{ form.extra_price }}
+            </div>
+            <div class="form-group col-md-3">
+              <label for="purchase_price" class="mentetory">Purchase Price</label>
+              <!-- <input type="number" class="form-control" id="extra_disc" placeholder="Extra Offer Price"> -->
+              {{ form.purchase_price }}
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-4">
-              <label for="category">Category</label>
+              <label for="category" class="mentetory">Category</label>
               <!-- <select id="category" class="form-control">
                 <option selected>Category</option>
                 <option>...</option>
@@ -59,7 +90,7 @@
               {{ form.category }}
             </div>
             <div class="form-group col-md-4">
-              <label for="sub_category">Sub Category</label>
+              <label for="sub_category" class="mentetory">Sub Category</label>
               <!-- <select id="sub_category" class="form-control">
                 <option selected>Sub category</option>
                 <option>...</option>
@@ -78,14 +109,14 @@
 
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="descrip">Description</label>
+              <label for="descrip" class="mentetory">Description</label>
               <!-- <textarea class="form-control" id="descrip" rows="9" placeholder="Product description"></textarea> -->
               {{ form.description }}
             </div>
             <div class="form-group col-md-6">
               <div class="form-row">
                 <div class="form-group col-md-12">
-                  <label class="my-1 mr-2" for="color">Color</label>
+                  <label class="my-1 mr-2 mentetory" for="color">Color</label>
                   <!-- <select class="custom-select my-1 mr-sm-2" id="color">
                     <option selected>Choose...</option>
                     <option value="1">One</option>
@@ -95,7 +126,7 @@
                   {{ form.color }}
                 </div>
                 <div class="form-group col-md-12">
-                  <label class="my-1 mr-2" for="size">Size</label>
+                  <label class="my-1 mr-2 mentetory" for="size">Size</label>
                   <!-- <select class="custom-select my-1 mr-sm-2" id="size">
                     <option selected>Choose...</option>
                     <option value="1">One</option>
@@ -105,7 +136,7 @@
                   {{ form.size }}
                 </div>
                 <div class="form-group col-md-12">
-                  <label class="my-1 mr-2" for="made_in">Made In</label>
+                  <label class="my-1 mr-2 mentetory" for="made_in">Made In</label>
                   <!-- <select class="custom-select my-1 mr-sm-2" id="made_in">
                     <option selected>Choose...</option>
                     <option value="1">One</option>
@@ -114,8 +145,39 @@
                   </select> -->
                   {{ form.made_in }}
                 </div>
+                <div class="form-group col-md-12">
+                  <label class="my-1 mr-2 mentetory" for="stock">Stock Entry</label>
+                  {{ form.stock_entry }}
+                </div>
               </div>
             </div>
+          </div>
+
+          <div class="form-row" id="add_more_pin_codes_div">
+            <div class="form-group col-md-3">
+              <div class="card">
+                <div class="card-header">
+                  <div class="form-group">
+                    <!-- <label for="chaeges">Charge rate</label> -->
+                    <input type="number" name="pincode[]" class="form-control" id="chaeges" placeholder="Enter The Pincode">
+                  </div>
+                </div>
+                <div class="card-body">
+                  <!-- <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="pincode_free_delivary">
+                    <label class="custom-control-label" for="pincode_free_delivary">Free Delivary</label>
+                  </div> -->
+                  <div class="form-group">
+                    <label for="chaeges">Charge rate</label>
+                    <input type="number" name="pincode_charge[]" class="form-control" id="chaeges" placeholder="Enter the charge" value="0">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <a href="javascript:void(0);" id="pincode_add">Add More Pincode</a>
           </div>
 
           <div class="form-row">

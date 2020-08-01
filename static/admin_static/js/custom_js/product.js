@@ -1,5 +1,8 @@
 $(document).ready(function(){
   GetCategory();
+  Color();
+  Size();
+  MadeIn();
 });
 
 $("#category").on("change", function(){
@@ -63,7 +66,7 @@ function TertiaryCategory(){
     },
     success: function(r){
       let html_content = `
-      <option value="">Select Sub Category</option>
+      <option value="">Select Tertiary Category</option>
       `;
       r.data.map((category, key) => {
         html_content+= `<option value="`+category[0]+`">`+category[1]+`</option>`
@@ -75,6 +78,88 @@ function TertiaryCategory(){
       }
   });
 }
+
+function Color(){
+  $.ajax({
+    url: "http://127.0.0.1:8000/site-admin/attribute/get-all-color",
+    method: "GET",
+    dataType: "JSON",
+    success: function(r){
+      let html_content = `
+      <option value="">Select Color</option>
+      `;
+      r.data.map((category, key) => {
+        html_content+= `<option value="`+category[0]+`">`+category[1]+`</option>`
+      })
+      $("#color").html(html_content);
+    },
+    error: function(r){
+      console.log(r);
+      }
+  });
+}
+
+function Size(){
+  $.ajax({
+    url: "http://127.0.0.1:8000/site-admin/attribute/get-all-size",
+    method: "GET",
+    dataType: "JSON",
+    success: function(r){
+      let html_content = `
+      <option value="">Select Size</option>
+      `;
+      r.data.map((category, key) => {
+        html_content+= `<option value="`+category[0]+`">`+category[1]+`</option>`
+      })
+      $("#size").html(html_content);
+    },
+    error: function(r){
+      console.log(r);
+      }
+  });
+}
+
+function MadeIn(){
+  $.ajax({
+    url: "http://127.0.0.1:8000/site-admin/attribute/get-all-made-in",
+    method: "GET",
+    dataType: "JSON",
+    success: function(r){
+      let html_content = `
+      <option value="">Select Made By</option>
+      `;
+      r.data.map((category, key) => {
+        html_content+= `<option value="`+category[0]+`">`+category[1]+`</option>`
+      })
+      $("#made_in").html(html_content);
+    },
+    error: function(r){
+      console.log(r);
+      }
+  });
+}
+
+// Pincode add for delivary charges
+$("#pincode_add").on("click", function(){
+  let template = `
+  <div class="form-group col-md-3">
+    <div class="card">
+      <div class="card-header">
+        <div class="form-group">
+          <input type="number" class="form-control" name="pincode[]" id="chaeges" placeholder="Enter The Pincode">
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="chaeges">Charge rate</label>
+          <input type="number" class="form-control" name="pincode_charge[]" id="chaeges" placeholder="Enter the charge" value="0">
+        </div>
+      </div>
+    </div>
+  </div>
+  `;
+  $("#add_more_pin_codes_div").append(template);
+});
 
 /* ******************************************************* Image preview ******************************************************* */
 
@@ -94,12 +179,12 @@ $("#product_img").on('change', function(){
           <div class="card-body">
             <div class="card-text">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="set_home_image`+i+`" value="option1" checked>
+                <input class="form-check-input" type="radio" name="product_home_image" id="set_home_image`+i+`" value="option1" checked>
                 <label class="form-check-label" for="set_home_image`+i+`">Home image</label>
               </div>
               <br />
               <div class="form-group">
-                <input type="number" class="form-control" id="inputEmail4" value="`+sl_no+`" placeholder="Serial no.">
+                <input type="number" class="form-control" name="product_sl_image[]" id="inputEmail4" value="`+sl_no+`" placeholder="Serial no.">
               </div>
             </div>
           </div>

@@ -57,14 +57,43 @@ class ShowProductForm(FormView):
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         if form.is_valid():
-            # prodict_title = request.POST['']
-            print ("valid")
+            prodict_title = request.POST['product_title']
+            main_price = request.POST['main_price']
+            offer_price = request.POST['offer_price']
+            extra_price = request.POST['extra_price']
+            purchase_price = request.POST['purchase_price']
+            category = request.POST['category']
+            sub_category = request.POST['sub_cateegory']
+            tertiary_category = request.POST['tertiary']
+            prod_desc = request.POST['description']
+            color = request.POST['color']
+            size = request.POST['size']
+            source = request.POST['made_in']
+            youtube = request.POST['youtube']
+
+            weekly_dreals=top_offer=free_shiping=return_product=cod =0
+            if 'weekly_dreals' in request.POST:
+                weekly_dreals = request.POST['weekly_dreals']
+            if 'top_offer' in request.POST:
+                top_offer = request.POST['top_offer']
+            if 'free_shiping' in request.POST:
+                free_shiping = request.POST['free_shiping']
+            if 'return_product' in request.POST:
+                return_product = request.POST['return_product']
+            if 'cod' in request.POST:
+                cod = request.POST['cod']
+
+            print ("*********************************************************************************")
+            print (prodict_title,mrp_price,selling_price,extra_discount,category,sub_category,tertiary_category,prod_desc,color,size,source,youtube,weekly_dreals,top_offer,free_shiping,return_product,cod)
+
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
 
     def form_invalid(self, form):
-        context = self.get_context_data(task_form=form)
+        # context = self.get_context_data(task_form=form)
+        context = self.get_context_data()
+        context['form'] = form
         return self.render_to_response(context)
         '''
         if 'weekly_dreals' in request.POST and request.POST['weekly_dreals'] == 'on':
