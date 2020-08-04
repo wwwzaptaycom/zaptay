@@ -352,6 +352,102 @@
 
   </div>
 
+  <div class="col-lg-4">
+
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Same Day Delivary Pin code</h6>
+      </div>
+      <div class="card-body">
+        <form method="POST">
+          <div class="row">
+            <div class="col-lg-12">
+              {% if messages %}
+                {% for message in messages %}
+                  {% if message.extra_tags == "same_day_pin" %}
+                    <span class="{{ message.tags }}">{{ message }}</span>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            </div>
+            <div class="col-lg-6">
+              {{ same_day_pincode_form.same_day_pin_add_form }}
+            </div>
+            {% csrf_token %}
+            <div class="col-lg-6">
+              <button type="submit" class="btn btn-success btn-user btn-block name="button">Add</button>
+            </div>
+          </div>
+        </form>
+        <br />
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card mb-4 py-3 border-left-primary">
+              <div class="card-body custom-card-body">
+                <ol>
+                  {% if same_day_pin_list %}
+                    {%for i in same_day_pin_list %}
+                      <li>{{i.pincode}} &nbsp;&nbsp; <a href="" class="delete_assets" onclick="return delete_attributes('same_day_pin', '{{ i.pincode }}', {{ i.same_day_pin_id }});"><i class="fas fa-times"></i></a></li>
+                    {% endfor %}
+                  {% endif %}
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-lg-4">
+
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Next Day Delivary Pin code</h6>
+      </div>
+      <div class="card-body">
+        <form method="POST">
+          <div class="row">
+            <div class="col-lg-12">
+              {% if messages %}
+                {% for message in messages %}
+                  {% if message.extra_tags == "next_day_pin" %}
+                    <span class="{{ message.tags }}">{{ message }}</span>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            </div>
+            <div class="col-lg-6">
+              {{ next_day_pincode_form.next_day_pin_add_form }}
+            </div>
+            {% csrf_token %}
+            <div class="col-lg-6">
+              <button type="submit" class="btn btn-success btn-user btn-block name="button">Add</button>
+            </div>
+          </div>
+        </form>
+        <br />
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card mb-4 py-3 border-left-primary">
+              <div class="card-body custom-card-body">
+                <ol>
+                  {% if next_day_pin_list %}
+                    {%for i in next_day_pin_list %}
+                      <li>{{i.pincode}} &nbsp;&nbsp; <a href="" class="delete_assets" onclick="return delete_attributes('next_day_pin', '{{ i.pincode }}', {{ i.next_day_pin_id }});"><i class="fas fa-times"></i></a></li>
+                    {% endfor %}
+                  {% endif %}
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
 </div>
 
 {% endblock %}

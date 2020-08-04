@@ -52,3 +52,9 @@ class SizeForm(forms.Form):
 
 class SourceForm(forms.Form):
     source_add_form = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control form-control-user', 'aria-describedby':"emailHelp", 'placeholder':"Source"}), error_messages={'required': 'Color name required'})
+
+class SameDayPincodeForm(forms.Form):
+    same_day_pin_add_form = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control form-control-user', 'aria-describedby':"emailHelp", 'placeholder':"Pincode"}), error_messages={'required': 'Pincode required'})
+
+class NextDayPincodeForm(forms.Form):
+    next_day_pin_add_form = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control form-control-user', 'aria-describedby':"emailHelp", 'placeholder':"Pincode"}), error_messages={'required': 'Pincode required'})

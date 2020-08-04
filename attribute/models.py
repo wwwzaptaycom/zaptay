@@ -80,3 +80,31 @@ class Source(models.Model):
 
     def __str__(self):
         return self.source_name
+
+class SameDayDelivary(models.Model):
+    same_day_pin_id = models.AutoField(primary_key=True)
+    pincode = models.IntegerField()
+    is_active = models.BooleanField(default=1)
+    added_by = models.ForeignKey(zaptayAdmin, on_delete=models.CASCADE)
+    modify_date = models.DateTimeField(default=now)
+    create_date = models.DateTimeField(default=now)
+
+    class Meta:
+        db_table = "same_day_delivary_pincode"
+
+    def __str__(self):
+        return str(self.pincode)
+
+class NextDayDelivary(models.Model):
+    next_day_pin_id = models.AutoField(primary_key=True)
+    pincode = models.IntegerField()
+    is_active = models.BooleanField(default=1)
+    added_by = models.ForeignKey(zaptayAdmin, on_delete=models.CASCADE)
+    modify_date = models.DateTimeField(default=now)
+    create_date = models.DateTimeField(default=now)
+
+    class Meta:
+        db_table = "next_day_delivary_pincode"
+
+    def __str__(self):
+        return str(self.pincode)

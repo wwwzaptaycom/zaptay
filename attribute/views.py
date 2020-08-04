@@ -6,10 +6,10 @@ from django.views.generic import View, TemplateView, FormView
 
 from admin_login.models import zaptayAdmin
 
-from .attribute_forms import CategoryForm, SubcategoryForm, TertiaryCategoryForm, ColorForm, SizeForm, SourceForm
+from .attribute_forms import CategoryForm, SubcategoryForm, TertiaryCategoryForm, ColorForm, SizeForm, SourceForm, SameDayPincodeForm, NextDayPincodeForm
 
 from category.models import MainCategory
-from attribute.models import SubCategory, TertiaryCategory, Colour, Size, Source
+from attribute.models import SubCategory, TertiaryCategory, Colour, Size, Source, SameDayDelivary, NextDayDelivary
 
 # Create your views here.
 
@@ -22,6 +22,8 @@ class AttributeList(FormView):
     color_class = ColorForm
     size_class = SizeForm
     source_class = SourceForm
+    same_day_pincode_class = SameDayPincodeForm
+    next_day_pincode_class = NextDayPincodeForm
 
     def dispatch(self, request, *args, **kwargs):
         try:
@@ -41,6 +43,8 @@ class AttributeList(FormView):
         color_list = Colour.objects.all()
         size_list = Size.objects.all()
         source_list = Source.objects.all()
+        same_day_delivary_pin_list = SameDayDelivary.objects.all()
+        next_day_delivary_pin_list = NextDayDelivary.objects.all()
         context = {
             "page_name": "attribute",
             "admin_name": get_name.admin_f_name+" "+get_name.admin_f_name,
@@ -49,7 +53,9 @@ class AttributeList(FormView):
             "ter_category_list": ter_caregory_list,
             "color_list": color_list,
             "size_list": size_list,
-            "source_list": source_list}
+            "source_list": source_list,
+            "same_day_pin_list": same_day_delivary_pin_list,
+            "next_day_pin_list": next_day_delivary_pin_list}
 
         context['category_form'] = self.category_form_class
         context['sub_category_form'] = self.sub_category_form_class
@@ -57,6 +63,8 @@ class AttributeList(FormView):
         context['color_form'] = self.color_class
         context['size_form'] = self.size_class
         context['source_form'] = self.source_class
+        context['same_day_pincode_form'] = self.same_day_pincode_class
+        context['next_day_pincode_form'] = self.next_day_pincode_class
         return context
 
     def post(self, request, *args, **kwargs):
@@ -143,9 +151,37 @@ class AttributeList(FormView):
 
                 insert_que = Source(source_name=source, added_by=admin_id)
                 insert_que.save()
-                messages.success(request, "Size added", extra_tags='source')
+                messages.success(request, "Source added", extra_tags='source')
             else:
                 messages.error(request, "All fields mentetory", extra_tags='source')
+
+        if 'same_day_pin_add_form' in request.POST:
+            same_day_pin_form = SameDayPincodeForm(request.POST)
+
+            if same_day_pin_form.is_valid():
+                pin_code_no = request.POST['same_day_pin_add_form']
+
+                admin_id = zaptayAdmin.objects.all().get(email_id=request.session.get('admin_email_id'))
+
+                insert_que = SameDayDelivary(pincode=pin_code_no, added_by=admin_id)
+                insert_que.save()
+                messages.success(request, "pincode added", extra_tags='same_day_pin')
+            else:
+                messages.error(request, "All fields mentetory", extra_tags='same_day_pin')
+
+        if 'next_day_pin_add_form' in request.POST:
+            next_day_pin_form = NextDayPincodeForm(request.POST)
+
+            if next_day_pin_form.is_valid():
+                pin_code_no = request.POST['next_day_pin_add_form']
+
+                admin_id = zaptayAdmin.objects.all().get(email_id=request.session.get('admin_email_id'))
+
+                insert_que = NextDayDelivary(pincode=pin_code_no, added_by=admin_id)
+                insert_que.save()
+                messages.success(request, "pincode added", extra_tags='next_day_pin')
+            else:
+                messages.error(request, "All fields mentetory", extra_tags='next_day_pin')
 
         return render(request, self.template_name, self.get_context_data())
 
@@ -218,6 +254,14 @@ def DeleteAttrinutsData(request):
 
     if attribut_attribute_type == 'source':
         get_data = Source.objects.get(pk=attribute_id)
+        get_data.delete()
+
+    if attribut_attribute_type == 'same_day_pin':
+        get_data = SameDayDelivary.objects.get(pk=attribute_id)
+        get_data.delete()
+
+    if attribut_attribute_type == 'next_day_pin':
+        get_data = NextDayDelivary.objects.get(pk=attribute_id)
         get_data.delete()
 
     resp = {

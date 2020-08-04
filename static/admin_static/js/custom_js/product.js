@@ -140,7 +140,7 @@ function MadeIn(){
 }
 
 // Pincode add for delivary charges
-$("#pincode_add").on("click", function(){
+/*$("#pincode_add").on("click", function(){
   let template = `
   <div class="form-group col-md-3">
     <div class="card">
@@ -159,7 +159,7 @@ $("#pincode_add").on("click", function(){
   </div>
   `;
   $("#add_more_pin_codes_div").append(template);
-});
+});*/
 
 /* ******************************************************* Image preview ******************************************************* */
 
