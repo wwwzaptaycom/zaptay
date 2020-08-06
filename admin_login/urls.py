@@ -10,6 +10,7 @@ urlpatterns = [
     path('dashboard/', views.ShowadminDashboardView.as_view(), name="admin_dashboardpage"),
     path('attribute/', include('attribute.admin_urls')),
     path('product/', include('product.admin_urls')),
+    path('seller/', include('seller.admin_urls')),
 
 
 

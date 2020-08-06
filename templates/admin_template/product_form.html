@@ -51,33 +51,19 @@
             {% endfor %}
             <br />
           {% endif %}
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <input class="form-control" id="listSearch" type="text" placeholder="Search your product">
+              <ul class="list-group" id="myList" style="display: none;">
+                <li class="list-group-item"><a href="">First item</a></li>
+                <li class="list-group-item">Second item</li>
+              </ul>
+            </div>
+          </div>
           <div class="form-group">
             <label for="inputAddress" class="mentetory">Product Title</label>
             <!-- <input type="text" class="form-control" id="inputAddress" placeholder="Title of the product"> -->
             {{ form.product_title }}
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-3">
-              <label for="mrp" class="mentetory">Main Price</label>
-              <!-- <input type="number" class="form-control" id="mrp" placeholder="Main Price"> -->
-              {{ form.main_price }}
-            </div>
-            <div class="form-group col-md-3">
-              <label for="sell" class="mentetory">Offer Price</label>
-              <!-- <input type="number" class="form-control" id="sell" placeholder="Offer Price"> -->
-              {{ form.offer_price }}
-            </div>
-            <div class="form-group col-md-3">
-              <label for="extra_disc" class="mentetory">Extra Price</label>
-              <!-- <input type="number" class="form-control" id="extra_disc" placeholder="Extra Offer Price"> -->
-              {{ form.extra_price }}
-            </div>
-            <div class="form-group col-md-3">
-              <label for="purchase_price" class="mentetory">Purchase Price</label>
-              <!-- <input type="number" class="form-control" id="extra_disc" placeholder="Extra Offer Price"> -->
-              {{ form.purchase_price }}
-            </div>
           </div>
 
           <div class="form-row">
@@ -145,10 +131,6 @@
                   </select> -->
                   {{ form.made_in }}
                 </div>
-                <div class="form-group col-md-12">
-                  <label class="my-1 mr-2 mentetory" for="stock">Stock Entry</label>
-                  {{ form.stock_entry }}
-                </div>
               </div>
             </div>
           </div>
@@ -156,38 +138,45 @@
           <div class="form-row">
             <div class="form-group col-md-3">
               <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="same_day_delivary">
-                <label class="custom-control-label" for="same_day_delivary">Same Day Delivary</label>
+                <!-- <input type="checkbox" class="custom-control-input" id="same_day_delivary"> -->
+                {{ form.same_day_delivary_check }}
+                <label class="custom-control-label" for="same_day_delivary">Same Day Delivery</label>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-10">
-                  <input type="text" class="form-control" id="inputAddress" placeholder="Price">
+                  <!-- <input type="text" class="form-control" id="inputAddress" placeholder="Price"> -->
+                  {{ form.same_day_delivary_price }}
                 </div>
               </div>
             </div>
             <div class="form-group col-md-3">
               <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="next_day_delivary">
-                <label class="custom-control-label" for="next_day_delivary">Next Day Delivary</label>
+                <!-- <input type="checkbox" class="custom-control-input" id="next_day_delivary"> -->
+                {{ form.next_day_delivary_check }}
+                <label class="custom-control-label" for="next_day_delivary">Next Day Delivery</label>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-10">
-                  <input type="text" class="form-control" id="inputAddress" placeholder="Price">
+                  <!-- <input type="text" class="form-control" id="inputAddress" placeholder="Price"> -->
+                  {{ form.next_day_delivary_price }}
                 </div>
               </div>
             </div>
             <div class="form-group col-md-3">
               <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="customize_day_delivary">
-                <label class="custom-control-label" for="customize_day_delivary">Customize Day Delivary</label>
+                <!-- <input type="checkbox" class="custom-control-input" id="customize_day_delivary"> -->
+                {{ form.customize_delivary_check }}
+                <label class="custom-control-label" for="customize_day_delivary">Customize Day Delivery</label>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <!-- <label for="inputAddress">Product Title</label> -->
-                  <input type="text" class="form-control" id="inputAddress" placeholder="Add Day">
+                  <!-- <input type="text" class="form-control" id="inputAddress" placeholder="Add Day"> -->
+                  {{ form.customize_delivary_day }}
                 </div>
                 <div class="form-group col-md-6">
-                  <input type="text" class="form-control" id="inputAddress" placeholder="Price">
+                  <!-- <input type="text" class="form-control" id="inputAddress" placeholder="Price"> -->
+                  {{ form.customize_delivary_price }}
                 </div>
               </div>
             </div>
@@ -235,13 +224,13 @@
                 <label class="custom-control-label" for="top_offer">Top Offer</label>
               </div>
             </div>
-            <div class="form-group col-md-2">
-              <div class="custom-control custom-checkbox">
+            <!-- <div class="form-group col-md-2">
+              <div class="custom-control custom-checkbox"> -->
                 <!-- <input type="checkbox" class="custom-control-input" id="free_shiping"> -->
-                {{ form.free_shiping }}
-                <label class="custom-control-label" for="free_shiping">Free shiping</label>
+                {%comment%}{{ form.free_shiping }}{%endcomment%}
+                <!-- <label class="custom-control-label" for="free_shiping">Free shiping</label>
               </div>
-            </div>
+            </div> -->
             <div class="form-group col-md-2">
               <div class="custom-control custom-checkbox">
                 <!-- <input type="checkbox" class="custom-control-input" id="return"> -->
@@ -253,7 +242,7 @@
               <div class="custom-control custom-checkbox">
                 <!-- <input type="checkbox" class="custom-control-input" id="cod"> -->
                 {{ form.cod }}
-                <label class="custom-control-label" for="cod">Cash On Delivary</label>
+                <label class="custom-control-label" for="cod">Cash On Delivery</label>
               </div>
             </div>
           </div>
@@ -320,4 +309,19 @@
     </script>
 
     <script src="{% static 'admin_static/js/custom_js/product.js' %}"></script>
+    <script>
+    $(document).ready(function(){
+      $("#listSearch").on("keyup", function() {
+        if($(this).val() != ""){
+          $("#myList").show();
+          var value = $(this).val().toLowerCase();
+          $("#myList li").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        }else{
+          $("#myList").hide();
+        }
+      });
+    });
+    </script>
 {% endblock %}

@@ -7,6 +7,7 @@ $(document).ready(function(){
 
 $("#category").on("change", function(){
   GetSubCategory();
+  GetCategoryTable();
 });
 $("#sub_category").on("change", function(){
   TertiaryCategory();
@@ -196,3 +197,34 @@ $("#product_img").on('change', function(){
 });
 
 /* ******************************************************* /Image preview ******************************************************* */
+
+
+/* ****************************************************** Product List ********************************************************** */
+$("#clear_filter").on('click', function(){
+  document.location.reload();
+});
+
+function GetCategoryTable(){
+  var table_content = `
+    <tr>
+      <th scope="row">1</th>
+        <td>Category sort</td>
+        <td>Otto</td>
+        <td>250</td>
+        <td>25</td>
+        <td>--</td>
+        <td>
+          <a href="javascript:void(0);" class="btn btn-info btn-sm">
+          <i class="fas fa-eye"></i>
+          View
+          </a>
+          <a href="javascript:void(0);" class="btn btn-warning btn-sm">
+          <i class="fas fa-edit"></i>
+          Edit
+          </a>
+      </td>
+    </tr>
+  `;
+  $("#table_content").html(table_content);
+}
+/* ****************************************************** /Product List ********************************************************** */

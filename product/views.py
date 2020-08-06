@@ -44,8 +44,8 @@ class ShowProductForm(FormView):
             return super(ShowProductForm, self).dispatch(request, *args, **kwargs)
         except Exception as e:
             print(e)
-            return redirect('/site-admin/product/product-form')
-            # return redirect('admin_login:admin_loginpage')
+            # return redirect('/site-admin/product/product-form')
+            return redirect('admin_login:admin_loginpage')
     '''
 
     def get_context_data(self, **kwargs):
@@ -71,6 +71,19 @@ class ShowProductForm(FormView):
             source = request.POST['made_in']
             youtube = request.POST['youtube']
 
+            same_day_delivary=same_day_delivary_price=next_day_delivary=next_day_delivary_price=customize_day_delivary=customize_day_delivary_price=customize_day_delivary_day=0
+
+            if 'same_day_delivary_check' in request.POST:
+                same_day_delivary = request.POST['same_day_delivary_check']
+                same_day_delivary_price = request.POST['same_day_delivary_price']
+            if 'next_day_delivary_check' in request.POST:
+                next_day_delivary = request.POST['next_day_delivary_check']
+                next_day_delivary_price = request.POST['next_day_delivary_price']
+            if 'customize_delivary_check' in request.POST:
+                customize_day_delivary = request.POST['customize_delivary_check']
+                customize_day_delivary_price = request.POST['customize_delivary_price']
+                customize_day_delivary_day = request.POST['customize_delivary_day']
+
             weekly_dreals=top_offer=free_shiping=return_product=cod =0
             if 'weekly_dreals' in request.POST:
                 weekly_dreals = request.POST['weekly_dreals']
@@ -84,7 +97,9 @@ class ShowProductForm(FormView):
                 cod = request.POST['cod']
 
             print ("*********************************************************************************")
-            print (prodict_title,mrp_price,selling_price,extra_discount,category,sub_category,tertiary_category,prod_desc,color,size,source,youtube,weekly_dreals,top_offer,free_shiping,return_product,cod)
+            print (prodict_title,main_price,offer_price,extra_price,purchase_price,category,sub_category,tertiary_category,prod_desc,color,size,source,youtube,
+            weekly_dreals,top_offer,free_shiping,return_product,cod,same_day_delivary,same_day_delivary_price,next_day_delivary,next_day_delivary_price,
+            customize_day_delivary,customize_day_delivary_price,customize_day_delivary_day)
 
             return self.form_valid(form)
         else:

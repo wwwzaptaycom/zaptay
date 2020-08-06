@@ -147,6 +147,16 @@
           </div>
         </div>
       </li> -->
+      <!-- Seller -->
+      <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+        Seller
+      </div>
+      <li class="nav-item {% if page_name != "" and page_name == 'add_seller' %} active {% endif %}">
+        <a class="nav-link" href="{% url 'admin_login:seller:add_seller' %}">
+          <i class="fas fa-stamp"></i>
+          <span>Add Seller</span></a>
+      </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
