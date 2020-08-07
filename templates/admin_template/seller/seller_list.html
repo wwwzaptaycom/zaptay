@@ -8,7 +8,7 @@
 {% block page_body %}
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-  <h1 class="h3 mb-0 text-gray-800">Products</h1>
+  <h1 class="h3 mb-0 text-gray-800">Seller</h1>
 </div>
 
 <div class="row">
@@ -18,9 +18,22 @@
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Product list &nbsp; <a href="{% url 'admin_login:seller:add_seller' %}" class="btn btn-primary btn-md"><i class="fas fa-store"></i> Add new seller</a></h6>
+        <h6 class="m-0 font-weight-bold text-primary">Seller list &nbsp; <a href="{% url 'admin_login:seller:add_seller' %}" class="btn btn-primary btn-md"><i class="fas fa-store"></i> Add new seller</a></h6>
       </div>
       <div class="card-body">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text">SELLER-</div>
+              </div>
+              <input type="text" class="form-control" id="search_number" placeholder="ID">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fas fa-search"></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="table-responsive">
           <table class="table table-hover table-bordered">
             <thead>
@@ -34,7 +47,7 @@
                 <th scope="col">Action</th>
               </tr>
             </thead>
-            <tbody id="table_content">
+            <tbody id="seller_table_content">
               {% if seller %}
                 {% for s in seller %}
                   <tr>
@@ -59,7 +72,7 @@
                         <i class="fas fa-eye"></i>
                         View
                       </a>
-                      <a href="javascript:void(0);" class="btn btn-warning btn-sm">
+                      <a href="{% url 'admin_login:seller:edit_seller' s.seller_id|lower %}" class="btn btn-warning btn-sm">
                         <i class="fas fa-edit"></i>
                         Edit
                       </a>
@@ -69,6 +82,8 @@
               {% else %}
                 <th scope="row" colspan="7" style="text-align: center;">No seller found</th>
               {% endif %}
+            </tbody>
+            <tbody id="seller_search_result">
             </tbody>
           </table>
         </div>

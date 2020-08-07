@@ -53,6 +53,37 @@ class ViewSeller(TemplateView):
         context = {"page_name": "add_seller", "admin_name": get_name.admin_f_name+" "+get_name.admin_f_name, 'seller': seller_details}
         return context
 
+class EditSeller(FormView):
+    form_class = SellerForm
+    template_name = 'admin_template/seller/seller_form.html'
+    success_url = '/site-admin/seller/all-seller/'
+
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            resp = request.session['admin_email_id']
+            return super(EditSeller, self).dispatch(request, *args, **kwargs)
+        except Exception as e:
+            print(e)
+            # return redirect('/site-admin/seller/add-seller/')
+            return redirect('admin_login:admin_loginpage')
+
+    def get_context_data(self, **kwargs):
+        seller_id = self.kwargs.get('seller_id')
+        context = dict()
+        get_name = zaptayAdmin.objects.all().get(email_id=self.request.session['admin_email_id'])
+        seller_details = Seller.objects.all().filter(seller_id__icontains=seller_id).first()
+        edit_form = SellerForm(initial={
+            'seller_title': seller_details.seller_title,
+            'seller_name': seller_details.seller_name,
+            'seller_email': seller_details.seller_email_id,
+            'seller_phone_no': seller_details.seller_phone_no,
+            'seller_gst_no': seller_details.seller_gst_no,
+            'seller_aadhaar_no': seller_details.seller_aadhaar_no,
+            'seller_voter_no': seller_details.seller_voter_no
+        })
+        context = {"page_name": "add_seller", "admin_name": get_name.admin_f_name+" "+get_name.admin_f_name, 'form':edit_form, 'seller_data':seller_details}
+        return context
+
 class AddSellerForm(FormView):
     form_class = SellerForm
     template_name = 'admin_template/seller/seller_form.html'
@@ -114,3 +145,40 @@ class AddSellerForm(FormView):
         context = self.get_context_data()
         context['form'] = form
         return self.render_to_response(context)
+
+
+# ******************************************************************************************************************
+# Ajax hendel
+
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
+from django.http import JsonResponse
+
+@csrf_exempt
+def SearchSeller(request):
+    all_fields_list = list()
+    search_key = request.GET.get('search_keyword')
+    get_data = Seller.objects.all().filter(seller_id__icontains=search_key)
+    for shop_data in get_data:
+        all_fields = dict()
+        all_fields['seller_id'] = shop_data.seller_id
+        all_fields['seller_title'] = shop_data.seller_title
+        all_fields['seller_email_id'] = shop_data.seller_email_id
+        all_fields['seller_phone_no'] = shop_data.seller_phone_no
+        all_fields['id'] = shop_data.id
+        all_fields['active'] = shop_data.is_active
+
+        all_fields_list.append(all_fields)
+
+    if request.is_ajax() and request.method == "GET":
+        data = {
+	        'status': 'success',
+            "resp": all_fields_list
+	    }
+    else:
+        data = {
+	        'status': 'error'
+	    }
+
+    return JsonResponse(data)
+    # return HttpResponse(message)

@@ -29,7 +29,11 @@
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Seller Add</h6>
+        {% if seller_data %}
+          <h6 class="m-0 font-weight-bold text-primary">{{ seller_data.seller_id }} (Edit mode)</h6>
+        {% else %}
+          <h6 class="m-0 font-weight-bold text-primary">Seller Add</h6>
+        {% endif %}
       </div>
       <div class="card-body">
         <form method="POST" enctype="multipart/form-data">

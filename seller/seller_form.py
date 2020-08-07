@@ -3,6 +3,13 @@ from django import forms
 class SellerForm(forms.Form):
 
     '''
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        print (kwargs)
+        # self.fields['seller_title'].initial = 'override'
+    '''
+
+    '''
     gender = [
         ("", "Select gender"),
         ("male", "Male"),
