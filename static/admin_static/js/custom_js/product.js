@@ -3,6 +3,7 @@ $(document).ready(function(){
   Color();
   Size();
   MadeIn();
+  Seller();
 });
 
 $("#category").on("change", function(){
@@ -133,6 +134,25 @@ function MadeIn(){
         html_content+= `<option value="`+category[0]+`">`+category[1]+`</option>`
       })
       $("#made_in").html(html_content);
+    },
+    error: function(r){
+      console.log(r);
+      }
+  });
+}
+
+function Seller(){
+  $.ajax({
+    url: "http://127.0.0.1:8000/site-admin/seller/get-all-seller/",
+    method: "GET",
+    dataType: "JSON",
+    success: function(r){
+      let html_content = '';
+      console.log(r);
+      r.data.map((category, key) => {
+        html_content+= `<option value="`+category['seller_id']+`">`+category['seller_name']+`</option>`
+      })
+      $("#seller").append(html_content);
     },
     error: function(r){
       console.log(r);

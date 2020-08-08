@@ -11,4 +11,5 @@ urlpatterns = [
 
     # Ajax url
     path('search-seller/', views.SearchSeller, name="search_seller"),
+    path('get-all-seller/', views.GetSeller, name="get_all_seller"),
 ]

@@ -9,7 +9,7 @@ import time
 # Create your models here.
 
 class Seller(models.Model):
-    seller_id = models.CharField(max_length=100, blank=True, null=True)
+    seller_id = models.CharField(max_length=100, blank=True, null=True, editable=False)
     seller_title = models.CharField(max_length=100)
     seller_name = models.CharField(max_length=100)
     seller_email_id = models.CharField(max_length=200)
@@ -26,15 +26,16 @@ class Seller(models.Model):
         db_table = 'seller'
 
     def save(self, *args, **kwargs):
-        if len(Seller.objects.all().order_by('-id')) == 0:
-            get_max_id = 0
-            mod_id = get_max_id+1
-        else:
-            get_max_id = Seller.objects.all().order_by('-id')[0]
-            mod_id = get_max_id.id+1
-        mod_id = str(mod_id).zfill(6)
-        today = datetime.today()
-        self.seller_id = 'SELLER-'+str(today.year)+'-'+str(int(time.time()))+'-'+str(mod_id)
+        if self.seller_id == None:
+            if len(Seller.objects.all().order_by('-id')) == 0:
+                get_max_id = 0
+                mod_id = get_max_id+1
+            else:
+                get_max_id = Seller.objects.all().order_by('-id')[0]
+                mod_id = get_max_id.id+1
+            mod_id = str(mod_id).zfill(6)
+            today = datetime.today()
+            self.seller_id = 'SELLER-'+str(today.year)+'-'+str(int(time.time()))+'-'+str(mod_id)
         super(Seller, self).save(*args, **kwargs)
 
     def __str__(self):

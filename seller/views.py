@@ -84,6 +84,60 @@ class EditSeller(FormView):
         context = {"page_name": "add_seller", "admin_name": get_name.admin_f_name+" "+get_name.admin_f_name, 'form':edit_form, 'seller_data':seller_details}
         return context
 
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            seller_title = request.POST['seller_title']
+            seller_name = request.POST['seller_name']
+            seller_email = request.POST['seller_email']
+            seller_phone_no = request.POST['seller_phone_no']
+            seller_gst_no = request.POST['seller_gst_no']
+            seller_aadhaar_no = request.POST['seller_aadhaar_no']
+            seller_voter_no = request.POST['seller_voter_no']
+            print (seller_title, seller_name, seller_email, seller_phone_no, seller_gst_no, seller_aadhaar_no, seller_voter_no)
+            edit_seller_id = self.kwargs.get('seller_id').upper()
+            seller_data = Seller.objects.get(seller_id=edit_seller_id)
+            seller_data.seller_title=seller_title
+            seller_data.seller_name=seller_name
+            seller_data.seller_email_id=seller_email
+            seller_data.seller_phone_no=seller_phone_no
+            seller_data.seller_gst_no=seller_gst_no
+            seller_data.seller_aadhaar_no=seller_aadhaar_no
+            seller_data.seller_voter_no=seller_voter_no
+            seller_data.save()
+            messages.success(request, 'Seller update')
+            '''
+            # Image document
+            seller_img=gst_img=aadhaar_img=voter_img=''
+            if 'seller_img' in request.FILES:
+                seller_img = request.FILES['seller_img']
+            if 'gst_img' in request.FILES:
+                gst_img = request.FILES['gst_img']
+            if 'aadhaar_img' in request.FILES:
+                aadhaar_img = request.FILES.getlist('aadhaar_img')
+            if 'voter_img' in request.FILES:
+                voter_img = request.FILES.getlist('voter_img')
+
+            print ("**********************Image*******************************")
+            print (seller_img,gst_img,aadhaar_img,voter_img)
+            print (aadhaar_img[0].content_type)
+
+            admin_id = zaptayAdmin.objects.all().get(email_id=request.session.get('admin_email_id'))
+            seller_data = Seller(seller_title=seller_title,seller_name=seller_name,seller_email_id=seller_email,seller_phone_no=seller_phone_no,seller_gst_no=seller_gst_no,seller_aadhaar_no=seller_aadhaar_no,seller_voter_no=seller_voter_no, added_by=admin_id)
+            print (seller_data)
+            seller_data.save()
+            return self.form_valid(form)
+            '''
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        # context = self.get_context_data(task_form=form)
+        context = self.get_context_data()
+        context['form'] = form
+        return self.render_to_response(context)
+
 class AddSellerForm(FormView):
     form_class = SellerForm
     template_name = 'admin_template/seller/seller_form.html'
@@ -182,3 +236,26 @@ def SearchSeller(request):
 
     return JsonResponse(data)
     # return HttpResponse(message)
+
+@csrf_exempt
+def GetSeller(request):
+    get_all_seller_list = list()
+    if request.is_ajax() and request.method == "GET":
+        get_admin_type = 'super_admin'
+        if get_admin_type == 'super_admin':
+            get_seller_data = Seller.objects.all().filter(is_active=1)
+            for i in get_seller_data:
+                all_data = dict()
+                all_data['seller_id'] = i.seller_id
+                all_data['seller_name'] = i.seller_title
+                get_all_seller_list.append(all_data)
+        data = {
+	        'status': 'success',
+            "data": get_all_seller_list
+	    }
+    else:
+        data = {
+	        'status': 'error'
+	    }
+
+    return JsonResponse(data)
