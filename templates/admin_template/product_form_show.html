@@ -1,0 +1,205 @@
+{% extends 'admin_template/base_template.html' %}
+{% load static %}
+
+{% block title %}Products{% endblock %}
+
+{% block custom_css %}{% endblock %}
+
+{% block page_body %}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Products Details</h1>
+</div>
+
+<div class="row">
+
+  <div class="col-lg-12">
+
+    <!-- Basic Card Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">{{product_details.prod_custom_id}}</h6>
+      </div>
+      <div class="card-body">
+        <form method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="inputAddress" class="mentetory">Product Title</label>
+            <input type="text" class="form-control" id="inputAddress" value="{{product_details.prod_title}}" readonly="readonly" placeholder="Title of the product">
+            <!-- {{ form.product_title }} -->
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="category" class="mentetory">Category</label>
+              <input type="text" class="form-control" id="inputAddress" value="{{product_details.prod_category}}" readonly="readonly">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="sub_category" class="mentetory">Sub Category</label>
+              <input type="text" class="form-control" id="inputAddress" value="{{product_details.prod_sub_category}}" readonly="readonly">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="ter_category">Tertiary Category</label>
+              <input type="text" class="form-control" id="inputAddress" value="{{product_details.prod_tertiary_category}}" readonly="readonly">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="descrip" class="mentetory">Description</label>
+              <textarea class="form-control" id="descrip" rows="9" placeholder="Product description" readonly>{{product_details.prod_desc}}</textarea>
+            </div>
+            <div class="form-group col-md-6">
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label class="my-1 mr-2 mentetory" for="color">Color</label>
+                  <input type="text" class="form-control" id="inputAddress" value="{{product_details.prod_color}}" readonly="readonly">
+                </div>
+                <div class="form-group col-md-12">
+                  <label class="my-1 mr-2 mentetory" for="size">Size</label>
+                  <input type="text" class="form-control" id="inputAddress" value="{{product_details.prod_size}}" readonly="readonly">
+                </div>
+                <div class="form-group col-md-12">
+                  <label class="my-1 mr-2 mentetory" for="made_in">Made In</label>
+                  <input type="text" class="form-control" id="inputAddress" value="{{product_details.prod_made_in}}" readonly="readonly">
+                </div>
+                <div class="form-group col-md-12">
+                  <label class="my-1 mr-2 mentetory" for="seller">Seller</label>
+                  <input type="text" class="form-control" id="inputAddress" value="{{product_details.seller}}" readonly="readonly">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-3">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="same_day_delivary" {% if product_details.same_day_delivery %} checked="checked" {% endif %} disabled >
+                <label class="custom-control-label" for="same_day_delivary">Same Day Delivery</label>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-10">
+                  <input type="nuber" class="form-control" id="inputAddress" placeholder="Price" value="{{ product_details.same_day_delivery_price }}" readonly="readonly">
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-3">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="next_day_delivary" {% if product_details.next_day_delivery %} checked="checked" {% endif %} disabled >
+                <label class="custom-control-label" for="next_day_delivary">Next Day Delivery</label>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-10">
+                  <input type="number" class="form-control" id="inputAddress" placeholder="Price" value="{{ product_details.next_day_delivery_price }}" readonly="readonly">
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-3">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customize_day_delivary" {% if product_details.customize_day_delivery %} checked="checked" {% endif %} disabled>
+                <label class="custom-control-label" for="customize_day_delivary">Customize Day Delivery</label>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <!-- <label for="inputAddress">Product Title</label> -->
+                  <input type="text" class="form-control" id="inputAddress" placeholder="Add Day" value="{{ product_details.customize_day_delivery_day }}" readonly="readonly">
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" id="inputAddress" placeholder="Price" value="{{ product_details.customize_day_delivery_price }}" readonly="readonly">
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-row">
+            <div class="form-group col-md-2">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="weely_dreals" {% if product_details.weekly_dreals %} checked="checked" {% endif %} disabled>
+                <label class="custom-control-label" for="weely_dreals">Weekly Dreals</label>
+              </div>
+            </div>
+            <div class="form-group col-md-2">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="top_offer" {% if product_details.top_offer %} checked="checked" {% endif %} disabled>
+                <label class="custom-control-label" for="top_offer">Top Offer</label>
+              </div>
+            </div>
+            <!-- <div class="form-group col-md-2">
+              <div class="custom-control custom-checkbox"> -->
+                <!-- <input type="checkbox" class="custom-control-input" id="free_shiping"> -->
+                {%comment%}{{ form.free_shiping }}{%endcomment%}
+                <!-- <label class="custom-control-label" for="free_shiping">Free shiping</label>
+              </div>
+            </div> -->
+            <div class="form-group col-md-2">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="return" {% if product_details.product_return %} checked="checked" {% endif %} disabled>
+                <label class="custom-control-label" for="return">Return</label>
+              </div>
+            </div>
+            <div class="form-group col-md-2">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="cod" {% if product_details.cash_on_delivery %} checked="checked" {% endif %} disabled>
+                <label class="custom-control-label" for="cod">Cash On Delivery</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="product_img" multiple="multiple" >
+                <label class="custom-file-label" for="product_img" data-browse="Browse">Upload Product Image</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-row" id="show_upload_image">
+            <!-- <div class="form-group col-md-2">
+              <div class="card" style="width: 10rem;">
+                <img class="card-img-top" src="https://via.placeholder.com/50x50.png?text=P. IMG" alt="Card image cap" style="width: 100%; height: 180px;">
+                <div class="card-body">
+                  <div class="card-text">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck4">
+                      <label class="custom-control-label" for="customCheck4">Home Image</label>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                      <input type="number" class="form-control" id="inputEmail4" placeholder="Serial no.">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+
+          <div class="form-row align-items-center">
+            <div class="col-md-12">
+              <label class="sr-only" for="youtube">Username</label>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fab fa-youtube"></i></div>
+                </div>
+                <input type="text" class="form-control" id="youtube" placeholder="Youtube link" value="{{ product_details.youtube_link }}" readonly="readonly">
+              </div>
+            </div>
+          </div>
+
+          <!-- <button type="submit" class="btn btn-success btn-lg" style="width: 180px">Submit</button> -->
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block custom_js %}
+  <!-- http://www.nicedit.com/demos.php -->
+  <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+  <script type="text/javascript">
+      bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+    </script>
+{% endblock %}

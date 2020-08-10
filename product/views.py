@@ -38,6 +38,26 @@ class ShowProductList(TemplateView):
         context = {"page_name": "product_list", "admin_name": get_name.admin_f_name+" "+get_name.admin_l_name, 'product_list': product_list}
         return context
 
+class ViewProduct(TemplateView):
+    template_name = 'admin_template/product_form_show.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            resp = request.session['admin_email_id']
+            return super(ViewProduct, self).dispatch(request, *args, **kwargs)
+        except Exception as e:
+            print(e)
+            # return redirect('/site-admin/login')
+            return redirect('admin_login:admin_loginpage')
+
+    def get_context_data(self, **kwargs):
+        context = dict()
+        product_id = self.kwargs.get('product_id')
+        get_name = zaptayAdmin.objects.all().get(email_id=self.request.session['admin_email_id'])
+        product_list = Product.objects.all().filter(prod_custom_id=product_id).first()
+        context = {"page_name": "product_list", "admin_name": get_name.admin_f_name+" "+get_name.admin_l_name, 'product_details': product_list}
+        return context
+
 class ShowProductForm(FormView):
     form_class = ProductForm
     template_name = 'admin_template/product_form.html'
@@ -178,3 +198,146 @@ class ShowProductForm(FormView):
         context = {"db_error": "Authentication failure",'form':form}
         return self.render_to_response(context)
         '''
+
+
+# ******************************************************************************************************************
+# Ajax hendel
+
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
+from django.http import JsonResponse
+
+@csrf_exempt
+def SearchByAllCategory(request):
+    all_fields_list = list()
+    category = request.GET.get('category_id')
+    sub_category = request.GET.get('sub_category_id')
+    tertiary_category = request.GET.get('tertiary_category_id')
+
+    if category != "" and sub_category != "" and tertiary_category != "":
+        # Sorted by category sub category and tertori
+        get_data_db = Product.objects.all().filter(prod_category=category, prod_sub_category=sub_category, prod_tertiary_category=tertiary_category)
+        for prod_data in get_data_db:
+            all_fields = dict()
+            # get_category_name = MainCategory.objects.filter(pk = prod_data.prod_category).all()
+            category_name = str(prod_data.prod_category)
+            all_fields['prod_custom_id'] = prod_data.prod_custom_id
+            all_fields['prod_title'] = prod_data.prod_title
+            all_fields['prod_category'] = category_name
+            all_fields['create_date'] = prod_data.create_date.strftime("%d-%M-%Y")
+            all_fields_list.append(all_fields)
+        # print (all_fields_list)
+        data = {
+            'status': 'success',
+            'resp': all_fields_list
+        }
+        return JsonResponse(data)
+
+    elif category != "" and sub_category != "":
+        # Sorted by category sub category
+        get_data_db = Product.objects.all().filter(prod_category=category, prod_sub_category=sub_category)
+        for prod_data in get_data_db:
+            all_fields = dict()
+            # get_category_name = MainCategory.objects.filter(pk = prod_data.prod_category).all()
+            category_name = str(prod_data.prod_category)
+            all_fields['prod_custom_id'] = prod_data.prod_custom_id
+            all_fields['prod_title'] = prod_data.prod_title
+            all_fields['prod_category'] = category_name
+            all_fields['create_date'] = prod_data.create_date.strftime("%d-%M-%Y")
+            all_fields_list.append(all_fields)
+        # print (all_fields_list)
+        data = {
+            'status': 'success',
+            'resp': all_fields_list
+        }
+        return JsonResponse(data)
+
+    elif category != "":
+        # Sorted by category
+        get_data_db = Product.objects.all().filter(prod_category=category)
+        for prod_data in get_data_db:
+            all_fields = dict()
+            # print (prod_data.create_date.strftime("%d-%M-%Y"))
+            category_name = str(prod_data.prod_category)
+            all_fields['prod_custom_id'] = prod_data.prod_custom_id
+            all_fields['prod_title'] = prod_data.prod_title
+            all_fields['prod_category'] = category_name
+            all_fields['create_date'] = prod_data.create_date.strftime("%d-%M-%Y")
+            all_fields_list.append(all_fields)
+        # print (all_fields_list)
+        data = {
+            'status': 'success',
+            'resp': all_fields_list
+        }
+        return JsonResponse(data)
+    else:
+        # All fields
+        get_data_db = Product.objects.all()
+        for prod_data in get_data_db:
+            all_fields = dict()
+            # get_category_name = MainCategory.objects.filter(pk = prod_data.prod_category).all()
+            category_name = str(prod_data.prod_category)
+            all_fields['prod_custom_id'] = prod_data.prod_custom_id
+            all_fields['prod_title'] = prod_data.prod_title
+            all_fields['prod_category'] = category_name
+            all_fields['create_date'] = prod_data.create_date.strftime("%d-%M-%Y")
+            all_fields_list.append(all_fields)
+        # print (all_fields_list)
+        data = {
+            'status': 'success',
+            'resp': all_fields_list
+        }
+        return JsonResponse(data)
+
+    data = {
+        'status': 'error'
+    }
+    return JsonResponse(data)
+
+
+@csrf_exempt
+def SearchByID(request):
+    all_fields_list = list()
+    search_key = request.GET.get('search_key');
+
+    if search_key != "":
+        # Sorted by category sub category and tertori
+        get_data_db = Product.objects.all().filter(prod_custom_id__icontains=search_key)
+        for prod_data in get_data_db:
+            all_fields = dict()
+            # get_category_name = MainCategory.objects.filter(pk = prod_data.prod_category).all()
+            category_name = str(prod_data.prod_category)
+            all_fields['prod_custom_id'] = prod_data.prod_custom_id
+            all_fields['prod_title'] = prod_data.prod_title
+            all_fields['prod_category'] = category_name
+            all_fields['create_date'] = prod_data.create_date.strftime("%d-%M-%Y")
+            all_fields_list.append(all_fields)
+        # print (all_fields_list)
+        data = {
+            'status': 'success',
+            'resp': all_fields_list
+        }
+        return JsonResponse(data)
+    else:
+        # All fields
+        get_data_db = Product.objects.all()
+        for prod_data in get_data_db:
+            all_fields = dict()
+            # get_category_name = MainCategory.objects.filter(pk = prod_data.prod_category).all()
+            category_name = str(prod_data.prod_category)
+            all_fields['prod_custom_id'] = prod_data.prod_custom_id
+            all_fields['prod_title'] = prod_data.prod_title
+            all_fields['prod_category'] = category_name
+            all_fields['create_date'] = prod_data.create_date.strftime("%d-%M-%Y")
+            all_fields_list.append(all_fields)
+        print (all_fields_list)
+        data = {
+            'status': 'success',
+            'resp': all_fields_list
+        }
+        return JsonResponse(data)
+
+    data = {
+        'status': 'error'
+    }
+    return JsonResponse(data)
