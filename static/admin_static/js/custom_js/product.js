@@ -200,12 +200,12 @@ $("#product_img").on('change', function(){
           <div class="card-body">
             <div class="card-text">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="product_home_image" id="set_home_image`+i+`" value="option1" checked>
+                <input class="form-check-input" type="radio" name="product_home_image" id="set_home_image`+i+`" value="`+i+`" checked>
                 <label class="form-check-label" for="set_home_image`+i+`">Home image</label>
               </div>
               <br />
               <div class="form-group">
-                <input type="number" class="form-control" name="product_sl_image[]" id="inputEmail4" value="`+sl_no+`" placeholder="Serial no.">
+                <input type="number" class="form-control" name="product_sl_image" id="inputEmail4" value="`+sl_no+`" placeholder="Serial no.">
               </div>
             </div>
           </div>

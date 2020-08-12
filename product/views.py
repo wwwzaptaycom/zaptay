@@ -4,10 +4,13 @@ from django.views.generic import View, TemplateView, FormView, ListView
 from django.contrib import messages
 
 from .product_form import ProductForm
-from .models import Product
+from .models import Product, ProductImage
 from category.models import MainCategory
 from attribute.models import SubCategory, TertiaryCategory, Colour, Size, Source, SameDayDelivary, NextDayDelivary
 from seller.models import Seller
+
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 
 # Admin part
 from admin_login.models import zaptayAdmin
@@ -55,7 +58,8 @@ class ViewProduct(TemplateView):
         product_id = self.kwargs.get('product_id')
         get_name = zaptayAdmin.objects.all().get(email_id=self.request.session['admin_email_id'])
         product_list = Product.objects.all().filter(prod_custom_id=product_id).first()
-        context = {"page_name": "product_list", "admin_name": get_name.admin_f_name+" "+get_name.admin_l_name, 'product_details': product_list}
+        product_image_list = ProductImage.objects.all().filter(product_id=product_list).order_by('product_img_sl_no')
+        context = {"page_name": "product_list", "admin_name": get_name.admin_f_name+" "+get_name.admin_l_name, 'product_details': product_list, 'product_image': product_image_list}
         return context
 
 class ShowProductForm(FormView):
@@ -176,8 +180,47 @@ class ShowProductForm(FormView):
                             cash_on_delivery=cod,
                             youtube_link=youtube,
                             added_by=admin_id)
+
             store_product.save()
             messages.success(request, 'Product inserted successfull')
+
+            if 'product_image' in request.FILES:
+                product_image_array = request.FILES.getlist('product_image')
+                # print (product_image_array)
+                sl_no = request.POST.getlist('product_sl_image')
+                # print (sl_no)
+                is_home_image_select = request.POST.getlist('product_home_image')
+                # print (is_home_image_select)
+                i=0
+                for product_image in product_image_array:
+                    fs = FileSystemStorage()
+                    image_title = product_title+"."+product_image.name.split('.')[-1]
+                    image_title = image_title.replace(" ", "")
+                    upload_image = fs.save("products/images/"+image_title, product_image)
+                    # print (product_image.name)
+                    img_url = fs.url(upload_image)
+                    mod_image_name = img_url.split("/")[-1]
+                    image_path = 'products/images/'+mod_image_name
+                    product_sl_no = int(sl_no[i])
+
+                    is_home_image = 0
+                    if int(is_home_image_select[0]) == i:
+                        is_home_image = 1
+
+                    product_img = ProductImage(prod_image_title=product_title, product_image=image_path, product_img_sl_no=product_sl_no, home_image=is_home_image, added_by=admin_id, product_id=store_product)
+                    product_img.save()
+
+                    print (product_title)
+                    print (image_path)
+                    print (product_sl_no)
+                    print (is_home_image)
+                    print (admin_id)
+                    print (store_product)
+
+                    i=i+1
+                    # print (img_url)
+
+
 
             # return self.form_valid(form) # 100% correct tested
             context = self.get_context_data()

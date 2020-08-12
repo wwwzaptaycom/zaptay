@@ -98,3 +98,33 @@ class Product(models.Model):
 
     def __str__(self):
         return self.prod_title
+
+class ProductImage(models.Model):
+    prod_image_id = models.CharField(max_length=200, unique=True, blank=True, null=True)
+    prod_image_title = models.CharField(max_length=200)
+    product_image = models.ImageField(upload_to="products/images", default="")
+    product_img_sl_no = models.IntegerField(blank = True, null=True, default=0)
+    home_image = models.BooleanField(default=False)
+    added_by = models.ForeignKey(zaptayAdmin, on_delete=models.CASCADE)
+    modify_date = models.DateTimeField(default=now)
+    create_date = models.DateTimeField(default=now)
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = "product_images"
+
+    def save(self, *args, **kwargs):
+        if self.prod_image_id == None:
+            if len(Product.objects.all().order_by('-id')) == 0:
+                get_max_id = 0
+                mod_id = get_max_id+1
+            else:
+                get_max_id = ProductImage.objects.all().order_by('-id')[0]
+                mod_id = get_max_id.id+1
+            mod_id = str(mod_id).zfill(6)
+            today = datetime.today()
+            self.prod_image_id = 'PROD-IMG-'+str(today.year)+'-'+str(int(time.time()))+'-'+str(mod_id)
+        super(ProductImage, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return "Image - "+self.prod_image_title
