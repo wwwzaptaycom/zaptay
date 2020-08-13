@@ -11,6 +11,7 @@ urlpatterns = [
     path('attribute/', include('attribute.admin_urls')),
     path('product/', include('product.admin_urls')),
     path('seller/', include('seller.admin_urls')),
+    path('banner/', include('banner.admin_urls')),
 
 
 

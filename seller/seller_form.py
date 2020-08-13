@@ -30,6 +30,12 @@ class SellerForm(forms.Form):
     seller_phone_no = forms.CharField(required=False, widget=forms.NumberInput(attrs={
                         'class':'form-control', 'id': 'seller_ph_no', 'Placeholder': 'Phone No'
                     }))
+    seller_address = forms.CharField(required=False, widget=forms.Textarea(attrs={
+                        'class':'form-control', 'id':'seller_address', 'rows':'5', "placeholder":"Seller Address"
+                    }), error_messages={'required': 'Seller Address Required'})
+    seller_specification = forms.CharField(widget=forms.TextInput(attrs={
+                        'class':'form-control', 'id': 'seller_specufication', 'Placeholder': 'Seller specification'
+                    }), error_messages={'required': 'Seller Specification Required'})
     seller_gst_no = forms.CharField(required=False, widget=forms.TextInput(attrs={
                         'class':'form-control', 'id': 'gst_no', 'Placeholder': 'GST NO.'
                     }))

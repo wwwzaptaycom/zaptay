@@ -14,6 +14,8 @@ class Seller(models.Model):
     seller_name = models.CharField(max_length=100)
     seller_email_id = models.CharField(max_length=200)
     seller_phone_no = models.CharField(max_length=20)
+    seller_address = models.TextField(default="")
+    seller_specification = models.CharField(max_length=100, default="")
     seller_gst_no = models.CharField(max_length=200, blank=True, null=True)
     seller_aadhaar_no = models.CharField(max_length=20, blank=True, null=True)
     seller_voter_no = models.CharField(max_length=100, blank=True, null=True)

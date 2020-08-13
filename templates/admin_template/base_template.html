@@ -158,6 +158,17 @@
           <span>Add Seller</span></a>
       </li>
 
+      <!-- website settings -->
+      <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+        Website settings
+      </div>
+      <li class="nav-item {% if page_name != "" and page_name == 'banner' %} active {% endif %}">
+        <a class="nav-link" href="{% url 'admin_login:banner:banner_list' %}">
+          <i class="fas fa-photo-video"></i>
+          <span>Add Banner</span></a>
+      </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 

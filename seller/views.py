@@ -77,6 +77,8 @@ class EditSeller(FormView):
             'seller_name': seller_details.seller_name,
             'seller_email': seller_details.seller_email_id,
             'seller_phone_no': seller_details.seller_phone_no,
+            'seller_address':seller_details.seller_address,
+            'seller_specification':seller_details.seller_specification,
             'seller_gst_no': seller_details.seller_gst_no,
             'seller_aadhaar_no': seller_details.seller_aadhaar_no,
             'seller_voter_no': seller_details.seller_voter_no
@@ -91,16 +93,20 @@ class EditSeller(FormView):
             seller_name = request.POST['seller_name']
             seller_email = request.POST['seller_email']
             seller_phone_no = request.POST['seller_phone_no']
+            seller_addres = request.POST['seller_address']
+            seller_specification = request.POST['seller_specification']
             seller_gst_no = request.POST['seller_gst_no']
             seller_aadhaar_no = request.POST['seller_aadhaar_no']
             seller_voter_no = request.POST['seller_voter_no']
-            print (seller_title, seller_name, seller_email, seller_phone_no, seller_gst_no, seller_aadhaar_no, seller_voter_no)
+            # print (seller_title, seller_name, seller_email, seller_phone_no, seller_gst_no, seller_aadhaar_no, seller_voter_no)
             edit_seller_id = self.kwargs.get('seller_id').upper()
             seller_data = Seller.objects.get(seller_id=edit_seller_id)
             seller_data.seller_title=seller_title
             seller_data.seller_name=seller_name
             seller_data.seller_email_id=seller_email
             seller_data.seller_phone_no=seller_phone_no
+            seller_data.seller_address=seller_addres
+            seller_data.seller_specification=seller_specification
             seller_data.seller_gst_no=seller_gst_no
             seller_data.seller_aadhaar_no=seller_aadhaar_no
             seller_data.seller_voter_no=seller_voter_no
@@ -141,7 +147,8 @@ class EditSeller(FormView):
 class AddSellerForm(FormView):
     form_class = SellerForm
     template_name = 'admin_template/seller/seller_form.html'
-    success_url = '/site-admin/seller/add-seller/'
+    # success_url = '/site-admin/seller/add-seller/'
+    success_url = '/site-admin/seller/all-seller/'
 
     def dispatch(self, request, *args, **kwargs):
         try:
@@ -149,8 +156,8 @@ class AddSellerForm(FormView):
             return super(AddSellerForm, self).dispatch(request, *args, **kwargs)
         except Exception as e:
             print(e)
-            return redirect('/site-admin/seller/add-seller/')
-            # return redirect('admin_login:admin_loginpage')
+            # return redirect('/site-admin/seller/add-seller/')
+            return redirect('admin_login:admin_loginpage')
 
     def get_context_data(self, **kwargs):
         context = dict()
@@ -165,6 +172,8 @@ class AddSellerForm(FormView):
             seller_name = request.POST['seller_name']
             seller_email = request.POST['seller_email']
             seller_phone_no = request.POST['seller_phone_no']
+            seller_addres = request.POST['seller_address']
+            seller_specification = request.POST['seller_specification']
             seller_gst_no = request.POST['seller_gst_no']
             seller_aadhaar_no = request.POST['seller_aadhaar_no']
             seller_voter_no = request.POST['seller_voter_no']
@@ -187,9 +196,10 @@ class AddSellerForm(FormView):
             '''
 
             admin_id = zaptayAdmin.objects.all().get(email_id=request.session.get('admin_email_id'))
-            seller_data = Seller(seller_title=seller_title,seller_name=seller_name,seller_email_id=seller_email,seller_phone_no=seller_phone_no,seller_gst_no=seller_gst_no,seller_aadhaar_no=seller_aadhaar_no,seller_voter_no=seller_voter_no, added_by=admin_id)
-            print (seller_data)
+            seller_data = Seller(seller_title=seller_title,seller_name=seller_name,seller_email_id=seller_email,seller_phone_no=seller_phone_no,seller_address=seller_addres,seller_specification=seller_specification,seller_gst_no=seller_gst_no,seller_aadhaar_no=seller_aadhaar_no,seller_voter_no=seller_voter_no, added_by=admin_id)
+            # print (seller_data)
             seller_data.save()
+            messages.success(request, 'Seller created')
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
