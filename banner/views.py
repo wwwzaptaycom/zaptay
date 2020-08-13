@@ -6,6 +6,10 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
 from admin_login.models import zaptayAdmin
+from .models import Banner
+
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 
@@ -20,6 +24,30 @@ class ViewBanner(TemplateView):
             print(e)
             # return redirect('/site-admin/seller/seller-view/')
             return redirect('admin_login:admin_loginpage')
+
+    def post(self, request, *args, **kwargs):
+        try:
+            if 'men_banner' in request.FILES:
+                banner_link = request.POST.getlist('banner_link')
+                men_banner_image = request.FILES.getlist('men_banner')
+                for image, link in zip(men_banner_image, banner_link):
+                    # print (image)
+                    # print (link)
+                    fs = FileSystemStorage()
+                    image_title = "men-fashion-banner."+image.name.split(".")[-1]
+                    upload_image = fs.save("banner/men_fashion/images/"+image_title, image)
+                    img_url = fs.url(upload_image)
+                    mod_image_name = img_url.split("/")[-1]
+                    image_path = 'banner/men_fashion/images/'+mod_image_name
+
+                    image_upload = Banner(banner_image=image_path, banner_name='men_banner', banner_link=link)
+                    image_upload.save()
+                messages.success(request, 'Banner upload successfull')
+        except Exception as e:
+            print (e)
+
+        context = self.get_context_data()
+        return self.render_to_response(context)
 
     def get_context_data(self, **kwargs):
         context = dict()
