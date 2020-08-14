@@ -101,7 +101,11 @@
   height: 100%;
 }
 
-#womens_fashion_image
+#womens_fashion_image,
+#baby_kid_fashion_image,
+#mobile_image,
+#electronic_image,
+#office_appliance_image
 {
   display: none;
 }

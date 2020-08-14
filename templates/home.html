@@ -47,17 +47,17 @@
         <a href="javascript:void(0);" onclick="return ChangeSlider('womens_fashion_image', 'women_fashion');">
           <li class="fashion_tab women_fashion">Women</li>
         </a>
-        <a href="">
-          <li>Baby & kids</li>
+        <a href="javascript:void(0);" onclick="return ChangeSlider('baby_kid_fashion_image', 'baby_kid_fashion');">
+          <li class="fashion_tab baby_kid_fashion">Baby & kids</li>
         </a>
-        <a href="">
-          <li>Mobile</li>
+        <a href="javascript:void(0);" onclick="return ChangeSlider('mobile_image', 'mobile_fashion');">
+          <li class="fashion_tab mobile_fashion">Mobile</li>
         </a>
-        <a href="">
-          <li>Electronics</li>
+        <a href="javascript:void(0);" onclick="return ChangeSlider('electronic_image', 'electronic_fashion');">
+          <li class="fashion_tab electronic_fashion">Electronics</li>
         </a>
-        <a href="">
-          <li>Office appliance</li>
+        <a href="javascript:void(0);" onclick="return ChangeSlider('office_appliance_image', 'office_fashion');">
+          <li class="fashion_tab office_fashion">Office appliance</li>
         </a>
       </ul>
     </div>
@@ -148,6 +148,178 @@
     </div>
   </div>
   <!-- /Women slider -->
+
+  <!-- Baby Kids slider -->
+  <div class="banner_image_div" id="baby_kid_fashion_image">
+    <div id="carouselExampleIndicatorsBabyKid" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        {% if baby_kid_banner_image %}
+          {% for baby_kid_image in baby_kid_banner_image %}
+            <li data-target="#carouselExampleIndicatorsBabyKid" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.counter0 == 0 %}active{% endif %}"></li>
+          {% endfor %}
+        {% endif %}
+      </ol>
+      <div class="carousel-inner">
+        {% if baby_kid_banner_image %}
+          {% for baby_kid_image in baby_kid_banner_image %}
+          <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+            <a href="">
+              <div class="banner_image">
+                <!-- <span>Banner section <br /> Image size: 790px X 252px</span> -->
+                <img src="/media/{{ baby_kid_image.banner_image }}" alt="">
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="carousel-item active">
+            <div class="banner_image">
+              <!-- <span>Banner section <br /> Image size: 790px X 252px</span> -->
+              <img src="{% static '/site_image/banner1.jpg' %}" alt="">
+            </div>
+          </div>
+        {% endif %}
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicatorsBabyKid" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicatorsBabyKid" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+  <!-- /Baby Kids slider -->
+
+  <!-- Mobile slider -->
+  <div class="banner_image_div" id="mobile_image">
+    <div id="carouselExampleIndicatorsMobile" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        {% if mobile_banner_image %}
+          {% for mobile_image in mobile_banner_image %}
+            <li data-target="#carouselExampleIndicatorsMobile" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.counter0 == 0 %}active{% endif %}"></li>
+          {% endfor %}
+        {% endif %}
+      </ol>
+      <div class="carousel-inner">
+        {% if mobile_banner_image %}
+          {% for mobile_image in mobile_banner_image %}
+          <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+            <a href="">
+              <div class="banner_image">
+                <!-- <span>Banner section <br /> Image size: 790px X 252px</span> -->
+                <img src="/media/{{ mobile_image.banner_image }}" alt="">
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="carousel-item active">
+            <div class="banner_image">
+              <!-- <span>Banner section <br /> Image size: 790px X 252px</span> -->
+              <img src="{% static '/site_image/banner1.jpg' %}" alt="">
+            </div>
+          </div>
+        {% endif %}
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicatorsMobile" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicatorsMobile" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+  <!-- /Mobile slider -->
+
+  <!-- Electronic slider -->
+  <div class="banner_image_div" id="electronic_image">
+    <div id="carouselExampleIndicatorsElectronic" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        {% if electronic_banner_image %}
+          {% for electronic_image in electronic_banner_image %}
+            <li data-target="#carouselExampleIndicatorsElectronic" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.counter0 == 0 %}active{% endif %}"></li>
+          {% endfor %}
+        {% endif %}
+      </ol>
+      <div class="carousel-inner">
+        {% if electronic_banner_image %}
+          {% for electonic_image in electronic_banner_image %}
+          <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+            <a href="">
+              <div class="banner_image">
+                <!-- <span>Banner section <br /> Image size: 790px X 252px</span> -->
+                <img src="/media/{{ electonic_image.banner_image }}" alt="">
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="carousel-item active">
+            <div class="banner_image">
+              <!-- <span>Banner section <br /> Image size: 790px X 252px</span> -->
+              <img src="{% static '/site_image/banner1.jpg' %}" alt="">
+            </div>
+          </div>
+        {% endif %}
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicatorsElectronic" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicatorsElectronic" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+  <!-- /Electronic slider -->
+
+  <!-- Office Appliance slider -->
+  <div class="banner_image_div" id="office_appliance_image">
+    <div id="carouselExampleIndicatorsOfficeAppliance" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        {% if electronic_office_image %}
+          {% for office_image in electronic_office_image %}
+            <li data-target="#carouselExampleIndicatorsOfficeAppliance" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.counter0 == 0 %}active{% endif %}"></li>
+          {% endfor %}
+        {% endif %}
+      </ol>
+      <div class="carousel-inner">
+        {% if electronic_office_image %}
+          {% for office_image in electronic_office_image %}
+          <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+            <a href="">
+              <div class="banner_image">
+                <!-- <span>Banner section <br /> Image size: 790px X 252px</span> -->
+                <img src="/media/{{ office_image.banner_image }}" alt="">
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="carousel-item active">
+            <div class="banner_image">
+              <!-- <span>Banner section <br /> Image size: 790px X 252px</span> -->
+              <img src="{% static '/site_image/banner1.jpg' %}" alt="">
+            </div>
+          </div>
+        {% endif %}
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicatorsOfficeAppliance" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicatorsOfficeAppliance" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+  <!-- /Office Appliance slider -->
 
   <div class="banner_indian_haat_div">
     <div class="indian_haat">
