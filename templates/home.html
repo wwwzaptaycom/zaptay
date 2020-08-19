@@ -920,7 +920,7 @@
           <div class="col-md-4">
             <div class="banner_div">
               <!-- <img src="{% static '/site_image/1507732077.selfie-stick.png' %}" alt=""> -->
-              <img src="/media/{{ banner_1_image.banner_image }}" alt="">
+              <img src="/media/{{ banner_1_image.banner_image }}" alt="{{ banner_1_image.banner_name }}">
             </div>
           </div>
         {% endfor %}
@@ -1080,7 +1080,16 @@
 <div class="product_banner2">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-6">
+      {% if banner_2 %}
+        {% for banner_2_image in banner_2 %}
+          <div class="col-md-6">
+            <div class="banner_div">
+              <img src="/media/{{ banner_2_image.banner_image }}" alt="{{ banner_2_image.banner_name }}">
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+      <!-- <div class="col-md-6">
         <div class="banner_div">
           <img src="{% static '/site_image/1576741847.rev12.jpg' %}" alt="">
         </div>
@@ -1089,7 +1098,7 @@
         <div class="banner_div">
           <img src="{% static '/site_image/1571817995.protein.banner1.jpg' %}" alt="">
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
@@ -1227,9 +1236,9 @@
 <!-- /Men Jackets2 -->
 
 <!-- Pet Product -->
-<div class="pet_product">
+<!-- <div class="pet_product">
   <img src="{% static '/site_image/unnamed.png' %}" alt="">
-</div>
+</div> -->
 <!-- /Pet Product -->
 
 <!-- Mobile & Tablets -->
@@ -1364,7 +1373,7 @@
 <!-- /Mobile & Tablets -->
 
 <!-- Baby Product Banner -->
-<div class="product_banner">
+<!-- <div class="product_banner">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-4">
@@ -1384,6 +1393,9 @@
       </div>
     </div>
   </div>
+</div> -->
+<div class="pet_product">
+  <img src="{% static '/site_image/unnamed.png' %}" alt="">
 </div>
 <!-- /Baby Product Banner -->
 
@@ -1822,7 +1834,7 @@
 <!-- /Large appliance -->
 
 <!-- Product Banner 4 -->
-<div class="product_banner">
+<!-- <div class="product_banner">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-4">
@@ -1842,7 +1854,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <!-- /Product Banner 4 -->
 
 <!-- Pet Product -->

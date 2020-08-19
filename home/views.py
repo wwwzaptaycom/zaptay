@@ -19,7 +19,7 @@ class HomeView(TemplateView):
         get_office_fashion = Banner.objects.filter(banner_name='office_appliance_banner').values('id', 'banner_image', 'banner_link')
 
         banner_1 = Banner.objects.filter(banner_name='advatice_1').order_by('-id')[0:3]
-        print (banner_1)
+        banner_2 = Banner.objects.filter(banner_name='advatice_2').order_by('-id')[0:2]
 
         context = {"page_name": "banner",
                     'mens_banner_image': get_mens_fashion,
@@ -28,5 +28,6 @@ class HomeView(TemplateView):
                     'mobile_banner_image': get_mobile_fashion,
                     'electronic_banner_image': get_electronic_fashion,
                     'electronic_office_image': get_office_fashion,
-                    'banner_1': banner_1}
+                    'banner_1': banner_1,
+                    'banner_2': banner_2}
         return context
