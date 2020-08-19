@@ -139,12 +139,12 @@ class ViewBanner(TemplateView):
         seller_id = self.kwargs.get('seller_id')
         get_name = zaptayAdmin.objects.all().get(email_id=self.request.session['admin_email_id'])
 
-        get_mens_fashion = Banner.objects.filter(banner_name='men_banner').values('id', 'banner_image', 'banner_link')
-        get_womens_fashion = Banner.objects.filter(banner_name='women_banner').values('id', 'banner_image', 'banner_link')
-        get_baby_kid_fashion = Banner.objects.filter(banner_name='baby_kid_banner').values('id', 'banner_image', 'banner_link')
-        get_mobile_fashion = Banner.objects.filter(banner_name='mobile_banner').values('id', 'banner_image', 'banner_link')
-        get_electronic_fashion = Banner.objects.filter(banner_name='electronic_banner').values('id', 'banner_image', 'banner_link')
-        get_office_appliance_fashion = Banner.objects.filter(banner_name='office_appliance_banner').values('id', 'banner_image', 'banner_link')
+        get_mens_fashion = Banner.objects.filter(banner_name='men_banner').values('id', 'banner_image', 'banner_link', 'banner_id')
+        get_womens_fashion = Banner.objects.filter(banner_name='women_banner').values('id', 'banner_image', 'banner_link', 'banner_id')
+        get_baby_kid_fashion = Banner.objects.filter(banner_name='baby_kid_banner').values('id', 'banner_image', 'banner_link', 'banner_id')
+        get_mobile_fashion = Banner.objects.filter(banner_name='mobile_banner').values('id', 'banner_image', 'banner_link', 'banner_id')
+        get_electronic_fashion = Banner.objects.filter(banner_name='electronic_banner').values('id', 'banner_image', 'banner_link', 'banner_id')
+        get_office_appliance_fashion = Banner.objects.filter(banner_name='office_appliance_banner').values('id', 'banner_image', 'banner_link', 'banner_id')
 
         context = {"page_name": "banner", "admin_name": get_name.admin_f_name+" "+get_name.admin_f_name,
                     'men_fashion_image': get_mens_fashion,
@@ -154,3 +154,22 @@ class ViewBanner(TemplateView):
                     'electronic_image': get_electronic_fashion,
                     'office_appliance_image': get_office_appliance_fashion}
         return context
+
+# ******************************************************************************************************************
+# Ajax hendel
+
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
+from django.http import JsonResponse
+
+@csrf_exempt
+def DeleteBannerImage(request):
+    image_id = request.POST['image_id']
+
+    del_img = Banner.objects.get(pk=image_id)
+    del_img.delete()
+
+    data = {
+        'status': 'success',
+    }
+    return JsonResponse(data)

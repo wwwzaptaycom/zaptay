@@ -159,3 +159,29 @@ $("#office_appliance_banner_img").on('change', function(){
   }
   $("#office_appliance_upload_preview").html(prepare_div);
 });
+
+/*  Delete Images  */
+function DeleteImage(image_id="", image_custom_id=""){
+  let conf = confirm("Are you sure to delete the image (id: 12)");
+  if (conf){
+    /*console.log(image_custom_id, typeof(image_custom_id));
+    var del_image_id = (image_custom_id=='None')? image_id : image_custom_id;
+    console.log(del_image_id);*/
+    $.ajax({
+      url: "/site-admin/banner/banner-delete/",
+      method: "POST",
+      data: {
+        'image_id': image_id
+      },
+      success: function(e){
+        console.log(e);
+        if(e.status == 'success'){
+          window.location.reload();
+        }
+      },
+      error: function(e){
+        console.log(e);
+      }
+    })
+  }
+}
