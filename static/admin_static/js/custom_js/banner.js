@@ -160,6 +160,61 @@ $("#office_appliance_banner_img").on('change', function(){
   $("#office_appliance_upload_preview").html(prepare_div);
 });
 
+
+/*  Home Advatice Banner 1  */
+
+$("#advatice_banner_1_img").on('change', function(){
+  var prepare_div = ``;
+  let count = document.getElementById("advatice_banner_1_img").files.length;
+  prepare_div+=`<div class="form-group col-md-12">Image preview</div>`;
+  for(i=0; i<count; i++){
+    prepare_div+=`
+      <div class="form-group col-md-4">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" style="height: 110px;" src="`+URL.createObjectURL(event.target.files[i])+`" alt="Card image cap">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input type="link" name="banner_link" class="form-control" id="banner_link" placeholder="Link">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `
+  }
+  $("#advatice_banner_1_upload_preview").html(prepare_div);
+});
+
+/*  Home Advatice Banner 2  */
+
+$("#advatice_banner_2_img").on('change', function(){
+  var prepare_div = ``;
+  let count = document.getElementById("advatice_banner_2_img").files.length;
+  prepare_div+=`<div class="form-group col-md-12">Image preview</div>`;
+  for(i=0; i<count; i++){
+    prepare_div+=`
+      <div class="form-group col-md-4">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" style="height: 110px;" src="`+URL.createObjectURL(event.target.files[i])+`" alt="Card image cap">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input type="link" name="banner_link" class="form-control" id="banner_link" placeholder="Link">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `
+  }
+  $("#advatice_banner_2_upload_preview").html(prepare_div);
+});
+
 /*  Delete Images  */
 function DeleteImage(image_id="", image_custom_id=""){
   let conf = confirm("Are you sure to delete the image (id: 12)");

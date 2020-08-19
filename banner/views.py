@@ -43,6 +43,7 @@ class ViewBanner(TemplateView):
                     image_upload = Banner(banner_image=image_path, banner_name='men_banner', banner_link=link)
                     image_upload.save()
                 messages.success(request, 'Men Banner Upload Successfull')
+                return redirect('/site-admin/banner/')
 
             if 'women_banner' in request.FILES:
                 banner_link = request.POST.getlist('banner_link')
@@ -60,6 +61,7 @@ class ViewBanner(TemplateView):
                     image_upload = Banner(banner_image=image_path, banner_name='women_banner', banner_link=link)
                     image_upload.save()
                 messages.success(request, 'Women Banner Upload Successfull')
+                return redirect('/site-admin/banner/')
 
             if 'baby_kid_banner' in request.FILES:
                 banner_link = request.POST.getlist('banner_link')
@@ -77,6 +79,7 @@ class ViewBanner(TemplateView):
                     image_upload = Banner(banner_image=image_path, banner_name='baby_kid_banner', banner_link=link)
                     image_upload.save()
                 messages.success(request, 'Baby & Kids Banner Upload Successfull')
+                return redirect('/site-admin/banner/')
 
             if 'mobile_banner' in request.FILES:
                 banner_link = request.POST.getlist('banner_link')
@@ -94,6 +97,7 @@ class ViewBanner(TemplateView):
                     image_upload = Banner(banner_image=image_path, banner_name='mobile_banner', banner_link=link)
                     image_upload.save()
                 messages.success(request, 'Mobile Banner Upload Successfull')
+                return redirect('/site-admin/banner/')
 
             if 'electronics_banner' in request.FILES:
                 banner_link = request.POST.getlist('banner_link')
@@ -111,6 +115,7 @@ class ViewBanner(TemplateView):
                     image_upload = Banner(banner_image=image_path, banner_name='electronic_banner', banner_link=link)
                     image_upload.save()
                 messages.success(request, 'Electronics Banner Upload Successfull')
+                return redirect('/site-admin/banner/')
 
             if 'office_appliance_banner' in request.FILES:
                 banner_link = request.POST.getlist('banner_link')
@@ -128,6 +133,43 @@ class ViewBanner(TemplateView):
                     image_upload = Banner(banner_image=image_path, banner_name='office_appliance_banner', banner_link=link)
                     image_upload.save()
                 messages.success(request, 'Office Appliance Banner Upload Successfull')
+                return redirect('/site-admin/banner/')
+
+            if 'advatice_1' in request.FILES:
+                banner_link = request.POST.getlist('banner_link')
+                men_banner_image = request.FILES.getlist('advatice_1')
+                for image, link in zip(men_banner_image, banner_link):
+                    # print (image)
+                    # print (link)
+                    fs = FileSystemStorage()
+                    image_title = "advatice-1-banner."+image.name.split(".")[-1]
+                    upload_image = fs.save("banner/advatice1/images/"+image_title, image)
+                    img_url = fs.url(upload_image)
+                    mod_image_name = img_url.split("/")[-1]
+                    image_path = 'banner/advatice1/images/'+mod_image_name
+
+                    image_upload = Banner(banner_image=image_path, banner_name='advatice_1', banner_link=link)
+                    image_upload.save()
+                messages.success(request, 'Advatice Banner 1 Upload Successfull')
+                return redirect('/site-admin/banner/')
+
+            if 'advatice_2' in request.FILES:
+                banner_link = request.POST.getlist('banner_link')
+                men_banner_image = request.FILES.getlist('advatice_2')
+                for image, link in zip(men_banner_image, banner_link):
+                    # print (image)
+                    # print (link)
+                    fs = FileSystemStorage()
+                    image_title = "advatice-2-banner."+image.name.split(".")[-1]
+                    upload_image = fs.save("banner/advatice2/images/"+image_title, image)
+                    img_url = fs.url(upload_image)
+                    mod_image_name = img_url.split("/")[-1]
+                    image_path = 'banner/advatice2/images/'+mod_image_name
+
+                    image_upload = Banner(banner_image=image_path, banner_name='advatice_2', banner_link=link)
+                    image_upload.save()
+                messages.success(request, 'Advatice Banner 2 Upload Successfull')
+                return redirect('/site-admin/banner/')
         except Exception as e:
             print (e)
 
@@ -146,13 +188,18 @@ class ViewBanner(TemplateView):
         get_electronic_fashion = Banner.objects.filter(banner_name='electronic_banner').values('id', 'banner_image', 'banner_link', 'banner_id')
         get_office_appliance_fashion = Banner.objects.filter(banner_name='office_appliance_banner').values('id', 'banner_image', 'banner_link', 'banner_id')
 
+        get_advatice_banner_1 = Banner.objects.filter(banner_name='advatice_1').values('id', 'banner_image', 'banner_link', 'banner_id')
+        get_advatice_banner_2 = Banner.objects.filter(banner_name='advatice_2').values('id', 'banner_image', 'banner_link', 'banner_id')
+
         context = {"page_name": "banner", "admin_name": get_name.admin_f_name+" "+get_name.admin_f_name,
                     'men_fashion_image': get_mens_fashion,
                     'women_fashion_image': get_womens_fashion,
                     'baby_kid_fashion_image': get_baby_kid_fashion,
                     'mobile_image': get_mobile_fashion,
                     'electronic_image': get_electronic_fashion,
-                    'office_appliance_image': get_office_appliance_fashion}
+                    'office_appliance_image': get_office_appliance_fashion,
+                    'advatice_banner_1_image': get_advatice_banner_1,
+                    'advatice_banner_2_image': get_advatice_banner_2}
         return context
 
 # ******************************************************************************************************************
@@ -161,6 +208,7 @@ class ViewBanner(TemplateView):
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from django.http import JsonResponse
+import os
 
 @csrf_exempt
 def DeleteBannerImage(request):
@@ -168,6 +216,9 @@ def DeleteBannerImage(request):
 
     del_img = Banner.objects.get(pk=image_id)
     del_img.delete()
+    # del_image_path = Banner.objects.get(pk=image_id)
+    # print (del_image_path.banner_image)
+    os.remove('media/'+str(del_img.banner_image))
 
     data = {
         'status': 'success',

@@ -915,7 +915,17 @@
 <div class="product_banner">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-4">
+      {% if banner_1 %}
+        {% for banner_1_image in banner_1 %}
+          <div class="col-md-4">
+            <div class="banner_div">
+              <!-- <img src="{% static '/site_image/1507732077.selfie-stick.png' %}" alt=""> -->
+              <img src="/media/{{ banner_1_image.banner_image }}" alt="">
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+      <!-- <div class="col-md-4">
         <div class="banner_div">
           <img src="{% static '/site_image/1507732056.action-camera.png' %}" alt="">
         </div>
@@ -929,7 +939,7 @@
         <div class="banner_div">
           <img src="{% static '/site_image/1507732077.smartwatch.png' %}" alt="">
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
