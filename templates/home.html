@@ -614,42 +614,18 @@
               </div>
               <div class="body">
                 <div class="row">
-                  <div class="col-md-4 feature_cat_pading_man">
-                    <img src="{% static '/site_image/male.jpg' %}" alt="">
-                    <div class="product_category">Product</div>
-                  </div>
-                  <div class="col-md-4 feature_cat_pading_man">
-                    <img src="{% static '/site_image/male.jpg' %}" alt="">
-                    <div class="product_category">Product</div>
-                  </div>
-                  <div class="col-md-4 feature_cat_pading_man">
-                    <img src="{% static '/site_image/male.jpg' %}" alt="">
-                    <div class="product_category">Product</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div class="fashion">
-              <div class="header">
-                <span>Men Fashion</span>
-              </div>
-              <div class="body">
-                <div class="row">
-                  <div class="col-md-4 feature_cat_pading_man">
-                    <img src="{% static '/site_image/male.jpg' %}" alt="">
-                    <div class="product_category">Product</div>
-                  </div>
-                  <div class="col-md-4 feature_cat_pading_man">
-                    <img src="{% static '/site_image/male.jpg' %}" alt="">
-                    <div class="product_category">Product</div>
-                  </div>
-                  <div class="col-md-4 feature_cat_pading_man">
-                    <img src="{% static '/site_image/male.jpg' %}" alt="">
-                    <div class="product_category">Product</div>
-                  </div>
+                  {% if men_fashion_product %}
+                    {% for product in men_fashion_product %}
+                      <div class="col-md-4 feature_cat_pading_man">
+                        {% if product.product_image == "" %}
+                          <img src="{% static '/site_image/male.jpg' %}" alt="{{ product.product_name }}">
+                        {% else %}
+                          <img src="/media/{{ product.product_image }}" alt="{{ product.product_image_title }}">
+                        {% endif %}
+                        <div class="product_category">{{ product.product_name }}</div>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
                 </div>
               </div>
             </div>
@@ -662,7 +638,19 @@
               </div>
               <div class="body">
                 <div class="row">
-                  <div class="col-md-4 feature_cat_pading_man">
+                  {% if women_fashion_product %}
+                    {% for product in women_fashion_product %}
+                      <div class="col-md-4 feature_cat_pading_man">
+                        {% if product.product_image == "" %}
+                          <img src="{% static '/site_image/male.jpg' %}" alt="{{ product.product_name }}">
+                        {% else %}
+                          <img src="/media/{{ product.product_image }}" alt="{{ product.product_image_title }}">
+                        {% endif %}
+                        <div class="product_category">{{ product.product_name }}</div>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                  <!-- <div class="col-md-4 feature_cat_pading_man">
                     <img src="{% static '/site_image/male.jpg' %}" alt="">
                     <div class="product_category">Product</div>
                   </div>
@@ -673,7 +661,7 @@
                   <div class="col-md-4 feature_cat_pading_man">
                     <img src="{% static '/site_image/male.jpg' %}" alt="">
                     <div class="product_category">Product</div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>

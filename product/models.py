@@ -115,7 +115,8 @@ class ProductImage(models.Model):
 
     def save(self, *args, **kwargs):
         if self.prod_image_id == None:
-            if len(Product.objects.all().order_by('-id')) == 0:
+            print (len(ProductImage.objects.all().order_by('-id')))
+            if len(ProductImage.objects.all().order_by('-id')) == 0:
                 get_max_id = 0
                 mod_id = get_max_id+1
             else:

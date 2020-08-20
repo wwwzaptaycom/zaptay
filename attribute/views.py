@@ -72,7 +72,7 @@ class AttributeList(FormView):
             category_form = CategoryForm(request.POST)
 
             if category_form.is_valid():
-                category_name = request.POST['category_add_form']
+                category_name = request.POST['category_add_form'].lower()
                 admin_id = zaptayAdmin.objects.all().get(email_id=request.session.get('admin_email_id'))
                 insert_que = MainCategory(main_category_name = category_name, added_by = admin_id)
                 insert_que.save()
@@ -85,7 +85,7 @@ class AttributeList(FormView):
 
             if sub_category_from.is_valid():
                 main_category_id = request.POST['category_list']
-                sub_category_name = request.POST['sub_category_add_form']
+                sub_category_name = request.POST['sub_category_add_form'].lower()
 
                 admin_id = zaptayAdmin.objects.all().get(email_id=request.session.get('admin_email_id'))
                 get_category_id = MainCategory.objects.get(pk=main_category_id)
@@ -102,7 +102,7 @@ class AttributeList(FormView):
 
             if sub_category_from.is_valid():
                 sub_category_id = request.POST['sub_category_list']
-                tert_category_name = request.POST['tert_category_add_form']
+                tert_category_name = request.POST['tert_category_add_form'].lower()
 
                 admin_id = zaptayAdmin.objects.all().get(email_id=request.session.get('admin_email_id'))
                 get_sub_category = SubCategory.objects.get(pk=sub_category_id)
@@ -117,7 +117,7 @@ class AttributeList(FormView):
             color_from = ColorForm(request.POST)
 
             if color_from.is_valid():
-                color_name = request.POST['color_add_form']
+                color_name = request.POST['color_add_form'].lower()
 
                 admin_id = zaptayAdmin.objects.all().get(email_id=request.session.get('admin_email_id'))
 
@@ -131,7 +131,7 @@ class AttributeList(FormView):
             size_from = SizeForm(request.POST)
 
             if size_from.is_valid():
-                size = request.POST['size_add_form']
+                size = request.POST['size_add_form'].lower()
 
                 admin_id = zaptayAdmin.objects.all().get(email_id=request.session.get('admin_email_id'))
 
@@ -145,7 +145,7 @@ class AttributeList(FormView):
             size_from = SourceForm(request.POST)
 
             if size_from.is_valid():
-                source = request.POST['source_add_form']
+                source = request.POST['source_add_form'].lower()
 
                 admin_id = zaptayAdmin.objects.all().get(email_id=request.session.get('admin_email_id'))
 
