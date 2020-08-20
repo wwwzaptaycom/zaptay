@@ -150,36 +150,64 @@ class ShowProductForm(FormView):
 
             get_category_id_object = MainCategory.objects.all().filter(category_id=category).first()
             sub_category_id_object = SubCategory.objects.all().filter(sub_category_id=sub_category).first()
-            tertiary_category_id_object = TertiaryCategory.objects.all().filter(ter_category_id=tertiary_category).first()
+
+            if tertiary_category != "":
+                tertiary_category_id_object = TertiaryCategory.objects.all().filter(ter_category_id=tertiary_category).first()
+            else:
+                tertiary_category_id_object = ""
             color_id_object = Colour.objects.all().filter(color_id=color).first()
             size_id_object = Size.objects.all().filter(size_id=size).first()
             source_id_object = Source.objects.all().filter(source_id=source).first()
             seller_id_object = Seller.objects.all().filter(seller_id=seller).first()
             admin_id = zaptayAdmin.objects.all().filter(email_id=request.session.get('admin_email_id')).first()
 
-            store_product = Product(
-                            prod_title=product_title,
-                            prod_category=get_category_id_object,
-                            prod_sub_category=sub_category_id_object,
-                            prod_tertiary_category=tertiary_category_id_object,
-                            prod_color=color_id_object,
-                            prod_size=size_id_object,
-                            prod_made_in=source_id_object,
-                            seller=seller_id_object,
-                            prod_desc=prod_desc,
-                            same_day_delivery=same_day_delivary,
-                            same_day_delivery_price=same_day_delivary_price,
-                            next_day_delivery=next_day_delivary,
-                            next_day_delivery_price=next_day_delivary_price,
-                            customize_day_delivery=customize_day_delivary,
-                            customize_day_delivery_day=customize_day_delivary_day,
-                            customize_day_delivery_price=customize_day_delivary_price,
-                            weekly_dreals=weekly_dreals,
-                            top_offer=top_offer,
-                            product_return=return_product,
-                            cash_on_delivery=cod,
-                            youtube_link=youtube,
-                            added_by=admin_id)
+            if tertiary_category_id_object == "":
+                store_product = Product(
+                                prod_title=product_title,
+                                prod_category=get_category_id_object,
+                                prod_sub_category=sub_category_id_object,
+                                prod_color=color_id_object,
+                                prod_size=size_id_object,
+                                prod_made_in=source_id_object,
+                                seller=seller_id_object,
+                                prod_desc=prod_desc,
+                                same_day_delivery=same_day_delivary,
+                                same_day_delivery_price=same_day_delivary_price,
+                                next_day_delivery=next_day_delivary,
+                                next_day_delivery_price=next_day_delivary_price,
+                                customize_day_delivery=customize_day_delivary,
+                                customize_day_delivery_day=customize_day_delivary_day,
+                                customize_day_delivery_price=customize_day_delivary_price,
+                                weekly_dreals=weekly_dreals,
+                                top_offer=top_offer,
+                                product_return=return_product,
+                                cash_on_delivery=cod,
+                                youtube_link=youtube,
+                                added_by=admin_id)
+            else:
+                store_product = Product(
+                                prod_title=product_title,
+                                prod_category=get_category_id_object,
+                                prod_sub_category=sub_category_id_object,
+                                prod_tertiary_category=tertiary_category_id_object,
+                                prod_color=color_id_object,
+                                prod_size=size_id_object,
+                                prod_made_in=source_id_object,
+                                seller=seller_id_object,
+                                prod_desc=prod_desc,
+                                same_day_delivery=same_day_delivary,
+                                same_day_delivery_price=same_day_delivary_price,
+                                next_day_delivery=next_day_delivary,
+                                next_day_delivery_price=next_day_delivary_price,
+                                customize_day_delivery=customize_day_delivary,
+                                customize_day_delivery_day=customize_day_delivary_day,
+                                customize_day_delivery_price=customize_day_delivary_price,
+                                weekly_dreals=weekly_dreals,
+                                top_offer=top_offer,
+                                product_return=return_product,
+                                cash_on_delivery=cod,
+                                youtube_link=youtube,
+                                added_by=admin_id)
 
             store_product.save()
             messages.success(request, 'Product inserted successfull')

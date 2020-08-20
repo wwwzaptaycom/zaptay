@@ -56,7 +56,7 @@ class Product(models.Model):
 
     prod_category = models.ForeignKey(MainCategory, on_delete=models.CASCADE, blank=False, null=False)
     prod_sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, blank=False)
-    prod_tertiary_category = models.ForeignKey(TertiaryCategory, on_delete=models.CASCADE, blank=False)
+    prod_tertiary_category = models.ForeignKey(TertiaryCategory, on_delete=models.CASCADE, blank=True, null=True)
     prod_color = models.ForeignKey(Colour, on_delete=models.CASCADE, blank=False)
     prod_size = models.ForeignKey(Size, on_delete=models.CASCADE, blank=False)
     prod_made_in = models.ForeignKey(Source, on_delete=models.CASCADE, blank=False)

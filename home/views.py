@@ -30,6 +30,28 @@ class HomeView(TemplateView):
         # *************************************    Product fetching    *******************************************
         # ********************************************************************************************************
 
+        # Exclusive category
+        exclusive_category = SubCategory.objects.filter(category_id__in=Subquery(MainCategory.objects.filter(main_category_name='exclusive').values('category_id')))
+        print (exclusive_category[0].sub_category_name)
+        '''
+        exclusivefashion = list()
+        for i in menfashion_product:
+            menfashion_image = dict()
+            menfashion_image['product_id'] = i.prod_custom_id
+            menfashion_image['product_name'] = i.prod_title
+            product_image = ProductImage.objects.filter(product_id=i, home_image=True).values('product_image', 'prod_image_title')
+            if product_image:
+                for img in product_image:
+                    menfashion_image['product_image'] = img['product_image']
+                    menfashion_image['product_image_title'] = img['prod_image_title']
+            else:
+                menfashion_image['product_image'] = ''
+                menfashion_image['product_image_title'] = ''
+
+            # menfashion_image.append(ProductImage.objects.filter(product_id=i, home_image=True).values('product_image', 'prod_image_title'))
+            exclusivefashion.append(menfashion_image)
+        '''
+
         # Featured category (men)
         menfashion_product = Product.objects.filter(prod_sub_category__in=Subquery(SubCategory.objects.filter(sub_category_name='men').values('sub_category_id')))
         menfashion = list()
@@ -49,6 +71,7 @@ class HomeView(TemplateView):
             # menfashion_image.append(ProductImage.objects.filter(product_id=i, home_image=True).values('product_image', 'prod_image_title'))
             menfashion.append(menfashion_image)
 
+        # Featured category (women)
         womenfashion_product = Product.objects.filter(prod_sub_category__in=Subquery(SubCategory.objects.filter(sub_category_name='women').values('sub_category_id')))
         womenfashion = list()
         for i in womenfashion_product:
@@ -63,8 +86,6 @@ class HomeView(TemplateView):
             else:
                 womenfashion_image['product_image'] = ''
                 womenfashion_image['product_image_title'] = ''
-
-            # womenfashion_image.append(ProductImage.objects.filter(product_id=i, home_image=True).values('product_image', 'prod_image_title'))
             womenfashion.append(womenfashion_image)
 
         context = {"page_name": "banner",
@@ -76,6 +97,7 @@ class HomeView(TemplateView):
                     'electronic_office_image': get_office_fashion,
                     'banner_1': banner_1,
                     'banner_2': banner_2,
+                    'exclusive_category': exclusive_category,
                     'men_fashion_product': menfashion,
                     'women_fashion_product': womenfashion}
         return context
