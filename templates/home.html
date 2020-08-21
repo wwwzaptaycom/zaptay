@@ -492,28 +492,35 @@
       <div class="col-md-12">
         <div class="w_d_offer_slider">
           <div class="row">
-            <div class="col-md-2">
-              <div class="offer_div">
-                <img src="{% static '/site_image/banner1.jpg' %}" alt="">
-                <div class="product_details">
-                  <div class="product_name">Product name</div>
-                  <div class="rating">
-                    <span class="point">3.5</span>
-                    <span class="view"><i class="fa fa-eye" aria-hidden="true"></i> 3K</span>
-                  </div>
-                  <div class="price">
-                    <span class="offer"><i class="fa fa-inr" aria-hidden="true"></i> 350</span>
-                    <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 450</span>
-                    <span class="discount">4% Dic.</span>
+            {% if weekly_dreals %}
+              {% for week_dreal in weekly_dreals %}
+                <div class="col-md-2">
+                  <div class="offer_div">
+                    {% if week_dreal.product_image == "" %}
+                      <img src="{% static '/site_image/banner1.jpg' %}" alt="{{ week_dreal.product_name }}">
+                    {% else %}
+                      <img src="/media/{{ week_dreal.product_image }}" alt="{{ week_dreal.product_image_title }}">
+                    {% endif %}
+                    <div class="product_details">
+                      <div class="product_name">{{ week_dreal.product_name }}</div>
+                      <div class="rating">
+                        <span class="point">3.5</span>
+                        <span class="view"><i class="fa fa-eye" aria-hidden="true"></i> 3K</span>
+                      </div>
+                      <div class="price">
+                        <span class="offer"><i class="fa fa-inr" aria-hidden="true"></i> 350</span>
+                        <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 450</span>
+                        <span class="discount">4% Dic.</span>
+                      </div>
+                    </div>
+                    <div class="focus_discount">
+                      <div class="focus_discount_text">4% off</div>
+                    </div>
                   </div>
                 </div>
-                <div class="focus_discount">
-                  <div class="focus_discount_text">4% off</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-2">
+              {% endfor %}
+            {% endif %}
+            <!-- <div class="col-md-2">
               <div class="offer_div">
                 <img src="{% static '/site_image/male.jpg' %}" alt="">
                 <div class="product_details">
@@ -616,7 +623,7 @@
                   <div class="focus_discount_text">4% off</div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
           </div>
         </div>

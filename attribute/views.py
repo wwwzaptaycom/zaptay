@@ -389,3 +389,23 @@ def GetAllMadeIn(request):
         }
 
         return JsonResponse(resp)
+
+def GetSubCategoryDetails(request):
+    sub_category_id = request.GET['aub_category_id']
+
+    category_dict = dict()
+    category_arr = list()
+
+    category_list = SubCategory.objects.all().filter(sub_category_id=sub_category_id)
+    for i in category_list:
+        print (i.sub_category_image)
+        # category_arr.append([i.sub_category_id , i.sub_category_name])
+        category_dict['sub_category_id'] = i.sub_category_id;
+        category_dict['sub_category_name'] = i.sub_category_name;
+        category_dict['sub_category_image'] = i.sub_category_id;
+    category_dict['data'] = category_arr
+
+    resp = {
+        "response": 'Failed'
+    }
+    return JsonResponse(category_dict)

@@ -42,14 +42,35 @@ class HomeView(TemplateView):
             if product:
                 for product_id in product:
                     product_image = ProductImage.objects.filter(product_id=product_id.id, home_image=True).values('product_image', 'prod_image_title')
-                    exclusive_image['image'] = product_image[0]['product_image']
-                    exclusive_image['image_title'] = product_image[0]['prod_image_title']
+                    if product_image:
+                        exclusive_image['image'] = product_image[0]['product_image']
+                        exclusive_image['image_title'] = product_image[0]['prod_image_title']
+                    else:
+                        exclusive_image['image'] = ""
+                        exclusive_image['image_title'] = ""
             else:
                 exclusive_image['image'] = ""
                 exclusive_image['image_title'] = ""
 
             exclusivefashion.append(exclusive_image)
-            
+
+        #Weekly Deals & Offer
+        weekly_dels_product = Product.objects.filter(weekly_dreals=True)
+        weekly_deals_list = list()
+        for product in weekly_dels_product:
+            weekly_deals_dict = dict()
+            weekly_deals_dict['product_id'] = product.prod_custom_id
+            weekly_deals_dict['product_name'] = product.prod_title
+            weekly_dels_product_image = ProductImage.objects.filter(product_id=product, home_image=True).values('prod_image_title', 'product_image')
+            if weekly_dels_product_image:
+                weekly_deals_dict['product_image'] = weekly_dels_product_image[0]['product_image']
+                weekly_deals_dict['product_image_title'] = weekly_dels_product_image[0]['prod_image_title']
+            else:
+                weekly_deals_dict['product_image'] = ''
+                weekly_deals_dict['product_image_title'] = ''
+            weekly_deals_list.append(weekly_deals_dict)
+        print (weekly_deals_list)
+
         # Featured category (men)
         menfashion_product = Product.objects.filter(prod_sub_category__in=Subquery(SubCategory.objects.filter(sub_category_name='men').values('sub_category_id')))
         menfashion = list()
@@ -96,6 +117,7 @@ class HomeView(TemplateView):
                     'banner_1': banner_1,
                     'banner_2': banner_2,
                     'exclusive_category': exclusivefashion,
+                    'weekly_dreals': weekly_deals_list,
                     'men_fashion_product': menfashion,
                     'women_fashion_product': womenfashion}
         return context

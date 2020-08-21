@@ -12,6 +12,7 @@ from category.models import MainCategory
 class SubCategory(models.Model):
     sub_category_id = models.AutoField(primary_key=True)
     sub_category_name = models.CharField(max_length=255)
+    sub_category_image = models.ImageField(upload_to="sub_category/images", default="")
     is_active = models.BooleanField(default=1)
     added_by = models.ForeignKey(zaptayAdmin, on_delete=models.CASCADE)
     category_id = models.ForeignKey(MainCategory, on_delete=models.CASCADE)
@@ -27,6 +28,7 @@ class SubCategory(models.Model):
 class TertiaryCategory(models.Model):
     ter_category_id = models.AutoField(primary_key=True)
     ter_category_name = models.CharField(max_length=255)
+    tertiary_category_image = models.ImageField(upload_to="tertiary_category/images", default="")
     is_active = models.BooleanField(default=1)
     added_by = models.ForeignKey(zaptayAdmin, on_delete=models.CASCADE)
     sub_category_id = models.ForeignKey(SubCategory, on_delete=models.CASCADE)

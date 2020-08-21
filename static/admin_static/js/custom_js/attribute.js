@@ -81,3 +81,25 @@ function delete_attributes(attribute_type, attribute_name, id){
       return false;
   }
 }
+
+
+function show_image_modal(category_type, category_id){
+  // 149
+  console.log(category_type, category_id);
+  $(".model_form_content").hide();
+  $('#exampleModalCenter').modal('show')
+
+  $.ajax({
+    url: "/site-admin/attribute/get-subcategory-details/",
+    method: "GET",
+    data: {
+      "aub_category_id": category_id
+    },
+    success: function(e){
+      console.log(e);
+    },
+    error: function(e){
+      console.log(e);
+    }
+  })
+}
