@@ -41,7 +41,7 @@
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Product Add</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Product Add <a href="javascript:void(0);" class="btn btn-info btn-md clear_form"><i class="fas fa-store"></i> Clear form</a></h6>
       </div>
       <div class="card-body">
         <div>
@@ -311,7 +311,7 @@
             </div>
           </div>
           {% csrf_token %}
-          <button type="submit" class="btn btn-success btn-lg" style="width: 180px">Submit</button>
+          <button type="submit" class="btn btn-success btn-lg" style="width: 180px"  onclick="return CheckField();">Submit</button>
 
         </form>
       </div>
@@ -327,11 +327,11 @@
 <!-- http://www.nicedit.com/demos.php -->
   <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
   <script type="text/javascript">
-      bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
-    </script>
+    bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+  </script>
 
-    <script src="{% static 'admin_static/js/custom_js/product.js' %}"></script>
-    <script>
+  <script src="{% static 'admin_static/js/custom_js/product.js' %}"></script>
+  <script>
     $(document).ready(function(){
       $("#listSearch").on("keyup", function() {
         if($(this).val() != ""){
@@ -344,6 +344,21 @@
           $("#myList").hide();
         }
       });
+
+      $(".clear_form").on('click', function(){
+        window.location.reload();
+      });
     });
-    </script>
+  </script>
+
+  <script>
+    function CheckField(){
+      var content = $('.nicEdit-main').text();
+      if(content == "" || content == "<br>"){
+        alert("Product description needed");
+        return false;
+      }
+      return true;
+    }
+  </script>
 {% endblock %}

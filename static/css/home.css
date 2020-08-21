@@ -255,6 +255,7 @@ float: left;
   width: 100%;
   font-weight: 600;
   font-size: 16px;
+  text-transform: capitalize;
 }
 /* /Shop by exclusive categories */
 

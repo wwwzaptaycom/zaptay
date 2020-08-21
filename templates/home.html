@@ -425,7 +425,7 @@
       <div class="col-md-12">
         <div class="exclusive_categorys">
           <div class="row">
-            {% if exclusive_category %}
+            {%comment%}{% if exclusive_category %}
               {% for exclusive in exclusive_category %}
                 <div class="col-md-2 optimize_padding">
                   <div class="image">
@@ -433,6 +433,22 @@
                   </div>
                   <div class="category_name">
                     {{ exclusive.sub_category_name }}
+                  </div>
+                </div>
+              {% endfor %}
+            {% endif %}{%endcomment%}
+            {% if exclusive_category %}
+              {% for execlusive in exclusive_category %}
+                <div class="col-md-2 optimize_padding">
+                  <div class="image">
+                    {% if execlusive.image == ""  %}
+                      <img src="{% static 'site_image/female.jpg' %}" alt="">
+                    {% else %}
+                      <img src="/media/{{ execlusive.image }}" alt="{{ execlusive.image_title }}">
+                    {% endif %}
+                  </div>
+                  <div class="category_name">
+                    {{execlusive.category_name}}
                   </div>
                 </div>
               {% endfor %}

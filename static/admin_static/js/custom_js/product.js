@@ -8,7 +8,7 @@ $(document).ready(function(){
 
 $("#category").on("change", function(){
   GetSubCategory();
-  GetCategoryTable();
+  // GetCategoryTable();
 });
 $("#sub_category").on("change", function(){
   TertiaryCategory();
@@ -148,7 +148,7 @@ function Seller(){
     dataType: "JSON",
     success: function(r){
       let html_content = '';
-      console.log(r);
+      // console.log(r);
       r.data.map((category, key) => {
         html_content+= `<option value="`+category['seller_id']+`">`+category['seller_name']+`</option>`
       })
