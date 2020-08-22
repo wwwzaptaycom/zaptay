@@ -811,7 +811,33 @@
       </div>
       <div class="col-md-12">
         <div class="row">
-          <div class="col-md-2 feature_cat_pading_man">
+          {% if electronic %}
+            {% for ele in electronic %}
+              <div class="col-md-2 feature_cat_pading_man">
+                <div class="product_div">
+                  <div class="product_img">
+                    {% if ele.product_image %}
+                      <img src="/media/{{ ele.product_image }}" alt="{{ ele.product_image_title }}">
+                    {% else %}
+                      <img src="{% static '/site_image/male.jpg' %}" alt="{{ ele.product_name }}">
+                    {% endif %}
+                  </div>
+                  <div class="product_name">
+                    <span>{{ ele.product_name }}</span>
+                  </div>
+                  <div class="price">
+                    <span><i class="fa fa-inr" aria-hidden="true"></i>&nbsp; 750</span>
+                    <span class="orignal_price"><i class="fa fa-inr" aria-hidden="true"></i>&nbsp; 750</span>
+                  </div>
+                  <div class="offer">
+                    <span class="off">33% off</span>
+                    <span class="save">Save 753</span>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}
+          <!-- <div class="col-md-2 feature_cat_pading_man">
             <div class="product_div">
               <div class="product_img">
                 <img src="{% static '/site_image/male.jpg' %}" alt="">
@@ -828,9 +854,9 @@
                 <span class="save">Save 753</span>
               </div>
             </div>
-          </div>
+          </div> -->
 
-          <div class="col-md-2 feature_cat_pading_man">
+          <!-- <div class="col-md-2 feature_cat_pading_man">
             <div class="product_div">
               <div class="product_img">
                 <img src="{% static '/site_image/male.jpg' %}" alt="">
@@ -924,7 +950,7 @@
                 <span class="save">Save 753</span>
               </div>
             </div>
-          </div>
+          </div> -->
 
 
         </div>

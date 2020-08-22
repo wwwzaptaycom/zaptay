@@ -417,3 +417,11 @@ def GetSubCategoryDetails(request):
         "response": 'Failed'
     }
     return JsonResponse(category_dict)
+
+
+# AJAX Image Upload
+def AjaxImageUpload(request):
+    resp = {
+        "response": 'Failed'
+    }
+    return JsonResponse(category_dict)

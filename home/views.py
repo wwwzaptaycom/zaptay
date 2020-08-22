@@ -69,7 +69,7 @@ class HomeView(TemplateView):
                 weekly_deals_dict['product_image'] = ''
                 weekly_deals_dict['product_image_title'] = ''
             weekly_deals_list.append(weekly_deals_dict)
-        print (weekly_deals_list)
+        # print (weekly_deals_list)
 
         # Featured category (men)
         menfashion_product = Product.objects.filter(prod_sub_category__in=Subquery(SubCategory.objects.filter(sub_category_name='men').values('sub_category_id')))
@@ -107,6 +107,24 @@ class HomeView(TemplateView):
                 womenfashion_image['product_image_title'] = ''
             womenfashion.append(womenfashion_image)
 
+        # Featured category (Electronic)
+        electronic_product = Product.objects.filter(prod_sub_category__in=Subquery(SubCategory.objects.filter(sub_category_name='electronics').values('sub_category_id'))).order_by('-id')
+        electronic_list = list()
+        for electronic in electronic_product:
+            electronic_dict = dict()
+            electronic_dict['product_id'] = electronic.prod_custom_id
+            electronic_dict['product_name'] = electronic.prod_title
+            electronic_image = ProductImage.objects.filter(product_id=electronic, home_image=True).values('product_image', 'prod_image_title')
+            if electronic_image:
+                for img in electronic_image:
+                    electronic_dict['product_image'] = img['product_image']
+                    electronic_dict['product_image_title'] = img['prod_image_title']
+            else:
+                electronic_dict['product_image'] = ''
+                electronic_dict['product_image_title'] = ''
+
+            electronic_list.append(electronic_dict)
+
         context = {"page_name": "banner",
                     'mens_banner_image': get_mens_fashion,
                     'womens_banner_image': get_womens_fashion,
@@ -119,5 +137,6 @@ class HomeView(TemplateView):
                     'exclusive_category': exclusivefashion,
                     'weekly_dreals': weekly_deals_list,
                     'men_fashion_product': menfashion,
-                    'women_fashion_product': womenfashion}
+                    'women_fashion_product': womenfashion,
+                    'electronic': electronic_list}
         return context

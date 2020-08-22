@@ -19,5 +19,6 @@ urlpatterns = [
     path('get-all-made-in/', views.GetAllMadeIn, name='get_all_made_in'),
     # re_path(r'^get-sorted-sub-category/(?P<category_id>[0-9])/$', views.SendSortSubCategory, name='sort_sub_category'),
 
-    path('get-subcategory-details', views.GetSubCategoryDetails, name="get_subcategory_details")
+    path('get-subcategory-details', views.GetSubCategoryDetails, name="get_subcategory_details"),
+    path('subcategory-image/', views.AjaxImageUpload, name="subcategory_image"),
 ]
