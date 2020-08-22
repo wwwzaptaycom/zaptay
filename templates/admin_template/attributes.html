@@ -33,6 +33,11 @@
     {
       color: red;
     }
+
+    ul
+    {
+      padding: 0px 10px;
+    }
   </style>
 {% endblock %}
 
@@ -143,13 +148,36 @@
                 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                   Launch demo modal
                 </button> -->
-                <ol>
-                  {% if sub_category_list %}
-                    {%for i in sub_category_list %} <!-- <a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModalCenter"> -->
-                      <li><a href="javascript:void(0);" onclick="show_image_modal('sub_category', '{{ i.sub_category_id }}');">{{i.sub_category_name}}</a> &nbsp;&nbsp; <a href="javascript:void(0);" class="delete_assets" onclick="return delete_attributes('sub_category', '{{ i.sub_category_name }}', {{ i.sub_category_id }});"><i class="fas fa-times"></i></a></li>
-                    {% endfor %}
-                  {% endif %}
-                </ol>
+                <div class="row">
+                  <div class="col-md-12">
+                    <ul>
+                      <li><strong>Featured</strong></li>
+                      <ul>
+                        {% if sub_category_list %}
+                          {%for i in sub_category_list %}
+                            {% if i.category_id.main_category_name == 'featured' %}
+                              <li>{{i.sub_category_name}} &nbsp;&nbsp; <a href="javascript:void(0);" class="delete_assets" onclick="return delete_attributes('sub_category', '{{ i.sub_category_name }}', {{ i.sub_category_id }});"><i class="fas fa-times"></i></a></li>
+                            {% endif %}
+                          {% endfor %}
+                        {% endif %}
+                      </ul>
+                    </ul>
+                  </div>
+                  <div class="col-md-12">
+                    <ul>
+                      <li><strong>Exclusive</strong></li>
+                      <ul>
+                        {% if sub_category_list %}
+                          {%for i in sub_category_list %}
+                            {% if i.category_id.main_category_name == 'exclusive' %}
+                              <li><a href="javascript:void(0);" onclick="show_image_modal('sub_category', '{{ i.sub_category_id }}');">{{i.sub_category_name}}</a> &nbsp;&nbsp; <a href="javascript:void(0);" class="delete_assets" onclick="return delete_attributes('sub_category', '{{ i.sub_category_name }}', {{ i.sub_category_id }});"><i class="fas fa-times"></i></a></li>
+                            {% endif %}
+                          {% endfor %}
+                        {% endif %}
+                      </ul>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -471,11 +499,15 @@
           <div class="model_form_content">
             <div class="form-group">
               <label for="recipient-name" class="col-form-label">Sub category name:</label>
-              <input type="text" class="form-control" id="recipient-name"  readonly="readonly">
+              <input type="text" class="form-control category_name" id="recipient-name"  readonly="readonly">
             </div>
             <div class="custom-file">
               <input type="file" class="custom-file-input" id="customFileLang" lang="pl-Pl">
               <label class="custom-file-label" for="customFileLang">Upload Image</label>
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Image Preview</label>
+              <span class="preview_img"></span>
             </div>
           </div>
         </div>

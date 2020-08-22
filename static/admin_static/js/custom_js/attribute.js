@@ -84,22 +84,31 @@ function delete_attributes(attribute_type, attribute_name, id){
 
 
 function show_image_modal(category_type, category_id){
-  // 149
-  console.log(category_type, category_id);
+  // console.log(category_type, category_id);
   $(".model_form_content").hide();
-  $('#exampleModalCenter').modal('show')
+  $('#exampleModalCenter').modal('show');
+  $("#exampleModalLongTitle").text(category_type);
 
   $.ajax({
-    url: "/site-admin/attribute/get-subcategory-details/",
+    url: "/site-admin/attribute/get-subcategory-details",
     method: "GET",
     data: {
-      "aub_category_id": category_id
+      "sub_category_id": category_id
     },
     success: function(e){
       console.log(e);
+      $(".model_form_content").show();
+      $(".modal_loader").hide();
+
+      $(".category_name").val(e.sub_category_name);
     },
     error: function(e){
       console.log(e);
     }
-  })
+  });
 }
+
+$("#customFileLang").on("change", function(){
+  let image = `<img class="card-img-top" src="`+URL.createObjectURL(event.target.files[0])+`" alt="Card image cap" style="width: 150px; height: 250px;">`;
+  $(".preview_img").html(image);
+});

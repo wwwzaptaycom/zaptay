@@ -11,6 +11,8 @@ from .attribute_forms import CategoryForm, SubcategoryForm, TertiaryCategoryForm
 from category.models import MainCategory
 from attribute.models import SubCategory, TertiaryCategory, Colour, Size, Source, SameDayDelivary, NextDayDelivary
 
+from django.db.models import Subquery
+
 # Create your views here.
 
 class AttributeList(FormView):
@@ -45,6 +47,9 @@ class AttributeList(FormView):
         source_list = Source.objects.all()
         same_day_delivary_pin_list = SameDayDelivary.objects.all()
         next_day_delivary_pin_list = NextDayDelivary.objects.all()
+
+        # print (sub_category_list[0].category_id.main_category_name) # Worked
+
         context = {
             "page_name": "attribute",
             "admin_name": get_name.admin_f_name+" "+get_name.admin_f_name,
@@ -391,18 +396,21 @@ def GetAllMadeIn(request):
         return JsonResponse(resp)
 
 def GetSubCategoryDetails(request):
-    sub_category_id = request.GET['aub_category_id']
+    sub_category = request.GET['sub_category_id']
 
     category_dict = dict()
     category_arr = list()
 
-    category_list = SubCategory.objects.all().filter(sub_category_id=sub_category_id)
+    # category_list = MainCategory.objects.filter(category_id__in=Subquery(SubCategory.objects.all().filter(sub_category_id=sub_category_id).values('category_id')))
+    # print (category_list[0].main_category_name)
+
+
+    category_list = SubCategory.objects.all().filter(sub_category_id=sub_category).values('sub_category_id', 'sub_category_name', 'sub_category_image')
     for i in category_list:
-        print (i.sub_category_image)
         # category_arr.append([i.sub_category_id , i.sub_category_name])
-        category_dict['sub_category_id'] = i.sub_category_id;
-        category_dict['sub_category_name'] = i.sub_category_name;
-        category_dict['sub_category_image'] = i.sub_category_id;
+        category_dict['sub_category_id'] = i['sub_category_id'];
+        category_dict['sub_category_name'] = i['sub_category_name'].replace("_", " ");
+        category_dict['sub_category_image'] = i['sub_category_image'];
     category_dict['data'] = category_arr
 
     resp = {
