@@ -1,0 +1,27 @@
+.search_result_div
+{
+  position: absolute;
+  top: -15px;
+  background: #eceaea;
+  width: 99%;
+  padding: 5px 10px;
+  z-index: 1;
+  color: black;
+  /* border-radius: 9px; */
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: none;
+}
+
+.search_product_details
+{
+  align-items: center;
+  display: flex;
+}
+
+.search_result_div a
+{
+  width: 100%;
+  margin-top: 2px;
+  display: flex;
+}

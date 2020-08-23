@@ -420,8 +420,39 @@ def GetSubCategoryDetails(request):
 
 
 # AJAX Image Upload
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+import os
+
 def AjaxImageUpload(request):
+    if 'sub_category_image' in request.FILES:
+        sub_category_id = request.POST['sub_category_id']
+        sub_category_name = request.POST['sub_category_name']
+        sub_category_image = request.FILES['sub_category_image']
+        # print (sub_category_id,sub_category_name,sub_category_image.name)
+
+        fs = FileSystemStorage()
+        image_title = sub_category_name+"."+sub_category_image.name.split('.')[-1]
+        image_title = image_title.replace(" ", "")
+        upload_image = fs.save("sub_category/images/"+image_title, sub_category_image)
+        img_url = fs.url(upload_image)
+        mod_image_name = img_url.split("/")[-1]
+        image_path = 'sub_category/images/'+mod_image_name
+        # print (image_path)
+
+        sub_category_details = SubCategory.objects.filter(sub_category_id=sub_category_id)
+        if sub_category_details[0].sub_category_image != "":
+            os.remove('media/'+str(sub_category_details[0].sub_category_image))
+            sub_category_details.update(sub_category_image = image_path)
+        else:
+            sub_category_details.update(sub_category_image = image_path)
+
+        resp = {
+            "response": 'success'
+        }
+        return JsonResponse(resp)
+
     resp = {
         "response": 'Failed'
     }
-    return JsonResponse(category_dict)
+    return JsonResponse(resp)

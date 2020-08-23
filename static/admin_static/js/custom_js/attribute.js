@@ -100,6 +100,11 @@ function show_image_modal(category_type, category_id){
       $(".model_form_content").show();
       $(".modal_loader").hide();
       $(".category_name").val(e.sub_category_name);
+      $(".sub_category_id").val(e.sub_category_id);
+      if(e.sub_category_image)
+        $(".preview_img").html(`<img class="card-img-top" src="/media/`+e.sub_category_image+`" alt="Card image cap" style="width: 150px; height: 250px;">`);
+      else
+        $(".preview_img").html(``);
     },
     error: function(e){
       console.log(e);
@@ -114,19 +119,17 @@ $("#customFileLang").on("change", function(){
   console.log(file);*/
 });
 
-$("#attribute_image").on('submit', function(e){
-  /*e.preventDefault();
-  $form = $(this)
-  var formData = new FormData(this);
-  console.log(formData);*/
+/*$("#attribute_image").on('submit', function(e){
+  var formData = new FormData()
   var file = document.getElementById('customFileLang').files[0];
-  console.log(file);
+  formData.append("login_name", "731004167");
+  console.log(formData);
   $.ajax({
     url: "/site-admin/attribute/subcategory-image/",
     method: "POST",
-    data:{
-      "image": file
-    },
+    data: file,
+    contentType: false,
+    ProceData: false,
     success: function(e){
       console.log(e);
     },
@@ -135,4 +138,37 @@ $("#attribute_image").on('submit', function(e){
     }
   });
   return false;
-});
+});*/
+
+$(".submit").on('click', function(){
+  var form = new FormData();
+  form.append('sub_category_image',$("#customFileLang")[0].files[0]);
+
+  var token = $("input[name=csrfmiddlewaretoken]").val();
+  form.append('csrfmiddlewaretoken',token);
+  form.append('sub_category_id',$(".sub_category_id").val());
+  form.append('sub_category_name',$(".category_name").val());
+
+  /*for (var key of form.entries()) {
+    console.log(key);
+  }*/
+
+  // 'csrfmiddlewaretoken': token
+
+  $.ajax({
+    url: '/site-admin/attribute/subcategory-image/',
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form,
+    type: 'POST',
+    success: function(response) {
+      console.log(response);
+      if(response.response == 'success')
+        $(".message").text('Image upload successfull');
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+})

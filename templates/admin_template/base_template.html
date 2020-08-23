@@ -147,6 +147,16 @@
           </div>
         </div>
       </li> -->
+      <!-- Inventory -->
+      <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+        Inventory
+      </div>
+      <li class="nav-item {% if page_name != "" and page_name == 'stock' %} active {% endif %}">
+        <a class="nav-link" href="{% url 'admin_login:stock:stock_list' %}">
+          <i class="fas fa-cubes"></i>
+          <span>Stock</span></a>
+      </li>
       <!-- Seller -->
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
