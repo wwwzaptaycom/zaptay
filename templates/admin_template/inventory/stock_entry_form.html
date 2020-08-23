@@ -37,7 +37,7 @@
         {% endif %}
       </div>
       <div class="card-body">
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" id="stock_submit">
           {% if form.errors %}
             {% for i in form %}
               <span class="error_msg">{{ i.errors }}</span>
@@ -48,35 +48,28 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="seller_email_id" class="mentetory">Search by product id</label>
-                <input type="email" class="form-control" id="seller_email_id" placeholder="Email Id">
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">PROD-</div>
+                  </div>
+                  <input type="text" class="form-control" id="search_product_id" placeholder="ID">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fas fa-search"></i></div>
+                  </div>
+                </div>
               </div>
               <div class="form-group col-md-6">
                 <label for="seller_email_id" class="mentetory">Search by product title</label>
-                <input type="email" class="form-control" id="seller_email_id" placeholder="Email Id">
+                <div class="input-group mb-2">
+                  <input type="text" class="form-control" id="search_product_name" placeholder="Product name">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fas fa-search"></i></div>
+                  </div>
+                </div>
               </div>
               <div class="form-group col-md-12">
                 <div class="search_result_div">
-                  <div class="row">
-                    <a href="">
-                      <div class="col-md-1">
-                        <img src="{% static 'site_image/135x180.png' %}" alt="" width='60px' height="80px">
-                      </div>
-                      <div class="col-md-3 search_product_details">
-                        <span>Product title</span>
-                      </div>
-                      <div class="col-md-2 search_product_details">
-                        <span>Category</span>
-                      </div>
-                      <div class="col-md-2 search_product_details">
-                        <span>Sub Category</span>
-                      </div>
-                      <div class="col-md-2 search_product_details">
-                        <span>Tertiary Category</span>
-                      </div>
-                      <div class="col-md-2 search_product_details">
-                        <span>Seller</span>
-                      </div>
-                    </a>
+                  <div class="row result_data">
                     <a href="">
                       <div class="col-md-1">
                         <img src="{% static 'site_image/135x180.png' %}" alt="" width='60px' height="80px">
@@ -104,69 +97,79 @@
           </div>
           <div class="form-group">
             <div class="form-row">
+              <div class="form-group col-md-3">
+                <label for="product_id" class="mentetory">Product unique Id</label>
+                <!-- <input type="email" class="form-control" id="product_id" readonly="readonly"> -->
+                {{ form.product_id }}
+              </div>
               <div class="form-group col-md-5">
                 <label for="seller_email_id" class="mentetory">Product title</label>
-                <input type="email" class="form-control" id="seller_email_id" placeholder="Email Id">
+                <input type="email" class="form-control" id="product_title" readonly="readonly">
               </div>
-              <div class="form-group col-md-7">
+              <div class="form-group col-md-4">
                 <label for="seller_email_id" class="mentetory">Product image</label>
-                <input type="email" class="form-control" id="seller_email_id" placeholder="Email Id">
+                <!-- <input type="email" class="form-control" id="seller_email_id"> -->
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-3">
                 <label for="seller_email_id" class="mentetory">Product Category</label>
-                <input type="email" class="form-control" id="seller_email_id" placeholder="Email Id">
+                <input type="email" class="form-control" id="category" readonly="readonly">
               </div>
               <div class="form-group col-md-3">
                 <label for="seller_email_id" class="mentetory">Product Sub Category</label>
-                <input type="email" class="form-control" id="seller_email_id" placeholder="Email Id">
+                <input type="email" class="form-control" id="sub_category" readonly="readonly">
               </div>
               <div class="form-group col-md-3">
                 <label for="seller_email_id" class="mentetory">Product Tertiary Category</label>
-                <input type="email" class="form-control" id="seller_email_id" placeholder="Email Id">
+                <input type="email" class="form-control" id="tertiary_category" readonly="readonly">
               </div>
               <div class="form-group col-md-3">
                 <label for="seller_email_id" class="mentetory">Product Seller</label>
-                <input type="email" class="form-control" id="seller_email_id" placeholder="Email Id">
+                <input type="email" class="form-control" id="seller" readonly="readonly">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-3">
                 <label for="seller_email_id" class="mentetory">Product Color</label>
-                <input type="email" class="form-control" id="seller_email_id" placeholder="Email Id">
+                <input type="email" class="form-control" id="color" readonly="readonly">
               </div>
               <div class="form-group col-md-3">
                 <label for="seller_email_id" class="mentetory">Product Size</label>
-                <input type="email" class="form-control" id="seller_email_id" placeholder="Email Id">
+                <input type="email" class="form-control" id="size" readonly="readonly">
               </div>
               <div class="form-group col-md-3">
                 <label for="seller_email_id" class="mentetory">Product Made In</label>
-                <input type="email" class="form-control" id="seller_email_id" placeholder="Email Id">
+                <input type="email" class="form-control" id="made_in" readonly="readonly">
               </div>
             </div>
           </div>
           <div class="form-group">
             <div class="form-row">
               <div class="form-group col-md-2">
-                <label for="seller_email_id" class="mentetory">Stock</label>
-                <input type="email" class="form-control" id="seller_email_id" placeholder="Email Id">
+                <label for="stock_qty" class="mentetory">Stock</label>
+                <!-- <input type="number" class="form-control" id="stock_qty"> -->
+                {{ form.stock }}
               </div>
               <div class="form-group col-md-2">
-                <label for="seller_email_id" class="mentetory">Main Price</label>
-                <input type="email" class="form-control" id="seller_email_id" placeholder="Email Id">
+                <label for="main_price" class="mentetory">Main Price</label>
+                <!-- <input type="number" class="form-control" id="main_price"> -->
+                {{ form.main_price }}
               </div>
               <div class="form-group col-md-2">
-                <label for="seller_email_id" class="mentetory">Offer Price</label>
-                <input type="email" class="form-control" id="seller_email_id" placeholder="Email Id">
+                <label for="offer_price" class="mentetory">Offer Price</label>
+                <!-- <input type="number" class="form-control" id="offer_price"> -->
+                {{ form.offer_price }}
               </div>
+              <!-- <div class="form-group col-md-2">
+                <label for="extra_offer" class="mentetory">Extra Price</label> -->
+                <!-- <input type="number" class="form-control" id="extra_offer"> -->
+                {%comment%}{{ form.extra_offer }}{%endcomment%}
+              <!-- </div> -->
               <div class="form-group col-md-2">
-                <label for="seller_email_id" class="mentetory">Extra Price</label>
-                <input type="email" class="form-control" id="seller_email_id" placeholder="Email Id">
-              </div>
-              <div class="form-group col-md-2">
-                <label for="seller_email_id" class="mentetory">Purchase Price</label>
-                <input type="email" class="form-control" id="seller_email_id" placeholder="Email Id">
+                <label for="purchase" class="mentetory">Purchase Price</label>
+                <!-- <input type="number" class="form-control" id="purchase"> -->
+                {{ form.purchase }}
               </div>
             </div>
           </div>
@@ -181,4 +184,6 @@
 
 {% endblock %}
 
-{% block custom_js %}{% endblock %}
+{% block custom_js %}
+  <script src="{% static 'admin_static/js/custom_js/stock_form.js' %}"></script>
+{% endblock %}
