@@ -171,4 +171,5 @@ $(".submit").on('click', function(){
       console.log(error);
     }
   });
+  return false;
 })

@@ -508,13 +508,17 @@
                         <span class="view"><i class="fa fa-eye" aria-hidden="true"></i> 3K</span>
                       </div>
                       <div class="price">
-                        <span class="offer"><i class="fa fa-inr" aria-hidden="true"></i> 350</span>
-                        <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 450</span>
-                        <span class="discount">4% Dic.</span>
+                        {% if week_dreal.product_offer_price %}
+                          <span class="offer"><i class="fa fa-inr" aria-hidden="true"></i> {{ week_dreal.product_offer_price }}</span>
+                          <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> {{ week_dreal.product_main_price }}</span>
+                        {% else %}
+                          <span class="offer">Comming soon</span>
+                        {% endif %}
+                        <span class="discount">{{ week_dreal.product_offer_percent }}% Dic.</span>
                       </div>
                     </div>
                     <div class="focus_discount">
-                      <div class="focus_discount_text">4% off</div>
+                      <div class="focus_discount_text">{{ week_dreal.product_offer_percent }}% off</div>
                     </div>
                   </div>
                 </div>
@@ -649,7 +653,7 @@
               </div>
               <div class="body">
                 <div class="row">
-                  {% if men_fashion_product %}
+                  {%comment%}{% if men_fashion_product %}
                     {% for product in men_fashion_product %}
                       <div class="col-md-4 feature_cat_pading_man">
                         {% if product.product_image == "" %}
@@ -658,6 +662,18 @@
                           <img src="/media/{{ product.product_image }}" alt="{{ product.product_image_title }}">
                         {% endif %}
                         <div class="product_category">{{ product.product_name }}</div>
+                      </div>
+                    {% endfor %}
+                  {% endif %}{%endcomment%}
+                  {% if men_fashion %}
+                    {% for men_ter_category in men_fashion %}
+                      <div class="col-md-4 feature_cat_pading_man">
+                        {% if men_ter_category.ter_image == "" %}
+                          <img src="{% static '/site_image/male.jpg' %}" alt="{{ men_ter_category.ter_category_name }}">
+                        {% else %}
+                          <img src="/media/{{ men_ter_category.ter_image }}" alt="{{ men_ter_category.ter_category_name }}">
+                        {% endif %}
+                        <div class="product_category">{{ men_ter_category.ter_category_name }}</div>
                       </div>
                     {% endfor %}
                   {% endif %}
@@ -673,30 +689,18 @@
               </div>
               <div class="body">
                 <div class="row">
-                  {% if women_fashion_product %}
-                    {% for product in women_fashion_product %}
+                  {% if women_fashion %}
+                    {% for women_ter_category in women_fashion %}
                       <div class="col-md-4 feature_cat_pading_man">
-                        {% if product.product_image == "" %}
-                          <img src="{% static '/site_image/male.jpg' %}" alt="{{ product.product_name }}">
+                        {% if women_ter_category.ter_image == "" %}
+                          <img src="{% static '/site_image/male.jpg' %}" alt="{{ women_ter_category.ter_category_name }}">
                         {% else %}
-                          <img src="/media/{{ product.product_image }}" alt="{{ product.product_image_title }}">
+                          <img src="/media/{{ women_ter_category.ter_image }}" alt="{{ women_ter_category.ter_category_name }}">
                         {% endif %}
-                        <div class="product_category">{{ product.product_name }}</div>
+                        <div class="product_category">{{ women_ter_category.ter_category_name }}</div>
                       </div>
                     {% endfor %}
                   {% endif %}
-                  <!-- <div class="col-md-4 feature_cat_pading_man">
-                    <img src="{% static '/site_image/male.jpg' %}" alt="">
-                    <div class="product_category">Product</div>
-                  </div>
-                  <div class="col-md-4 feature_cat_pading_man">
-                    <img src="{% static '/site_image/male.jpg' %}" alt="">
-                    <div class="product_category">Product</div>
-                  </div>
-                  <div class="col-md-4 feature_cat_pading_man">
-                    <img src="{% static '/site_image/male.jpg' %}" alt="">
-                    <div class="product_category">Product</div>
-                  </div> -->
                 </div>
               </div>
             </div>
@@ -994,16 +998,44 @@
 </div>
 <!-- /Product Banner -->
 
-<!-- Men Jackets -->
+<!-- Men Fashion Deals -->
 <div class="robot_elect">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <span class="title">Men Jackets</span> <a href="javascript:void(0);"><small>(View All)</small></a>
+        <span class="title">Men Fashion Dreals</span> <a href="javascript:void(0);"><small>(View All)</small></a>
       </div>
       <div class="col-md-12">
         <div class="row">
-          <div class="col-md-2 feature_cat_pading_man">
+          {% if man_fashion_dreals %}
+            {% for men_fashion in  man_fashion_dreals %}
+              <div class="col-md-2 feature_cat_pading_man">
+                <a href="{% url 'product:show_product' men_fashion.product_id %}">
+                  <div class="product_div">
+                    <div class="product_img">
+                      {% if men_fashion.product_image == "" %}
+                        <img src="{% static '/site_image/male.jpg' %}" alt="">
+                      {% else %}
+                        <img src="/media/{{ men_fashion.product_image }}" alt="{{ men_fashion.product_image_title }}">
+                      {% endif %}
+                    </div>
+                    <div class="product_name">
+                      <span>{{ men_fashion.product_name }}</span>
+                    </div>
+                    <div class="price">
+                      <span><i class="fa fa-inr" aria-hidden="true"></i>&nbsp; {{ men_fashion.product_offer_price }}</span>
+                      <span class="orignal_price"><i class="fa fa-inr" aria-hidden="true"></i>&nbsp; {{ men_fashion.product_main_price }}</span>
+                    </div>
+                    <div class="offer">
+                      <span class="off">{{ men_fashion.product_save_price_percent }}% off</span>
+                      <span class="save">Save {{ men_fashion.product_save_price }}</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            {% endfor %}
+          {% endif %}
+          <!-- <div class="col-md-2 feature_cat_pading_man">
             <div class="product_div">
               <div class="product_img">
                 <img src="{% static '/site_image/male.jpg' %}" alt="">
@@ -1020,9 +1052,9 @@
                 <span class="save">Save 753</span>
               </div>
             </div>
-          </div>
+          </div> -->
 
-          <div class="col-md-2 feature_cat_pading_man">
+          <!-- <div class="col-md-2 feature_cat_pading_man">
             <div class="product_div">
               <div class="product_img">
                 <img src="{% static '/site_image/male.jpg' %}" alt="">
@@ -1116,14 +1148,14 @@
                 <span class="save">Save 753</span>
               </div>
             </div>
-          </div>
+          </div> -->
 
         </div>
       </div>
     </div>
   </div>
 </div>
-<!-- /Men Jackets -->
+<!-- /Men Fashion Deals -->
 
 <!-- Product Banner 2 -->
 <div class="product_banner2">

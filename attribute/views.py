@@ -423,7 +423,9 @@ def GetSubCategoryDetails(request):
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 import os
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 def AjaxImageUpload(request):
     if 'sub_category_image' in request.FILES:
         sub_category_id = request.POST['sub_category_id']

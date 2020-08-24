@@ -170,7 +170,7 @@
                         {% if sub_category_list %}
                           {%for i in sub_category_list %}
                             {% if i.category_id.main_category_name == 'exclusive' %}
-                              <li><a href="" onclick="show_image_modal('sub_category', '{{ i.sub_category_id }}');">{{i.sub_category_name}}</a> &nbsp;&nbsp; <a href="javascript:void(0);" class="delete_assets" onclick="return delete_attributes('sub_category', '{{ i.sub_category_name }}', {{ i.sub_category_id }});"><i class="fas fa-times"></i></a></li>
+                              <li><a href="javascript:void(0);" onclick="show_image_modal('sub_category', '{{ i.sub_category_id }}');">{{i.sub_category_name}}</a> &nbsp;&nbsp; <a href="" class="delete_assets" onclick="return delete_attributes('sub_category', '{{ i.sub_category_name }}', {{ i.sub_category_id }});"><i class="fas fa-times"></i></a></li>
                             {% endif %}
                           {% endfor %}
                         {% endif %}

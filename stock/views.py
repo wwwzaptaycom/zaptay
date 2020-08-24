@@ -29,7 +29,7 @@ class ShowStockList(TemplateView):
         context = dict()
         get_name = zaptayAdmin.objects.all().get(email_id=self.request.session['admin_email_id'])
         stock_details = Bach.objects.all().order_by("-id")
-        print (stock_details)
+        # print (stock_details)
         context = {"page_name": "stock", "admin_name": get_name.admin_f_name+" "+get_name.admin_f_name, 'stock_list': stock_details}
         return context
 
@@ -81,6 +81,27 @@ class StockAddForm(FormView):
         context['form'] = form
         return self.render_to_response(context)
 
+class StockViewForm(TemplateView):
+    template_name = 'admin_template/inventory/stock_entry_view.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            resp = request.session['admin_email_id']
+            return super(StockViewForm, self).dispatch(request, *args, **kwargs)
+        except Exception as e:
+            print(e)
+            return redirect('/site-admin/stock/')
+            # return redirect('admin_login:admin_loginpage')
+
+    def get_context_data(self, **kwargs):
+        context = dict()
+        product_id = self.kwargs.get('product_id')
+        get_name = zaptayAdmin.objects.all().get(email_id=self.request.session['admin_email_id'])
+
+        stock_details = Bach.objects.filter(bach_id=product_id).first()
+        print (stock_details)
+        context = {"page_name": "stock", "admin_name": get_name.admin_f_name+" "+get_name.admin_f_name, 'stock_details': stock_details}
+        return context
 
 # AJAX Functions
 from django.views.decorators.csrf import csrf_exempt

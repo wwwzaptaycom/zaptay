@@ -17,6 +17,27 @@ from admin_login.models import zaptayAdmin
 
 # Create your views here.
 
+class ProductViewsDetails(TemplateView):
+    template_name = 'product.html'
+    '''
+    def get(self, request, **kwargs):
+        print (kwargs)
+        return render(request, self.template_name)
+    '''
+
+    def get_context_data(self, **kwargs):
+        context = dict()
+        product_id = self.kwargs.get('product_slug')
+        print (product_id)
+        # product_list = Product.objects.all().order_by('-id')
+        context = {}
+        return context
+
+
+# ----------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------     Admin Part      ------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------------------------------
+
 '''
 class ShowProductList(ListView):
     # https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Generic_views   (help)

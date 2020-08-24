@@ -7,7 +7,7 @@ app_name = 'category'
 
 urlpatterns = [
     path('men/', views.CategoryViews.as_view(), name="category-men"),
-    path('men/<slug:product_slug>/', views.ProductViews.as_view(), name="category-men"),
+    # path('men/<slug:product_slug>/', views.ProductViews.as_view(), name="category-men"),
 
 
     # Admin Part ----------------------------------------------------------------------------------------------------------------------
