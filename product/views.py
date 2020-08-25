@@ -47,15 +47,39 @@ class ProductViewsDetails(TemplateView):
             product_price_dic_percent = int(100-((float(product_stock_price[0].offer_price)/float(product_stock_price[0].main_price))*100))
         else:
             product_price_dic_percent = ""
+
+        # Relared Product fetch =========================
+        related_product_list = list()
         relted_product_list_db = Product.objects.filter(Q(prod_tertiary_category__in=
                                     Product.objects.filter(prod_custom_id=product_id).values('prod_tertiary_category')
                                 ), ~Q(prod_custom_id = product_id))
-        # print (relted_product_list_db)
+        if relted_product_list_db:
+            for related_prod in relted_product_list_db:
+                related_product_dict = dict()
+                related_product_dict['product_name']=related_prod.prod_title
+                product_image_list = ProductImage.objects.filter(product_id=related_prod.id, home_image=True).first()
+                related_product_dict['product_image']=product_image_list.product_image
+                related_product_dict['product_image_title']=product_image_list.prod_image_title
+
+                product_stock_price = Bach.objects.filter(product_id=related_prod.id)
+                if product_stock_price:
+                    related_product_dict['save_percent'] = int(100-((float(product_stock_price[0].offer_price)/float(product_stock_price[0].main_price))*100))
+                    related_product_dict['save_amount'] = int(float(product_stock_price[0].main_price)-float(product_stock_price[0].offer_price))
+                    related_product_dict['main_price'] = float(product_stock_price[0].main_price)
+                    related_product_dict['offer_price'] = float(product_stock_price[0].offer_price)
+                else:
+                    related_product_dict['save_percent']=""
+                    related_product_dict['save_amount']=""
+                    related_product_dict['main_price']=""
+                    related_product_dict['offer_price']=""
+
+                related_product_list.append(related_product_dict)
+
         context = {'product_all_desc': product_list.first(),
                     'product_image': product_show_image_list,
                     'product_stock_price': product_stock_price.first(),
                     'price_discount': product_price_dic_percent,
-                    'relted_product': relted_product_list_db}
+                    'relted_product': related_product_list}
         return context
 
 

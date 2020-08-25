@@ -282,11 +282,32 @@
             <div class="col-md-12">
               {% if relted_product %}
                 {% for product in relted_product %}
-                  
+                  <!-- Product design start -->
+                  <div class="product_lists">
+                    <div class="product_image">
+                      <img src="{% static 'site_image/male.jpg' %}" alt="">
+                    </div>
+                    <div class="product_details">
+                      <div>{{ product.product_name }}</div>
+                      <div class="price">
+                        <span class="sale_price"><i class="fa fa-inr" aria-hidden="true"></i> {{ product.offer_price }}</span>
+                        <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> {{ product.main_price }}</span>
+                      </div>
+                      <div class="offer">
+                        <span class="percent">{{ product.save_percent }}% off</span>
+                        <span class="save">Save {{ product.save_amount }}</span>
+                      </div>
+                      <div class="cart_wishlist">
+                        <button type="button" name="button"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                        <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Product design end -->
                 {% endfor %}
               {% endif %}
               <!-- Product design start -->
-              <div class="product_lists">
+              <!-- <div class="product_lists">
                 <div class="product_image">
                   <img src="{% static 'site_image/male.jpg' %}" alt="">
                 </div>
@@ -305,7 +326,7 @@
                     <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <!-- Product design end -->
 
               <!-- Product design start -->
