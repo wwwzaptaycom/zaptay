@@ -3,6 +3,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import View, TemplateView, FormView, ListView
 from django.contrib import messages
 
+from django.db.models import Subquery, Q
+# from django.db.models import Q
+
 from .product_form import ProductForm
 from .models import Product, ProductImage
 from category.models import MainCategory
@@ -30,12 +33,29 @@ class ProductViewsDetails(TemplateView):
         context = dict()
         product_id = self.kwargs.get('product_slug')
         product_list = Product.objects.all().filter(prod_custom_id=product_id)
+        product_image_list = ProductImage.objects.filter(product_id=product_list[0].id)
+        product_show_image_list = list()
+        if product_image_list:
+            for p_image in product_image_list:
+                product_image_dict = dict()
+                product_image_dict['path'] = p_image.product_image
+                product_image_dict['title'] = p_image.prod_image_title
+                product_show_image_list.append(product_image_dict)
+        # print (product_show_image_list)
         product_stock_price = Bach.objects.filter(product_id=product_list[0].id)
         if product_stock_price:
             product_price_dic_percent = int(100-((float(product_stock_price[0].offer_price)/float(product_stock_price[0].main_price))*100))
         else:
             product_price_dic_percent = ""
-        context = {'product_all_desc': product_list.first(), 'product_stock_price': product_stock_price.first(), 'price_discount': product_price_dic_percent}
+        relted_product_list_db = Product.objects.filter(Q(prod_tertiary_category__in=
+                                    Product.objects.filter(prod_custom_id=product_id).values('prod_tertiary_category')
+                                ), ~Q(prod_custom_id = product_id))
+        # print (relted_product_list_db)
+        context = {'product_all_desc': product_list.first(),
+                    'product_image': product_show_image_list,
+                    'product_stock_price': product_stock_price.first(),
+                    'price_discount': product_price_dic_percent,
+                    'relted_product': relted_product_list_db}
         return context
 
 

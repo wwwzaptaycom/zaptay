@@ -39,19 +39,32 @@
           <div class="row">
             <div class="col-md-1 padding_off">
               <div class="small_image_div">
-                <img src="{% static 'site_image/female.jpg' %}" alt="">
+                {% if product_image %}
+                  {% for prod_img in product_image %}
+                    <img src="/media/{{ prod_img.path }}" alt="{{ prod_img.title }}">
+                  {% endfor %}
+                {% endif %}
+                {% if product_all_desc.youtube_link %}
+                  <div class="video">
+                    <img src="{% static 'site_image/male.jpg' %}" alt="">
+                    <span class="play"><i class="fa fa-play-circle" aria-hidden="true"></i></span>
+                  </div>
+                {% endif %}
+                <!-- <img src="{% static 'site_image/female.jpg' %}" alt="">
                 <img src="{% static 'site_image/male.jpg' %}" alt="">
                 <div class="video">
-                  <img src="{% static 'site_image/male.jpg' %}" alt="">
+                  <img src="{% static 'site_image/male.jpg' %}" alt=""> -->
                   <!-- <img src="{% static 'site_image/play-button.svg' %}" class="play" alt=""> -->
-                  <span class="play"><i class="fa fa-play-circle" aria-hidden="true"></i></span>
-                </div>
+                  <!-- <span class="play"><i class="fa fa-play-circle" aria-hidden="true"></i></span>
+                </div> -->
               </div>
             </div>
 
             <div class="col-md-4">
               <div class="big_image_div">
-                <img src="{% static 'site_image/male.jpg' %}" alt="">
+                {% if product_image %}
+                  <img src="/media/{{ product_image.0.path }}" alt="">
+                {% endif %}
               </div>
             </div>
 
@@ -267,6 +280,11 @@
                 </div>
               </div>
             <div class="col-md-12">
+              {% if relted_product %}
+                {% for product in relted_product %}
+                  
+                {% endfor %}
+              {% endif %}
               <!-- Product design start -->
               <div class="product_lists">
                 <div class="product_image">
@@ -291,7 +309,7 @@
               <!-- Product design end -->
 
               <!-- Product design start -->
-              <div class="product_lists">
+              <!-- <div class="product_lists">
                 <div class="product_image">
                   <img src="{% static 'site_image/male.jpg' %}" alt="">
                 </div>
@@ -310,32 +328,8 @@
                     <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <!-- Product design end -->
-
-              <!-- Product design start -->
-              <div class="product_lists">
-                <div class="product_image">
-                  <img src="{% static 'site_image/male.jpg' %}" alt="">
-                </div>
-                <div class="product_details">
-                  <div>Product name</div>
-                  <div class="price">
-                    <span class="sale_price"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
-                    <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 750</span>
-                  </div>
-                  <div class="offer">
-                    <span class="percent">35% off</span>
-                    <span class="save">Save 758</span>
-                  </div>
-                  <div class="cart_wishlist">
-                    <button type="button" name="button"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
-                    <button type="button" name="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
-                  </div>
-                </div>
-              </div>
-              <!-- Product design end -->
-
 
             </div>
             </div>
