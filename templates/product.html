@@ -68,7 +68,7 @@
 
                 <div class="col-md-12">
                   <div class="product_sort_details">
-                    <div class="title">Product name</div>
+                    <div class="title">{{ product_all_desc.prod_title }}</div>
                     <div class="rating">
                       <span class="star">
                         <img src="{% static 'site_image/star.svg' %}" alt="">
@@ -79,9 +79,9 @@
                       </span>
                     </div>
                     <div class="price">
-                      <span class="sall"><i class="fa fa-inr" aria-hidden="true"></i> 350</span>
-                      <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> 350</span>
-                      <span class="percent">-5%</span>
+                      <span class="sall"><i class="fa fa-inr" aria-hidden="true"></i> {{ product_stock_price.offer_price }}</span>
+                      <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> {{ product_stock_price.main_price }}</span>
+                      <span class="percent">{{ price_discount }}%</span>
                     </div>
 
                     <div class="product_model">
@@ -89,7 +89,7 @@
                     </div>
 
                     <div class="sold">
-                      <span class="by">Sold By: Zaptay</span>
+                      <span class="by">Sold By: {{ product_all_desc.seller.seller_name }}</span>
                       <span class="original">
                         <img src="{% static 'site_image/brand.png' %}" alt="">
                       </span>
@@ -114,7 +114,7 @@
                     <div class="product_overview">
                       <div class="title">Product Over View</div>
                       <div class="overview">
-                        <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>
+                        <span>{{ product_all_desc.prod_desc }}</span>
                       </div>
                     </div>
 

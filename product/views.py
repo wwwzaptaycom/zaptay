@@ -8,6 +8,7 @@ from .models import Product, ProductImage
 from category.models import MainCategory
 from attribute.models import SubCategory, TertiaryCategory, Colour, Size, Source, SameDayDelivary, NextDayDelivary
 from seller.models import Seller
+from stock.models import Bach
 
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
@@ -28,9 +29,13 @@ class ProductViewsDetails(TemplateView):
     def get_context_data(self, **kwargs):
         context = dict()
         product_id = self.kwargs.get('product_slug')
-        print (product_id)
-        # product_list = Product.objects.all().order_by('-id')
-        context = {}
+        product_list = Product.objects.all().filter(prod_custom_id=product_id)
+        product_stock_price = Bach.objects.filter(product_id=product_list[0].id)
+        if product_stock_price:
+            product_price_dic_percent = int(100-((float(product_stock_price[0].offer_price)/float(product_stock_price[0].main_price))*100))
+        else:
+            product_price_dic_percent = ""
+        context = {'product_all_desc': product_list.first(), 'product_stock_price': product_stock_price.first(), 'price_discount': product_price_dic_percent}
         return context
 
 

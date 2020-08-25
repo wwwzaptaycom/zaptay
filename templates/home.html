@@ -1010,7 +1010,7 @@
           {% if man_fashion_dreals %}
             {% for men_fashion in  man_fashion_dreals %}
               <div class="col-md-2 feature_cat_pading_man">
-                <a href="{% url 'product:show_product' men_fashion.product_id %}">
+                <a href="{% url 'product:show_product' men_fashion.product_id %}" target="_blank">
                   <div class="product_div">
                     <div class="product_img">
                       {% if men_fashion.product_image == "" %}
