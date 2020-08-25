@@ -20,8 +20,10 @@ class Bach(models.Model):
     added_by = models.ForeignKey(zaptayAdmin, on_delete=models.CASCADE)
     modify_date = models.DateTimeField(auto_now=True)
     create_date = models.DateTimeField(auto_now_add=True)
+    '''
     modify_date.editable=True
     create_date.editable=True
+    '''
 
     class Meta:
         db_table = "bach"
