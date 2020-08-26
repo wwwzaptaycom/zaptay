@@ -119,9 +119,11 @@
           <div class="col-md-12">
             <div class="menu_item">
               <span class="item_category">
-                <a href="{% url 'category:category-men' %}">Men</a>
+                <a href="{% url 'category:category_name' 'men' %}">Men</a>
               </span>
-              <span class="item_category">WoMen</span>
+              <span class="item_category">
+                <a href="{% url 'category:category_name' 'women' %}">WoMen</a>
+              </span>
               <span class="item_category">Baby&kids</span>
               <span class="item_category">Electronics</span>
               <span class="item_category">Mobile</span>

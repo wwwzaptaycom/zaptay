@@ -1,7 +1,14 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import View, TemplateView, FormView
+
+from django.db.models import Subquery, Q
+
 from .models import MainCategory
+from banner.models import Banner
+from attribute.models import SubCategory, TertiaryCategory
+from product.models import Product, ProductImage
+from stock.models import Bach
 
 # Admin part
 from admin_login.models import zaptayAdmin
@@ -12,6 +19,16 @@ from . category_forms import AddMainCategoryForm, AddSubCategoryForm
 
 class CategoryViews(TemplateView):
     template_name = 'category.html'
+
+    def get_context_data(self, **kwargs):
+        context = dict()
+        category_name = self.kwargs.get('category')
+        terti_category_details = TertiaryCategory.objects.filter(sub_category_id__in=Subquery(
+                            SubCategory.objects.filter(sub_category_name=category_name).values('sub_category_id')))
+        # print (terti_category_details)
+        context = {"tertiary_category":terti_category_details,
+                    "category_name": category_name}
+        return context
 
 class ProductViews(TemplateView):
     template_name = 'product.html'

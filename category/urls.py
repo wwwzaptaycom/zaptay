@@ -6,7 +6,7 @@ from category import views
 app_name = 'category'
 
 urlpatterns = [
-    path('men/', views.CategoryViews.as_view(), name="category-men"),
+    path('<slug:category>/', views.CategoryViews.as_view(), name="category_name"),
     # path('men/<slug:product_slug>/', views.ProductViews.as_view(), name="category-men"),
 
 

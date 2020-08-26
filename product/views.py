@@ -41,7 +41,6 @@ class ProductViewsDetails(TemplateView):
                 product_image_dict['path'] = p_image.product_image
                 product_image_dict['title'] = p_image.prod_image_title
                 product_show_image_list.append(product_image_dict)
-        # print (product_show_image_list)
         product_stock_price = Bach.objects.filter(product_id=product_list[0].id)
         if product_stock_price:
             product_price_dic_percent = int(100-((float(product_stock_price[0].offer_price)/float(product_stock_price[0].main_price))*100))
@@ -61,12 +60,12 @@ class ProductViewsDetails(TemplateView):
                 related_product_dict['product_image']=product_image_list.product_image
                 related_product_dict['product_image_title']=product_image_list.prod_image_title
 
-                product_stock_price = Bach.objects.filter(product_id=related_prod.id)
-                if product_stock_price:
-                    related_product_dict['save_percent'] = int(100-((float(product_stock_price[0].offer_price)/float(product_stock_price[0].main_price))*100))
-                    related_product_dict['save_amount'] = int(float(product_stock_price[0].main_price)-float(product_stock_price[0].offer_price))
-                    related_product_dict['main_price'] = float(product_stock_price[0].main_price)
-                    related_product_dict['offer_price'] = float(product_stock_price[0].offer_price)
+                related_product_stock_price = Bach.objects.filter(product_id=related_prod.id)
+                if related_product_stock_price:
+                    related_product_dict['save_percent'] = int(100-((float(related_product_stock_price[0].offer_price)/float(related_product_stock_price[0].main_price))*100))
+                    related_product_dict['save_amount'] = int(float(related_product_stock_price[0].main_price)-float(related_product_stock_price[0].offer_price))
+                    related_product_dict['main_price'] = related_product_stock_price[0].main_price
+                    related_product_dict['offer_price'] = related_product_stock_price[0].offer_price
                 else:
                     related_product_dict['save_percent']=""
                     related_product_dict['save_amount']=""
