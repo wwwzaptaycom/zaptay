@@ -23,11 +23,44 @@ class CategoryViews(TemplateView):
     def get_context_data(self, **kwargs):
         context = dict()
         category_name = self.kwargs.get('category')
-        terti_category_details = TertiaryCategory.objects.filter(sub_category_id__in=Subquery(
-                            SubCategory.objects.filter(sub_category_name=category_name).values('sub_category_id')))
-        # print (terti_category_details)
-        context = {"tertiary_category":terti_category_details,
-                    "category_name": category_name}
+        tertiarycategory_name = self.kwargs.get('tertiarycategory')
+        # print (tertiarycategory_name)
+        print (category_name)
+
+        # Get banner
+        if category_name == "men":
+            banner_category = "men_banner"
+        elif category_name == "women":
+            banner_category = "women_banner"
+
+        category_banner = Banner.objects.filter(banner_name=banner_category).values('id', 'banner_image', 'banner_link')
+
+        if tertiarycategory_name == None:
+            terti_category_details = TertiaryCategory.objects.filter(sub_category_id__in=Subquery(
+                                SubCategory.objects.filter(sub_category_name=category_name).values('sub_category_id')))
+            # print (terti_category_details)
+            context = {"tertiary_category":terti_category_details,
+                        "category_name": category_name,
+                        "banner":category_banner}
+        else:
+            tertiary_category_list = list()
+            terti_category_details = TertiaryCategory.objects.filter(ter_category_name=tertiarycategory_name).first()
+            terti_category_details_all = TertiaryCategory.objects.filter(sub_category_id__in=Subquery(
+                                SubCategory.objects.filter(sub_category_name=category_name).values('sub_category_id'))).exclude(ter_category_id= terti_category_details.ter_category_id)
+            # print (terti_category_details)
+            # print (terti_category_details1)
+            tertiary_category_list.append({'ter_category_id': terti_category_details.ter_category_id, 'ter_category_name': terti_category_details.ter_category_name})
+            for tertiary_category in terti_category_details_all:
+                tertiary_category_dict = dict()
+                tertiary_category_dict['ter_category_id'] = tertiary_category.ter_category_id
+                tertiary_category_dict['ter_category_name'] = tertiary_category.ter_category_name
+
+                tertiary_category_list.append(tertiary_category_dict)
+
+            # print (tertiary_category_list)
+            context = {"tertiary_category":tertiary_category_list,
+                        "category_name": category_name,
+                        "banner":category_banner}
         return context
 
 class ProductViews(TemplateView):
@@ -47,6 +80,51 @@ class ProductViews(TemplateView):
         print (kwargs)
         return render(request, self.template_name)
 
+# Get Ajax data
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
+from django.http import JsonResponse
+
+@csrf_exempt
+def ProductFetch(request):
+    tertiary_id = request.GET.get('tertiary_id')
+    tertiary_name = request.GET.get('tertiary_name')
+
+    # Fetch product by tertiary category
+    product_list = list()
+    product_list_db = Product.objects.filter(prod_tertiary_category=tertiary_id)
+    for product in product_list_db:
+        product_dict = dict()
+        product_dict['id'] = product.prod_custom_id
+        product_dict['name'] = product.prod_title
+        product_image_db = ProductImage.objects.filter(product_id=product, home_image=True)
+        if product_image_db:
+            product_dict['image_path'] = str(product_image_db[0].product_image)
+            product_dict['image_title'] = str(product_image_db[0].prod_image_title)
+        else:
+            product_dict['image_path'] = ''
+            product_dict['image_title'] = product.prod_title
+        # print (product_image_db)
+        product_price_list_db = Bach.objects.filter(product_id=product)
+        if product_price_list_db:
+            product_dict['product_main_price'] = product_price_list_db[0].main_price
+            product_dict['product_offer_price'] = product_price_list_db[0].offer_price
+            product_dict['product_price_save'] = int(float(product_price_list_db[0].main_price)-float(product_price_list_db[0].offer_price))
+            product_dict['product_price_off_percent'] = int(100-((float(product_price_list_db[0].offer_price)/float(product_price_list_db[0].main_price))*100))
+        else:
+            product_dict['product_main_price'] = ''
+            product_dict['product_offer_price'] = ''
+            product_dict['product_price_save'] = ''
+            product_dict['product_price_off_percent'] = ''
+
+        product_list.append(product_dict)
+    # print (product_list)
+
+    data = {
+        'status': 'success',
+        'resp': product_list
+    }
+    return JsonResponse(data)
 
 # Admin part -----------------------------------------------------------------------------------------------------------------------
 

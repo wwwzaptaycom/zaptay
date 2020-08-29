@@ -440,16 +440,18 @@
             {% if exclusive_category %}
               {% for execlusive in exclusive_category %}
                 <div class="col-md-2 optimize_padding">
-                  <div class="image">
-                    {% if execlusive.image == ""  %}
-                      <img src="{% static 'site_image/female.jpg' %}" alt="">
-                    {% else %}
-                      <img src="/media/{{ execlusive.image }}" alt="{{ execlusive.image_title }}">
-                    {% endif %}
-                  </div>
-                  <div class="category_name">
-                    {{execlusive.category_name}}
-                  </div>
+                  <a href="{% url 'category:category_name' execlusive.category_seo_name %}">
+                    <div class="image">
+                      {% if execlusive.image == ""  %}
+                        <img src="{% static 'site_image/female.jpg' %}" alt="">
+                      {% else %}
+                        <img src="/media/{{ execlusive.image }}" alt="{{ execlusive.image_title }}">
+                      {% endif %}
+                    </div>
+                    <div class="category_name">
+                      {{execlusive.category_name}}
+                    </div>
+                  </a>
                 </div>
               {% endfor %}
             {% endif %}
@@ -668,12 +670,14 @@
                   {% if men_fashion %}
                     {% for men_ter_category in men_fashion %}
                       <div class="col-md-4 feature_cat_pading_man">
-                        {% if men_ter_category.ter_image == "" %}
-                          <img src="{% static '/site_image/male.jpg' %}" alt="{{ men_ter_category.ter_category_name }}">
-                        {% else %}
-                          <img src="/media/{{ men_ter_category.ter_image }}" alt="{{ men_ter_category.ter_category_name }}">
-                        {% endif %}
-                        <div class="product_category">{{ men_ter_category.ter_category_name }}</div>
+                        <a href="{% url 'category:tertiarycategory_name' 'men' men_ter_category.ter_category_name %}" target="_blank">
+                          {% if men_ter_category.ter_image == "" %}
+                            <img src="{% static '/site_image/male.jpg' %}" alt="{{ men_ter_category.ter_category_name }}">
+                          {% else %}
+                            <img src="/media/{{ men_ter_category.ter_image }}" alt="{{ men_ter_category.ter_category_name }}">
+                          {% endif %}
+                          <div class="product_category">{{ men_ter_category.ter_category_name }}</div>
+                        </a>
                       </div>
                     {% endfor %}
                   {% endif %}
@@ -692,12 +696,14 @@
                   {% if women_fashion %}
                     {% for women_ter_category in women_fashion %}
                       <div class="col-md-4 feature_cat_pading_man">
-                        {% if women_ter_category.ter_image == "" %}
-                          <img src="{% static '/site_image/male.jpg' %}" alt="{{ women_ter_category.ter_category_name }}">
-                        {% else %}
-                          <img src="/media/{{ women_ter_category.ter_image }}" alt="{{ women_ter_category.ter_category_name }}">
-                        {% endif %}
-                        <div class="product_category">{{ women_ter_category.ter_category_name }}</div>
+                        <a href="{% url 'category:tertiarycategory_name' 'women' women_ter_category.ter_category_name %}" target="_blank">
+                          {% if women_ter_category.ter_image == "" %}
+                            <img src="{% static '/site_image/male.jpg' %}" alt="{{ women_ter_category.ter_category_name }}">
+                          {% else %}
+                            <img src="/media/{{ women_ter_category.ter_image }}" alt="{{ women_ter_category.ter_category_name }}">
+                          {% endif %}
+                          <div class="product_category">{{ women_ter_category.ter_category_name }}</div>
+                        </a>
                       </div>
                     {% endfor %}
                   {% endif %}

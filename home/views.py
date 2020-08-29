@@ -38,6 +38,7 @@ class HomeView(TemplateView):
             exclusive_image = dict()
             # print (exclusive.sub_category_name)
             exclusive_image['category_id'] = exclusive.sub_category_id
+            exclusive_image['category_seo_name'] = exclusive.sub_category_name
             exclusive_image['category_name'] = exclusive.sub_category_name.replace("_", " ")
             product = Product.objects.all().filter(prod_sub_category=exclusive.sub_category_id).order_by('-id')[:1]
             if product:
