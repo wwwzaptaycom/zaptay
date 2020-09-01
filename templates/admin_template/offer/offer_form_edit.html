@@ -1,0 +1,266 @@
+{% extends 'admin_template/base_template.html' %}
+{% load static %}
+
+{% block title %}Offer{% endblock %}
+
+{% block custom_css %}
+  <style>
+    .errorlist
+    {
+      color: red;
+      margin-bottom: 0px;
+    }
+
+    .mentetory
+    {
+      position: relative;
+    }
+
+    .mentetory::after
+    {
+      content: '*';
+      position: absolute;
+      right: -11px;
+      font-weight: 800;
+      color: red;
+      top: 0px;
+    }
+
+    .show_product_list
+    {
+      width: 100%;
+      display: flex;
+      margin-bottom: 10px;
+    }
+  </style>
+{% endblock %}
+
+{% block page_body %}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Offer Details</h1>
+</div>
+
+<div class="row">
+
+  <div class="col-lg-12">
+
+    <!-- Basic Card Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Offer Create <!--<a href="javascript:void(0);" class="btn btn-info btn-md clear_form"><i class="fas fa-store"></i> Clear form</a>--></h6>
+      </div>
+      <div class="card-body">
+        <form method="POST">
+          <span id="show_error" class="errorlist"></span>
+          {% if form.errors %}
+            {% for i in form %}
+              <span>{{ i.errors }}</span>
+            {% endfor %}
+            <br />
+          {% endif %}
+          <!-- <div class="form-row">
+            <div class="form-group col-md-12">
+              <input class="form-control" id="listSearch" type="text" placeholder="Search your product">
+              <ul class="list-group" id="myList" style="display: none;">
+                <li class="list-group-item"><a href="">First item</a></li>
+                <li class="list-group-item">Second item</li>
+              </ul>
+            </div>
+          </div> -->
+          <div class="form-group">
+            <label for="offer_title" class="mentetory">Offer Title</label>
+            <input type="text" class="form-control" id="offer_title" name="offer_title" value="{{ offer_details.offer_title }}" placeholder="Title of the product">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="start_time" class="mentetory">Offer Start Date And Time</label>
+              <input type="datetime-local" name="start_date_time" id="start_time" value="{{ start_time }}" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="end_time" class="mentetory">Offer End Date And Time</label>
+              <input type="datetime-local" name="end_date_time" id="end_time" value="{{ end_time }}" class="form-control">
+            </div>
+          </div>
+          <!-- <div class="form-row">
+            <div class="form-group col-md-6">
+              <div class="accordion" id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Collapsible Group Item #1
+                      </button>
+                    </h2>
+                  </div>
+
+                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">asdas
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Collapsible Group Item #2
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                      asd
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <!-- <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="descrip">Offer Products</label>
+              <input type="text" name="" class="form-control" value="" placeholder="Search product by Id">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="descrip">Offer Products</label>
+              <input type="text" name="" class="form-control" value="" placeholder="Search product by Name">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="descrip">Offer Products</label>
+              <input type="text" name="" class="form-control" value="" placeholder="Search product by Id">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="descrip">Offer Products</label>
+              <input type="text" name="" class="form-control" value="" placeholder="Search product by Name">
+            </div>
+          </div> -->
+          <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg">Add New Product</button>
+          <br /><br />
+
+          <div class="form-group">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Product ID</th>
+                  <th scope="col">Product Name</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="show_product">
+                <!-- <tr>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>
+                    <button type="button" class="close" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </td>
+                </tr> -->
+              </tbody>
+            </table>
+          </div>
+          <br />
+
+          {% csrf_token %}
+          <button type="submit" class="btn btn-success btn-lg" style="width: 180px"  onclick="return CheckField();">Edit</button>
+
+        </form>
+      </div>
+    </div>
+
+  <!-- Modal -->
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">New Product ({{ offer_details.offer_custom_id }})</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- <div class="form-group">
+              <label for="offer_title" class="mentetory">Offer Title</label>
+              <input type="text" class="form-control" id="offer_title" name="offer_title" placeholder="Title of the product">
+            </div> -->
+            <input type="hidden" name="offer_id" id="offer_id" value="{{ offer_details.offer_custom_id }}">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="start_time">Product Search By Id</label>
+                <input type="text" name="search_by_id" id="search_by_id" class="form-control">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="end_time">Product Search By Name</label>
+                <input type="text" name="search_by_name" id="search_by_name" class="form-control">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <div class="row result_data">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="start_time">Product Id</label>
+                  <input type="text" name="search_by_id" id="show__id" class="form-control" readonly="readonly">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="end_time">Product Title</label>
+                  <input type="text" name="search_by_name" id="show_name" class="form-control" readonly="readonly">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="end_time">Extra Offer Price</label>
+                  <input type="text" name="extraPrice" id="extraPrice" class="form-control">
+                </div>
+              </div>
+            </div>
+            <!-- <div class="form-group">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Batch ID</th>
+                    <th scope="col">Remainig Stock</th>
+                    <th scope="col">Entry Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td scope="row">
+                      <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1"></label>
+                      </div>
+                    </td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div> -->
+            <div class="form-group">
+              <button type="button" class="btn btn-success btn-sm" onclick="return add_product();">Add This Product</button>
+              <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal" aria-label="Close">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- Modal end -->
+
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block custom_js %}
+  <script src="{% static 'admin_static/js/custom_js/offer.js' %}"></script>
+{% endblock %}

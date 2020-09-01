@@ -226,7 +226,7 @@
                 <ol>
                   {% if ter_category_list %}
                     {%for i in ter_category_list %}
-                      <li>{{i.ter_category_name}} &nbsp;&nbsp; <a href="" class="delete_assets" onclick="return delete_attributes('tertiary_category', '{{ i.ter_category_name }}', {{ i.ter_category_id }});"><i class="fas fa-times"></i></a></li>
+                      <li>{{ i.sub_category_id.sub_category_name }} --> <a href="javascript:void(0);" onclick="show_image_modal('tertiary_category', '{{ i.ter_category_id }}');">{{i.ter_category_name}}</a> &nbsp;&nbsp; <a href="" class="delete_assets" onclick="return delete_attributes('tertiary_category', '{{ i.ter_category_name }}', {{ i.ter_category_id }});"><i class="fas fa-times"></i></a></li>
                     {% endfor %}
                   {% endif %}
                 </ol>

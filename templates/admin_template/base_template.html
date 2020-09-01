@@ -101,6 +101,12 @@
           <span>Attribute</span></a>
       </li>
 
+      <li class="nav-item {% if page_name != "" and  page_name == 'offer' %} active {% endif %}">
+        <a class="nav-link" href="{% url 'admin_login:offer:offer_list' %}">
+          <i class="fas fa-gifts"></i>
+          <span>Offer</span></a>
+      </li>
+
       <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#item_collapse" aria-expanded="true" aria-controls="item_collapse">
           <i class="fas fa-luggage-cart"></i>

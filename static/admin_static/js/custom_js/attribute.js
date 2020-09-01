@@ -93,7 +93,8 @@ function show_image_modal(category_type, category_id){
     url: "/site-admin/attribute/get-subcategory-details",
     method: "GET",
     data: {
-      "sub_category_id": category_id
+      "sub_category_id": category_id,
+      "category_type": category_type
     },
     success: function(e){
       // console.log(e);
@@ -148,6 +149,7 @@ $(".submit").on('click', function(){
   form.append('csrfmiddlewaretoken',token);
   form.append('sub_category_id',$(".sub_category_id").val());
   form.append('sub_category_name',$(".category_name").val());
+  form.append('sub_category_type',$("#exampleModalLongTitle").text());
 
   /*for (var key of form.entries()) {
     console.log(key);

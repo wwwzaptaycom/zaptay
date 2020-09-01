@@ -1,0 +1,147 @@
+{% extends 'admin_template/base_template.html' %}
+{% load static %}
+
+{% block title %}Offer{% endblock %}
+
+{% block custom_css %}
+  <style>
+    .errorlist
+    {
+      color: red;
+      margin-bottom: 0px;
+    }
+
+    .mentetory
+    {
+      position: relative;
+    }
+
+    .mentetory::after
+    {
+      content: '*';
+      position: absolute;
+      right: -11px;
+      font-weight: 800;
+      color: red;
+      top: 0px;
+    }
+  </style>
+{% endblock %}
+
+{% block page_body %}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Offer Details</h1>
+</div>
+
+<div class="row">
+
+  <div class="col-lg-12">
+
+    <!-- Basic Card Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Offer Create <!--<a href="javascript:void(0);" class="btn btn-info btn-md clear_form"><i class="fas fa-store"></i> Clear form</a>--></h6>
+      </div>
+      <div class="card-body">
+        <form method="POST" enctype="multipart/form-data">
+          <span id="show_error" class="errorlist"></span>
+          {% if form.errors %}
+            {% for i in form %}
+              <span>{{ i.errors }}</span>
+            {% endfor %}
+            <br />
+          {% endif %}
+          <!-- <div class="form-row">
+            <div class="form-group col-md-12">
+              <input class="form-control" id="listSearch" type="text" placeholder="Search your product">
+              <ul class="list-group" id="myList" style="display: none;">
+                <li class="list-group-item"><a href="">First item</a></li>
+                <li class="list-group-item">Second item</li>
+              </ul>
+            </div>
+          </div> -->
+          <div class="form-group">
+            <label for="offer_title" class="mentetory">Offer Title</label>
+            <input type="text" class="form-control" id="offer_title" name="offer_title" placeholder="Title of the product">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="start_time" class="mentetory">Offer Start Date And Time</label>
+              <input type="datetime-local" name="start_date_time" id="start_time" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="end_time" class="mentetory">Offer End Date And Time</label>
+              <input type="datetime-local" name="end_date_time" id="end_time" class="form-control">
+            </div>
+          </div>
+          <!-- <div class="form-row">
+            <div class="form-group col-md-6">
+              <div class="accordion" id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Collapsible Group Item #1
+                      </button>
+                    </h2>
+                  </div>
+
+                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">asdas
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Collapsible Group Item #2
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                      asd
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <!-- <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="descrip">Offer Products</label>
+              <input type="text" name="" class="form-control" value="" placeholder="Search product by Id">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="descrip">Offer Products</label>
+              <input type="text" name="" class="form-control" value="" placeholder="Search product by Name">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="descrip">Offer Products</label>
+              <input type="text" name="" class="form-control" value="" placeholder="Search product by Id">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="descrip">Offer Products</label>
+              <input type="text" name="" class="form-control" value="" placeholder="Search product by Name">
+            </div>
+          </div> -->
+          {% csrf_token %}
+          <button type="submit" class="btn btn-success btn-lg" style="width: 180px"  onclick="return CheckField();">Submit</button>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block custom_js %}
+  <script src="{% static 'admin_static/js/custom_js/offer.js' %}"></script>
+{% endblock %}

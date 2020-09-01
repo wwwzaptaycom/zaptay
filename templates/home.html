@@ -442,10 +442,10 @@
                 <div class="col-md-2 optimize_padding">
                   <a href="{% url 'category:category_name' execlusive.category_seo_name %}">
                     <div class="image">
-                      {% if execlusive.image == ""  %}
+                      {% if execlusive.category_image == ""  %}
                         <img src="{% static 'site_image/female.jpg' %}" alt="">
                       {% else %}
-                        <img src="/media/{{ execlusive.image }}" alt="{{ execlusive.image_title }}">
+                        <img src="/media/{{ execlusive.category_image }}" alt="{{ execlusive.image_title }}">
                       {% endif %}
                     </div>
                     <div class="category_name">

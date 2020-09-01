@@ -38,22 +38,9 @@ class HomeView(TemplateView):
             exclusive_image = dict()
             # print (exclusive.sub_category_name)
             exclusive_image['category_id'] = exclusive.sub_category_id
-            exclusive_image['category_seo_name'] = exclusive.sub_category_name
+            exclusive_image['category_seo_name'] = exclusive.sub_category_name.replace(" ", "_")
             exclusive_image['category_name'] = exclusive.sub_category_name.replace("_", " ")
-            product = Product.objects.all().filter(prod_sub_category=exclusive.sub_category_id).order_by('-id')[:1]
-            if product:
-                for product_id in product:
-                    product_image = ProductImage.objects.filter(product_id=product_id.id, home_image=True).values('product_image', 'prod_image_title')
-                    if product_image:
-                        exclusive_image['image'] = product_image[0]['product_image']
-                        exclusive_image['image_title'] = product_image[0]['prod_image_title']
-                    else:
-                        exclusive_image['image'] = ""
-                        exclusive_image['image_title'] = ""
-            else:
-                exclusive_image['image'] = ""
-                exclusive_image['image_title'] = ""
-
+            exclusive_image['category_image'] = exclusive.sub_category_image
             exclusivefashion.append(exclusive_image)
 
         #Weekly Deals & Offer

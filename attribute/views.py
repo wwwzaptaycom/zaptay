@@ -396,6 +396,7 @@ def GetAllMadeIn(request):
         return JsonResponse(resp)
 
 def GetSubCategoryDetails(request):
+    category_type = request.GET['category_type']
     sub_category = request.GET['sub_category_id']
 
     category_dict = dict()
@@ -404,14 +405,22 @@ def GetSubCategoryDetails(request):
     # category_list = MainCategory.objects.filter(category_id__in=Subquery(SubCategory.objects.all().filter(sub_category_id=sub_category_id).values('category_id')))
     # print (category_list[0].main_category_name)
 
-
-    category_list = SubCategory.objects.all().filter(sub_category_id=sub_category).values('sub_category_id', 'sub_category_name', 'sub_category_image')
-    for i in category_list:
-        # category_arr.append([i.sub_category_id , i.sub_category_name])
-        category_dict['sub_category_id'] = i['sub_category_id'];
-        category_dict['sub_category_name'] = i['sub_category_name'].replace("_", " ");
-        category_dict['sub_category_image'] = i['sub_category_image'];
-    category_dict['data'] = category_arr
+    if category_type != "tertiary_category":
+        category_list = SubCategory.objects.all().filter(sub_category_id=sub_category).values('sub_category_id', 'sub_category_name', 'sub_category_image')
+        for i in category_list:
+            # category_arr.append([i.sub_category_id , i.sub_category_name])
+            category_dict['sub_category_id'] = i['sub_category_id'];
+            category_dict['sub_category_name'] = i['sub_category_name'].replace("_", " ");
+            category_dict['sub_category_image'] = i['sub_category_image'];
+        category_dict['data'] = category_arr
+    else:
+        category_list = TertiaryCategory.objects.all().filter(ter_category_id=sub_category).values('ter_category_id', 'ter_category_name', 'tertiary_category_image')
+        for i in category_list:
+            # category_arr.append([i.sub_category_id , i.sub_category_name])
+            category_dict['sub_category_id'] = i['ter_category_id'];
+            category_dict['sub_category_name'] = i['ter_category_name'].replace("_", " ");
+            category_dict['sub_category_image'] = i['tertiary_category_image'];
+        category_dict['data'] = category_arr
 
     resp = {
         "response": 'Failed'
@@ -431,24 +440,40 @@ def AjaxImageUpload(request):
         sub_category_id = request.POST['sub_category_id']
         sub_category_name = request.POST['sub_category_name']
         sub_category_image = request.FILES['sub_category_image']
+        sub_category_type = request.POST['sub_category_type']
         # print (sub_category_id,sub_category_name,sub_category_image.name)
+        if sub_category_type == "tertiary_category":
+            fs = FileSystemStorage()
+            image_title = sub_category_name+"."+sub_category_image.name.split('.')[-1]
+            image_title = image_title.replace(" ", "")
+            upload_image = fs.save("tertiary_category/images/"+image_title, sub_category_image)
+            img_url = fs.url(upload_image)
+            mod_image_name = img_url.split("/")[-1]
+            image_path = 'tertiary_category/images/'+mod_image_name
+            # print (image_path)
 
-        fs = FileSystemStorage()
-        image_title = sub_category_name+"."+sub_category_image.name.split('.')[-1]
-        image_title = image_title.replace(" ", "")
-        upload_image = fs.save("sub_category/images/"+image_title, sub_category_image)
-        img_url = fs.url(upload_image)
-        mod_image_name = img_url.split("/")[-1]
-        image_path = 'sub_category/images/'+mod_image_name
-        # print (image_path)
-
-        sub_category_details = SubCategory.objects.filter(sub_category_id=sub_category_id)
-        if sub_category_details[0].sub_category_image != "":
-            os.remove('media/'+str(sub_category_details[0].sub_category_image))
-            sub_category_details.update(sub_category_image = image_path)
+            sub_category_details = TertiaryCategory.objects.filter(ter_category_id=sub_category_id)
+            if sub_category_details[0].tertiary_category_image != "":
+                os.remove('media/'+str(sub_category_details[0].tertiary_category_image))
+                sub_category_details.update(tertiary_category_image = image_path)
+            else:
+                sub_category_details.update(tertiary_category_image = image_path)
         else:
-            sub_category_details.update(sub_category_image = image_path)
+            fs = FileSystemStorage()
+            image_title = sub_category_name+"."+sub_category_image.name.split('.')[-1]
+            image_title = image_title.replace(" ", "")
+            upload_image = fs.save("sub_category/images/"+image_title, sub_category_image)
+            img_url = fs.url(upload_image)
+            mod_image_name = img_url.split("/")[-1]
+            image_path = 'sub_category/images/'+mod_image_name
+            # print (image_path)
 
+            sub_category_details = SubCategory.objects.filter(sub_category_id=sub_category_id)
+            if sub_category_details[0].sub_category_image != "":
+                os.remove('media/'+str(sub_category_details[0].sub_category_image))
+                sub_category_details.update(sub_category_image = image_path)
+            else:
+                sub_category_details.update(sub_category_image = image_path)
         resp = {
             "response": 'success'
         }

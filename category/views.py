@@ -22,18 +22,22 @@ class CategoryViews(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = dict()
-        category_name = self.kwargs.get('category')
+        category_name = self.kwargs.get('category').replace("_", " ")
         tertiarycategory_name = self.kwargs.get('tertiarycategory')
         # print (tertiarycategory_name)
-        print (category_name)
+        # print (category_name)
 
         # Get banner
+        banner_category = ""
         if category_name == "men":
             banner_category = "men_banner"
         elif category_name == "women":
             banner_category = "women_banner"
 
-        category_banner = Banner.objects.filter(banner_name=banner_category).values('id', 'banner_image', 'banner_link')
+        if banner_category != '':
+            category_banner = Banner.objects.filter(banner_name=banner_category).values('id', 'banner_image', 'banner_link')
+        else:
+            category_banner = ""
 
         if tertiarycategory_name == None:
             terti_category_details = TertiaryCategory.objects.filter(sub_category_id__in=Subquery(
