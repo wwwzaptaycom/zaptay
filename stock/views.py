@@ -6,7 +6,7 @@ from django.contrib import messages
 from .stock_form import StockEntryForm
 from django.db.models import Q
 from product.models import Product, ProductImage
-from .models import Bach
+from .models import Bach, Inventory
 
 # Admin part
 from admin_login.models import zaptayAdmin
@@ -70,6 +70,14 @@ class StockAddForm(FormView):
 
             bach_entry = Bach(product_id=product_id_db, stock=stock, main_price=main_price, offer_price=offer_price, purchase_price=purchase, added_by=admin_id)
             bach_entry.save()
+
+            # *******************************************************************************
+            # Inventory Update
+            # *******************************************************************************
+            # print (bach_entry.id, bach_entry.bach_id)
+            store_inventory = Inventory(bach_id=bach_entry, product_id=product_id_db, qty=stock, remaining_stock=stock, inventory_status="stock_in", added_by=admin_id)
+            store_inventory.save()
+
             messages.success(request, "Stock add successful")
             return self.form_valid(form)
         else:

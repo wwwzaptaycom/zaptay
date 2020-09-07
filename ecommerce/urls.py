@@ -28,6 +28,7 @@ urlpatterns = [
     path('', views.HomeView.as_view(), name="homepage"),
     path('category/', include('category.urls')),
     path('product/', include('product.urls')),
+    path('user/', include('user_login.urls')),
 
     path('site-admin/', include('admin_login.urls')),
 ]

@@ -9,6 +9,7 @@ from banner.models import Banner
 from attribute.models import SubCategory, TertiaryCategory
 from product.models import Product, ProductImage
 from stock.models import Bach
+from user_login.models import UserAccount
 
 # Admin part
 from admin_login.models import zaptayAdmin
@@ -62,9 +63,22 @@ class CategoryViews(TemplateView):
                 tertiary_category_list.append(tertiary_category_dict)
 
             # print (tertiary_category_list)
+
+            # Check user login
+            user_detail = list()
+            if self.request.COOKIES.get('user_id'):
+                user_details_dict = dict()
+                get_user_detail = UserAccount.objects.filter(user_custom_id=self.request.COOKIES.get('user_id'))
+                user_details_dict = dict()
+                user_details_dict['name'] = get_user_detail[0].user_f_name.capitalize()+" "+get_user_detail[0].user_l_name.capitalize()
+                user_detail.append(user_details_dict)
+                print (user_detail)
+
+
             context = {"tertiary_category":tertiary_category_list,
                         "category_name": category_name,
-                        "banner":category_banner}
+                        "banner":category_banner,
+                        'login_user': user_detail}
         return context
 
 class ProductViews(TemplateView):

@@ -53,37 +53,57 @@
           </div>
 
           <div class="col-md-2">
-            <span><i class="fa fa-user-circle-o" aria-hidden="true"></i>&nbsp;<a href="javascript:void(0);" class="login">Login</a> / <a href="javascript:void(0);" class="register">Registration</a></span>
+            {% if login_user %}
+              <span><i class="fa fa-user-circle-o" aria-hidden="true"></i>&nbsp;<a href="javascript:void(0);">{{ login_user.0.name }}</a></span>
+            {% else %}
+              <span><i class="fa fa-user-circle-o" aria-hidden="true"></i>&nbsp;<a href="javascript:void(0);" class="login">Login</a> / <a href="javascript:void(0);" class="register">Registration</a></span>
+            {% endif %}
           </div>
 
           <div class="col-md-1">
             <span class="cart">
-              <i class="fa fa-heart" aria-hidden="true"></i><sup class="cart_number">0</sup> <i class="fa fa-shopping-cart" aria-hidden="true"></i><sup class="cart_number">0</sup>
+              <i class="fa fa-heart" aria-hidden="true"></i><sup class="cart_number">{{ total_wish_list }}</sup> <i class="fa fa-shopping-cart" aria-hidden="true"></i><sup class="cart_number">{{ total_cart_list }}</sup>
               <!-- Drop down for cart Items -->
               <div class="dropdown-menu dropdown-menu-right cart-dropdown-menu">
-                <h5 class="dropdown-header">Cart Items <small>(0)</small></h5>
-                <a class="dropdown-item" href="#">
+                <h5 class="dropdown-header">Cart Items <small>({{ total_cart_list }})</small></h5>
+                {% if cart_product %}
+                  {% for cart_list in cart_product %}
+                    <a class="dropdown-item" href="#">
+                      <span><img src="{% static '/site_image/banner1.jpg' %}" alt="" class="cart_item_image"></span>
+                      <span>{{ cart_list.product_id.prod_title }}</span>
+                    </a>
+                  {% endfor %}
+                {% endif %}
+                <!-- <a class="dropdown-item" href="#">
                   <span><img src="{% static '/site_image/banner1.jpg' %}" alt="" class="cart_item_image"></span>
                   <span>Product Name</span>
                 </a>
                 <a class="dropdown-item" href="#">
                   <span><img src="{% static '/site_image/banner1.jpg' %}" alt="" class="cart_item_image"></span>
                   <span>Product Name</span>
-                </a>
+                </a> -->
                 <a class="dropdown-item" href="#">
                   <span>Show more</span>
                 </a>
 
                 <!-- Wish Listt Items -->
-                <h5 class="dropdown-header">Wish List Items <small>(0)</small></h5>
-                <a class="dropdown-item" href="#">
+                <h5 class="dropdown-header">Wish List Items <small>({{ total_wish_list }})</small></h5>
+                {% if wish_list_product %}
+                  {% for wish_list in wish_list_product %}
+                    <a class="dropdown-item" href="#">
+                      <span><img src="{% static '/site_image/banner1.jpg' %}" alt="" class="cart_item_image"></span>
+                      <span>{{ wish_list.product_id.prod_title }}</span>
+                    </a>
+                  {% endfor %}
+                {% endif %}
+                <!-- <a class="dropdown-item" href="#">
                   <span><img src="{% static '/site_image/banner1.jpg' %}" alt="" class="cart_item_image"></span>
                   <span>Product Name</span>
                 </a>
                 <a class="dropdown-item" href="#">
                   <span><img src="{% static '/site_image/banner1.jpg' %}" alt="" class="cart_item_image"></span>
                   <span>Product Name</span>
-                </a>
+                </a> -->
                 <a class="dropdown-item" href="#">
                   <span>Show more</span>
                 </a>
@@ -175,14 +195,14 @@
         </div>
         <div class="modal_body">
           <form method="POST">
-            <div class="error_message">
+            <div class="error_message login_error_message">
               <span><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
-              <span>Error Message</span>
+              <span class="login_message">Error Message</span>
             </div>
             <input type="email" name="email_id" class="input" placeholder="Email Id" />
             <input type="password" name="password" class="input" placeholder="Password" />
             <div class="forget_pwd">Forget password?</div>
-            <button><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Login</button>
+            <button onclick="return CheckLogin();"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Login</button>
           </form>
           <div class="social_login">
             <div class="social_icons">
@@ -211,19 +231,19 @@
           <form method="POST">
             <div class="error_message">
               <span><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
-              <span>Error Message</span>
+              <span class="e_message"></span>
             </div>
             <input type="text" name="f_name" class="input name" placeholder="First name" />
             <input type="text" name="l_name" class="input name" placeholder="Last name" />
             <div>
               <label>Gender</label>
-              <input type="radio" /> Male
-              <input type="radio" /> Female
+              <input type="radio" name="gender" value="male"/> Male
+              <input type="radio" name="gender" value="female" /> Female
             </div>
             <input type="email" name="email" class="input" placeholder="Email Id" />
             <input type="password" name="pwd" class="input" placeholder="Password" />
             <input type="password" name="c_pwd" class="input" placeholder="Confirm password" />
-            <button><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Register</button>
+            <button type="button" onclick="return CheckDetails();"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Register</button>
           </form>
         </div>
       </div>

@@ -8,6 +8,11 @@ from category.models import MainCategory
 from attribute.models import SubCategory, TertiaryCategory
 from product.models import Product, ProductImage
 from stock.models import Bach
+from offer.models import Offer, OfferProduct
+from user_login.models import UserAccount
+
+from django.utils import timezone
+from datetime import datetime
 
 # Create your views here.
 
@@ -171,6 +176,56 @@ class HomeView(TemplateView):
             men_fashion_dreals_list.append(men_fashion_dreals_dict)
         # print (men_fashion_dreals_list)
 
+        # Offer (weekly begininh of the home page)
+        offer_dic = dict()
+        get_all_offer = Offer.objects.filter(offer_start__lte=timezone.now(), offer_end__gte=timezone.now(), is_active=True).first()
+        # print (timezone.now())
+        offer_products = list()
+        if get_all_offer:
+            offer_end_time = get_all_offer.offer_end.strftime("%b %d, %Y %H:%M:%S")
+            offer_dic['title'] = get_all_offer.offer_title
+            offer_dic['time_left'] = offer_end_time
+            # print (get_all_offer.offer_custom_id, offer_end_time)
+
+            get_offer_product = OfferProduct.objects.filter(offer_id=get_all_offer)
+            # print (get_offer_product)
+            # offer_products = list()
+            if get_offer_product:
+                for offer_prod in get_offer_product:
+                    offer_product_dic = dict()
+                    offer_product_dic['product_title'] = offer_prod.product_id.prod_title
+                    offer_product_dic['product_custom_id'] = offer_prod.product_id.prod_custom_id
+                    offer_product_dic['product_extra_offer_price'] = offer_prod.extra_offer_price
+
+                    offer_product_image = ProductImage.objects.filter(product_id=offer_prod.product_id, home_image=True).first()
+                    if offer_product_image:
+                        offer_product_dic['product_image'] = offer_product_image.product_image
+                        offer_product_dic['product_image_title'] = offer_product_image.prod_image_title
+
+                    stock_price = Bach.objects.filter(product_id=offer_prod.product_id).first()
+                    if stock_price:
+                        offer_product_dic['product_main_price'] = stock_price.main_price
+                        offer_product_dic['product_offer_price'] = stock_price.offer_price
+                        offer_product_dic['product_save_price_percent'] = int(100-((float(offer_prod.extra_offer_price)/float(stock_price.main_price))*100))
+
+                    offer_products.append(offer_product_dic)
+        # print (offer_products)
+
+            # import datetime as dt
+            # a = dt.datetime(2017,9,4,11,34,00)
+            # b = dt.datetime(2017,9,5,11,34,00)
+            # print ((b-a).total_seconds()
+
+        # Check user login
+        user_detail = list()
+        if self.request.COOKIES.get('user_id'):
+            user_details_dict = dict()
+            get_user_detail = UserAccount.objects.filter(user_custom_id=self.request.COOKIES.get('user_id'))
+            user_details_dict = dict()
+            user_details_dict['name'] = get_user_detail[0].user_f_name.capitalize()+" "+get_user_detail[0].user_l_name.capitalize()
+            user_detail.append(user_details_dict)
+            # print (user_detail)
+
         context = {"page_name": "banner",
                     'mens_banner_image': get_mens_fashion,
                     'womens_banner_image': get_womens_fashion,
@@ -187,5 +242,8 @@ class HomeView(TemplateView):
                     # 'women_fashion_product': womenfashion,
                     'women_fashion': womenfashion_ter,
                     'electronic': electronic_list,
-                    'man_fashion_dreals': men_fashion_dreals_list}
+                    'man_fashion_dreals': men_fashion_dreals_list,
+                    'deals': offer_dic,
+                    'deals_product': offer_products,
+                    'login_user': user_detail}
         return context

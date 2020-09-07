@@ -480,8 +480,10 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <span class="w_d_o_span">Weekly Deals & Offers</span>
-        <span class="w_d_o_time">03:40 Left</span>
+        {% if deals %}
+          <span class="w_d_o_span">{{ deals.title }}</span>
+          <span class="w_d_o_time"><span class="time_left">{{ deals.time_left }}</span> Left</span>
+        {% endif %}
       </div>
     </div>
     <div class="gap"></div>
@@ -494,7 +496,7 @@
       <div class="col-md-12">
         <div class="w_d_offer_slider">
           <div class="row">
-            {% if weekly_dreals %}
+            {% comment %}{% if weekly_dreals %}
               {% for week_dreal in weekly_dreals %}
                 <div class="col-md-2">
                   <div class="offer_div">
@@ -525,7 +527,37 @@
                   </div>
                 </div>
               {% endfor %}
+            {% endif %}{% endcomment %}
+
+            {% if deals_product %}
+              {% for deal_pro in deals_product %}
+                <div class="col-md-2">
+                  <div class="offer_div">
+                    {% if deal_pro.product_image %}
+                      <img src="/media/{{ deal_pro.product_image }}" alt="{{ deal_pro.product_image_title }}">
+                    {% else %}
+                      <img src="{% static '/site_image/banner1.jpg' %}" alt="{{ deal_pro.product_title }}">
+                    {% endif %}
+                    <div class="product_details">
+                      <div class="product_name">{{ deal_pro.product_title }}</div>
+                      <div class="rating">
+                        <span class="point">3.5</span>
+                        <span class="view"><i class="fa fa-eye" aria-hidden="true"></i> 3K</span>
+                      </div>
+                      <div class="price">
+                          <span class="offer"><i class="fa fa-inr" aria-hidden="true"></i> {{ deal_pro.product_extra_offer_price }}</span>
+                          <span class="original"><i class="fa fa-inr" aria-hidden="true"></i> {{ deal_pro.product_main_price }}</span>
+                        <span class="discount">{{ deal_pro.product_save_price_percent }}% Dic.</span>
+                      </div>
+                    </div>
+                    <div class="focus_discount">
+                      <div class="focus_discount_text">{{ deal_pro.product_save_price_percent }}% off</div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
             {% endif %}
+
             <!-- <div class="col-md-2">
               <div class="offer_div">
                 <img src="{% static '/site_image/male.jpg' %}" alt="">
@@ -1982,7 +2014,7 @@
 
 {% block add_js %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script type="text/javascript" src="{% static 'js/home_page.js' %}"></script>
+
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>
   <!-- <script src="{% static 'js/libs/slick-master/slick/slick.js' %}"></script> -->
 
@@ -2001,7 +2033,7 @@
   </script>
 {% endblock %}
 
-
+<script type="text/javascript" src="{% static 'js/home_page.js' %}"></script>
 
 
 

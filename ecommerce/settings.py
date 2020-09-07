@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'banner',
     'stock',
     'offer',
+    'user_login',
 ]
 
 MIDDLEWARE = [

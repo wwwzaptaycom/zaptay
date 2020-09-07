@@ -12,6 +12,7 @@ from category.models import MainCategory
 from attribute.models import SubCategory, TertiaryCategory, Colour, Size, Source, SameDayDelivary, NextDayDelivary
 from seller.models import Seller
 from stock.models import Bach
+from user_login.models import UserAccount, UserWishList, UserCartList
 
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
@@ -74,12 +75,77 @@ class ProductViewsDetails(TemplateView):
 
                 related_product_list.append(related_product_dict)
 
+        # Check user login
+        user_detail = list()
+        wish_list_count = ""
+        get_wishlist_product = ""
+        if self.request.COOKIES.get('user_id'):
+            user_details_dict = dict()
+            get_user_detail = UserAccount.objects.filter(user_custom_id=self.request.COOKIES.get('user_id'))
+            user_details_dict['name'] = get_user_detail[0].user_f_name.capitalize()+" "+get_user_detail[0].user_l_name.capitalize()
+            user_detail.append(user_details_dict)
+
+            # Get wish list items
+            get_user_id = UserAccount.objects.filter(user_custom_id=self.request.COOKIES['user_id']).first()
+            wish_list_count = UserWishList.objects.filter(user_id=get_user_id).count()
+            get_wishlist_product = UserWishList.objects.filter(user_id=get_user_id)
+            # print (get_wishlist_product)
+            is_product_in_wishlist = UserWishList.objects.filter(user_id=get_user_id, product_id=product_list.first()).count()
+
+            # Get Cart List Item
+            cart_list_count = UserCartList.objects.filter(user_id=get_user_id).count()
+            get_cart_product = UserCartList.objects.filter(user_id=get_user_id)
+            is_product_in_cart = UserCartList.objects.filter(user_id=get_user_id, product_id=product_list.first()).count()
+
         context = {'product_all_desc': product_list.first(),
                     'product_image': product_show_image_list,
                     'product_stock_price': product_stock_price.first(),
                     'price_discount': product_price_dic_percent,
-                    'relted_product': related_product_list}
+                    'relted_product': related_product_list,
+                    'login_user': user_detail,
+                    'total_wish_list': wish_list_count,
+                    'wish_list_product': get_wishlist_product,
+                    'this_product': is_product_in_wishlist,
+
+                    'total_cart_list': cart_list_count,
+                    'cart_product': get_cart_product,
+                    'cart_this_product': is_product_in_cart}
         return context
+
+# *********************************************************************
+# Ajax hendel in client side
+
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
+from django.http import JsonResponse
+
+@csrf_exempt
+def AddWishlist(request):
+
+    get_user_id = UserAccount.objects.filter(user_custom_id=request.COOKIES['user_id']).first()
+    product_id = Product.objects.filter(prod_custom_id=request.POST['product_id']).first()
+
+    add_wish_list = UserWishList(user_id=get_user_id, product_id=product_id)
+    add_wish_list.save()
+
+    data = {
+        'status': 'success',
+    }
+    return JsonResponse(data)
+
+@csrf_exempt
+def AddCart(request):
+    get_user_id = UserAccount.objects.filter(user_custom_id=request.COOKIES['user_id']).first()
+    product_id = Product.objects.filter(prod_custom_id=request.POST['product_id']).first()
+
+    add_wish_list = UserCartList(user_id=get_user_id, product_id=product_id)
+    add_wish_list.save()
+
+    data = {
+        'status': 'success',
+    }
+    return JsonResponse(data)
+
 
 
 # ----------------------------------------------------------------------------------------------------------------------------------

@@ -405,9 +405,9 @@ body
 
 .my_reg_modal_div .name
 {
-  width: 49%;
+  width: 48%;
   float: left;
-  margin-right: 1px;
+  margin-right: 5px;
 }
 
 .forget_pwd
