@@ -49,6 +49,17 @@ class AttributeList(FormView):
         next_day_delivary_pin_list = NextDayDelivary.objects.all()
 
         # print (sub_category_list[0].category_id.main_category_name) # Worked
+        # Teritory category with sub category and category
+        ter_caregory_list_2 = list()
+        for category in category_list:
+            print (category.main_category_name)
+            get_sub_category = SubCategory.objects.filter(category_id=category)
+            for sub_category in get_sub_category:
+                print ("\t"+sub_category.sub_category_name)
+                get_tertiary_category = TertiaryCategory.objects.filter(sub_category_id=sub_category)
+                for tertiary_category in get_tertiary_category:
+                    print ("\t\t"+tertiary_category.ter_category_name)
+
 
         context = {
             "page_name": "attribute",
@@ -90,7 +101,7 @@ class AttributeList(FormView):
 
             if sub_category_from.is_valid():
                 main_category_id = request.POST['category_list']
-                sub_category_name = request.POST['sub_category_add_form'].lower()
+                sub_category_name = request.POST['sub_category_add_form']
 
                 admin_id = zaptayAdmin.objects.all().get(email_id=request.session.get('admin_email_id'))
                 get_category_id = MainCategory.objects.get(pk=main_category_id)
@@ -107,7 +118,7 @@ class AttributeList(FormView):
 
             if sub_category_from.is_valid():
                 sub_category_id = request.POST['sub_category_list']
-                tert_category_name = request.POST['tert_category_add_form'].lower()
+                tert_category_name = request.POST['tert_category_add_form']
 
                 admin_id = zaptayAdmin.objects.all().get(email_id=request.session.get('admin_email_id'))
                 get_sub_category = SubCategory.objects.get(pk=sub_category_id)

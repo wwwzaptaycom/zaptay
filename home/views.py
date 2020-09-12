@@ -7,7 +7,7 @@ from banner.models import Banner
 from category.models import MainCategory
 from attribute.models import SubCategory, TertiaryCategory
 from product.models import Product, ProductImage
-from stock.models import Bach
+from stock.models import Bach, Inventory
 from offer.models import Offer, OfferProduct
 from user_login.models import UserAccount
 
@@ -31,6 +31,10 @@ class HomeView(TemplateView):
 
         banner_1 = Banner.objects.filter(banner_name='advatice_1').order_by('-id')[0:3]
         banner_2 = Banner.objects.filter(banner_name='advatice_2').order_by('-id')[0:2]
+        banner_3 = Banner.objects.filter(banner_name='advatice_3').order_by('-id')[0:1]
+        banner_4 = Banner.objects.filter(banner_name='advatice_4').order_by('-id')[0:2]
+        banner_5 = Banner.objects.filter(banner_name='advatice_5').order_by('-id')[0:2]
+        banner_6 = Banner.objects.filter(banner_name='advatice_6').order_by('-id')[0:1]
 
         # ********************************************************************************************************
         # *************************************    Product fetching    *******************************************
@@ -226,6 +230,97 @@ class HomeView(TemplateView):
             user_detail.append(user_details_dict)
             # print (user_detail)
 
+        # Women Fashion Deals
+        get_women_deals = list()
+        get_women_fashion_items = Product.objects.filter(prod_sub_category__in=Subquery(SubCategory.objects.filter(sub_category_name__contains='women').values('sub_category_id'))).order_by('-id')
+        # print (get_women_fashion_items)
+        for women_fashion in get_women_fashion_items:
+            get_women_deals_dic = dict()
+            get_women_deals_dic['product_name'] = women_fashion.prod_title
+            get_women_deals_dic['prod_custom_id'] = women_fashion.prod_custom_id
+            women_fashio_image_db = ProductImage.objects.filter(product_id=women_fashion, home_image=True)
+            # print (women_fashio_image_db)
+            get_women_deals_dic['prod_image'] = women_fashio_image_db[0].product_image
+            get_women_deals_dic['prod_image_title'] = women_fashio_image_db[0].prod_image_title
+
+            women_bach_data_db = Bach.objects.filter(id__in=Subquery(Inventory.objects.filter(product_id=women_fashion, remaining_stock__gt=0, is_active=True).values('bach_id_id'))).first()
+            # print (women_bach_data_db)
+            get_women_deals_dic['main_price'] = women_bach_data_db.main_price
+            get_women_deals_dic['offer_price'] = women_bach_data_db.offer_price
+
+            get_women_deals_dic['product_save_price'] = int(float(women_bach_data_db.main_price)-float(women_bach_data_db.offer_price))
+            get_women_deals_dic['product_save_price_percent'] = int(100-((float(women_bach_data_db.offer_price)/float(women_bach_data_db.main_price))*100))
+
+            get_women_deals.append(get_women_deals_dic)
+
+        # Mobile & Robotics Deals
+        get_mobile_robotics = list()
+        get_mobile_robotics_items = Product.objects.filter(prod_sub_category__in=Subquery(SubCategory.objects.filter(sub_category_name__contains='women').values('sub_category_id'))).order_by('-id')
+        # print (get_women_fashion_items)
+        for mobile_robotics in get_mobile_robotics_items:
+            get_mobile_robotics_dic = dict()
+            get_mobile_robotics_dic['product_name'] = mobile_robotics.prod_title
+            get_mobile_robotics_dic['prod_custom_id'] = mobile_robotics.prod_custom_id
+            mobile_robotics_image_db = ProductImage.objects.filter(product_id=mobile_robotics, home_image=True)
+            # print (women_fashio_image_db)
+            get_mobile_robotics_dic['prod_image'] = mobile_robotics_image_db[0].product_image
+            get_mobile_robotics_dic['prod_image_title'] = mobile_robotics_image_db[0].prod_image_title
+
+            mobile_robotics_bach_data_db = Bach.objects.filter(id__in=Subquery(Inventory.objects.filter(product_id=mobile_robotics, remaining_stock__gt=0, is_active=True).values('bach_id_id'))).first()
+            # print (women_bach_data_db)
+            get_mobile_robotics_dic['main_price'] = mobile_robotics_bach_data_db.main_price
+            get_mobile_robotics_dic['offer_price'] = mobile_robotics_bach_data_db.offer_price
+
+            get_mobile_robotics_dic['product_save_price'] = int(float(mobile_robotics_bach_data_db.main_price)-float(mobile_robotics_bach_data_db.offer_price))
+            get_mobile_robotics_dic['product_save_price_percent'] = int(100-((float(mobile_robotics_bach_data_db.offer_price)/float(mobile_robotics_bach_data_db.main_price))*100))
+
+            get_mobile_robotics.append(get_mobile_robotics_dic)
+
+        # Shooses And Watchs
+        get_shooses_watch = list()
+        get_shooses_watch_items = Product.objects.filter(prod_sub_category__in=Subquery(SubCategory.objects.filter(sub_category_name__contains='women').values('sub_category_id'))).order_by('-id')
+        # print (get_women_fashion_items)
+        for shooses_watch in get_shooses_watch_items:
+            get_shooses_watch_dic = dict()
+            get_shooses_watch_dic['product_name'] = shooses_watch.prod_title
+            get_shooses_watch_dic['prod_custom_id'] = shooses_watch.prod_custom_id
+            shooses_watch_image_db = ProductImage.objects.filter(product_id=shooses_watch, home_image=True)
+            # print (women_fashio_image_db)
+            get_shooses_watch_dic['prod_image'] = shooses_watch_image_db[0].product_image
+            get_shooses_watch_dic['prod_image_title'] = shooses_watch_image_db[0].prod_image_title
+
+            shooses_watch_bach_data_db = Bach.objects.filter(id__in=Subquery(Inventory.objects.filter(product_id=shooses_watch, remaining_stock__gt=0, is_active=True).values('bach_id_id'))).first()
+            # print (women_bach_data_db)
+            get_shooses_watch_dic['main_price'] = shooses_watch_bach_data_db.main_price
+            get_shooses_watch_dic['offer_price'] = shooses_watch_bach_data_db.offer_price
+
+            get_shooses_watch_dic['product_save_price'] = int(float(shooses_watch_bach_data_db.main_price)-float(shooses_watch_bach_data_db.offer_price))
+            get_shooses_watch_dic['product_save_price_percent'] = int(100-((float(shooses_watch_bach_data_db.offer_price)/float(shooses_watch_bach_data_db.main_price))*100))
+
+            get_shooses_watch.append(get_shooses_watch_dic)
+
+        # Top offer
+        get_top_offer = list()
+        get_top_offer_product = Product.objects.filter(top_offer=True)
+        # print (get_top_offer_product)
+        for offer_product in get_top_offer_product:
+            get_top_offer_dic = dict()
+            get_top_offer_dic['product_name'] = offer_product.prod_title
+            get_top_offer_dic['prod_custom_id'] = offer_product.prod_custom_id
+            get_top_offer_image_db = ProductImage.objects.filter(product_id=offer_product, home_image=True)
+            # print (get_top_offer_image_db)
+            get_top_offer_dic['product_image'] = get_top_offer_image_db[0].product_image
+            get_top_offer_dic['prod_image_title'] = get_top_offer_image_db[0].prod_image_title
+
+            top_offer_bach_data_db = Bach.objects.filter(id__in=Subquery(Inventory.objects.filter(product_id=offer_product, remaining_stock__gt=0, is_active=True).values('bach_id_id'))).first()
+            # print (shooses_watch_bach_data_db)
+            get_top_offer_dic['main_price'] = top_offer_bach_data_db.main_price
+            get_top_offer_dic['offer_price'] = top_offer_bach_data_db.offer_price
+            get_top_offer_dic['product_save_price'] = int(float(top_offer_bach_data_db.main_price)-float(top_offer_bach_data_db.offer_price))
+            get_top_offer_dic['product_save_price_percent'] = int(100-((float(top_offer_bach_data_db.offer_price)/float(top_offer_bach_data_db.main_price))*100))
+
+            get_top_offer.append(get_top_offer_dic)
+
         context = {"page_name": "banner",
                     'mens_banner_image': get_mens_fashion,
                     'womens_banner_image': get_womens_fashion,
@@ -235,6 +330,10 @@ class HomeView(TemplateView):
                     'electronic_office_image': get_office_fashion,
                     'banner_1': banner_1,
                     'banner_2': banner_2,
+                    'banner_3': banner_3,
+                    'banner_4': banner_4,
+                    'banner_5': banner_5,
+                    'banner_6': banner_6,
                     'exclusive_category': exclusivefashion,
                     'weekly_dreals': weekly_deals_list,
                     # 'men_fashion_product': menfashion,
@@ -245,5 +344,43 @@ class HomeView(TemplateView):
                     'man_fashion_dreals': men_fashion_dreals_list,
                     'deals': offer_dic,
                     'deals_product': offer_products,
+                    'get_women_deals_list': get_women_deals,
+                    'get_mobile_robotics_list': get_mobile_robotics,
+                    'get_shooses_watch_list': get_shooses_watch,
+                    'get_top_offer_list': get_top_offer,
                     'login_user': user_detail}
+        return context
+
+class Home2(TemplateView):
+    template_name = "user_template/home.html"
+
+    def get_context_data(self, **kwargs):
+        context = dict()
+
+        megamenu = list()
+        featured_category = MainCategory.objects.filter(main_category_name='featured').first()
+        get_sub_category = SubCategory.objects.filter(category_id=featured_category)
+        for i in get_sub_category:
+            sub_category = list()
+            sub_category.append(i.sub_category_name)
+            get_tertiary_category = TertiaryCategory.objects.filter(sub_category_id=i)
+            tertiary_cate_ar = list()
+            for j in get_tertiary_category:
+                tertiary_cate = dict()
+                tertiary_cate['id'] = j.ter_category_id
+                tertiary_cate['name'] = j.ter_category_name
+                tertiary_cate_ar.append(tertiary_cate)
+            sub_category.append(tertiary_cate_ar)
+            megamenu.append(sub_category)
+        # print (megamenu)
+
+        featured_category = MainCategory.objects.filter(main_category_name='exclusive').first()
+        get_more_sub_category = SubCategory.objects.filter(category_id=featured_category)
+        # print (featured_category)
+
+        context = {
+            'mega_menu_sub_category': megamenu,
+            'mega_menu_more_category': get_more_sub_category
+        }
+
         return context

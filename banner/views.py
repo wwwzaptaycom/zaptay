@@ -170,6 +170,78 @@ class ViewBanner(TemplateView):
                     image_upload.save()
                 messages.success(request, 'Advatice Banner 2 Upload Successfull')
                 return redirect('/site-admin/banner/')
+
+            if 'advatice_3' in request.FILES:
+                banner_link = request.POST.getlist('banner_link')
+                men_banner_image = request.FILES.getlist('advatice_3')
+                for image, link in zip(men_banner_image, banner_link):
+                    # print (image)
+                    # print (link)
+                    fs = FileSystemStorage()
+                    image_title = "advatice-3-banner."+image.name.split(".")[-1]
+                    upload_image = fs.save("banner/advatice3/images/"+image_title, image)
+                    img_url = fs.url(upload_image)
+                    mod_image_name = img_url.split("/")[-1]
+                    image_path = 'banner/advatice3/images/'+mod_image_name
+
+                    image_upload = Banner(banner_image=image_path, banner_name='advatice_3', banner_link=link)
+                    image_upload.save()
+                messages.success(request, 'Advatice Banner 3 Upload Successfull')
+                return redirect('/site-admin/banner/')
+
+            if 'advatice_4' in request.FILES:
+                banner_link = request.POST.getlist('banner_link')
+                men_banner_image = request.FILES.getlist('advatice_4')
+                for image, link in zip(men_banner_image, banner_link):
+                    # print (image)
+                    # print (link)
+                    fs = FileSystemStorage()
+                    image_title = "advatice-4-banner."+image.name.split(".")[-1]
+                    upload_image = fs.save("banner/advatice4/images/"+image_title, image)
+                    img_url = fs.url(upload_image)
+                    mod_image_name = img_url.split("/")[-1]
+                    image_path = 'banner/advatice4/images/'+mod_image_name
+
+                    image_upload = Banner(banner_image=image_path, banner_name='advatice_4', banner_link=link)
+                    image_upload.save()
+                messages.success(request, 'Advatice Banner 4 Upload Successfull')
+                return redirect('/site-admin/banner/')
+
+            if 'advatice_5' in request.FILES:
+                banner_link = request.POST.getlist('banner_link')
+                men_banner_image = request.FILES.getlist('advatice_5')
+                for image, link in zip(men_banner_image, banner_link):
+                    # print (image)
+                    # print (link)
+                    fs = FileSystemStorage()
+                    image_title = "advatice-5-banner."+image.name.split(".")[-1]
+                    upload_image = fs.save("banner/advatice5/images/"+image_title, image)
+                    img_url = fs.url(upload_image)
+                    mod_image_name = img_url.split("/")[-1]
+                    image_path = 'banner/advatice5/images/'+mod_image_name
+
+                    image_upload = Banner(banner_image=image_path, banner_name='advatice_5', banner_link=link)
+                    image_upload.save()
+                messages.success(request, 'Advatice Banner 5 Upload Successfull')
+                return redirect('/site-admin/banner/')
+
+            if 'advatice_6' in request.FILES:
+                banner_link = request.POST.getlist('banner_link')
+                men_banner_image = request.FILES.getlist('advatice_6')
+                for image, link in zip(men_banner_image, banner_link):
+                    # print (image)
+                    # print (link)
+                    fs = FileSystemStorage()
+                    image_title = "advatice-6-banner."+image.name.split(".")[-1]
+                    upload_image = fs.save("banner/advatice6/images/"+image_title, image)
+                    img_url = fs.url(upload_image)
+                    mod_image_name = img_url.split("/")[-1]
+                    image_path = 'banner/advatice6/images/'+mod_image_name
+
+                    image_upload = Banner(banner_image=image_path, banner_name='advatice_6', banner_link=link)
+                    image_upload.save()
+                messages.success(request, 'Advatice Banner 6 Upload Successfull')
+                return redirect('/site-admin/banner/')
         except Exception as e:
             print (e)
 
@@ -190,6 +262,10 @@ class ViewBanner(TemplateView):
 
         get_advatice_banner_1 = Banner.objects.filter(banner_name='advatice_1').values('id', 'banner_image', 'banner_link', 'banner_id')
         get_advatice_banner_2 = Banner.objects.filter(banner_name='advatice_2').values('id', 'banner_image', 'banner_link', 'banner_id')
+        get_advatice_banner_3 = Banner.objects.filter(banner_name='advatice_3').values('id', 'banner_image', 'banner_link', 'banner_id')
+        get_advatice_banner_4 = Banner.objects.filter(banner_name='advatice_4').values('id', 'banner_image', 'banner_link', 'banner_id')
+        get_advatice_banner_5 = Banner.objects.filter(banner_name='advatice_5').values('id', 'banner_image', 'banner_link', 'banner_id')
+        get_advatice_banner_6 = Banner.objects.filter(banner_name='advatice_6').values('id', 'banner_image', 'banner_link', 'banner_id')
 
         context = {"page_name": "banner", "admin_name": get_name.admin_f_name+" "+get_name.admin_f_name,
                     'men_fashion_image': get_mens_fashion,
@@ -199,7 +275,11 @@ class ViewBanner(TemplateView):
                     'electronic_image': get_electronic_fashion,
                     'office_appliance_image': get_office_appliance_fashion,
                     'advatice_banner_1_image': get_advatice_banner_1,
-                    'advatice_banner_2_image': get_advatice_banner_2}
+                    'advatice_banner_2_image': get_advatice_banner_2,
+                    'advatice_banner_3_image': get_advatice_banner_3,
+                    'advatice_banner_4_image': get_advatice_banner_4,
+                    'advatice_banner_5_image': get_advatice_banner_5,
+                    'advatice_banner_6_image': get_advatice_banner_6}
         return context
 
 # ******************************************************************************************************************

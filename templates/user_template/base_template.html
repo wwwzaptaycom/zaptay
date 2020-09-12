@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} - Zaptay</title>
+
+    <!-- Bootstrap4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+    <!-- External Styling -->
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/all_page.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'user_static/css/base_template.css' %}">
+    <!-- Additional CSS -->
+
+    {% block add_css %}{% endblock %}
+  </head>
+  <body>
+
+    <!-- ================================================================================================ -->
+    <!-- =====================================  Header  ============================================= -->
+
+    <div class="header_menu">
+      <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand location" href="#">
+          <div><i class="fas fa-map-marker-alt"></i></div>
+          <div>Select your location</div>
+        </a>
+
+        <a class="navbar-brand" href="#">
+          <img src="{% static 'site_image/logo.png' %}" alt="" class="site_logo">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <!-- <li class="nav-item location">
+              <a class="nav-link" href="#">
+                <div><i class="fas fa-search-location"></i></div>
+                <div>700070</div>
+              </a>
+            </li> -->
+            <!-- <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li> -->
+            <!-- <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Men</a>
+                <a class="dropdown-item" href="#">Women</a>
+                <a class="dropdown-item" href="#">Baby & Kids</a>
+              </div>
+            </li> -->
+            <li class="nav-item search_box">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Search for anything" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+            </li>
+            <!-- <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Zaptay for Business</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="#">Zaptay for Business</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="#">B2B</a>
+            </li> -->
+          </ul>
+          <!-- <form class="form-inline my-2 my-lg-0"> -->
+            <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+            <div class="btn-group icons_menu">
+              <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <button class="dropdown-item" type="button">Action3</button>
+                <button class="dropdown-item" type="button">Another action</button>
+                <button class="dropdown-item" type="button">Something else here</button>
+              </div>
+            </div>
+            <div class="btn-group icons_menu">
+              <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-heart"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <button class="dropdown-item" type="button">Action2</button>
+                <button class="dropdown-item" type="button">Another action</button>
+                <button class="dropdown-item" type="button">Something else here</button>
+              </div>
+            </div>
+            <div class="btn-group icons_menu">
+              <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-cart-plus"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <button class="dropdown-item" type="button">Action</button>
+                <button class="dropdown-item" type="button">Another action</button>
+                <button class="dropdown-item" type="button">Something else here</button>
+              </div>
+            </div>
+            <button type="button" class="btn btn-light login_btn">Log in</button>
+            <button type="button" class="btn btn-primary sign_up_btn">Sign up</button>
+          <!-- </form> -->
+        </div>
+      </nav>
+    </div>
+
+    <!-- =====================================  Header End  ============================================= -->
+    <!-- ================================================================================================ -->
+
+    <!-- ================================================================================================ -->
+    <!-- =====================================  Header2 Start  ============================================= -->
+    <div class="menu2 d-none d-md-block">
+      <nav class="navbar navbar-expand-md">
+        <div class="container">
+          <div class="navbar-collapse collapse" id="main-nav-1">
+            <ul class="navbar-nav">
+              {% if mega_menu_sub_category %}
+                {% for mega_sub_category in mega_menu_sub_category %}
+                  <li class="nav-item dropdown position-static"><a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="#">{{ mega_sub_category.0 }}</a>
+                    <div class="dropdown-menu w-100">
+                      <div class="container">
+                        <div class="dropdown-menu-item">
+                          <div class="row">
+                            <div class="col-sm-12 tertiary_category">
+                              {% if mega_sub_category.1  %}
+                                {% for j in mega_sub_category.1  %}
+                                  <div>
+                                    <a href="">{{ j.name }}</a>
+                                  </div>
+                                {% endfor %}
+                              {% endif %}
+                              <!-- <div>
+                                <a href="">Category 2</a>
+                              </div>
+                              <div>
+                                <a href="">Category 3</a>
+                              </div> -->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                {% endfor %}
+              {% endif %}
+            </ul>
+            <div class="dropdown mega_more">
+              <button class="btn btn-light mega_more_btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                More
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {% if mega_menu_more_category %}
+                  {% for i in mega_menu_more_category %}
+                    <a class="dropdown-item" href="#">{{ i.sub_category_name }}</a>
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <!-- =====================================  Header2 End  ============================================= -->
+    <!-- ================================================================================================ -->
+
+
+    <!-- ================================================================================================ -->
+    <!-- =====================================  Header End  ============================================= -->
+    <div class="body_content_main">asd</div>
+    <!-- =====================================  Header End  ============================================= -->
+    <!-- ================================================================================================ -->
+
+    <!-- Bootstrap4 -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- Custom Scripts -->
+    <!-- <script src="{% static 'js/login_register_popup.js'%}"></script> -->
+    <script src="{% static 'user_static/js/base_template.js' %}"></script>
+    <!-- /Custom Scripts -->
+
+    {% block add_js %}
+    {% endblock %}
+  </body>
+</html>

@@ -12,6 +12,7 @@ from category.models import MainCategory
 class SubCategory(models.Model):
     sub_category_id = models.AutoField(primary_key=True)
     sub_category_name = models.CharField(max_length=255)
+    sub_category_seo_url = models.CharField(max_length=255, default="")
     sub_category_image = models.ImageField(upload_to="sub_category/images", default="")
     is_active = models.BooleanField(default=1)
     added_by = models.ForeignKey(zaptayAdmin, on_delete=models.CASCADE)
@@ -22,12 +23,19 @@ class SubCategory(models.Model):
     class Meta:
         db_table = "sub_category"
 
+    def save(self, *args, **kwargs):
+        get_sub_category = self.sub_category_name.lower()
+        get_sub_category = get_sub_category.replace(" ", "-")
+        self.sub_category_seo_url = get_sub_category
+        super(SubCategory, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.sub_category_name
 
 class TertiaryCategory(models.Model):
     ter_category_id = models.AutoField(primary_key=True)
     ter_category_name = models.CharField(max_length=255)
+    ter_category_seo_url = models.CharField(max_length=255, default="")
     tertiary_category_image = models.ImageField(upload_to="tertiary_category/images", default="")
     is_active = models.BooleanField(default=1)
     added_by = models.ForeignKey(zaptayAdmin, on_delete=models.CASCADE)
@@ -37,6 +45,12 @@ class TertiaryCategory(models.Model):
 
     class Meta:
         db_table = "tertiary_category"
+
+    def save(self, *args, **kwargs):
+        get_ter_category = self.ter_category_name.lower()
+        get_ter_category = get_ter_category.replace(" ", "-")
+        self.ter_category_seo_url = get_ter_category
+        super(TertiaryCategory, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.ter_category_name

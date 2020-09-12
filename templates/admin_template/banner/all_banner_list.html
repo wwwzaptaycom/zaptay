@@ -601,11 +601,11 @@
                     <!-- <input type="hidden" name="banner_type" value="men_banner"> -->
                     <div class="form-row">
                       <div class="form-group col-md-6">
-                        <label for="advatice_banner_2_img" class="mentetory">Upload banner image (636px X 296px)</label>
+                        <label for="advatice_banner_3_img" class="mentetory">Upload banner image (1314px X 247px)</label>
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" name="advatice_2" id="advatice_banner_2_img" multiple="multiple">
+                          <input type="file" class="custom-file-input" name="advatice_3" id="advatice_banner_3_img" multiple="multiple">
                           {% csrf_token %}
-                          <label class="custom-file-label" for="advatice_banner_2_img" data-browse="Browse">Upload Banner Image</label>
+                          <label class="custom-file-label" for="advatice_banner_3_img" data-browse="Browse">Upload Banner Image</label>
                         </div>
                       </div>
                       <div class="form-group col-md-6">
@@ -613,20 +613,221 @@
                         <button type="submit" class="btn btn-secondary btn-sm">Upload Image</button>
                       </div>
                     </div>
-                    <div class="form-row" id="advatice_banner_2_upload_preview">
+                    <div class="form-row" id="advatice_banner_3_upload_preview">
                       <!-- Image Preview -->
                     </div>
                   </form>
                   <div class="form-row">
-                    {% if advatice_banner_2_image %}
-                      {% for advatice_banner_2 in advatice_banner_2_image %}
+                    {% if advatice_banner_3_image %}
+                      {% for advatice_banner_3 in advatice_banner_3_image %}
                         <div class="form-group col-md-4">
                           <div class="card" style="width: 18rem;"> <!-- style="width: 18rem;" -->
-                            <img class="card-img-top" style="height: 110px;" src="/media/{{ advatice_banner_2.banner_image }}" alt="Card image cap">
+                            <img class="card-img-top" style="height: 110px;" src="/media/{{ advatice_banner_3.banner_image }}" alt="Card image cap">
                             <div class="card-body">
                               <div class="row">
                                 <div class="col-md-12">
                                   <a href="javaScript:void(0);" class="btn btn-danger btn-icon-split" onclick="DeleteImage(image_id='{{advatice_banner_2.id}}', image_custom_id='{{advatice_banner_2.banner_id}}');">
+                                    <span class="icon text-white-50">
+                                      <i class="fas fa-trash"></i>
+                                    </span>
+                                    <span class="text">Delete this image</span>
+                                  </a>
+                                </div>
+                                <!-- <br /><br />
+                                <div class="col-md-12">
+                                  <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="gst_img">
+                                    <label class="custom-file-label" for="gst_img" data-browse="Browse">New Image</label>
+                                  </div>
+                                </div> -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      {% endfor %}
+                    {% else %}
+                      <span>No image found</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12">
+            <!-- Collapsable Card Example -->
+            <div class="card shadow mb-4">
+              <!-- Card Header - Accordion -->
+              <a href="#home_advatice_4_section" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="home_advatice_3_section">
+                <h6 class="m-0 font-weight-bold text-primary">Home advatice banner 4</h6>
+              </a>
+              <!-- Card Content - Collapse -->
+              <div class="collapse" id="home_advatice_4_section">
+                <div class="card-body">
+                  <form method="POST" enctype="multipart/form-data">
+                    <!-- <input type="hidden" name="banner_type" value="men_banner"> -->
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="advatice_banner_4_img" class="mentetory">Upload banner image (636px X 296px)</label>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" name="advatice_4" id="advatice_banner_4_img" multiple="multiple">
+                          {% csrf_token %}
+                          <label class="custom-file-label" for="advatice_banner_4_img" data-browse="Browse">Upload Banner Image</label>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <br  />
+                        <button type="submit" class="btn btn-secondary btn-sm">Upload Image</button>
+                      </div>
+                    </div>
+                    <div class="form-row" id="advatice_banner_4_upload_preview">
+                      <!-- Image Preview -->
+                    </div>
+                  </form>
+                  <div class="form-row">
+                    {% if advatice_banner_4_image %}
+                      {% for advatice_banner_4 in advatice_banner_4_image %}
+                        <div class="form-group col-md-4">
+                          <div class="card" style="width: 18rem;"> <!-- style="width: 18rem;" -->
+                            <img class="card-img-top" style="height: 110px;" src="/media/{{ advatice_banner_4.banner_image }}" alt="Card image cap">
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <a href="javaScript:void(0);" class="btn btn-danger btn-icon-split" onclick="DeleteImage(image_id='{{advatice_banner_4.id}}', image_custom_id='{{advatice_banner_4.banner_id}}');">
+                                    <span class="icon text-white-50">
+                                      <i class="fas fa-trash"></i>
+                                    </span>
+                                    <span class="text">Delete this image</span>
+                                  </a>
+                                </div>
+                                <!-- <br /><br />
+                                <div class="col-md-12">
+                                  <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="gst_img">
+                                    <label class="custom-file-label" for="gst_img" data-browse="Browse">New Image</label>
+                                  </div>
+                                </div> -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      {% endfor %}
+                    {% else %}
+                      <span>No image found</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12">
+            <!-- Collapsable Card Example -->
+            <div class="card shadow mb-4">
+              <!-- Card Header - Accordion -->
+              <a href="#home_advatice_5_section" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="home_advatice_3_section">
+                <h6 class="m-0 font-weight-bold text-primary">Home advatice banner 5</h6>
+              </a>
+              <!-- Card Content - Collapse -->
+              <div class="collapse" id="home_advatice_5_section">
+                <div class="card-body">
+                  <form method="POST" enctype="multipart/form-data">
+                    <!-- <input type="hidden" name="banner_type" value="men_banner"> -->
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="advatice_banner_5_img" class="mentetory">Upload banner image (636px X 296px)</label>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" name="advatice_5" id="advatice_banner_5_img" multiple="multiple">
+                          {% csrf_token %}
+                          <label class="custom-file-label" for="advatice_banner_5_img" data-browse="Browse">Upload Banner Image</label>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <br  />
+                        <button type="submit" class="btn btn-secondary btn-sm">Upload Image</button>
+                      </div>
+                    </div>
+                    <div class="form-row" id="advatice_banner_5_upload_preview">
+                      <!-- Image Preview -->
+                    </div>
+                  </form>
+                  <div class="form-row">
+                    {% if advatice_banner_5_image %}
+                      {% for advatice_banner_5 in advatice_banner_5_image %}
+                        <div class="form-group col-md-4">
+                          <div class="card" style="width: 18rem;"> <!-- style="width: 18rem;" -->
+                            <img class="card-img-top" style="height: 110px;" src="/media/{{ advatice_banner_5.banner_image }}" alt="Card image cap">
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <a href="javaScript:void(0);" class="btn btn-danger btn-icon-split" onclick="DeleteImage(image_id='{{advatice_banner_5.id}}', image_custom_id='{{advatice_banner_5.banner_id}}');">
+                                    <span class="icon text-white-50">
+                                      <i class="fas fa-trash"></i>
+                                    </span>
+                                    <span class="text">Delete this image</span>
+                                  </a>
+                                </div>
+                                <!-- <br /><br />
+                                <div class="col-md-12">
+                                  <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="gst_img">
+                                    <label class="custom-file-label" for="gst_img" data-browse="Browse">New Image</label>
+                                  </div>
+                                </div> -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      {% endfor %}
+                    {% else %}
+                      <span>No image found</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12">
+            <!-- Collapsable Card Example -->
+            <div class="card shadow mb-4">
+              <!-- Card Header - Accordion -->
+              <a href="#home_advatice_6_section" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="home_advatice_3_section">
+                <h6 class="m-0 font-weight-bold text-primary">Home advatice banner 6</h6>
+              </a>
+              <!-- Card Content - Collapse -->
+              <div class="collapse" id="home_advatice_6_section">
+                <div class="card-body">
+                  <form method="POST" enctype="multipart/form-data">
+                    <!-- <input type="hidden" name="banner_type" value="men_banner"> -->
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="advatice_banner_6_img" class="mentetory">Upload banner image (1314px X 174px)</label>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" name="advatice_6" id="advatice_banner_6_img" multiple="multiple">
+                          {% csrf_token %}
+                          <label class="custom-file-label" for="advatice_banner_6_img" data-browse="Browse">Upload Banner Image</label>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <br  />
+                        <button type="submit" class="btn btn-secondary btn-sm">Upload Image</button>
+                      </div>
+                    </div>
+                    <div class="form-row" id="advatice_banner_6_upload_preview">
+                      <!-- Image Preview -->
+                    </div>
+                  </form>
+                  <div class="form-row">
+                    {% if advatice_banner_6_image %}
+                      {% for advatice_banner_6 in advatice_banner_6_image %}
+                        <div class="form-group col-md-4">
+                          <div class="card" style="width: 18rem;"> <!-- style="width: 18rem;" -->
+                            <img class="card-img-top" style="height: 110px;" src="/media/{{ advatice_banner_6.banner_image }}" alt="Card image cap">
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <a href="javaScript:void(0);" class="btn btn-danger btn-icon-split" onclick="DeleteImage(image_id='{{advatice_banner_6.id}}', image_custom_id='{{advatice_banner_6.banner_id}}');">
                                     <span class="icon text-white-50">
                                       <i class="fas fa-trash"></i>
                                     </span>

@@ -1,6 +1,6 @@
 $(document).ready(function(){
   $.ajax({
-    url: "http://127.0.0.1:8000/site-admin/attribute/get-cateory",
+    url: "/site-admin/attribute/get-cateory",
     method: "GET",
     dataType: "JSON",
 
@@ -27,7 +27,7 @@ $(document).ready(function(){
 
 
   $.ajax({
-    url: "http://127.0.0.1:8000/site-admin/attribute/get-sub-cateory",
+    url: "/site-admin/attribute/get-sub-cateory",
     method: "GET",
     dataType: "JSON",
 
@@ -57,7 +57,7 @@ function delete_attributes(attribute_type, attribute_name, id){
     console.log(attribute_type, id);
 
     $.ajax({
-      url: "http://127.0.0.1:8000/site-admin/attribute/delete-attributes/",
+      url: "/site-admin/attribute/delete-attributes/",
       method: "POST",
       dataType: "JSON",
       data: {
