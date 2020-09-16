@@ -282,6 +282,76 @@ class ViewBanner(TemplateView):
                     'advatice_banner_6_image': get_advatice_banner_6}
         return context
 
+class WebSiteLogo(TemplateView):
+    template_name = 'admin_template/website_logo/website_logo.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            resp = request.session['admin_email_id']
+            return super(WebSiteLogo, self).dispatch(request, *args, **kwargs)
+        except Exception as e:
+            print(e)
+            # return redirect('/site-admin/seller/seller-view/')
+            return redirect('admin_login:admin_loginpage')
+
+    def post(self, request, *args, **kwargs):
+        try:
+            if 'header_logo' in request.FILES:
+                banner_link = request.POST.getlist('banner_link')
+                men_banner_image = request.FILES.getlist('header_logo')
+                for image, link in zip(men_banner_image, banner_link):
+                    # print (image)
+                    # print (link)
+                    fs = FileSystemStorage()
+                    image_title = "website_header_logo."+image.name.split(".")[-1]
+                    upload_image = fs.save("banner/website/header_logo/"+image_title, image)
+                    img_url = fs.url(upload_image)
+                    mod_image_name = img_url.split("/")[-1]
+                    image_path = 'banner/website/header_logo/'+mod_image_name
+
+                    image_upload = Banner(banner_image=image_path, banner_name='header_logo', banner_link=link)
+                    image_upload.save()
+                messages.success(request, 'Website header logo Upload Successfull')
+                return redirect('/site-admin/banner/website-logo/')
+
+            if 'footer_logo' in request.FILES:
+                banner_link = request.POST.getlist('banner_link')
+                men_banner_image = request.FILES.getlist('footer_logo')
+                for image, link in zip(men_banner_image, banner_link):
+                    # print (image)
+                    # print (link)
+                    fs = FileSystemStorage()
+                    image_title = "website_footer_logo."+image.name.split(".")[-1]
+                    upload_image = fs.save("banner/website/footer_logo/"+image_title, image)
+                    img_url = fs.url(upload_image)
+                    mod_image_name = img_url.split("/")[-1]
+                    image_path = 'banner/website/footer_logo/'+mod_image_name
+
+                    image_upload = Banner(banner_image=image_path, banner_name='footer_logo', banner_link=link)
+                    image_upload.save()
+                messages.success(request, 'Website footer logo Upload Successfull')
+                return redirect('/site-admin/banner/website-logo/')
+        except Exception as e:
+            print (e)
+
+        context = self.get_context_data()
+        return self.render_to_response(context)
+
+    def get_context_data(self, **kwargs):
+        context = dict()
+        seller_id = self.kwargs.get('seller_id')
+        get_name = zaptayAdmin.objects.all().get(email_id=self.request.session['admin_email_id'])
+
+        get_header_logo = Banner.objects.filter(banner_name='header_logo').values('id', 'banner_image', 'banner_link', 'banner_id')
+        get_footer_logo = Banner.objects.filter(banner_name='footer_logo').values('id', 'banner_image', 'banner_link', 'banner_id')
+
+        context = {"page_name": "logo",
+                    "admin_name": get_name.admin_f_name+" "+get_name.admin_f_name,
+                    "get_header_logo": get_header_logo,
+                    "get_footer_logo": get_footer_logo,
+                }
+        return context
+
 # ******************************************************************************************************************
 # Ajax hendel
 

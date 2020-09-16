@@ -184,6 +184,11 @@
           <i class="fas fa-photo-video"></i>
           <span>Add Banner</span></a>
       </li>
+      <li class="nav-item {% if page_name != "" and page_name == 'logo' %} active {% endif %}">
+        <a class="nav-link" href="{% url 'admin_login:banner:website_logo' %}">
+          <i class="fas fa-igloo"></i>
+          <span>Website Logo</span></a>
+      </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

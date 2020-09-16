@@ -357,6 +357,23 @@ class Home2(TemplateView):
     def get_context_data(self, **kwargs):
         context = dict()
 
+        get_mens_fashion = Banner.objects.filter(banner_name='men_banner').values('id', 'banner_image', 'banner_link')
+        # print (get_mens_fashion)
+        get_womens_fashion = Banner.objects.filter(banner_name='women_banner').values('id', 'banner_image', 'banner_link')
+        get_baby_kid_fashion = Banner.objects.filter(banner_name='baby_kid_banner').values('id', 'banner_image', 'banner_link')
+        get_mobile_fashion = Banner.objects.filter(banner_name='mobile_banner').values('id', 'banner_image', 'banner_link')
+        get_electronic_fashion = Banner.objects.filter(banner_name='electronic_banner').values('id', 'banner_image', 'banner_link')
+        get_office_fashion = Banner.objects.filter(banner_name='office_appliance_banner').values('id', 'banner_image', 'banner_link')
+
+        banner_1 = Banner.objects.filter(banner_name='advatice_1').order_by('-id')[0:3]
+        banner_2 = Banner.objects.filter(banner_name='advatice_2').order_by('-id')[0:2]
+        banner_3 = Banner.objects.filter(banner_name='advatice_3').order_by('-id')[0:1]
+        banner_4 = Banner.objects.filter(banner_name='advatice_4').order_by('-id')[0:2]
+        banner_5 = Banner.objects.filter(banner_name='advatice_5').order_by('-id')[0:2]
+        banner_6 = Banner.objects.filter(banner_name='advatice_6').order_by('-id')[0:1]
+
+        header_logo = get_header_logo = Banner.objects.filter(banner_name='header_logo').order_by('-id').first()
+
         megamenu = list()
         featured_category = MainCategory.objects.filter(main_category_name='featured').first()
         get_sub_category = SubCategory.objects.filter(category_id=featured_category)
@@ -379,8 +396,22 @@ class Home2(TemplateView):
         # print (featured_category)
 
         context = {
+            'header_logo': header_logo,
             'mega_menu_sub_category': megamenu,
-            'mega_menu_more_category': get_more_sub_category
+            'mega_menu_more_category': get_more_sub_category,
+
+            'mens_banner_image': get_mens_fashion,
+            'womens_banner_image': get_womens_fashion,
+            'baby_kid_banner_image': get_baby_kid_fashion,
+            'mobile_banner_image': get_mobile_fashion,
+            'electronic_banner_image': get_electronic_fashion,
+            'electronic_office_image': get_office_fashion,
+            'banner_1': banner_1,
+            'banner_2': banner_2,
+            'banner_3': banner_3,
+            'banner_4': banner_4,
+            'banner_5': banner_5,
+            'banner_6': banner_6,
         }
 
         return context

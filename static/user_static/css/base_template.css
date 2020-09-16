@@ -30,6 +30,10 @@ nav a {
   color: #000000 !important;
 }
 
+a{
+  color: var(--theme-btn-bg-color)
+}
+
 .navbar .nav-item:hover .dropdown-menu{ display: block; }
 
 .navbar .icons_menu:hover .dropdown-menu{ display: block; }
@@ -39,13 +43,24 @@ nav a {
   top: 30px;
 }
 
+.logo_area{
+  text-align: center;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 2px;
+  margin-right: 0px;
+}
+
 .site_logo{
-  width: 38px;
+  /* width: 38px; */
+  /* width: 60px; */
+  width: 90px;
+  height: 50px;
 }
 
 .header_menu{
   width: 100%;
-  min-height: 66px;
+  min-height: 67px;
   background-color: #00000047;
 }
 
@@ -82,7 +97,9 @@ nav a {
 
 /* Search Box */
 .search_box{
-  width: 600px;
+  /* width: 600px; */
+  width: 550px;
+  margin-left: 13px;
 }
 
 .search_box span{
@@ -124,12 +141,19 @@ nav a {
 /* Location */
 .location{
   margin: 0px;
+  margin-right: 14px;
   font-weight: 900;
+  padding: 0px;
 }
 
 .location div{
   font-size: 15px;
   float: left;
+}
+
+.location p{
+  margin: 0px;
+  line-height: 1;
 }
 
 .location div i{
@@ -143,8 +167,49 @@ nav a {
   font-size: 17px;
 }
 
-.icons_menu > button{
+.icons_menu > button,
+.icons_menu > a{
   padding: 0px;
+}
+
+.auto_get_location{
+  width: 98%;
+  color: var(--theme-btn-bg-color);
+  border-color: var(--theme-btn-bg-color);
+}
+
+.auto_get_location:hover{
+  background-color: var(--theme-btn-bg-color);
+}
+
+.notification{
+  position: relative;
+}
+
+.wishlist,
+.cart{
+  font-size: 22px;
+  color: var(--theme-btn-bg-color) !important;
+}
+
+.notification > span,
+.wishlist > span,
+.cart > span{
+  position: absolute;
+  top: -8px;
+  left: 10px;
+  width: 18px;
+  background: #fffffffa;
+  height: 18px;
+  font-size: 14px;
+  border-radius: 50px;
+  color: #060606;
+  font-weight: 800;
+  box-shadow: 0px 0px 4px 1px black;
+}
+
+#ZaptayForBusiness{
+  background-color: #000000f0;
 }
 
 /* ***************************************************************************************** */
@@ -169,7 +234,7 @@ nav a {
   padding: 0px;
   background-color: transparent;
   top: 37px;
-  padding-top: 16px;
+  padding-top: 15px;
 }
 
 .menu2 .dropdown-menu-item{
@@ -216,13 +281,21 @@ nav a {
   top: 29px;
 }
 
-.menu2 .mega_more > .dropdown-menu > .dropdown-item:hover,
-.menu2 .mega_more > .dropdown-menu > .dropdown-item:active,
-.menu2 .mega_more > .dropdown-menu > .dropdown-item:focus{
+.menu2 .mega_more > .dropdown-menu > .more_mega_item > .dropdown-item:hover,
+.menu2 .mega_more > .dropdown-menu > .more_mega_item > .dropdown-item:active,
+.menu2 .mega_more > .dropdown-menu > .more_mega_item > .dropdown-item:focus{
   background-color: transparent;
   color: inherit;
   border: none;
   outline: none;
+}
+
+.menu2 .dropdown-item{
+  color: var(--theme-btn-bg-color) !important;
+}
+
+.menu2 .more_mega_item{
+  background-color: white;
 }
 
 /* ***********************  Mega menu   **************************************************** */

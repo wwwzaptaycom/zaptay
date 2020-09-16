@@ -1,0 +1,127 @@
+{% extends 'user_template/base_template.html' %}
+{% load static %}
+
+{% block title %}Wishlist{% endblock %}
+
+{% block add_css %}
+<link rel="stylesheet" href="{% static 'user_static/css/cart_list.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="gap">&nbsp;</div>
+  <div class="row">
+    <div class="col-md-8">
+      <h4>Shoping Cart</h4>
+      <div class="cart_list">
+        <div class="row single_product">
+          <div class="col-md-2 product_image">
+            <img src="{% static 'site_image/250x350.png' %}" alt="">
+          </div>
+          <div class="col-md-3">asdsa</div>
+          <div class="col-md-2">
+            <span><i class="fas fa-rupee-sign"></i>&nbsp; Price</span>
+          </div>
+          <div class="col-md-2 quantity">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">-</div>
+              </div>
+              <input type="text" class="form-control" id="inlineFormInputGroupUsername" value="1">
+              <div class="input-group-append">
+                <span class="input-group-text">+</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <span><i class="fas fa-rupee-sign"></i>&nbsp; Price</span>
+          </div>
+          <div class="col-md-1">
+            <div class="remove_product">
+              <span><i class="fas fa-times"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cart_list">
+        <div class="row single_product">
+          <div class="col-md-2 product_image">
+            <img src="{% static 'site_image/250x350.png' %}" alt="">
+          </div>
+          <div class="col-md-3">asdsa</div>
+          <div class="col-md-2">
+            <span><i class="fas fa-rupee-sign"></i>&nbsp; Price</span>
+          </div>
+          <div class="col-md-2 quantity">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">-</div>
+              </div>
+              <input type="text" class="form-control" id="inlineFormInputGroupUsername" value="1">
+              <div class="input-group-append">
+                <span class="input-group-text">+</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <span><i class="fas fa-rupee-sign"></i>&nbsp; Price</span>
+          </div>
+          <div class="col-md-1">
+            <div class="remove_product">
+              <span><i class="fas fa-times"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="cart_total">
+        <h4>Total Price</h4>
+        <div class="items">
+          <div class="row single_price">
+            <div class="col-md-8">Product (5 Items)</div>
+            <div class="col-md-4 total_price_product">
+              <span><i class="fas fa-rupee-sign"></i>&nbsp; Price</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">Delivary Charges</div>
+            <div class="col-md-4 total_price_product">
+              <span><i class="fas fa-rupee-sign"></i>&nbsp; Price</span>
+            </div>
+          </div>
+          <hr />
+          <div class="row total_price">
+            <div class="col-md-8">Total Amount</div>
+            <div class="col-md-4 total_price_product">
+              <span><i class="fas fa-rupee-sign"></i>&nbsp; Price</span>
+            </div>
+          </div>
+          <div class="row coupon">
+            <div class="input-group">
+              <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Coupon code">
+              <div class="input-group-append">
+                <span class="input-group-text coupon_apply">Apply Coupon</span>
+              </div>
+            </div>
+          </div>
+          <div class="row pay_balance">
+            <div class="col-md-8">Pay Amount</div>
+            <div class="col-md-4 total_price_product">
+              <span><i class="fas fa-rupee-sign"></i>&nbsp; Price</span>
+            </div>
+          </div>
+          <div class="row checkout">
+            <form>
+              <button type="button" class="btn btn-primary btn-lg btn-block">Proceed to checkout</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block add_js %}
+{% endblock %}

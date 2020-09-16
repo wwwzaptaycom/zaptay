@@ -1,0 +1,62 @@
+{% extends 'user_template/base_template.html' %}
+{% load static %}
+
+{% block title %}Wishlist{% endblock %}
+
+{% block add_css %}
+<link rel="stylesheet" href="{% static 'user_static/css/signup.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="login_form_section">
+    <div class="login_form_div">
+      <h4>Sign up and start shoping</h4>
+      <hr />
+      <!-- <button type="button" class="btn btn-primary">Primary</button> -->
+      <div class="login_form">
+
+        <form>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="far fa-user"></i></div>
+            </div>
+            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Full name">
+          </div>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="far fa-envelope"></i></div>
+            </div>
+            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Email">
+          </div>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fas fa-mobile-alt"></i></div>
+            </div>
+            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Phone number">
+          </div>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fas fa-lock"></i></div>
+            </div>
+            <input type="password" class="form-control" id="inlineFormInputGroup" placeholder="Password">
+          </div>
+          <button type="button" class="btn btn-primary btn-lg btn-block signup_btn">Sign Up</button>
+        </form>
+        <div class="policy">
+          <span>
+            By signing up, you agree to our <a href="">Terms of Use</a> and <a href="">Privacy Policy</a>.
+          </span>
+        </div>
+        <hr />
+        <div class="already_acc">
+          Already have account? <a href="{% url 'user_login:login' %}">Log In</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block add_js %}
+{% endblock %}

@@ -323,6 +323,60 @@ $("#advatice_banner_6_img").on('change', function(){
   $("#advatice_banner_6_upload_preview").html(prepare_div);
 });
 
+/*  Header logo  */
+
+$("#header_logo_img").on('change', function(){
+  var prepare_div = ``;
+  let count = document.getElementById("header_logo_img").files.length;
+  prepare_div+=`<div class="form-group col-md-12">Image preview</div>`;
+  for(i=0; i<count; i++){
+    prepare_div+=`
+      <div class="form-group col-md-4">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" style="height: 110px;" src="`+URL.createObjectURL(event.target.files[i])+`" alt="Card image cap">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input type="link" name="banner_link" class="form-control" id="banner_link" placeholder="Link">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `
+  }
+  $("#header_logo_upload_preview").html(prepare_div);
+});
+
+/*  Footer logo  */
+
+$("#footer_logo_image").on('change', function(){
+  var prepare_div = ``;
+  let count = document.getElementById("footer_logo_image").files.length;
+  prepare_div+=`<div class="form-group col-md-12">Image preview</div>`;
+  for(i=0; i<count; i++){
+    prepare_div+=`
+      <div class="form-group col-md-4">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" style="height: 110px;" src="`+URL.createObjectURL(event.target.files[i])+`" alt="Card image cap">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input type="link" name="banner_link" class="form-control" id="banner_link" placeholder="Link">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `
+  }
+  $("#footer_logo_upload_preview").html(prepare_div);
+});
+
 /*  Delete Images  */
 function DeleteImage(image_id="", image_custom_id=""){
   let conf = confirm("Are you sure to delete the image (id: 12)");

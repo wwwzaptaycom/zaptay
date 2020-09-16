@@ -5,6 +5,7 @@ app_name = "banner"
 
 urlpatterns = [
     path('', views.ViewBanner.as_view(), name="banner_list"),
+    path('website-logo/', views.WebSiteLogo.as_view(), name="website_logo"),
 
     # Ajax URLField
     path('banner-delete/', views.DeleteBannerImage, name="delete_banner_image"),

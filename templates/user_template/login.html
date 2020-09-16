@@ -1,0 +1,49 @@
+{% extends 'user_template/base_template.html' %}
+{% load static %}
+
+{% block title %}Wishlist{% endblock %}
+
+{% block add_css %}
+<link rel="stylesheet" href="{% static 'user_static/css/login.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="login_form_section">
+    <div class="login_form_div">
+      <h4>Log In to your Zaptay Account</h4>
+      <hr />
+      <!-- <button type="button" class="btn btn-primary">Primary</button> -->
+      <div class="login_form">
+        <a href="" class="btn btn-primary btn-lg btn-block facebook_login"><i class="fab fa-facebook-f"></i> Continue with Facebook</a>
+        <a href="" class="btn btn-primary btn-lg btn-block twitter_login"><i class="fab fa-twitter"></i> Continue with Twitter</a>
+        <a href="" class="btn btn-primary btn-lg btn-block google_login"><i class="fab fa-google"></i> Continue with Google</a>
+        <form>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="far fa-envelope"></i></div>
+            </div>
+            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Email">
+          </div>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fas fa-lock"></i></div>
+            </div>
+            <input type="password" class="form-control" id="inlineFormInputGroup" placeholder="Password">
+          </div>
+          <button type="button" class="btn btn-primary btn-lg btn-block login_btn">Log In</button>
+        </form>
+        <div class="forgot_pwd_div">
+          Or <a href="">Forget Password</a>
+        </div>
+        <div>
+          Don't have an account? <a href="{% url 'user_login:signup' %}">Sign up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block add_js %}
+{% endblock %}

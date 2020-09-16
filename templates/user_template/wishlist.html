@@ -1,0 +1,78 @@
+{% extends 'user_template/base_template.html' %}
+{% load static %}
+
+{% block title %}Wishlist{% endblock %}
+
+{% block add_css %}
+<link rel="stylesheet" href="{% static 'user_static/css/wish_list.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="wish_list">
+    <div class="wish_list_product">
+      <div class="row single_product">
+        <div class="col-md-2 product_image">
+          <img src="{% static 'site_image/250x350.png' %}" alt="" class="product_image">
+        </div>
+        <div class="col-md-3 product_name">
+          <span>Product name</span>
+        </div>
+        <div class="col-md-2">
+          <span><i class="fas fa-rupee-sign"></i>&nbsp;&nbsp; Price</span>
+        </div>
+        <div class="col-md-1">
+          <span>In Stock</span>
+        </div>
+        <div class="col-md-3 add_cart">
+          <button type="button" class="btn btn-secondary">Add to Cart</button>
+        </div>
+        <div class="col-md-1">
+          <div class="remove_product">
+            <span><i class="fas fa-times"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wish_list">
+    <div class="wish_list_product">
+      <div class="row single_product">
+        <div class="col-md-2 product_image">
+          <img src="{% static 'site_image/250x350.png' %}" alt="" class="product_image">
+        </div>
+        <div class="col-md-3 product_name">
+          <span>Product name</span>
+        </div>
+        <div class="col-md-2">
+          <span><i class="fas fa-rupee-sign"></i>&nbsp;&nbsp; Price</span>
+        </div>
+        <div class="col-md-1">
+          <span>In Stock</span>
+        </div>
+        <div class="col-md-3 add_cart">
+          <button type="button" class="btn btn-secondary">Add to Cart</button>
+        </div>
+        <div class="col-md-1">
+          <div class="remove_product">
+            <span><i class="fas fa-times"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wish_list">
+    <div class="wish_list_product">
+      <div class="row single_product">
+        <div class="col-md-12 no_product">
+          <span>No product where added to the wishlist</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block add_js %}
+{% endblock %}
