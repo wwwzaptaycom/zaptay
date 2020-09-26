@@ -47,6 +47,28 @@ $(document).ready(function(){
       console.log(r);
     }
   });
+
+  $.ajax({
+    url: "/site-admin/attribute/get-tert-cateory",
+    method: "GET",
+    dataType: "JSON",
+
+    success: function(r){
+      let html_content = `
+        <option value="">Select Tertiary Category</option>
+      `;
+      // console.log(r.data);
+      r.data.map((category, key) => {
+          html_content+= `<option value="`+category[0]+`">`+category[1]+`</option>`
+          // console.log(category, key)
+      })
+      $("#id_tert_category_list").html(html_content);
+      // console.log(html_content);
+    },
+    error: function(r){
+      console.log(r);
+    }
+  });
 });
 
 function delete_attributes(attribute_type, attribute_name, id){

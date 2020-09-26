@@ -25,6 +25,33 @@
   /* background: red; */
 }
 
+.login_form .btn{
+  text-align: left;
+  margin: 0px;
+  box-shadow: 0px 0px 5px #807f82;
+  margin: 12px 0px;
+}
+
+.login_form .btn i {
+  padding-right: 25px;
+}
+
+.login_form .btn:hover{
+  background-color: var(--theme-btn-bg-hover-color);
+  border-color: var(--theme-btn-border-hover-color);
+  color: white;
+}
+
+.facebook_login{
+  background-color: #1a538a;
+}
+
+.twitter_login,
+.google_login{
+  background-color: transparent;
+  color: var(--theme-btn-bg-color);
+  border-color: var(--theme-btn-bg-color);
+}
 
 
 .login_form form{
@@ -74,4 +101,10 @@
 .login_form div a:hover{
   color: var(--theme-btn-bg-hover-color);
   text-decoration: none;
+}
+
+.signup_btn i{
+  padding: 0px !important;
+  display: none;
+  font-size: 27px;
 }

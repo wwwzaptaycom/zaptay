@@ -1,5 +1,6 @@
 $(document).ready(function(){
   GetCategory();
+  Brand();
   Color();
   Size();
   MadeIn();
@@ -12,11 +13,15 @@ $("#category").on("change", function(){
 });
 $("#sub_category").on("change", function(){
   TertiaryCategory();
-})
+});
+
+$("#ter_category").on('change', function(){
+  UnderTertiaryCategory();
+});
 
 function GetCategory(){
   $.ajax({
-    url: "http://127.0.0.1:8000/site-admin/attribute/get-cateory",
+    url: "/site-admin/attribute/get-cateory",
     method: "GET",
     dataType: "JSON",
 
@@ -37,7 +42,7 @@ function GetCategory(){
 
 function GetSubCategory(){
   $.ajax({
-    url: "http://127.0.0.1:8000/site-admin/attribute/get-sorted-sub-category",
+    url: "/site-admin/attribute/get-sorted-sub-category",
     method: "GET",
     dataType: "JSON",
     data:{
@@ -60,7 +65,7 @@ function GetSubCategory(){
 
 function TertiaryCategory(){
   $.ajax({
-    url: "http://127.0.0.1:8000/site-admin/attribute/get-sorted-terti-category",
+    url: "/site-admin/attribute/get-sorted-terti-category",
     method: "GET",
     dataType: "JSON",
     data:{
@@ -81,9 +86,52 @@ function TertiaryCategory(){
   });
 }
 
+function UnderTertiaryCategory(){
+  $.ajax({
+    url: "/site-admin/attribute/get-sorted-under-terti-category",
+    method: "GET",
+    dataType: "JSON",
+    data:{
+      tert_category_id: $("#ter_category").val()
+    },
+    success: function(r){
+      let html_content = `
+      <option value="">Select Tertiary Category</option>
+      `;
+      r.data.map((category, key) => {
+        html_content+= `<option value="`+category[0]+`">`+category[1]+`</option>`
+      })
+      $("#under_ter_category").html(html_content);
+    },
+    error: function(r){
+      console.log(r);
+      }
+  });
+}
+
+function Brand(){
+  $.ajax({
+    url: "/site-admin/attribute/get-all-brand",
+    method: "GET",
+    dataType: "JSON",
+    success: function(r){
+      let html_content = `
+      <option value="">Select Brand</option>
+      `;
+      r.data.map((category, key) => {
+        html_content+= `<option value="`+category[0]+`">`+category[1]+`</option>`
+      })
+      $("#brand").html(html_content);
+    },
+    error: function(r){
+      console.log(r);
+      }
+  });
+}
+
 function Color(){
   $.ajax({
-    url: "http://127.0.0.1:8000/site-admin/attribute/get-all-color",
+    url: "/site-admin/attribute/get-all-color",
     method: "GET",
     dataType: "JSON",
     success: function(r){
@@ -103,7 +151,7 @@ function Color(){
 
 function Size(){
   $.ajax({
-    url: "http://127.0.0.1:8000/site-admin/attribute/get-all-size",
+    url: "/site-admin/attribute/get-all-size",
     method: "GET",
     dataType: "JSON",
     success: function(r){
@@ -123,7 +171,7 @@ function Size(){
 
 function MadeIn(){
   $.ajax({
-    url: "http://127.0.0.1:8000/site-admin/attribute/get-all-made-in",
+    url: "/site-admin/attribute/get-all-made-in",
     method: "GET",
     dataType: "JSON",
     success: function(r){
@@ -143,7 +191,7 @@ function MadeIn(){
 
 function Seller(){
   $.ajax({
-    url: "http://127.0.0.1:8000/site-admin/seller/get-all-seller/",
+    url: "/site-admin/seller/get-all-seller/",
     method: "GET",
     dataType: "JSON",
     success: function(r){

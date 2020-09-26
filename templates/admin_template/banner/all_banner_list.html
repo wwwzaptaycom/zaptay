@@ -56,13 +56,18 @@
             <div class="card shadow mb-4">
               <!-- Card Header - Accordion -->
               <a href="#home_page" class="d-block card-header py-3" data-toggle="collapse" aria-expanded="true" role="button" aria-controls="home_page">
-                <h6 class="m-0 font-weight-bold text-primary">Men banner</h6>
+                <h6 class="m-0 font-weight-bold text-primary">{{ men_fashion_image.0.banner_name_custom }} banner</h6>
               </a>
               <!-- Card Content - Collapse -->
               <div class="collapse" id="home_page">
                 <div class="card-body">
                   <form method="POST" enctype="multipart/form-data">
                     <!-- <input type="hidden" name="banner_type" value="men_banner"> -->
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="men_banner_title" name="men_banner_title" aria-describedby="emailHelp" value="{{ men_fashion_image.0.banner_name_custom }}" placeholder="Banner Title">
+                      </div>
+                    </div>
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="men_banner_img" class="mentetory">Upload banner image (946px X 300px)</label>
@@ -123,13 +128,18 @@
             <div class="card shadow mb-4">
               <!-- Card Header - Accordion -->
               <a href="#women_section" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="women_section">
-                <h6 class="m-0 font-weight-bold text-primary">Women banner</h6>
+                <h6 class="m-0 font-weight-bold text-primary">{{ women_fashion_image.0.banner_name_custom }} banner</h6>
               </a>
               <!-- Card Content - Collapse -->
               <div class="collapse" id="women_section">
                 <div class="card-body">
                   <form method="POST" enctype="multipart/form-data">
                     <!-- <input type="hidden" name="banner_type" value="men_banner"> -->
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="women_banner_title" name="women_banner_title" aria-describedby="emailHelp" value="{{ women_fashion_image.0.banner_name_custom }}" placeholder="Banner Title">
+                      </div>
+                    </div>
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="women_banner_img" class="mentetory">Upload banner image (946px X 300px)</label>
@@ -190,13 +200,18 @@
             <div class="card shadow mb-4">
               <!-- Card Header - Accordion -->
               <a href="#babby_kid_section" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="babby_kid_section">
-                <h6 class="m-0 font-weight-bold text-primary">Baby & Kids banner</h6>
+                <h6 class="m-0 font-weight-bold text-primary">{{ baby_kid_fashion_image.0.banner_name_custom }} banner</h6>
               </a>
               <!-- Card Content - Collapse -->
               <div class="collapse" id="babby_kid_section">
                 <div class="card-body">
                   <form method="POST" enctype="multipart/form-data">
                     <!-- <input type="hidden" name="banner_type" value="men_banner"> -->
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="baby_kid_banner_title" name="baby_kid_banner_title" aria-describedby="emailHelp" value="{{ baby_kid_fashion_image.0.banner_name_custom }}" placeholder="Banner Title">
+                      </div>
+                    </div>
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="baby_kid_banner_img" class="mentetory">Upload banner image (946px X 300px)</label>
@@ -257,13 +272,18 @@
             <div class="card shadow mb-4">
               <!-- Card Header - Accordion -->
               <a href="#mobile_section" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="mobile_section">
-                <h6 class="m-0 font-weight-bold text-primary">Mobile banner</h6>
+                <h6 class="m-0 font-weight-bold text-primary">{{ mobile_image.0.banner_name_custom }} banner</h6>
               </a>
               <!-- Card Content - Collapse -->
               <div class="collapse" id="mobile_section">
                 <div class="card-body">
                   <form method="POST" enctype="multipart/form-data">
                     <!-- <input type="hidden" name="banner_type" value="men_banner"> -->
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="mobile_banner_title" name="mobile_banner_title" aria-describedby="emailHelp" value="{{ mobile_image.0.banner_name_custom }}" placeholder="Banner Title">
+                      </div>
+                    </div>
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="mobile_banner_img" class="mentetory">Upload banner image (946px X 300px)</label>
@@ -324,13 +344,18 @@
             <div class="card shadow mb-4">
               <!-- Card Header - Accordion -->
               <a href="#electronics_section" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="electronics_section">
-                <h6 class="m-0 font-weight-bold text-primary">Electronics banner</h6>
+                <h6 class="m-0 font-weight-bold text-primary">{{ electronic_image.0.banner_name_custom }} banner</h6>
               </a>
               <!-- Card Content - Collapse -->
               <div class="collapse" id="electronics_section">
                 <div class="card-body">
                   <form method="POST" enctype="multipart/form-data">
                     <!-- <input type="hidden" name="banner_type" value="men_banner"> -->
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="electronic_banner_title" name="electronic_banner_title" aria-describedby="emailHelp" value="{{ electronic_image.0.banner_name_custom }}" placeholder="Banner Title">
+                      </div>
+                    </div>
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="electronics_banner_img" class="mentetory">Upload banner image (946px X 300px)</label>
@@ -391,13 +416,18 @@
             <div class="card shadow mb-4">
               <!-- Card Header - Accordion -->
               <a href="#office_appliance_section" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="office_appliance_section">
-                <h6 class="m-0 font-weight-bold text-primary">Office appliance banner</h6>
+                <h6 class="m-0 font-weight-bold text-primary">{{ office_appliance_image.0.banner_name_custom }} banner</h6>
               </a>
               <!-- Card Content - Collapse -->
               <div class="collapse" id="office_appliance_section">
                 <div class="card-body">
                   <form method="POST" enctype="multipart/form-data">
                     <!-- <input type="hidden" name="banner_type" value="men_banner"> -->
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="office_appliance_banner_title" name="office_appliance_banner_title" aria-describedby="emailHelp" value="{{ office_appliance_image.0.banner_name_custom }}" placeholder="Banner Title">
+                      </div>
+                    </div>
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="office_appliance_banner_img" class="mentetory">Upload banner image (946px X 300px)</label>
@@ -467,7 +497,7 @@
                     <!-- <input type="hidden" name="banner_type" value="men_banner"> -->
                     <div class="form-row">
                       <div class="form-group col-md-6">
-                        <label for="advatice_banner_1_img" class="mentetory">Upload banner image (500px X 300px)</label>
+                        <label for="advatice_banner_1_img" class="mentetory">Upload banner image <!--(500px X 300px)-->(450px X 276px) (3 Image Show)</label>
                         <div class="custom-file">
                           <input type="file" class="custom-file-input" name="advatice_1" id="advatice_banner_1_img" multiple="multiple">
                           {% csrf_token %}
@@ -534,7 +564,7 @@
                     <!-- <input type="hidden" name="banner_type" value="men_banner"> -->
                     <div class="form-row">
                       <div class="form-group col-md-6">
-                        <label for="advatice_banner_2_img" class="mentetory">Upload banner image (946px X 300px)</label>
+                        <label for="advatice_banner_2_img" class="mentetory">Upload banner image <!-- (946px X 300px) -->(1380px X 225px) (1 Image show)</label>
                         <div class="custom-file">
                           <input type="file" class="custom-file-input" name="advatice_2" id="advatice_banner_2_img" multiple="multiple">
                           {% csrf_token %}
@@ -601,7 +631,7 @@
                     <!-- <input type="hidden" name="banner_type" value="men_banner"> -->
                     <div class="form-row">
                       <div class="form-group col-md-6">
-                        <label for="advatice_banner_3_img" class="mentetory">Upload banner image (1314px X 247px)</label>
+                        <label for="advatice_banner_3_img" class="mentetory">Upload banner image <!-- (1314px X 247px) --> (450px X 278px) (3 Image SHow)</label>
                         <div class="custom-file">
                           <input type="file" class="custom-file-input" name="advatice_3" id="advatice_banner_3_img" multiple="multiple">
                           {% csrf_token %}
@@ -668,7 +698,7 @@
                     <!-- <input type="hidden" name="banner_type" value="men_banner"> -->
                     <div class="form-row">
                       <div class="form-group col-md-6">
-                        <label for="advatice_banner_4_img" class="mentetory">Upload banner image (636px X 296px)</label>
+                        <label for="advatice_banner_4_img" class="mentetory">Upload banner image <!-- (636px X 296px) --> (680px X 300px)(2 Image Show)</label>
                         <div class="custom-file">
                           <input type="file" class="custom-file-input" name="advatice_4" id="advatice_banner_4_img" multiple="multiple">
                           {% csrf_token %}
@@ -735,7 +765,7 @@
                     <!-- <input type="hidden" name="banner_type" value="men_banner"> -->
                     <div class="form-row">
                       <div class="form-group col-md-6">
-                        <label for="advatice_banner_5_img" class="mentetory">Upload banner image (636px X 296px)</label>
+                        <label for="advatice_banner_5_img" class="mentetory">Upload banner image <!-- (636px X 296px) --> (1380px X 150px) (1 Image Show)</label>
                         <div class="custom-file">
                           <input type="file" class="custom-file-input" name="advatice_5" id="advatice_banner_5_img" multiple="multiple">
                           {% csrf_token %}
@@ -810,7 +840,7 @@
                         </div>
                       </div>
                       <div class="form-group col-md-6">
-                        <br  />
+                        <br />
                         <button type="submit" class="btn btn-secondary btn-sm">Upload Image</button>
                       </div>
                     </div>
@@ -828,6 +858,140 @@
                               <div class="row">
                                 <div class="col-md-12">
                                   <a href="javaScript:void(0);" class="btn btn-danger btn-icon-split" onclick="DeleteImage(image_id='{{advatice_banner_6.id}}', image_custom_id='{{advatice_banner_6.banner_id}}');">
+                                    <span class="icon text-white-50">
+                                      <i class="fas fa-trash"></i>
+                                    </span>
+                                    <span class="text">Delete this image</span>
+                                  </a>
+                                </div>
+                                <!-- <br /><br />
+                                <div class="col-md-12">
+                                  <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="gst_img">
+                                    <label class="custom-file-label" for="gst_img" data-browse="Browse">New Image</label>
+                                  </div>
+                                </div> -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      {% endfor %}
+                    {% else %}
+                      <span>No image found</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12">
+            <!-- Collapsable Card Example -->
+            <div class="card shadow mb-4">
+              <!-- Card Header - Accordion -->
+              <a href="#home_advatice_right_section" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="home_advatice_right_section">
+                <h6 class="m-0 font-weight-bold text-primary">Header right banner</h6>
+              </a>
+              <!-- Card Content - Collapse -->
+              <div class="collapse" id="home_advatice_right_section">
+                <div class="card-body">
+                  <form method="POST" enctype="multipart/form-data">
+                    <!-- <input type="hidden" name="banner_type" value="men_banner"> -->
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="advatice_banner_right_img" class="mentetory">Upload banner image (171px X 300px)</label>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" name="advatice_right" id="advatice_banner_right_img" multiple="multiple">
+                          {% csrf_token %}
+                          <label class="custom-file-label" for="advatice_banner_right_img" data-browse="Browse">Upload Banner Image</label>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <br  />
+                        <button type="submit" class="btn btn-secondary btn-sm">Upload Image</button>
+                      </div>
+                    </div>
+                    <div class="form-row" id="advatice_banner_right_upload_preview">
+                      <!-- Image Preview -->
+                    </div>
+                  </form>
+                  <div class="form-row">
+                    {% if advatice_banner_right_image %}
+                      {% for advatice_banner_right in advatice_banner_right_image %}
+                        <div class="form-group col-md-4">
+                          <div class="card" style="width: 18rem;"> <!-- style="width: 18rem;" -->
+                            <img class="card-img-top" style="height: 110px;" src="/media/{{ advatice_banner_right.banner_image }}" alt="Card image cap">
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <a href="javaScript:void(0);" class="btn btn-danger btn-icon-split" onclick="DeleteImage(image_id='{{advatice_banner_right.id}}', image_custom_id='{{advatice_banner_right.banner_id}}');">
+                                    <span class="icon text-white-50">
+                                      <i class="fas fa-trash"></i>
+                                    </span>
+                                    <span class="text">Delete this image</span>
+                                  </a>
+                                </div>
+                                <!-- <br /><br />
+                                <div class="col-md-12">
+                                  <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="gst_img">
+                                    <label class="custom-file-label" for="gst_img" data-browse="Browse">New Image</label>
+                                  </div>
+                                </div> -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      {% endfor %}
+                    {% else %}
+                      <span>No image found</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12">
+            <!-- Collapsable Card Example -->
+            <div class="card shadow mb-4">
+              <!-- Card Header - Accordion -->
+              <a href="#home_advatice_left_section" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="home_advatice_left_section">
+                <h6 class="m-0 font-weight-bold text-primary">Header left banner</h6>
+              </a>
+              <!-- Card Content - Collapse -->
+              <div class="collapse" id="home_advatice_left_section">
+                <div class="card-body">
+                  <form method="POST" enctype="multipart/form-data">
+                    <!-- <input type="hidden" name="banner_type" value="men_banner"> -->
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="advatice_banner_left_img" class="mentetory">Upload banner image (171px X 300px)</label>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" name="advatice_left" id="advatice_banner_left_img" multiple="multiple">
+                          {% csrf_token %}
+                          <label class="custom-file-label" for="advatice_banner_left_img" data-browse="Browse">Upload Banner Image</label>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <br  />
+                        <button type="submit" class="btn btn-secondary btn-sm">Upload Image</button>
+                      </div>
+                    </div>
+                    <div class="form-row" id="advatice_banner_left_upload_preview">
+                      <!-- Image Preview -->
+                    </div>
+                  </form>
+                  <div class="form-row">
+                    {% if advatice_banner_left_image %}
+                      {% for advatice_banner_left in advatice_banner_left_image %}
+                        <div class="form-group col-md-4">
+                          <div class="card" style="width: 18rem;"> <!-- style="width: 18rem;" -->
+                            <img class="card-img-top" style="height: 110px;" src="/media/{{ advatice_banner_left.banner_image }}" alt="Card image cap">
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <a href="javaScript:void(0);" class="btn btn-danger btn-icon-split" onclick="DeleteImage(image_id='{{advatice_banner_left.id}}', image_custom_id='{{advatice_banner_left.banner_id}}');">
                                     <span class="icon text-white-50">
                                       <i class="fas fa-trash"></i>
                                     </span>

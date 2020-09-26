@@ -17,6 +17,16 @@ class ProductForm(forms.Form):
         ('', 'Select sub category first')
     ]
 
+    under_ter_category_option = [
+        ('', 'Under Tertiary Category'),
+        ('', 'Select tertiary category first')
+    ]
+
+    brand_choice = [
+        ('', 'Select Brand'),
+        ('', 'No brand')
+    ]
+
     color_choice = [
         ('', 'Select Color'),
         ('', 'No color fetch')
@@ -40,7 +50,9 @@ class ProductForm(forms.Form):
     category = forms.CharField(required=True, widget=forms.Select(choices=category_options, attrs={'class': 'form-control', 'id': 'category'}), error_messages={'required': 'Category Required'})
     sub_cateegory = forms.CharField(required=True, widget=forms.Select(choices=sub_category_options, attrs={'class': 'form-control', 'id': 'sub_category'}), error_messages={'required': 'Sub Category Required'})
     tertiary = forms.CharField(required=False, widget=forms.Select(choices=ter_category_option, attrs={'class': 'form-control', 'id': 'ter_category'}))
+    under_tertiary = forms.CharField(required=False, widget=forms.Select(choices=under_ter_category_option, attrs={'class': 'form-control', 'id': 'under_ter_category'}))
     description = forms.CharField(required=False, widget=forms.Textarea(attrs={'class': 'form-control', 'id': 'descrip', 'rows': 11, 'placeholder': 'Product description'}))
+    brand = forms.CharField(required=True, widget=forms.Select(choices=brand_choice, attrs={'class': 'custom-select my-1 mr-sm-2', 'id': 'brand'}), error_messages={'required': 'Brand Required'})
     color = forms.CharField(required=True, widget=forms.Select(choices=color_choice, attrs={'class': 'custom-select my-1 mr-sm-2', 'id': 'color'}), error_messages={'required': 'Color Required'})
     size = forms.CharField(required=False, widget=forms.Select(choices=size_choice, attrs={'class': 'custom-select my-1 mr-sm-2', 'id': 'size'}))
     made_in = forms.CharField(required=True, widget=forms.Select(choices=made_in_choice, attrs={'class': 'custom-select my-1 mr-sm-2', 'id': 'made_in'}), error_messages={'required': 'Made In Required'})

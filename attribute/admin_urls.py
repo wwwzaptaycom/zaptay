@@ -10,10 +10,13 @@ urlpatterns = [
     # Ajax url
     path('get-cateory', views.SendCategoryData, name="ajax_category"),
     path('get-sub-cateory', views.SendSubCategoryData, name="ajax_sub-category"),
+    path('get-tert-cateory', views.SendTertiaryCategoryData, name="ajax_tert-category"),
     path('delete-attributes/', views.DeleteAttrinutsData, name="ajax_attribute_del"),
 
     path('get-sorted-sub-category/', views.SendSortSubCategory, name='sort_sub_category'),
     path('get-sorted-terti-category/', views.TertiarySubCategory, name='sort_terti_category'),
+    path('get-sorted-under-terti-category/', views.SendUnderTertiaryCategory, name='sort_under_terti_category'),
+    path('get-all-brand/', views.GetAllBrands, name='get_all_brand'),
     path('get-all-color/', views.GetAllColors, name='get_all_colors'),
     path('get-all-size/', views.GetAllSize, name='get_all_size'),
     path('get-all-made-in/', views.GetAllMadeIn, name='get_all_made_in'),

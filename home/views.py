@@ -14,6 +14,8 @@ from user_login.models import UserAccount
 from django.utils import timezone
 from datetime import datetime
 
+from . base_template import BaseTemplateHeader
+
 # Create your views here.
 
 class HomeView(TemplateView):
@@ -357,13 +359,13 @@ class Home2(TemplateView):
     def get_context_data(self, **kwargs):
         context = dict()
 
-        get_mens_fashion = Banner.objects.filter(banner_name='men_banner').values('id', 'banner_image', 'banner_link')
+        get_mens_fashion = Banner.objects.filter(banner_name='men_banner').values('id', 'banner_image', 'banner_link', 'banner_name_custom')
         # print (get_mens_fashion)
-        get_womens_fashion = Banner.objects.filter(banner_name='women_banner').values('id', 'banner_image', 'banner_link')
-        get_baby_kid_fashion = Banner.objects.filter(banner_name='baby_kid_banner').values('id', 'banner_image', 'banner_link')
-        get_mobile_fashion = Banner.objects.filter(banner_name='mobile_banner').values('id', 'banner_image', 'banner_link')
-        get_electronic_fashion = Banner.objects.filter(banner_name='electronic_banner').values('id', 'banner_image', 'banner_link')
-        get_office_fashion = Banner.objects.filter(banner_name='office_appliance_banner').values('id', 'banner_image', 'banner_link')
+        get_womens_fashion = Banner.objects.filter(banner_name='women_banner').values('id', 'banner_image', 'banner_link', 'banner_name_custom')
+        get_baby_kid_fashion = Banner.objects.filter(banner_name='baby_kid_banner').values('id', 'banner_image', 'banner_link', 'banner_name_custom')
+        get_mobile_fashion = Banner.objects.filter(banner_name='mobile_banner').values('id', 'banner_image', 'banner_link', 'banner_name_custom')
+        get_electronic_fashion = Banner.objects.filter(banner_name='electronic_banner').values('id', 'banner_image', 'banner_link', 'banner_name_custom')
+        get_office_fashion = Banner.objects.filter(banner_name='office_appliance_banner').values('id', 'banner_image', 'banner_link', 'banner_name_custom')
 
         banner_1 = Banner.objects.filter(banner_name='advatice_1').order_by('-id')[0:3]
         banner_2 = Banner.objects.filter(banner_name='advatice_2').order_by('-id')[0:2]
@@ -372,46 +374,138 @@ class Home2(TemplateView):
         banner_5 = Banner.objects.filter(banner_name='advatice_5').order_by('-id')[0:2]
         banner_6 = Banner.objects.filter(banner_name='advatice_6').order_by('-id')[0:1]
 
-        header_logo = get_header_logo = Banner.objects.filter(banner_name='header_logo').order_by('-id').first()
+        banner_right = Banner.objects.filter(banner_name='advatice_right').order_by('-id')[0:1]
+        # banner_6 = Banner.objects.filter(banner_name='advatice_left').order_by('-id')[0:1]
 
-        megamenu = list()
-        featured_category = MainCategory.objects.filter(main_category_name='featured').first()
-        get_sub_category = SubCategory.objects.filter(category_id=featured_category)
-        for i in get_sub_category:
-            sub_category = list()
-            sub_category.append(i.sub_category_name)
-            get_tertiary_category = TertiaryCategory.objects.filter(sub_category_id=i)
-            tertiary_cate_ar = list()
-            for j in get_tertiary_category:
-                tertiary_cate = dict()
-                tertiary_cate['id'] = j.ter_category_id
-                tertiary_cate['name'] = j.ter_category_name
-                tertiary_cate_ar.append(tertiary_cate)
-            sub_category.append(tertiary_cate_ar)
-            megamenu.append(sub_category)
-        # print (megamenu)
+        exclusive_category_id = MainCategory.objects.filter(main_category_name='exclusive').first()
+        exclusive_category = SubCategory.objects.filter(category_id=exclusive_category_id)
+        # print (exclusive_category)
 
-        featured_category = MainCategory.objects.filter(main_category_name='exclusive').first()
-        get_more_sub_category = SubCategory.objects.filter(category_id=featured_category)
+        # ***************************************************************************************************************
+        # *****************************  Weekly offer content start  ****************************************************
+        # ***************************************************************************************************************
+        get_today_offer = Offer.objects.filter(offer_start__lte=timezone.now(), offer_end__gte=timezone.now(), is_active=True).first()
+        offer_products = list()
+        if get_today_offer:
+            start_time = get_today_offer.offer_start
+            end_time = get_today_offer.offer_end
+            # print (get_today_offer, start_time, end_time)
+            get_today_offer_product_list = OfferProduct.objects.filter(offer_id=get_today_offer)
+            # print (get_today_offer_product_list[0].product_id)
+
+            for offer_product in get_today_offer_product_list:
+                offer_products_dict = dict()
+                # print (offer_product.product_id)
+                get_stock = Inventory.objects.filter(product_id=offer_product.product_id, remaining_stock__gt = 0).first()
+                if get_stock:
+                    bach_id = get_stock.bach_id
+                else:
+                    get_bach = Bach.objects.filter(product_id=offer_product.product_id).order_by('-id').first()
+                    bach_id = get_bach
+
+                get_price = Bach.objects.filter(bach_id=bach_id).first()
+                main_price = get_price.main_price
+                offer_price = offer_product.extra_offer_price
+                # print (get_price)
+
+                product_name = offer_product.product_id.prod_title
+                # print (product_name,main_price,offer_price)
+
+                product_img = ProductImage.objects.filter(product_id=offer_product.product_id, home_image=True).first()
+                # print (product_img)
+                offer_products_dict['product_name'] = product_name
+                offer_products_dict['product_image'] = product_img.product_image
+                offer_products_dict['product_image_title'] = product_img.prod_image_title
+                offer_products_dict['product_main_price'] = main_price
+                offer_products_dict['product_offer_price'] = offer_price
+
+                total_discount = int(100-((float(offer_price)/float(main_price)))*100)
+                offer_products_dict['product_duscount'] = total_discount
+
+                offer_products.append(offer_products_dict)
+            # print(offer_products)
+
+            # get_product_stock
+
+            # from datetime import datetime, timedelta
+            # time_threshold = datetime.now() - timedelta(hours=5)
+            # print (time_threshold)
+
+        # *****************************  Weekly offer content start  ****************************************************
+
+        # ***************************************************************************************************************
+        # *****************************  Featured Category content start  ****************************************************
+        # ***************************************************************************************************************
+        get_category = MainCategory.objects.filter(main_category_name='featured').first()
+        get_sub_category = SubCategory.objects.filter(category_id=get_category)
+        featured_category = list()
+        for sub_category in get_sub_category:
+            featured_category_dict = dict()
+            get_tertitory_category = TertiaryCategory.objects.filter(sub_category_id=sub_category)
+            featured_category_dict['sub_category'] = sub_category.sub_category_name
+            featured_tertiary_category = list()
+            for tertiary_category in  get_tertitory_category:
+                featured_tertiary_category_dict = dict()
+                featured_tertiary_category_dict['category_name'] = tertiary_category.ter_category_name
+                featured_tertiary_category_dict['category_url'] = tertiary_category.ter_category_seo_url
+                featured_tertiary_category_dict['category_image'] = tertiary_category.tertiary_category_image
+                featured_tertiary_category.append(featured_tertiary_category_dict)
+            featured_category_dict['tertiary_category'] = featured_tertiary_category
+            featured_category.append(featured_category_dict)
         # print (featured_category)
+        # *****************************  Featured Category content start  ****************************************************
+
+
+
+        # ***************************************************************************************************************
+        # *****************************  Electronnic Category content start  ****************************************************
+        # ***************************************************************************************************************
+
+        get_sub_category = SubCategory.objects.filter(sub_category_name='electronics').first()
+        # print (get_sub_category)
+        # featured_category = list()
+        # for sub_category in get_sub_category:
+        #     featured_category_dict = dict()
+        #     get_tertitory_category = TertiaryCategory.objects.filter(sub_category_id=sub_category)
+        #     featured_category_dict['sub_category'] = sub_category.sub_category_name
+        #     featured_tertiary_category = list()
+        #     for tertiary_category in  get_tertitory_category:
+        #         featured_tertiary_category_dict = dict()
+        #         featured_tertiary_category_dict['category_name'] = tertiary_category.ter_category_name
+        #         featured_tertiary_category_dict['category_url'] = tertiary_category.ter_category_seo_url
+        #         featured_tertiary_category.append(featured_tertiary_category_dict)
+        #     featured_category_dict['tertiary_category'] = featured_tertiary_category
+        #     featured_category.append(featured_category_dict)
+        # print (featured_category)
+        # *****************************  Electronic Category content start  ****************************************************
+
+
+
+        obj = BaseTemplateHeader(self.request)
+        base_template_data = obj.GetHeaderContent()
 
         context = {
-            'header_logo': header_logo,
-            'mega_menu_sub_category': megamenu,
-            'mega_menu_more_category': get_more_sub_category,
+            'base_template_content': base_template_data,
 
             'mens_banner_image': get_mens_fashion,
             'womens_banner_image': get_womens_fashion,
             'baby_kid_banner_image': get_baby_kid_fashion,
             'mobile_banner_image': get_mobile_fashion,
             'electronic_banner_image': get_electronic_fashion,
-            'electronic_office_image': get_office_fashion,
+            'office_appliance_image': get_office_fashion,
             'banner_1': banner_1,
             'banner_2': banner_2,
             'banner_3': banner_3,
             'banner_4': banner_4,
             'banner_5': banner_5,
             'banner_6': banner_6,
+            'banner_right': banner_right,
+
+            'exclusive_category': exclusive_category,
+
+            'offer_products': offer_products,
+
+            'featured_category': featured_category
         }
 
         return context

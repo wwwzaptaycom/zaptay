@@ -1,7 +1,7 @@
 {% extends 'user_template/base_template.html' %}
 {% load static %}
 
-{% block title %}Wishlist{% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block add_css %}
 <link rel="stylesheet" href="{% static 'user_static/css/login.css' %}">
@@ -19,19 +19,28 @@
         <a href="" class="btn btn-primary btn-lg btn-block twitter_login"><i class="fab fa-twitter"></i> Continue with Twitter</a>
         <a href="" class="btn btn-primary btn-lg btn-block google_login"><i class="fab fa-google"></i> Continue with Google</a>
         <form>
+          <div class="alert alert-danger alert-dismissible fade" role="alert">
+            <strong class="error_title">Holy guacamole!</strong> <span class="error_message"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
           <div class="input-group mb-2">
             <div class="input-group-prepend">
               <div class="input-group-text"><i class="far fa-envelope"></i></div>
             </div>
-            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Email">
+            <input type="text" class="form-control" id="loginId" placeholder="Email">
           </div>
           <div class="input-group mb-2">
             <div class="input-group-prepend">
               <div class="input-group-text"><i class="fas fa-lock"></i></div>
             </div>
-            <input type="password" class="form-control" id="inlineFormInputGroup" placeholder="Password">
+            <input type="password" class="form-control" id="password" placeholder="Password">
           </div>
-          <button type="button" class="btn btn-primary btn-lg btn-block login_btn">Log In</button>
+          <button type="button" class="btn btn-primary btn-lg btn-block login_btn">
+            <i class="fas fa-spinner fa-spin"></i>
+            <span class="button_title">Log In</span>
+          </button>
         </form>
         <div class="forgot_pwd_div">
           Or <a href="">Forget Password</a>
@@ -46,4 +55,5 @@
 {% endblock %}
 
 {% block add_js %}
+<script src="{% static 'user_static/js/login.js' %}"></script>
 {% endblock %}

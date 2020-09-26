@@ -1,7 +1,7 @@
 {% extends 'user_template/base_template.html' %}
 {% load static %}
 
-{% block title %}Wishlist{% endblock %}
+{% block title %}Register{% endblock %}
 
 {% block add_css %}
 <link rel="stylesheet" href="{% static 'user_static/css/signup.css' %}">
@@ -15,33 +15,44 @@
       <hr />
       <!-- <button type="button" class="btn btn-primary">Primary</button> -->
       <div class="login_form">
-
+        <a href="" class="btn btn-primary btn-lg btn-block facebook_login"><i class="fab fa-facebook-f"></i> Continue with Facebook</a>
+        <a href="" class="btn btn-primary btn-lg btn-block twitter_login"><i class="fab fa-twitter"></i> Continue with Twitter</a>
+        <a href="" class="btn btn-primary btn-lg btn-block google_login"><i class="fab fa-google"></i> Continue with Google</a>
         <form>
+          <div class="alert alert-danger alert-dismissible fade " role="alert">
+            <strong class="error_title">Holy guacamole!</strong> <span class="error_message"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
           <div class="input-group mb-2">
             <div class="input-group-prepend">
               <div class="input-group-text"><i class="far fa-user"></i></div>
             </div>
-            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Full name">
+            <input type="text" class="form-control" id="fullname" placeholder="Full name">
           </div>
           <div class="input-group mb-2">
             <div class="input-group-prepend">
               <div class="input-group-text"><i class="far fa-envelope"></i></div>
             </div>
-            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Email">
+            <input type="text" class="form-control" id="email" placeholder="Email">
           </div>
           <div class="input-group mb-2">
             <div class="input-group-prepend">
               <div class="input-group-text"><i class="fas fa-mobile-alt"></i></div>
             </div>
-            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Phone number">
+            <input type="text" class="form-control" id="phno" placeholder="Phone number">
           </div>
           <div class="input-group mb-2">
             <div class="input-group-prepend">
               <div class="input-group-text"><i class="fas fa-lock"></i></div>
             </div>
-            <input type="password" class="form-control" id="inlineFormInputGroup" placeholder="Password">
+            <input type="password" class="form-control" id="password" placeholder="Password">
           </div>
-          <button type="button" class="btn btn-primary btn-lg btn-block signup_btn">Sign Up</button>
+          <button type="button" class="btn btn-primary btn-lg btn-block signup_btn">
+            <i class="fas fa-spinner fa-spin"></i>
+            <span class="button_title">Sign Up</span>
+          </button>
         </form>
         <div class="policy">
           <span>
@@ -59,4 +70,5 @@
 {% endblock %}
 
 {% block add_js %}
+<script src="{% static 'user_static/js/signup.js' %}"></script>
 {% endblock %}

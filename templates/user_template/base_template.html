@@ -36,7 +36,7 @@
 
         <a class="navbar-brand logo_area" href="#">
           <!-- <img src="{% static 'site_image/logo.png' %}" alt="" class="site_logo"> -->
-          <img src="/media/{{ header_logo.banner_image }}" alt="" class="site_logo">
+          <img src="/media/{{ base_template_content.header_logo.banner_image }}" alt="" class="site_logo">
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -125,8 +125,47 @@
                 <a class="dropdown-item" type="button">Notification 2</a>
               </div>
             </div>
-            <button onclick="location.href='{% url 'user_login:login' %}'" type="button" class="btn btn-light login_btn">Log in</button>
-            <button onclick="location.href='{% url 'user_login:signup' %}'" type="button" class="btn btn-primary sign_up_btn">Sign up</button>
+            {% if base_template_content.login_user.status == 0 %}
+              <button onclick="location.href='{% url 'user_login:login' %}'" type="button" class="btn btn-light login_btn">Log in</button>
+              <button onclick="location.href='{% url 'user_login:signup' %}'" type="button" class="btn btn-primary sign_up_btn">Sign up</button>
+            {% else %}
+              <div class="btn-group profile_menu">
+                <div class="profile_image" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">SD</div>
+                <div class="dropdown-menu dropdown-menu-right user_menu">
+                  <div class="profile_menu_items">
+                    <a href="" class="dropdown-item">
+                      <div class="profile">
+                        <div class="image_div">
+                          <div class="image">
+                            <span>SD</span>
+                            <!-- <img src="{% static 'site_image/135x180.png' %}" alt=""> -->
+                          </div>
+                        </div>
+                        <div class="user_name">
+                          <div>{{ base_template_content.login_user.user_name }}</div>
+                          <div>{{ base_template_content.login_user.user_email }}</div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="profile_menu_items">
+                    <a class="dropdown-item" type="button">My Order</a>
+                    <a class="dropdown-item" type="button">My Cart</a>
+                    <a class="dropdown-item" type="button">My WishList</a>
+                  </div>
+                  <div class="profile_menu_items">
+                    <a class="dropdown-item" type="button">Account Settings</a>
+                    <a class="dropdown-item" type="button">Payment Methods</a>
+                    <a class="dropdown-item" type="button">Zaptay Coupon</a>
+                    <a class="dropdown-item" type="button">Zaptay Wallet</a>
+                  </div>
+                  <div class="profile_menu_items">
+                    <a class="dropdown-item" type="button">Help</a>
+                    <a class="dropdown-item" type="button">Log Out</a>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
           <!-- </form> -->
         </div>
       </nav>
@@ -142,8 +181,8 @@
         <div class="container">
           <div class="navbar-collapse collapse" id="main-nav-1">
             <ul class="navbar-nav">
-              {% if mega_menu_sub_category %}
-                {% for mega_sub_category in mega_menu_sub_category %}
+              {% if base_template_content.mega_menu_sub_category %}
+                {% for mega_sub_category in base_template_content.mega_menu_sub_category %}
                   <li class="nav-item dropdown position-static"><a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="#">{{ mega_sub_category.0 }}</a>
                     <div class="dropdown-menu w-100">
                       <div class="container">
@@ -178,8 +217,8 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <div class="more_mega_item">
-                  {% if mega_menu_more_category %}
-                    {% for i in mega_menu_more_category %}
+                  {% if base_template_content.mega_menu_more_category %}
+                    {% for i in base_template_content.mega_menu_more_category %}
                       <a class="dropdown-item" href="#">{{ i.sub_category_name }}</a>
                     {% endfor %}
                   {% endif %}
@@ -202,6 +241,114 @@
     <!-- =====================================  Body End  ============================================= -->
     <!-- ================================================================================================ -->
 
+
+    <!-- ================================================================================================= -->
+    <!-- =============================  Footer Start   ========================================= -->
+    <footer>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="footetr_logo">
+              <h1>Zaptay.com</h1>
+            </div>
+            <div class="address">
+              <span>Sodhpur, Kolkata - 7000110, West Bengal</span>
+            </div>
+            <div class="social_media">
+              <span class="title">Social media links:</span>
+              <a href=""><div class="socila_icon facebook"><i class="fab fa-facebook-f"></i></div></a>
+              <a href=""><div class="socila_icon twitter"><i class="fab fa-twitter"></i></div></a>
+              <a href=""><div class="socila_icon linkedin"><i class="fab fa-linkedin-in"></i></div></a>
+              <a href=""><div class="socila_icon youtube"><i class="fab fa-youtube"></i></div></a>
+              <a href=""><div class="socila_icon instagram"><i class="fab fa-instagram"></i></div></a>
+              <a href=""><div class="socila_icon whatsapp"><i class="fab fa-whatsapp"></i></div></a>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="policy_title">
+              <span>policies</span>
+            </div>
+            <div class="all_policy_details">
+              <ul>
+                <li><a href="#">Return Policy</a></li>
+                <li><a href="#">Term Policy</a></li>
+                <li><a href="#">Privacy</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="policy_title">
+              <span>Customer care</span>
+            </div>
+            <div class="all_policy_details">
+              <ul>
+                <li><a href="#">Account Login</a></li>
+                <li><a href="#">Shoping Cart</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Contact us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="policy_title">
+              <span>B2B Information</span>
+            </div>
+            <div class="all_policy_details">
+              <ul>
+                <li><a href="#">Account Login</a></li>
+                <li><a href="#">Shoping Cart</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Contact us</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="policy_title">
+              <span>Newsletter signup</span>
+            </div>
+            <div class="all_policy_details">
+              <span>Signup for our email and be who know oir special offers! Furthermore, we will give a 15% discount on next dore after you sign up.</span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="policy_title">
+              <span>Subscribe now</span>
+            </div>
+            <div class="all_policy_details subscribe">
+              <div class="input-group">
+                <input type="email" class="form-control" placeholder="Enter your email address">
+                <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit">
+                    <i class="fas fa-paper-plane"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="payment_title">
+              <span>Accepted payment option</span>
+            </div>
+            <div class="all_policy_details">
+              <div class="payment_option">
+                <span><i class="fas fa-credit-card"></i></span>
+              </div>
+              <div class="payment_option">
+                <span><i class="fas fa-wallet"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="copy_right_div">
+        <span>2020 &copy; Zaptay.com. All right reservered</span>
+      </div>
+    </footer>
+    <!-- =====================================  Footer End  ============================================= -->
+    <!-- ================================================================================================ -->
 
     <!-- ================================================================================================= -->
     <!-- =============================  Modal for get location   ========================================= -->
@@ -249,38 +396,38 @@
             <form>
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="exampleInputEmail1">First Name</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="First Namel">
+                  <label for="business_first_name">First Name</label>
+                  <input type="email" class="form-control" id="business_first_name" aria-describedby="emailHelp" placeholder="First Namel">
                   <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="exampleInputEmail1">Last Name</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Last Name">
+                  <label for="business_last_name">Last Name</label>
+                  <input type="email" class="form-control" id="business_last_name" aria-describedby="emailHelp" placeholder="Last Name">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="exampleInputEmail1">Email Address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                  <label for="business_email">Email Address</label>
+                  <input type="email" class="form-control" id="business_email" aria-describedby="emailHelp" placeholder="Enter email">
                   <small id="emailHelp" class="form-text text-muted">It will be your register mail id</small>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="exampleInputEmail1">Phone Number</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" id="inputGroupPrepend">+91</span>
+                      <span class="input-group-text" id="business_phone">+91</span>
                     </div>
-                    <input type="text" class="form-control" id="validationCustomUsername" placeholder="Phone number" aria-describedby="inputGroupPrepend" required>
-                    <div class="invalid-feedback">
+                    <input type="text" class="form-control" id="business_phone" placeholder="Phone number" aria-describedby="inputGroupPrepend" required>
+                    <!-- <div class="invalid-feedback">
                       Please choose a username.
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="exampleInputPassword1">Select Specification</label>
-                <select class="custom-select" id="inputGroupSelect01">
+                <label for="business_specification">Select Specification</label>
+                <select class="custom-select" id="business_specification">
                   <option selected disabled>Choose...</option>
                   <option value="Fashion">Fashion</option>
                   <option value="Mobile">Mobile</option>

@@ -14,22 +14,22 @@
     <div class="banner_category">
       <ul>
         <a href="javascript:void(0);" onclick="return ChangeSlider('mens_fashion_image', 'men_fashion');">
-          <li class="fashion_tab men_fashion active">Men</li>
+          <li class="fashion_tab men_fashion active">{{ mens_banner_image.0.banner_name_custom }}</li>
         </a>
         <a href="javascript:void(0);" onclick="return ChangeSlider('womens_fashion_image', 'women_fashion');">
-          <li class="fashion_tab women_fashion">Women</li>
+          <li class="fashion_tab women_fashion">{{ womens_banner_image.0.banner_name_custom }}</li>
         </a>
         <a href="javascript:void(0);" onclick="return ChangeSlider('baby_kid_fashion_image', 'baby_kid_fashion');">
-          <li class="fashion_tab baby_kid_fashion">Baby & kids</li>
+          <li class="fashion_tab baby_kid_fashion">{{ baby_kid_banner_image.0.banner_name_custom }}</li>
         </a>
         <a href="javascript:void(0);" onclick="return ChangeSlider('mobile_image', 'mobile_fashion');">
-          <li class="fashion_tab mobile_fashion">Mobile</li>
+          <li class="fashion_tab mobile_fashion">{{ mobile_banner_image.0.banner_name_custom }}</li>
         </a>
         <a href="javascript:void(0);" onclick="return ChangeSlider('electronic_image', 'electronic_fashion');">
-          <li class="fashion_tab electronic_fashion">Electronics</li>
+          <li class="fashion_tab electronic_fashion">{{ electronic_banner_image.0.banner_name_custom }}</li>
         </a>
         <a href="javascript:void(0);" onclick="return ChangeSlider('office_appliance_image', 'office_fashion');">
-          <li class="fashion_tab office_fashion">Office appliance</li>
+          <li class="fashion_tab office_fashion">{{ office_appliance_image.0.banner_name_custom }}</li>
         </a>
       </ul>
     </div>
@@ -261,8 +261,8 @@
         {% endif %}
       </ol>
       <div class="carousel-inner">
-        {% if electronic_office_image %}
-          {% for office_image in electronic_office_image %}
+        {% if office_appliance_image %}
+          {% for office_image in office_appliance_image %}
           <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
             <a href="">
               <div class="banner_image">
@@ -296,7 +296,13 @@
   <div class="banner_indian_haat_div d-none d-md-block">
     <div class="indian_haat">
       <!-- <span>INDIAN HAAT section <br /> Image size: 263px X 252px</span> -->
-      <img src="{% static '/site_image/banner1.jpg' %}" alt="">
+      {% if banner_right %}
+        {% for banner_right_image in banner_right %}
+          <img src="/media/{{ banner_right_image.banner_image }}" alt="">
+        {% endfor %}
+      {% else %}
+        <img src="{% static '/site_image/banner1.jpg' %}" alt="">
+      {% endif %}
     </div>
   </div>
 </div>
@@ -386,26 +392,1053 @@
     </div>
   </div>
 </div>
+
+<!-- ========================================================================================================================== -->
+<!-- =================================  New Design Stared From (21-Sep-2020) By SD. ============================================ -->
+<!-- ========================================================================================================================== -->
+
+
+<!-- =================================  Exclusive Category ============================================ -->
+
+<div class="exclusive_category_div">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Shop By Exclusive Category</h1>
+      </div>
+      <div class="col-md-12">
+        <div class="left_arrow exclusive_left_arrow"><i class="fas fa-caret-left"></i></div>
+        <div class="right_arrow exclusive_right_arrow"><i class="fas fa-caret-right"></i></div>
+        <div class="product_section" id="product_section">
+          <ul>
+            {% if exclusive_category %}
+              {% for category in exclusive_category %}
+                <li>
+                  <span>
+                    <a href="">
+                      <div class="category_blog_design">
+                        <div class="category_image">
+                          {% if category.sub_category_image %}
+                            <img src="/media/{{ category.sub_category_image }}" alt="{{ category.sub_category_name }}">
+                          {% else %}
+                            <img src="{% static 'site_image/glass.jpg' %}" alt="">
+                          {% endif %}
+                        </div>
+                        <div class="category_title">{{ category.sub_category_name }}</div>
+                      </div>
+                    </a>
+                  </span>
+                </li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================================  Exclusive Category End ============================================ -->
+
+
+<!-- =================================  Weekly_dreals Category ============================================ -->
+
+<div class="exclusive_category_div">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Weekly Dreals & offer</h1>
+        <span class="timmer">
+          <i class="fas fa-stopwatch"></i> 5d 5h : 2m : 5s
+        </span>
+      </div>
+      <div class="col-md-12">
+        <div class="left_arrow weekly_dreals_left_arrow"><i class="fas fa-caret-left"></i></div>
+        <div class="right_arrow weekly_dreals_right_arrow"><i class="fas fa-caret-right"></i></div>
+        <div class="product_section" id="weekly_dreals_product_section">
+          <ul>
+            <li>
+              <span>
+                <div class="product_wish_list_icon wish_list_active"><i class="fas fa-heart"></i></div>
+                <a href="">
+                  <div class="product_design_div">
+                    <div class="product_image">
+                      <img src="{% static 'site_image/135x180.png' %}" alt="">
+                    </div>
+                    <div class="product_description">
+                      <div class="product_title">Test product name</div>
+                      <div class="product_view_rating">
+                        <div class="product_rating">
+                          <span class="rating_text">3.5 <i class="fas fa-star"></i> </span>
+                        </div>
+                        <div class="viewer">
+                          <span>&nbsp;&nbsp;(15,000)</span>
+                        </div>
+                      </div>
+                      <div class="product_pricing">
+                        <div class="pricing">
+                          <span>&#x20B9; 700</span>
+                          <span class="original_price">&#8377; 800</span>
+                        </div>
+                        <!-- <div class="discount">
+                          <span>4% dic</span>
+                        </div> -->
+                      </div>
+                      <div class="total_save_price">
+                        <div class="save_amount">
+                          <span>Save &#8377; 800</span>
+                        </div>
+                        <div class="save_percent">
+                          <span>4% dic</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </span>
+            </li>
+            <li>
+              <span>
+                <div class="product_best_seller"><span>Best Seller</span></div>
+                <div class="product_wish_list_icon"><i class="fas fa-heart"></i></div>
+                <a href="">
+                  <div class="product_design_div">
+                    <div class="product_image">
+                      <img src="{% static 'site_image/135x180.png' %}" alt="">
+                    </div>
+                    <div class="product_description">
+                      <div class="product_title">Test product name</div>
+                      <div class="product_view_rating">
+                        <div class="product_rating">
+                          <span class="rating_text">3.5 <i class="fas fa-star"></i> </span>
+                        </div>
+                        <div class="viewer">
+                          <span>&nbsp;&nbsp;(15,000)</span>
+                        </div>
+                      </div>
+                      <div class="product_pricing">
+                        <div class="pricing">
+                          <span>&#x20B9; 700</span>
+                          <span class="original_price">&#8377; 800</span>
+                        </div>
+                        <!-- <div class="discount">
+                          <span>4% dic</span>
+                        </div> -->
+                      </div>
+                      <div class="total_save_price">
+                        <div class="save_amount">
+                          <span>Save &#8377; 800</span>
+                        </div>
+                        <div class="save_percent">
+                          <span>4% dic</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================================  Weekly Dreals End ============================================ -->
+
+<!-- =================================  Featured Category Start ============================================ -->
+
+<div class="exclusive_category_div">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Featured Category</h1>
+      </div>
+      <div class="col-md-12">
+        <div class="left_arrow featured_category_left_arrow"><i class="fas fa-caret-left"></i></div>
+        <div class="right_arrow featured_category_right_arrow"><i class="fas fa-caret-right"></i></div>
+        <div class="product_section" id="fetured_category_section">
+          <ul>
+            {% if featured_category %}
+              {% for category in featured_category %}
+                <li>
+                  <span>
+                    <div class="featured_category_main_box">
+                      <div class="featured_category_main_title">
+                        <span>{{ category.sub_category }}</span>
+                      </div>
+                      <div class="featured_categorys_div">
+                        {% for tertiary_category in category.tertiary_category|slice:":5" %}
+                          <a href="">
+                            <div class="single_category">
+                              {% if tertiary_category.category_image %}
+                                <img src="/media/{{ tertiary_category.category_image }}" alt="">
+                              {% else %}
+                                <img src="{% static 'site_image/135x180.png' %}" alt="">
+                              {% endif %}
+                              <div class="single_category_title">{{ tertiary_category.category_name }}</div>
+                            </div>
+                          </a>
+                        {% endfor %}
+                        {% if category.tertiary_category|length > 5 %}
+                          <a href="">
+                            <div class="single_category">
+                              <div class="view_all_div">View All</div>
+                            </div>
+                          </a>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </span>
+                </li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================================  Featured Category End ============================================= -->
+
+<!-- =================================  Electronic_dreals Category ============================================ -->
+
+<div class="exclusive_category_div">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Electronic Dreals</h1>
+        <!-- <span class="timmer">
+          <i class="fas fa-stopwatch"></i> 5d 5h : 2m : 5s
+        </span> -->
+      </div>
+      <div class="col-md-12">
+        <div class="left_arrow weekly_dreals_left_arrow"><i class="fas fa-caret-left"></i></div>
+        <div class="right_arrow weekly_dreals_right_arrow"><i class="fas fa-caret-right"></i></div>
+        <div class="product_section" id="weekly_dreals_product_section">
+          <ul>
+            <li>
+              <span>
+                <div class="product_best_seller"><span>Best Seller</span></div>
+                <div class="product_wish_list_icon"><i class="fas fa-heart"></i></div>
+                <a href="">
+                  <div class="product_design_div">
+                    <div class="product_image">
+                      <img src="{% static 'site_image/135x180.png' %}" alt="">
+                    </div>
+                    <div class="product_description">
+                      <div class="product_title">Test product name</div>
+                      <div class="product_view_rating">
+                        <div class="product_rating">
+                          <span class="rating_text">3.5 <i class="fas fa-star"></i> </span>
+                        </div>
+                        <div class="viewer">
+                          <span>&nbsp;&nbsp;(15,000)</span>
+                        </div>
+                      </div>
+                      <div class="product_pricing">
+                        <div class="pricing">
+                          <span>&#x20B9; 700</span>
+                          <span class="original_price">&#8377; 800</span>
+                        </div>
+                        <div class="discount">
+                          <span>4% dic</span>
+                        </div>
+                      </div>
+                      <!-- <div class="total_save_price">
+                        <div class="save_amount">
+                          <span>Save &#8377; 800</span>
+                        </div>
+                        <div class="save_percent">
+                          <span>4% dic</span>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </a>
+              </span>
+            </li>
+            <li>
+              <span>
+                <div class="product_best_seller"><span>Best Seller</span></div>
+                <div class="product_wish_list_icon"><i class="fas fa-heart"></i></div>
+                <a href="">
+                  <div class="product_design_div">
+                    <div class="product_image">
+                      <img src="{% static 'site_image/135x180.png' %}" alt="">
+                    </div>
+                    <div class="product_description">
+                      <div class="product_title">Test product name</div>
+                      <div class="product_view_rating">
+                        <div class="product_rating">
+                          <span class="rating_text">3.5 <i class="fas fa-star"></i> </span>
+                        </div>
+                        <div class="viewer">
+                          <span>&nbsp;&nbsp;(15,000)</span>
+                        </div>
+                      </div>
+                      <div class="product_pricing">
+                        <div class="pricing">
+                          <span>&#x20B9; 700</span>
+                          <span class="original_price">&#8377; 800</span>
+                        </div>
+                        <div class="discount">
+                          <span>4% dic</span>
+                        </div>
+                      </div>
+                      <!-- <div class="total_save_price">
+                        <div class="save_amount">
+                          <span>Save &#8377; 800</span>
+                        </div>
+                        <div class="save_percent">
+                          <span>4% dic</span>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </a>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================================  Electronic_dreals End ============================================ -->
+
+<!-- =================================  Banner1 Category ============================================ -->
+{% if banner_1 %}
+  <div class="advatice_banner">
+    <div class="container-fluid">
+      <div class="row">
+        {% for banner_image in banner_1|slice:":3" %}
+          <div class="col-md-4">
+            <img class="banner_1_img" src="/media/{{ banner_image.banner_image }}" alt="">
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+<!-- =================================  Banner1 End ================================================= -->
+
+<!-- =================================  Mobile_electronic_dreals Category ============================================ -->
+
+<div class="exclusive_category_div">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Mobile electronic dreals</h1>
+        <span class="view_all"><a href="">(view all)</a></span>
+      </div>
+      <div class="col-md-12">
+        <div class="left_arrow weekly_dreals_left_arrow"><i class="fas fa-caret-left"></i></div>
+        <div class="right_arrow weekly_dreals_right_arrow"><i class="fas fa-caret-right"></i></div>
+        <div class="product_section" id="weekly_dreals_product_section">
+          <ul>
+            <li>
+              <span>
+                <div class="product_best_seller"><span>Best Seller</span></div>
+                <div class="product_wish_list_icon"><i class="fas fa-heart"></i></div>
+                <a href="">
+                  <div class="product_design_div">
+                    <div class="product_image">
+                      <img src="{% static 'site_image/135x180.png' %}" alt="">
+                    </div>
+                    <div class="product_description">
+                      <div class="product_title">Test product name</div>
+                      <div class="product_view_rating">
+                        <div class="product_rating">
+                          <span class="rating_text">3.5 <i class="fas fa-star"></i> </span>
+                        </div>
+                        <div class="viewer">
+                          <span>&nbsp;&nbsp;(15,000)</span>
+                        </div>
+                      </div>
+                      <div class="product_pricing">
+                        <div class="pricing">
+                          <span>&#x20B9; 700</span>
+                          <span class="original_price">&#8377; 800</span>
+                        </div>
+                        <div class="discount">
+                          <span>4% dic</span>
+                        </div>
+                      </div>
+                      <!-- <div class="total_save_price">
+                        <div class="save_amount">
+                          <span>Save &#8377; 800</span>
+                        </div>
+                        <div class="save_percent">
+                          <span>4% dic</span>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </a>
+              </span>
+            </li>
+            <li>
+              <span>
+                <div class="product_best_seller"><span>Best Seller</span></div>
+                <div class="product_wish_list_icon"><i class="fas fa-heart"></i></div>
+                <a href="">
+                  <div class="product_design_div">
+                    <div class="product_image">
+                      <img src="{% static 'site_image/135x180.png' %}" alt="">
+                    </div>
+                    <div class="product_description">
+                      <div class="product_title">Test product name</div>
+                      <div class="product_view_rating">
+                        <div class="product_rating">
+                          <span class="rating_text">3.5 <i class="fas fa-star"></i> </span>
+                        </div>
+                        <div class="viewer">
+                          <span>&nbsp;&nbsp;(15,000)</span>
+                        </div>
+                      </div>
+                      <div class="product_pricing">
+                        <div class="pricing">
+                          <span>&#x20B9; 700</span>
+                          <span class="original_price">&#8377; 800</span>
+                        </div>
+                        <div class="discount">
+                          <span>4% dic</span>
+                        </div>
+                      </div>
+                      <!-- <div class="total_save_price">
+                        <div class="save_amount">
+                          <span>Save &#8377; 800</span>
+                        </div>
+                        <div class="save_percent">
+                          <span>4% dic</span>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </a>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================================  Mobile_electronic_dreals End ============================================ -->
+
+<!-- =================================  Banner2 Category ============================================ -->
+{% if banner_2 %}
+  <div class="advatice_banner">
+    <div class="container-fluid">
+      <div class="row">
+        {% for banner_image in banner_2|slice:":2" %}
+          <div class="col-md-6">
+            <img src="/media/{{ banner_image.banner_image }}" alt="">
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+<!-- =================================  Banner2 End ================================================= -->
+
+<!-- =================================  Mobile_electronic_dreals Category ============================================ -->
+
+<div class="exclusive_category_div">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Shooses and Waches</h1>
+        <span class="view_all"><a href="">(view all)</a></span>
+      </div>
+      <div class="col-md-12">
+        <div class="left_arrow weekly_dreals_left_arrow"><i class="fas fa-caret-left"></i></div>
+        <div class="right_arrow weekly_dreals_right_arrow"><i class="fas fa-caret-right"></i></div>
+        <div class="product_section" id="weekly_dreals_product_section">
+          <ul>
+            <li>
+              <span>
+                <div class="product_best_seller"><span>Best Seller</span></div>
+                <div class="product_wish_list_icon"><i class="fas fa-heart"></i></div>
+                <a href="">
+                  <div class="product_design_div">
+                    <div class="product_image">
+                      <img src="{% static 'site_image/135x180.png' %}" alt="">
+                    </div>
+                    <div class="product_description">
+                      <div class="product_title">Test product name</div>
+                      <div class="product_view_rating">
+                        <div class="product_rating">
+                          <span class="rating_text">3.5 <i class="fas fa-star"></i> </span>
+                        </div>
+                        <div class="viewer">
+                          <span>&nbsp;&nbsp;(15,000)</span>
+                        </div>
+                      </div>
+                      <div class="product_pricing">
+                        <div class="pricing">
+                          <span>&#x20B9; 700</span>
+                          <span class="original_price">&#8377; 800</span>
+                        </div>
+                        <div class="discount">
+                          <span>4% dic</span>
+                        </div>
+                      </div>
+                      <!-- <div class="total_save_price">
+                        <div class="save_amount">
+                          <span>Save &#8377; 800</span>
+                        </div>
+                        <div class="save_percent">
+                          <span>4% dic</span>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </a>
+              </span>
+            </li>
+            <li>
+              <span>
+                <div class="product_best_seller"><span>Best Seller</span></div>
+                <div class="product_wish_list_icon"><i class="fas fa-heart"></i></div>
+                <a href="">
+                  <div class="product_design_div">
+                    <div class="product_image">
+                      <img src="{% static 'site_image/135x180.png' %}" alt="">
+                    </div>
+                    <div class="product_description">
+                      <div class="product_title">Test product name</div>
+                      <div class="product_view_rating">
+                        <div class="product_rating">
+                          <span class="rating_text">3.5 <i class="fas fa-star"></i> </span>
+                        </div>
+                        <div class="viewer">
+                          <span>&nbsp;&nbsp;(15,000)</span>
+                        </div>
+                      </div>
+                      <div class="product_pricing">
+                        <div class="pricing">
+                          <span>&#x20B9; 700</span>
+                          <span class="original_price">&#8377; 800</span>
+                        </div>
+                        <div class="discount">
+                          <span>4% dic</span>
+                        </div>
+                      </div>
+                      <!-- <div class="total_save_price">
+                        <div class="save_amount">
+                          <span>Save &#8377; 800</span>
+                        </div>
+                        <div class="save_percent">
+                          <span>4% dic</span>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </a>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================================  Mobile_electronic_dreals End ============================================ -->
+
+<!-- =================================  Banner3 Category ============================================ -->
+{% if banner_3 %}
+  <div class="advatice_banner">
+    <div class="container-fluid">
+      <div class="row">
+        {% for banner_image in banner_3|slice:":1" %}
+          <div class="col-md-12">
+            <img class="single_advatice_banner" src="/media/{{ banner_image.banner_image }}" alt="">
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+<!-- =================================  Banner3 End ================================================= -->
+
+<!-- =================================  Beauty world Category ============================================ -->
+
+<div class="exclusive_category_div">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Beauty world</h1>
+        <span class="view_all"><a href="">(view all)</a></span>
+      </div>
+      <div class="col-md-12">
+        <div class="left_arrow weekly_dreals_left_arrow"><i class="fas fa-caret-left"></i></div>
+        <div class="right_arrow weekly_dreals_right_arrow"><i class="fas fa-caret-right"></i></div>
+        <div class="product_section" id="weekly_dreals_product_section">
+          <ul>
+            <li>
+              <span>
+                <div class="product_best_seller"><span>Best Seller</span></div>
+                <div class="product_wish_list_icon"><i class="fas fa-heart"></i></div>
+                <a href="">
+                  <div class="product_design_div">
+                    <div class="product_image">
+                      <img src="{% static 'site_image/135x180.png' %}" alt="">
+                    </div>
+                    <div class="product_description">
+                      <div class="product_title">Test product name</div>
+                      <div class="product_view_rating">
+                        <div class="product_rating">
+                          <span class="rating_text">3.5 <i class="fas fa-star"></i> </span>
+                        </div>
+                        <div class="viewer">
+                          <span>&nbsp;&nbsp;(15,000)</span>
+                        </div>
+                      </div>
+                      <div class="product_pricing">
+                        <div class="pricing">
+                          <span>&#x20B9; 700</span>
+                          <span class="original_price">&#8377; 800</span>
+                        </div>
+                        <div class="discount">
+                          <span>4% dic</span>
+                        </div>
+                      </div>
+                      <!-- <div class="total_save_price">
+                        <div class="save_amount">
+                          <span>Save &#8377; 800</span>
+                        </div>
+                        <div class="save_percent">
+                          <span>4% dic</span>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </a>
+              </span>
+            </li>
+            <li>
+              <span>
+                <div class="product_best_seller"><span>Best Seller</span></div>
+                <div class="product_wish_list_icon"><i class="fas fa-heart"></i></div>
+                <a href="">
+                  <div class="product_design_div">
+                    <div class="product_image">
+                      <img src="{% static 'site_image/135x180.png' %}" alt="">
+                    </div>
+                    <div class="product_description">
+                      <div class="product_title">Test product name</div>
+                      <div class="product_view_rating">
+                        <div class="product_rating">
+                          <span class="rating_text">3.5 <i class="fas fa-star"></i> </span>
+                        </div>
+                        <div class="viewer">
+                          <span>&nbsp;&nbsp;(15,000)</span>
+                        </div>
+                      </div>
+                      <div class="product_pricing">
+                        <div class="pricing">
+                          <span>&#x20B9; 700</span>
+                          <span class="original_price">&#8377; 800</span>
+                        </div>
+                        <div class="discount">
+                          <span>4% dic</span>
+                        </div>
+                      </div>
+                      <!-- <div class="total_save_price">
+                        <div class="save_amount">
+                          <span>Save &#8377; 800</span>
+                        </div>
+                        <div class="save_percent">
+                          <span>4% dic</span>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </a>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================================  Beauty world End ======================================================= -->
+
+<!-- =================================  Banner4 Category ============================================ -->
+{% if banner_4 %}
+  <div class="advatice_banner">
+    <div class="container-fluid">
+      <div class="row">
+        {% for banner_image in banner_4|slice:":3" %}
+          <div class="col-md-4">
+            <img class="tripel_advatice_banner" src="/media/{{ banner_image.banner_image }}" alt="">
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+<!-- =================================  Banner4 End ================================================= -->
+
+<!-- =================================  Women Fashion Deals ============================================ -->
+
+<div class="exclusive_category_div">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Women fashion deals</h1>
+        <span class="view_all"><a href="">(view all)</a></span>
+      </div>
+      <div class="col-md-12">
+        <div class="left_arrow weekly_dreals_left_arrow"><i class="fas fa-caret-left"></i></div>
+        <div class="right_arrow weekly_dreals_right_arrow"><i class="fas fa-caret-right"></i></div>
+        <div class="product_section" id="weekly_dreals_product_section">
+          <ul>
+            <li>
+              <span>
+                <div class="product_best_seller"><span>Best Seller</span></div>
+                <div class="product_wish_list_icon"><i class="fas fa-heart"></i></div>
+                <a href="">
+                  <div class="product_design_div">
+                    <div class="product_image">
+                      <img src="{% static 'site_image/135x180.png' %}" alt="">
+                    </div>
+                    <div class="product_description">
+                      <div class="product_title">Test product name</div>
+                      <div class="product_view_rating">
+                        <div class="product_rating">
+                          <span class="rating_text">3.5 <i class="fas fa-star"></i> </span>
+                        </div>
+                        <div class="viewer">
+                          <span>&nbsp;&nbsp;(15,000)</span>
+                        </div>
+                      </div>
+                      <div class="product_pricing">
+                        <div class="pricing">
+                          <span>&#x20B9; 700</span>
+                          <span class="original_price">&#8377; 800</span>
+                        </div>
+                        <div class="discount">
+                          <span>4% dic</span>
+                        </div>
+                      </div>
+                      <!-- <div class="total_save_price">
+                        <div class="save_amount">
+                          <span>Save &#8377; 800</span>
+                        </div>
+                        <div class="save_percent">
+                          <span>4% dic</span>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </a>
+              </span>
+            </li>
+            <li>
+              <span>
+                <div class="product_best_seller"><span>Best Seller</span></div>
+                <div class="product_wish_list_icon"><i class="fas fa-heart"></i></div>
+                <a href="">
+                  <div class="product_design_div">
+                    <div class="product_image">
+                      <img src="{% static 'site_image/135x180.png' %}" alt="">
+                    </div>
+                    <div class="product_description">
+                      <div class="product_title">Test product name</div>
+                      <div class="product_view_rating">
+                        <div class="product_rating">
+                          <span class="rating_text">3.5 <i class="fas fa-star"></i> </span>
+                        </div>
+                        <div class="viewer">
+                          <span>&nbsp;&nbsp;(15,000)</span>
+                        </div>
+                      </div>
+                      <div class="product_pricing">
+                        <div class="pricing">
+                          <span>&#x20B9; 700</span>
+                          <span class="original_price">&#8377; 800</span>
+                        </div>
+                        <div class="discount">
+                          <span>4% dic</span>
+                        </div>
+                      </div>
+                      <!-- <div class="total_save_price">
+                        <div class="save_amount">
+                          <span>Save &#8377; 800</span>
+                        </div>
+                        <div class="save_percent">
+                          <span>4% dic</span>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </a>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================================  Women Fashion Deals End ======================================================= -->
+
+<!-- =================================  Banner5 Category ============================================ -->
+{% if banner_5 %}
+  <div class="advatice_banner">
+    <div class="container-fluid">
+      <div class="row">
+        {% for banner_image in banner_5|slice:":2" %}
+          <div class="col-md-6">
+            <img src="/media/{{ banner_image.banner_image }}" alt="">
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+<!-- =================================  Banner5 End ================================================= -->
+
+<!-- =================================  Men Fashion Deals ============================================ -->
+
+<div class="exclusive_category_div">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Men fashion deals</h1>
+        <span class="view_all"><a href="">(view all)</a></span>
+      </div>
+      <div class="col-md-12">
+        <div class="left_arrow weekly_dreals_left_arrow"><i class="fas fa-caret-left"></i></div>
+        <div class="right_arrow weekly_dreals_right_arrow"><i class="fas fa-caret-right"></i></div>
+        <div class="product_section" id="weekly_dreals_product_section">
+          <ul>
+            <li>
+              <span>
+                <div class="product_best_seller"><span>Best Seller</span></div>
+                <div class="product_wish_list_icon"><i class="fas fa-heart"></i></div>
+                <a href="">
+                  <div class="product_design_div">
+                    <div class="product_image">
+                      <img src="{% static 'site_image/135x180.png' %}" alt="">
+                    </div>
+                    <div class="product_description">
+                      <div class="product_title">Test product name</div>
+                      <div class="product_view_rating">
+                        <div class="product_rating">
+                          <span class="rating_text">3.5 <i class="fas fa-star"></i> </span>
+                        </div>
+                        <div class="viewer">
+                          <span>&nbsp;&nbsp;(15,000)</span>
+                        </div>
+                      </div>
+                      <div class="product_pricing">
+                        <div class="pricing">
+                          <span>&#x20B9; 700</span>
+                          <span class="original_price">&#8377; 800</span>
+                        </div>
+                        <div class="discount">
+                          <span>4% dic</span>
+                        </div>
+                      </div>
+                      <!-- <div class="total_save_price">
+                        <div class="save_amount">
+                          <span>Save &#8377; 800</span>
+                        </div>
+                        <div class="save_percent">
+                          <span>4% dic</span>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </a>
+              </span>
+            </li>
+            <li>
+              <span>
+                <div class="product_best_seller"><span>Best Seller</span></div>
+                <div class="product_wish_list_icon"><i class="fas fa-heart"></i></div>
+                <a href="">
+                  <div class="product_design_div">
+                    <div class="product_image">
+                      <img src="{% static 'site_image/135x180.png' %}" alt="">
+                    </div>
+                    <div class="product_description">
+                      <div class="product_title">Test product name</div>
+                      <div class="product_view_rating">
+                        <div class="product_rating">
+                          <span class="rating_text">3.5 <i class="fas fa-star"></i> </span>
+                        </div>
+                        <div class="viewer">
+                          <span>&nbsp;&nbsp;(15,000)</span>
+                        </div>
+                      </div>
+                      <div class="product_pricing">
+                        <div class="pricing">
+                          <span>&#x20B9; 700</span>
+                          <span class="original_price">&#8377; 800</span>
+                        </div>
+                        <div class="discount">
+                          <span>4% dic</span>
+                        </div>
+                      </div>
+                      <!-- <div class="total_save_price">
+                        <div class="save_amount">
+                          <span>Save &#8377; 800</span>
+                        </div>
+                        <div class="save_percent">
+                          <span>4% dic</span>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </a>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================================  Men Fashion Deals End ======================================================= -->
+
+<!-- =================================  Banner6 Category ============================================ -->
+{% if banner_6 %}
+  <div class="advatice_banner">
+    <div class="container-fluid">
+      <div class="row">
+        {% for banner_image in banner_6|slice:":2" %}
+          <div class="col-md-6">
+            <img src="/media/{{ banner_image.banner_image }}" alt="">
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+<!-- =================================  Banner6 End ================================================= -->
+
+<!-- =================================  Seasonal Offer ============================================ -->
+
+<div class="exclusive_category_div">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Seasonal Offer</h1>
+        <span class="view_all"><a href="">(view all)</a></span>
+      </div>
+      <div class="col-md-12">
+        <div class="left_arrow weekly_dreals_left_arrow"><i class="fas fa-caret-left"></i></div>
+        <div class="right_arrow weekly_dreals_right_arrow"><i class="fas fa-caret-right"></i></div>
+        <div class="product_section" id="weekly_dreals_product_section">
+          <ul>
+            <li>
+              <span>
+                <div class="product_best_seller"><span>Best Seller</span></div>
+                <div class="product_wish_list_icon"><i class="fas fa-heart"></i></div>
+                <a href="">
+                  <div class="product_design_div">
+                    <div class="product_image">
+                      <img src="{% static 'site_image/135x180.png' %}" alt="">
+                    </div>
+                    <div class="product_description">
+                      <div class="product_title">Test product name</div>
+                      <div class="product_view_rating">
+                        <div class="product_rating">
+                          <span class="rating_text">3.5 <i class="fas fa-star"></i> </span>
+                        </div>
+                        <div class="viewer">
+                          <span>&nbsp;&nbsp;(15,000)</span>
+                        </div>
+                      </div>
+                      <div class="product_pricing">
+                        <div class="pricing">
+                          <span>&#x20B9; 700</span>
+                          <span class="original_price">&#8377; 800</span>
+                        </div>
+                        <div class="discount">
+                          <span>4% dic</span>
+                        </div>
+                      </div>
+                      <!-- <div class="total_save_price">
+                        <div class="save_amount">
+                          <span>Save &#8377; 800</span>
+                        </div>
+                        <div class="save_percent">
+                          <span>4% dic</span>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </a>
+              </span>
+            </li>
+            <li>
+              <span>
+                <div class="product_best_seller"><span>Best Seller</span></div>
+                <div class="product_wish_list_icon"><i class="fas fa-heart"></i></div>
+                <a href="">
+                  <div class="product_design_div">
+                    <div class="product_image">
+                      <img src="{% static 'site_image/135x180.png' %}" alt="">
+                    </div>
+                    <div class="product_description">
+                      <div class="product_title">Test product name</div>
+                      <div class="product_view_rating">
+                        <div class="product_rating">
+                          <span class="rating_text">3.5 <i class="fas fa-star"></i> </span>
+                        </div>
+                        <div class="viewer">
+                          <span>&nbsp;&nbsp;(15,000)</span>
+                        </div>
+                      </div>
+                      <div class="product_pricing">
+                        <div class="pricing">
+                          <span>&#x20B9; 700</span>
+                          <span class="original_price">&#8377; 800</span>
+                        </div>
+                        <div class="discount">
+                          <span>4% dic</span>
+                        </div>
+                      </div>
+                      <!-- <div class="total_save_price">
+                        <div class="save_amount">
+                          <span>Save &#8377; 800</span>
+                        </div>
+                        <div class="save_percent">
+                          <span>4% dic</span>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </a>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================================  Seasonal Offer End ======================================================= -->
+
 {% endblock %}
 
 {% block add_js %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>
-<!-- <script src="{% static 'js/libs/slick-master/slick/slick.js' %}"></script> -->
-
-<script>
-  $('.featured_category_slider').slick({
-    dots: false,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    touchMove: false,
-    autoplay: true,
-    autoplaySpeed: 1000,
-    swipe:true,
-    prevArrow:'<button type="button" data-role="none" class="slick-prev"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>',
-    nextArrow:'<button type="button" data-role="none" class="slick-next"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>',
-  });
-</script>
 <script type="text/javascript" src="{% static 'user_static/js/home_page.js' %}"></script>
 {% endblock %}

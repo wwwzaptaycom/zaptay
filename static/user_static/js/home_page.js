@@ -16,8 +16,8 @@ function ChangeSlider(slider_type, classname){
 }
 
 
-$(document).ready(function(){
-  
+/*$(document).ready(function(){
+
   var countDownDate = new Date($(".time_left").text()).getTime();
   // Update the count down every 1 second
   var x = setInterval(function() {
@@ -42,4 +42,32 @@ $(document).ready(function(){
       $(".time_left").html(`EXPIRED`);
     }
   }, 1000);
-})
+})*/
+
+$('.exclusive_left_arrow').on("click", () => {
+  document.getElementById('product_section').scrollLeft -= 600;
+});
+
+$('.exclusive_right_arrow').on("click", () => {
+  document.getElementById('product_section').scrollLeft += 600;
+});
+
+$('.weekly_dreals_left_arrow').on("click", () => {
+  document.getElementById('weekly_dreals_product_section').scrollLeft -= 600;
+});
+
+$('.weekly_dreals_right_arrow').on("click", () => {
+  document.getElementById('weekly_dreals_product_section').scrollLeft += 600;
+});
+
+$('.featured_category_left_arrow').on("click", () => {
+  document.getElementById('fetured_category_section').scrollLeft -= 600;
+});
+
+$('.featured_category_right_arrow').on("click", () => {
+  document.getElementById('fetured_category_section').scrollLeft += 600;
+});
+
+$(document).ready(() => {
+  // console.log(document.getElementById('product_section').scrollLeft);
+});

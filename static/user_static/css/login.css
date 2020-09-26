@@ -70,6 +70,12 @@
   box-shadow: none;
 }
 
+.login_btn i{
+  padding: 0px !important;
+  display: none;
+  font-size: 27px;
+}
+
 .login_form form .login_btn{
   text-align: center !important;
   background-color: var(--theme-btn-bg-color);

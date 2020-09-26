@@ -14,6 +14,8 @@ from user_login.models import UserAccount
 from django.utils import timezone
 from datetime import datetime
 
+from home.base_template import BaseTemplateHeader
+
 # Create your views here.
 
 class CartListView(TemplateView):
@@ -45,10 +47,14 @@ class CartListView(TemplateView):
         get_more_sub_category = SubCategory.objects.filter(category_id=featured_category)
         # print (featured_category)
 
+        obj = BaseTemplateHeader(self.request)
+        base_template_data = obj.GetHeaderContent()
+
         context = {
-            'header_logo': header_logo,
-            'mega_menu_sub_category': megamenu,
-            'mega_menu_more_category': get_more_sub_category,
+            'base_template_content': base_template_data,
+            # 'header_logo': header_logo,
+            # 'mega_menu_sub_category': megamenu,
+            # 'mega_menu_more_category': get_more_sub_category,
         }
 
         return context

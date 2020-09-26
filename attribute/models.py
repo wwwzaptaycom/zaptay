@@ -55,6 +55,44 @@ class TertiaryCategory(models.Model):
     def __str__(self):
         return self.ter_category_name
 
+class UnderTertiaryCategory(models.Model):
+    under_ter_category_id = models.AutoField(primary_key=True)
+    under_ter_category_name = models.CharField(max_length=255)
+    under_ter_category_seo_url = models.CharField(max_length=255, default="")
+    under_tertiary_category_image = models.ImageField(upload_to="under_tertiary_category/images", default="")
+    is_active = models.BooleanField(default=1)
+    added_by = models.ForeignKey(zaptayAdmin, on_delete=models.CASCADE)
+    ter_category_id = models.ForeignKey(TertiaryCategory, on_delete=models.CASCADE)
+    modify_date = models.DateTimeField(default=now)
+    create_date = models.DateTimeField(default=now)
+
+    class Meta:
+        db_table = "under_tertiary_category"
+
+    def save(self, *args, **kwargs):
+        get_under_ter_category = self.under_ter_category_name.lower()
+        get_under_ter_category = get_under_ter_category.replace(" ", "-")
+        self.under_ter_category_seo_url = get_under_ter_category
+        super(UnderTertiaryCategory, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.under_ter_category_name
+
+class Brand(models.Model):
+    brand_id = models.AutoField(primary_key=True)
+    brand_name = models.CharField(max_length=100)
+    is_active = models.BooleanField(default=1)
+    added_by = models.ForeignKey(zaptayAdmin, on_delete=models.CASCADE)
+    modify_date = models.DateTimeField(default=now)
+    create_date = models.DateTimeField(default=now)
+
+    class Meta:
+        db_table = "brands"
+
+    def __str__(self):
+        return self.brand_name
+
+
 class Colour(models.Model):
     color_id = models.AutoField(primary_key=True)
     color_name = models.CharField(max_length=100)

@@ -1,6 +1,6 @@
 from django.db import models
 from category.models import MainCategory
-from attribute.models import SubCategory, TertiaryCategory, Colour, Size, Source, SameDayDelivary, NextDayDelivary
+from attribute.models import SubCategory, TertiaryCategory, UnderTertiaryCategory, Brand, Colour, Size, Source, SameDayDelivary, NextDayDelivary
 from seller.models import Seller
 from admin_login.models import zaptayAdmin
 
@@ -57,6 +57,8 @@ class Product(models.Model):
     prod_category = models.ForeignKey(MainCategory, on_delete=models.CASCADE, blank=False, null=False)
     prod_sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, blank=False)
     prod_tertiary_category = models.ForeignKey(TertiaryCategory, on_delete=models.CASCADE, blank=True, null=True)
+    prod_under_tertiary_category = models.ForeignKey(UnderTertiaryCategory, on_delete=models.CASCADE, blank=True, null=True)
+    prod_brand = models.ForeignKey(Brand, on_delete=models.CASCADE, blank=False, null=False)
     prod_color = models.ForeignKey(Colour, on_delete=models.CASCADE, blank=False)
     prod_size = models.ForeignKey(Size, on_delete=models.CASCADE, blank=False)
     prod_made_in = models.ForeignKey(Source, on_delete=models.CASCADE, blank=False)

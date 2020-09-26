@@ -6,10 +6,10 @@ from django.views.generic import View, TemplateView, FormView
 
 from admin_login.models import zaptayAdmin
 
-from .attribute_forms import CategoryForm, SubcategoryForm, TertiaryCategoryForm, ColorForm, SizeForm, SourceForm, SameDayPincodeForm, NextDayPincodeForm
+from .attribute_forms import CategoryForm, SubcategoryForm, TertiaryCategoryForm, UnderTertiaryCategoryForm, BrandForm, ColorForm, SizeForm, SourceForm, SameDayPincodeForm, NextDayPincodeForm
 
 from category.models import MainCategory
-from attribute.models import SubCategory, TertiaryCategory, Colour, Size, Source, SameDayDelivary, NextDayDelivary
+from attribute.models import SubCategory, TertiaryCategory, UnderTertiaryCategory, Brand, Colour, Size, Source, SameDayDelivary, NextDayDelivary
 
 from django.db.models import Subquery
 
@@ -21,6 +21,8 @@ class AttributeList(FormView):
     category_form_class = CategoryForm
     sub_category_form_class = SubcategoryForm
     teri_category_class = TertiaryCategoryForm
+    under_teri_category_class = UnderTertiaryCategoryForm
+    brand_class = BrandForm
     color_class = ColorForm
     size_class = SizeForm
     source_class = SourceForm
@@ -42,6 +44,8 @@ class AttributeList(FormView):
         category_list = MainCategory.objects.all()
         sub_category_list = SubCategory.objects.all()
         ter_caregory_list = TertiaryCategory.objects.all()
+        under_ter_caregory_list = UnderTertiaryCategory.objects.all()
+        brand_list = Brand.objects.all()
         color_list = Colour.objects.all()
         size_list = Size.objects.all()
         source_list = Source.objects.all()
@@ -67,6 +71,8 @@ class AttributeList(FormView):
             "category_list": category_list,
             "sub_category_list": sub_category_list,
             "ter_category_list": ter_caregory_list,
+            "under_ter_caregory_list": under_ter_caregory_list,
+            "brand_list": brand_list,
             "color_list": color_list,
             "size_list": size_list,
             "source_list": source_list,
@@ -76,6 +82,8 @@ class AttributeList(FormView):
         context['category_form'] = self.category_form_class
         context['sub_category_form'] = self.sub_category_form_class
         context['tertia_form'] = self.teri_category_class
+        context['under_tertia_form'] = self.under_teri_category_class
+        context['brand_form'] = self.brand_class
         context['color_form'] = self.color_class
         context['size_form'] = self.size_class
         context['source_form'] = self.source_class
@@ -128,6 +136,41 @@ class AttributeList(FormView):
                 messages.success(request, "Tertiary catagory added", extra_tags='terriary_category')
             else:
                 messages.error(request, "All fields mentetory", extra_tags='terriary_category')
+
+        if 'under_tert_category_add_form' in request.POST:
+            under_tertiary_category_from = UnderTertiaryCategoryForm(request.POST)
+
+            if under_tertiary_category_from.is_valid():
+                tert_category_id = request.POST['tert_category_list']
+                under_tert_category_name = request.POST['under_tert_category_add_form']
+
+                # print (tert_category_id, under_tert_category_name, '************************')
+
+                admin_id = zaptayAdmin.objects.all().get(email_id=request.session.get('admin_email_id'))
+                get_tert_category = TertiaryCategory.objects.get(pk=tert_category_id)
+
+                # print (get_tert_category, "******************************************")
+
+                insert_que = UnderTertiaryCategory(under_ter_category_name=under_tert_category_name, added_by=admin_id, ter_category_id=get_tert_category)
+                insert_que.save()
+                messages.success(request, "Under tertiary catagory added", extra_tags='under_terriary_category')
+            else:
+                messages.error(request, "All fields mentetory", extra_tags='under_terriary_category')
+
+        if 'brand_add_form' in request.POST:
+            brand_from = BrandForm(request.POST)
+
+            if brand_from.is_valid():
+                brand_name = request.POST['brand_add_form'].lower()
+                # print (brand_name, "*******************")
+
+                admin_id = zaptayAdmin.objects.all().get(email_id=request.session.get('admin_email_id'))
+
+                insert_que = Brand(brand_name=brand_name, added_by=admin_id)
+                insert_que.save()
+                messages.success(request, "Brand added", extra_tags='brand')
+            else:
+                messages.error(request, "All fields mentetory", extra_tags='brand')
 
         if 'color_add_form' in request.POST:
             color_from = ColorForm(request.POST)
@@ -242,6 +285,18 @@ def SendSubCategoryData(request):
 
     return JsonResponse(category_dict)
 
+def SendTertiaryCategoryData(request):
+
+    category_dict = dict()
+    category_arr = list()
+
+    category_list = TertiaryCategory.objects.all()
+    for i in category_list:
+        category_arr.append([i.ter_category_id , i.ter_category_name])
+    category_dict['data'] = category_arr
+
+    return JsonResponse(category_dict)
+
 def DeleteAttrinutsData(request):
     attribute_id = request.POST['attribute_id']
     attribut_attribute_type = request.POST['attribute_type']
@@ -258,6 +313,14 @@ def DeleteAttrinutsData(request):
 
     if attribut_attribute_type == 'tertiary_category':
         get_data = TertiaryCategory.objects.get(pk=attribute_id)
+        get_data.delete()
+
+    if attribut_attribute_type == 'under_tertiary_category':
+        get_data = UnderTertiaryCategory.objects.get(pk=attribute_id)
+        get_data.delete()
+
+    if attribut_attribute_type == 'brand':
+        get_data = Brand.objects.get(pk=attribute_id)
         get_data.delete()
 
     if attribut_attribute_type == 'color':
@@ -322,6 +385,54 @@ def TertiarySubCategory(request):
         category_list = TertiaryCategory.objects.all().filter(sub_category_id=sub_category_id)
         for i in category_list:
             category_arr.append([i.ter_category_id , i.ter_category_name])
+        category_dict['data'] = category_arr
+
+        return JsonResponse(category_dict)
+
+    except Exception as e:
+        print ("*********************************************************************************************************************************")
+        print ("Error in ajax", e)
+        print ("*********************************************************************************************************************************")
+
+        resp = {
+            "response": 'Failed'
+        }
+
+        return JsonResponse(resp)
+
+def SendUnderTertiaryCategory(request):
+    try:
+        tertiary_category_id = request.GET['tert_category_id']
+
+        category_dict = dict()
+        category_arr = list()
+
+        category_list = UnderTertiaryCategory.objects.all().filter(ter_category_id=tertiary_category_id)
+        for i in category_list:
+            category_arr.append([i.under_ter_category_id , i.under_ter_category_name])
+        category_dict['data'] = category_arr
+
+        return JsonResponse(category_dict)
+
+    except Exception as e:
+        print ("*********************************************************************************************************************************")
+        print ("Error in ajax", e)
+        print ("*********************************************************************************************************************************")
+
+        resp = {
+            "response": 'Failed'
+        }
+
+        return JsonResponse(resp)
+
+def GetAllBrands(request):
+    try:
+        category_dict = dict()
+        category_arr = list()
+
+        category_list = Brand.objects.all()
+        for i in category_list:
+            category_arr.append([i.brand_id , i.brand_name])
         category_dict['data'] = category_arr
 
         return JsonResponse(category_dict)

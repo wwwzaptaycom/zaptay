@@ -242,6 +242,74 @@ class ViewBanner(TemplateView):
                     image_upload.save()
                 messages.success(request, 'Advatice Banner 6 Upload Successfull')
                 return redirect('/site-admin/banner/')
+
+            if 'advatice_right' in request.FILES:
+                banner_link = request.POST.getlist('banner_link')
+                men_banner_image = request.FILES.getlist('advatice_right')
+                for image, link in zip(men_banner_image, banner_link):
+                    # print (image)
+                    # print (link)
+                    fs = FileSystemStorage()
+                    image_title = "advatice-right-banner."+image.name.split(".")[-1]
+                    upload_image = fs.save("banner/advatice_right/images/"+image_title, image)
+                    img_url = fs.url(upload_image)
+                    mod_image_name = img_url.split("/")[-1]
+                    image_path = 'banner/advatice_right/images/'+mod_image_name
+
+                    image_upload = Banner(banner_image=image_path, banner_name='advatice_right', banner_link=link)
+                    image_upload.save()
+                messages.success(request, 'Advatice Banner Right Upload Successfull')
+                return redirect('/site-admin/banner/')
+
+            if 'advatice_left' in request.FILES:
+                banner_link = request.POST.getlist('banner_link')
+                men_banner_image = request.FILES.getlist('advatice_left')
+                for image, link in zip(men_banner_image, banner_link):
+                    # print (image)
+                    # print (link)
+                    fs = FileSystemStorage()
+                    image_title = "advatice-right-banner."+image.name.split(".")[-1]
+                    upload_image = fs.save("banner/advatice_left/images/"+image_title, image)
+                    img_url = fs.url(upload_image)
+                    mod_image_name = img_url.split("/")[-1]
+                    image_path = 'banner/advatice_left/images/'+mod_image_name
+
+                    image_upload = Banner(banner_image=image_path, banner_name='advatice_left', banner_link=link)
+                    image_upload.save()
+                messages.success(request, 'Advatice Banner Left Upload Successfull')
+                return redirect('/site-admin/banner/')
+
+            # *******************************   Banner title    ***********************************************
+            # print (request.POST)
+            # return
+            if 'men_banner_title' in request.POST:
+                banner_custom_title = request.POST.getlist('men_banner_title')
+                if banner_custom_title[0] != "":
+                    edit_banner_custom_title = Banner.objects.filter(banner_name='men_banner').update(banner_name_custom=banner_custom_title[0])
+            if 'women_banner_title' in request.POST:
+                banner_custom_title = request.POST.getlist('women_banner_title')
+                if banner_custom_title[0] != "":
+                    edit_banner_custom_title = Banner.objects.filter(banner_name='women_banner').update(banner_name_custom=banner_custom_title[0])
+            if 'baby_kid_banner_title' in request.POST:
+                banner_custom_title = request.POST.getlist('baby_kid_banner_title')
+                if banner_custom_title[0] != "":
+                    edit_banner_custom_title = Banner.objects.filter(banner_name='baby_kid_banner').update(banner_name_custom=banner_custom_title[0])
+            if 'mobile_banner_title' in request.POST:
+                banner_custom_title = request.POST.getlist('mobile_banner_title')
+                if banner_custom_title[0] != "":
+                    edit_banner_custom_title = Banner.objects.filter(banner_name='mobile_banner').update(banner_name_custom=banner_custom_title[0])
+
+            if 'electronic_banner_title' in request.POST:
+                banner_custom_title = request.POST.getlist('electronic_banner_title')
+                if banner_custom_title[0] != "":
+                    edit_banner_custom_title = Banner.objects.filter(banner_name='electronic_banner').update(banner_name_custom=banner_custom_title[0])
+
+            if 'office_appliance_banner_title' in request.POST:
+                banner_custom_title = request.POST.getlist('office_appliance_banner_title')
+                if banner_custom_title[0] != "":
+                    edit_banner_custom_title = Banner.objects.filter(banner_name='office_appliance_banner').update(banner_name_custom=banner_custom_title[0])
+
+            # *******************************   Banner title    ***********************************************
         except Exception as e:
             print (e)
 
@@ -253,12 +321,12 @@ class ViewBanner(TemplateView):
         seller_id = self.kwargs.get('seller_id')
         get_name = zaptayAdmin.objects.all().get(email_id=self.request.session['admin_email_id'])
 
-        get_mens_fashion = Banner.objects.filter(banner_name='men_banner').values('id', 'banner_image', 'banner_link', 'banner_id')
-        get_womens_fashion = Banner.objects.filter(banner_name='women_banner').values('id', 'banner_image', 'banner_link', 'banner_id')
-        get_baby_kid_fashion = Banner.objects.filter(banner_name='baby_kid_banner').values('id', 'banner_image', 'banner_link', 'banner_id')
-        get_mobile_fashion = Banner.objects.filter(banner_name='mobile_banner').values('id', 'banner_image', 'banner_link', 'banner_id')
-        get_electronic_fashion = Banner.objects.filter(banner_name='electronic_banner').values('id', 'banner_image', 'banner_link', 'banner_id')
-        get_office_appliance_fashion = Banner.objects.filter(banner_name='office_appliance_banner').values('id', 'banner_image', 'banner_link', 'banner_id')
+        get_mens_fashion = Banner.objects.filter(banner_name='men_banner').values('id', 'banner_image', 'banner_link', 'banner_id', 'banner_name_custom')
+        get_womens_fashion = Banner.objects.filter(banner_name='women_banner').values('id', 'banner_image', 'banner_link', 'banner_id', 'banner_name_custom')
+        get_baby_kid_fashion = Banner.objects.filter(banner_name='baby_kid_banner').values('id', 'banner_image', 'banner_link', 'banner_id', 'banner_name_custom')
+        get_mobile_fashion = Banner.objects.filter(banner_name='mobile_banner').values('id', 'banner_image', 'banner_link', 'banner_id', 'banner_name_custom')
+        get_electronic_fashion = Banner.objects.filter(banner_name='electronic_banner').values('id', 'banner_image', 'banner_link', 'banner_id', 'banner_name_custom')
+        get_office_appliance_fashion = Banner.objects.filter(banner_name='office_appliance_banner').values('id', 'banner_image', 'banner_link', 'banner_id', 'banner_name_custom')
 
         get_advatice_banner_1 = Banner.objects.filter(banner_name='advatice_1').values('id', 'banner_image', 'banner_link', 'banner_id')
         get_advatice_banner_2 = Banner.objects.filter(banner_name='advatice_2').values('id', 'banner_image', 'banner_link', 'banner_id')
@@ -266,6 +334,9 @@ class ViewBanner(TemplateView):
         get_advatice_banner_4 = Banner.objects.filter(banner_name='advatice_4').values('id', 'banner_image', 'banner_link', 'banner_id')
         get_advatice_banner_5 = Banner.objects.filter(banner_name='advatice_5').values('id', 'banner_image', 'banner_link', 'banner_id')
         get_advatice_banner_6 = Banner.objects.filter(banner_name='advatice_6').values('id', 'banner_image', 'banner_link', 'banner_id')
+
+        get_advatice_banner_right = Banner.objects.filter(banner_name='advatice_right').values('id', 'banner_image', 'banner_link', 'banner_id')
+        get_advatice_banner_left = Banner.objects.filter(banner_name='advatice_left').values('id', 'banner_image', 'banner_link', 'banner_id')
 
         context = {"page_name": "banner", "admin_name": get_name.admin_f_name+" "+get_name.admin_f_name,
                     'men_fashion_image': get_mens_fashion,
@@ -279,7 +350,9 @@ class ViewBanner(TemplateView):
                     'advatice_banner_3_image': get_advatice_banner_3,
                     'advatice_banner_4_image': get_advatice_banner_4,
                     'advatice_banner_5_image': get_advatice_banner_5,
-                    'advatice_banner_6_image': get_advatice_banner_6}
+                    'advatice_banner_6_image': get_advatice_banner_6,
+                    'advatice_banner_right_image': get_advatice_banner_right,
+                    'advatice_banner_left_image': get_advatice_banner_left}
         return context
 
 class WebSiteLogo(TemplateView):

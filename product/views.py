@@ -9,7 +9,7 @@ from django.db.models import Subquery, Q
 from .product_form import ProductForm
 from .models import Product, ProductImage
 from category.models import MainCategory
-from attribute.models import SubCategory, TertiaryCategory, Colour, Size, Source, SameDayDelivary, NextDayDelivary
+from attribute.models import SubCategory, TertiaryCategory, UnderTertiaryCategory, Brand, Colour, Size, Source, SameDayDelivary, NextDayDelivary
 from seller.models import Seller
 from stock.models import Bach
 from user_login.models import UserAccount, UserWishList, UserCartList
@@ -232,8 +232,10 @@ class ShowProductForm(FormView):
             category = request.POST['category']
             sub_category = request.POST['sub_cateegory']
             tertiary_category = request.POST['tertiary']
+            under_tertiary_category = request.POST['under_tertiary']
             seller = request.POST['seller']
             prod_desc = request.POST['description']
+            brand = request.POST['brand']
             color = request.POST['color']
             size = request.POST['size']
             source = request.POST['made_in']
@@ -290,6 +292,13 @@ class ShowProductForm(FormView):
                 tertiary_category_id_object = TertiaryCategory.objects.all().filter(ter_category_id=tertiary_category).first()
             else:
                 tertiary_category_id_object = ""
+
+            if under_tertiary_category != "":
+                under_tertiary_category_id_object = UnderTertiaryCategory.objects.all().filter(under_ter_category_id=under_tertiary_category).first()
+            else:
+                under_tertiary_category_id_object = ""
+
+            brand_id_object = Brand.objects.all().filter(brand_id=brand).first()
             color_id_object = Colour.objects.all().filter(color_id=color).first()
             size_id_object = Size.objects.all().filter(size_id=size).first()
             source_id_object = Source.objects.all().filter(source_id=source).first()
@@ -301,6 +310,7 @@ class ShowProductForm(FormView):
                                 prod_title=product_title,
                                 prod_category=get_category_id_object,
                                 prod_sub_category=sub_category_id_object,
+                                prod_brand=brand_id_object,
                                 prod_color=color_id_object,
                                 prod_size=size_id_object,
                                 prod_made_in=source_id_object,
@@ -325,6 +335,8 @@ class ShowProductForm(FormView):
                                 prod_category=get_category_id_object,
                                 prod_sub_category=sub_category_id_object,
                                 prod_tertiary_category=tertiary_category_id_object,
+                                prod_under_tertiary_category=under_tertiary_category_id_object,
+                                prod_brand=brand_id_object,
                                 prod_color=color_id_object,
                                 prod_size=size_id_object,
                                 prod_made_in=source_id_object,
